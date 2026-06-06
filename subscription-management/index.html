@@ -3,250 +3,394 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Oracle Subscription Management Storyboard Series</title>
+  <title>Chapter 2: Oracle Subscription Management — Oracle CX Storyboard Series</title>
   <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: Arial, sans-serif;
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 20px 30px;
       color: #333;
-      line-height: 1.7;
+      display: flex;
+      min-height: 100vh;
     }
-    h1 { color: #c74b00; font-size: 1.8em; }
-    h2 { color: #333; border-bottom: 2px solid #c74b00; padding-bottom: 6px; margin-top: 40px; }
-    h3 { color: #c74b00; margin-top: 30px; }
-    .nav {
+
+    /* SIDEBAR */
+    .sidebar {
+      width: 280px;
+      min-width: 280px;
+      background-color: #1a1a2e;
+      color: #ccc;
+      padding: 30px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .sidebar .logo {
+      padding: 0 20px 24px 20px;
+      border-bottom: 1px solid #333;
+      margin-bottom: 20px;
+    }
+    .sidebar .logo h2 { color: #ff6b2b; font-size: 1em; line-height: 1.5; }
+    .sidebar .logo p { color: #888; font-size: 0.78em; margin-top: 6px; }
+    .sidebar ul { list-style: none; }
+    .sidebar ul .section-label {
+      color: #888;
+      font-size: 0.72em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 16px 20px 6px 20px;
+    }
+    .sidebar ul li a {
+      display: block;
+      padding: 9px 20px;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.88em;
+      border-left: 3px solid transparent;
+      transition: all 0.2s;
+    }
+    .sidebar ul li a:hover {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.active {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.coming-soon {
+      color: #555;
+      cursor: default;
+      font-style: italic;
+    }
+    .sidebar ul li a.coming-soon:hover {
+      background: none;
+      border-left: 3px solid transparent;
+      color: #555;
+    }
+
+    /* MAIN */
+    .main {
+      margin-left: 280px;
+      padding: 40px 50px;
+      flex: 1;
+      max-width: 900px;
+    }
+
+    .chapter-header {
+      margin-bottom: 30px;
+    }
+    .chapter-header .chapter-label {
+      font-size: 0.8em;
+      color: #ff6b2b;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .chapter-header h1 { color: #c74b00; font-size: 1.8em; margin-bottom: 10px; }
+    .chapter-header p { color: #555; line-height: 1.7; }
+
+    .scenario-box {
       background-color: #fff8f0;
       border-left: 4px solid #c74b00;
-      padding: 10px 16px;
-      margin-bottom: 30px;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
       font-size: 0.95em;
+      line-height: 1.7;
+      color: #444;
     }
-    .nav a { color: #c74b00; text-decoration: none; }
-    .nav a:hover { text-decoration: underline; }
+
+    h2 {
+      color: #333;
+      font-size: 1.15em;
+      margin: 36px 0 16px 0;
+      border-bottom: 2px solid #ff6b2b;
+      padding-bottom: 8px;
+    }
+
     .storyboard {
       background-color: #f9f9f9;
       border: 1px solid #ddd;
       border-radius: 8px;
-      padding: 20px;
-      margin: 30px 0;
+      padding: 24px;
+      margin: 28px 0;
     }
     .storyboard h3 {
-      margin-top: 0;
-      border-bottom: 2px solid #c74b00;
+      color: #c74b00;
+      font-size: 1.05em;
+      margin-bottom: 16px;
       padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
     }
     .storyboard img {
       width: 100%;
       height: auto;
       border: 2px solid #ddd;
       border-radius: 6px;
-      margin: 16px 0;
+      margin: 12px 0;
+    }
+    .storyboard .tip {
+      font-style: italic;
+      color: #999;
+      font-size: 0.85em;
+      margin: 6px 0 14px 0;
     }
     .storyboard .what-it-shows {
       background-color: #fff8f0;
       border-left: 4px solid #c74b00;
-      padding: 10px 16px;
-      margin-top: 14px;
+      padding: 12px 16px;
+      font-size: 0.92em;
+      line-height: 1.7;
+      color: #444;
+      border-radius: 0 4px 4px 0;
+    }
+    .storyboard .what-it-shows strong { color: #c74b00; }
+
+    /* PREV / NEXT NAVIGATION */
+    .chapter-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+      padding-top: 24px;
+      border-top: 2px solid #eee;
+      gap: 16px;
+    }
+    .chapter-nav a {
+      display: block;
+      padding: 16px 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #333;
+      transition: all 0.2s;
+      flex: 1;
+    }
+    .chapter-nav a:hover {
+      border-color: #ff6b2b;
+      box-shadow: 0 2px 8px rgba(199,75,0,0.15);
+    }
+    .chapter-nav .prev { text-align: left; }
+    .chapter-nav .next { text-align: right; }
+    .chapter-nav .nav-label {
+      font-size: 0.75em;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .chapter-nav .nav-title {
+      font-weight: bold;
+      color: #c74b00;
       font-size: 0.95em;
     }
-    .tip {
-      font-style: italic;
-      color: #888;
-      font-size: 0.9em;
-      margin-top: 6px;
-    }
+
     .footer {
-      margin-top: 50px;
-      font-size: 0.85em;
-      color: #888;
-      border-top: 1px solid #ddd;
+      margin-top: 40px;
       padding-top: 16px;
+      border-top: 1px solid #ddd;
+      font-size: 0.82em;
+      color: #999;
     }
-    a { color: #c74b00; }
-    .back-link {
-      display: inline-block;
-      margin-bottom: 20px;
-      color: #c74b00;
-      font-weight: bold;
-      text-decoration: none;
+    .footer a { color: #c74b00; }
+
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 20px; }
     }
-    .back-link:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
 
-  <a class="back-link" href="https://veniltirou.github.io/lead-to-revenue-storyboard/">
-    ← Back to Lead-to-Revenue Overview
-  </a>
-
-  <h1>Oracle Subscription Management</h1>
-  <h2>Storyboard Series — ABC Corporation (Vending Solutions) → XYZ Corporation</h2>
-
-  <div class="nav">
-    <strong>Business Scenario:</strong> James, a sales representative at ABC Corporation,
-    closes a vending solutions deal with XYZ Corporation and sets up a 36-month subscription
-    with monthly billing. ABC Corporation uses Oracle Subscription Management to run its
-    entire subscription operations — from activation through billing, amendments, service
-    and renewal.
-  </div>
-
-  <p>This series explores Oracle Subscription Management from 7 different perspectives —
-  each storyboard covers a distinct angle of how the product works in a real B2B enterprise scenario.</p>
-
-  ---
-
-  <div class="storyboard">
-    <h3>Storyboard 1 — Oracle CX Sales → CPQ → Order Management → Subscription → Billing</h3>
-    <img src="Oracle_CX_Sales_Order_Billing_Subscription.png"
-         alt="Oracle CX Sales Journey End to End" />
-    <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
-    <div class="what-it-shows">
-      <strong>What this shows:</strong> The complete James journey across 10 steps —
-      starting from Lead and Opportunity creation in Oracle CX Sales, through Quote creation
-      in Oracle CPQ, Order submission in Order Management, Asset and Service Request setup,
-      Subscription Activation, Billing (one-time, recurring and usage), Revenue Recognition
-      in ERP, Amendment and Change management, Warranty Renewal, and finally Cancellation
-      and Termination. This is the master end-to-end flow that connects all Oracle CX and
-      ERP products together for a single B2B deal.
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="logo">
+      <h2>Oracle CX Storyboard Series</h2>
+      <p>ABC Corp → XYZ Corp</p>
     </div>
-  </div>
+    <ul>
+      <li class="section-label">Getting Started</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">
+        📋 Table of Contents</a></li>
+      <li class="section-label">Chapters</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/">
+        1. Lead-to-Revenue Overview</a></li>
+      <li><a href="#" class="active">
+        2. Subscription Management</a></li>
+      <li><a href="#" class="coming-soon">
+        3. Incentive Compensation (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        4. Fusion Field Service (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        5. CX Sales & CPQ (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        6. Order Management (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        7. Fusion Service (soon)</a></li>
+      <li class="section-label">Connect</li>
+      <li><a href="https://www.linkedin.com/in/veniltirou" target="_blank">
+        🔗 LinkedIn Profile</a></li>
+    </ul>
+  </nav>
 
-  <div class="storyboard">
-    <h3>Storyboard 2 — Oracle Subscription Management Implemented at ABC Corporation</h3>
-    <img src="Oracle_Subscription_Mgmt_Implemented_At_ABCCorporation.png"
-         alt="Oracle Subscription Management Implemented at ABC Corporation" />
-    <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
-    <div class="what-it-shows">
-      <strong>What this shows:</strong> A 9-scene real-world walkthrough of how Oracle
-      Subscription Management is used at ABC Corporation. Scene 1 — subscription setup
-      after deal closure. Scene 2 — subscription created in Oracle with billing schedule.
-      Scenes 3 to 6 — months 1 through 6 running smoothly with monthly invoices, then
-      Month 7 amendment adding Chips Vending Machines as a cross-sell, Month 8 invoice
-      reflecting the amendment, and Month 10 vending machine replacement via Oracle Fusion
-      Service. Scenes 7 to 9 — the ongoing monthly billing loop, Month 36 renewal reminder,
-      and the renewal completion starting a new 36-month term.
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <div class="chapter-header">
+      <div class="chapter-label">Chapter 2</div>
+      <h1>Oracle Subscription Management</h1>
+      <p>A 7-storyboard deep dive covering the full subscription lifecycle,
+      integration architecture, health metrics, quote-to-cash flow, and
+      upsell and cross-sell scenarios — all through the ABC Corporation
+      vending scenario.</p>
     </div>
-  </div>
 
-  <div class="storyboard">
-    <h3>Storyboard 3 — Oracle Subscription Management Lifecycle Flow</h3>
-    <img src="Oracle_Subscription_Mgmt_Lifecycle.png"
-         alt="Oracle Subscription Management Lifecycle" />
-    <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
-    <div class="what-it-shows">
-      <strong>What this shows:</strong> Three critical layers of the subscription lifecycle.
-      Layer 1 — the status flow: Draft → Approved → Active → Amendment → Close or Renew
-      or Expired, with both auto-renewal and manual renewal paths shown. Layer 2 — the
-      Active stage billing integration: how Oracle Subscription Management sends billing
-      information to Accounts Receivable, triggers AutoInvoice import, and fetches invoice
-      data back. Invoice types covered include one-time, recurring fixed amount and
-      usage-based, with both advance and arrears billing. Layer 3 — the Close stage
-      cancellation outcomes: Prorate with Credit (refund for leftover period), Prorate
-      without Credit (no refund), and Full Credit (full refund). Key financial definitions
-      clarify that Credits are outflows (negative) and Invoice Amounts are inflows (positive).
+    <div class="scenario-box">
+      <strong>Business Scenario:</strong> James, a sales representative at ABC
+      Corporation, closes a vending solutions deal with XYZ Corporation and sets
+      up a 36-month subscription with monthly billing. ABC Corporation uses Oracle
+      Subscription Management to run its entire subscription operations — from
+      activation through billing, amendments, service and renewal.
     </div>
-  </div>
 
-  <div class="storyboard">
-    <h3>Storyboard 4 — Quote-to-Cash End-to-End Flow</h3>
-    <img src="Oracle_Subscription_Mgmt_Quote_to_cash_end_to_end_flow.png"
-         alt="Quote to Cash End to End Flow" />
-    <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
-    <div class="what-it-shows">
-      <strong>What this shows:</strong> The technical integration architecture across 5
-      systems in sequence. Step 1 — CPQ: quote created and approved, triggering a Quote
-      Approved Event via API/REST. Step 2 — Subscription Management: subscription header
-      created with 3-year term, line items added with products/quantities/pricing, billing
-      schedule activated for 36 monthly periods. Step 3 — Billing (Oracle Billing Cloud):
-      billing schedule activates, first monthly invoice generated and posted. Step 4 — ERP
-      Revenue Recognition: revenue plans created for 3-year contract, deferred revenue
-      recognized over 36 months, journal entries created for Revenue, Deferred Revenue and
-      Tax. Step 5 — AR (Accounts Receivable): invoice received, payment processed, AR
-      balance updated. Two additional downstream systems shown — 6A Service Cloud for
-      support entitlements and SLAs, and 6B Assets/Install Base for physical asset tracking.
-      Key integration considerations cover API/REST, Events, OIC and Batch interfaces,
-      real-time vs batch data sync, error handling and idempotency.
+    <h2>Storyboard 1 — Oracle CX Sales → CPQ → Order Management → Subscription → Billing</h2>
+    <div class="storyboard">
+      <h3>James's Complete Oracle CX Sales Journey</h3>
+      <img src="Oracle_CX_Sales_Order_Billing_Subscription.png"
+           alt="Oracle CX Sales Journey End to End" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> The complete James journey across 10 steps —
+        Lead and Opportunity creation in Oracle CX Sales, Quote creation in Oracle CPQ,
+        Order submission in Order Management, Asset and Service Request setup, Subscription
+        Activation, Billing (one-time, recurring and usage), Revenue Recognition in ERP,
+        Amendment and Change management, Warranty Renewal, and Cancellation and Termination.
+        This is the master end-to-end flow connecting all Oracle CX and ERP products for
+        a single B2B deal.
+      </div>
     </div>
-  </div>
 
-  <div class="storyboard">
-    <h3>Storyboard 5 — Upsell vs Cross-Sell and Amendment Scenarios</h3>
-    <img src="Oracle_Subscription_Mgmt_Upsell_CrossSell_Amend.png"
-         alt="Upsell Cross Sell Amendment Scenarios" />
-    <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
-    <div class="what-it-shows">
-      <strong>What this shows:</strong> How ABC Corporation grows the XYZ Corporation
-      account value using Oracle Subscription Management amendments. Current state — XYZ
-      has a Basic Snack and Beverage Service at $800/month with 2 machines and 20 SKUs.
-      Upsell example — upgrading from Basic to Premium Vending at $1,200/month, adding
-      4 machines, 50+ organic SKUs, touchless payment and daily restocking. The Oracle
-      action is to Amend the existing subscription. Cross-sell examples — adding three
-      new complementary services: Office Coffee Service at $600/month, Micro-Market at
-      $2,000/month, and Water Cooler Service at $300/month. The real-world scenario
-      combines both — Month 1 to 12 Basic Vending, Month 13 Upsell to Premium and
-      cross-sell Coffee, Month 24 further cross-sell of Micro-Market. Total MRR from
-      XYZ Corporation grows to $4,400 through strategic account expansion.
+    <h2>Storyboard 2 — Oracle Subscription Management Implemented at ABC Corporation</h2>
+    <div class="storyboard">
+      <h3>9-Scene Real-World Walkthrough</h3>
+      <img src="Oracle_Subscription_Mgmt_Implemented_At_ABCCorporation.png"
+           alt="Oracle Subscription Management at ABC Corporation" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Scene 1 — subscription setup after deal closure.
+        Scene 2 — subscription created with billing schedule. Scenes 3 to 6 — months 1
+        through 6 running smoothly, Month 7 amendment adding Chips Vending Machines as a
+        cross-sell, Month 8 invoice reflecting the amendment, Month 10 vending machine
+        replacement via Oracle Fusion Service. Scenes 7 to 9 — the ongoing monthly billing
+        loop, Month 36 renewal reminder, and renewal completion starting a new 36-month term.
+      </div>
     </div>
-  </div>
 
-  <div class="storyboard">
-    <h3>Storyboard 6 — Upstream and Downstream Application Integrations</h3>
-    <img src="Oracle_Subscription_Mgmt_Upstream_Downstream_Applications.png"
-         alt="Upstream Downstream Application Integrations" />
-    <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
-    <div class="what-it-shows">
-      <strong>What this shows:</strong> Oracle Subscription Management positioned at the
-      center of the Oracle ecosystem. Upstream systems feeding into it via Quote/Order —
-      CPQ/Commerce/CRM, Sales Cloud, Order Management, and External Systems via API.
-      Core Subscription Management functions in the middle — Products/Lines, Billing
-      Schedule, Pricing/Charges, Usage/Contracts, plus Renewals/Amendments, Suspend/Resume
-      and Termination. Downstream systems receiving data from it — AR/Billing (Invoice
-      Customer), Revenue Management, ERP/Financials (GL), Supply Chain (Shipping), Field
-      Service (Install), and Service Cloud (Support). This architecture view is essential
-      for understanding how Subscription Management connects the front-office CX products
-      with the back-office ERP and finance systems.
+    <h2>Storyboard 3 — Subscription Lifecycle Flow</h2>
+    <div class="storyboard">
+      <h3>Status Flow, Billing Integration and Cancellation Outcomes</h3>
+      <img src="Oracle_Subscription_Mgmt_Lifecycle.png"
+           alt="Oracle Subscription Management Lifecycle" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Three layers — status flow (Draft → Approved →
+        Active → Amendment → Close/Renew/Expired) with auto and manual renewal paths.
+        Active stage billing integration with Accounts Receivable showing AutoInvoice
+        import and invoice types (one-time, recurring, usage-based). Close stage
+        cancellation outcomes — Prorate with Credit, Prorate without Credit, and Full Credit.
+      </div>
     </div>
-  </div>
 
-  <div class="storyboard">
-    <h3>Storyboard 7 — Subscription Health Metrics Dashboard</h3>
-    <img src="Oracle_Subscription_Health_Metrics.png"
-         alt="Subscription Health Metrics Dashboard" />
-    <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
-    <div class="what-it-shows">
-      <strong>What this shows:</strong> A business metrics dashboard covering 5 categories
-      of subscription health. Revenue metrics — MRR $4,900 (Monthly Recurring Revenue),
-      ARR $58,800 (Annual Recurring Revenue = MRR × 12), TCV $43,700 (Total Contract Value
-      = one-time plus recurring × term), ACV $10,240 (Annual Contract Value = TCV ÷ term
-      in years). Retention metrics — Renewal Rate 85% (12 of 15 renewed), Churn Rate 5.2%
-      (revenue lost to cancels), Retention Rate 94.8% (inverse of churn). Growth metrics —
-      Net MRR Change +16% month-over-month, Expansion MRR +$750 from upsells and
-      cross-sells, Contraction MRR -$400 from downgrades. Operational metrics — 42 active
-      subscriptions, 8 due for renewal, 12 renewed this month, 3 churned this month.
-      Conversion and forecasting — Contract-to-Subscription conversion 90%, Customer
-      Lifetime Value $140,000, Expansion-to-Churn ratio 1.88x (greater than 1 is healthy).
+    <h2>Storyboard 4 — Quote-to-Cash End-to-End Flow</h2>
+    <div class="storyboard">
+      <h3>CPQ → Subscription → Billing → ERP → AR</h3>
+      <img src="Oracle_Subscription_Mgmt_Quote_to_cash_end_to_end_flow.png"
+           alt="Quote to Cash End to End Flow" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Technical integration across 5 systems —
+        CPQ quote approval triggering subscription creation via API/REST, subscription
+        header and line items created with 36-month billing schedule, billing schedule
+        activating invoice generation, ERP creating deferred revenue plans and journal
+        entries over 36 months, AR receiving invoices and processing payments. Additional
+        downstream flows to Service Cloud for entitlements and Assets/Install Base for
+        physical asset tracking. Integration methods covered include API/REST, Events,
+        OIC, Batch, real-time and batch sync, error handling and idempotency.
+      </div>
     </div>
-  </div>
 
-  <h2>About the Author</h2>
-  <p>
-    This storyboard series was created to demonstrate Oracle Subscription Management
-    expertise for professionals, consultants and beginners entering the Oracle CX space.
-  </p>
-  <p>
-    Connect with me on <a href="https://www.linkedin.com/in/veniltirou" target="_blank">LinkedIn</a>
-  </p>
-  <p>
-    ← <a href="https://veniltirou.github.io/lead-to-revenue-storyboard/">
-    Back to Lead-to-Revenue Overview</a>
-  </p>
+    <h2>Storyboard 5 — Upsell vs Cross-Sell and Amendment Scenarios</h2>
+    <div class="storyboard">
+      <h3>Growing the XYZ Corporation Account Value</h3>
+      <img src="Oracle_Subscription_Mgmt_Upsell_CrossSell_Amend.png"
+           alt="Upsell Cross Sell Amendment Scenarios" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Current state — XYZ has Basic Snack and Beverage
+        at $800/month. Upsell — upgrading to Premium Vending at $1,200/month via subscription
+        amendment. Cross-sell — adding Office Coffee ($600/month), Micro-Market ($2,000/month)
+        and Water Cooler ($300/month) as new subscription products. Combined scenario —
+        Month 1-12 Basic, Month 13 Upsell and Coffee, Month 24 Micro-Market added. Total
+        MRR grows to $4,400 through strategic account expansion.
+      </div>
+    </div>
 
-  <div class="footer">
-    This is an independently created educational resource. Not affiliated with or
-    endorsed by Oracle Corporation.
-  </div>
+    <h2>Storyboard 6 — Upstream and Downstream Integrations</h2>
+    <div class="storyboard">
+      <h3>Oracle Subscription Management at the Center of the Ecosystem</h3>
+      <img src="Oracle_Subscription_Mgmt_Upstream_Downstream_Applications.png"
+           alt="Upstream Downstream Application Integrations" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Upstream systems feeding in via Quote/Order —
+        CPQ/Commerce/CRM, Sales Cloud, Order Management, External Systems via API.
+        Core functions — Products/Lines, Billing Schedule, Pricing/Charges,
+        Usage/Contracts, Renewals/Amendments, Suspend/Resume, Termination. Downstream
+        systems — AR/Billing, Revenue Management, ERP/Financials (GL), Supply Chain,
+        Field Service and Service Cloud. This architecture view shows how Subscription
+        Management bridges front-office CX with back-office ERP and finance.
+      </div>
+    </div>
 
+    <h2>Storyboard 7 — Subscription Health Metrics Dashboard</h2>
+    <div class="storyboard">
+      <h3>KPIs That Measure Subscription Business Health</h3>
+      <img src="Oracle_Subscription_Health_Metrics.png"
+           alt="Subscription Health Metrics Dashboard" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Five metric categories — Revenue (MRR $4,900,
+        ARR $58,800, TCV $43,700, ACV $10,240), Retention (Renewal Rate 85%, Churn Rate
+        5.2%, Retention Rate 94.8%), Growth (Net MRR +16%, Expansion MRR +$750, Contraction
+        MRR -$400), Operational (42 active, 8 due for renewal, 12 renewed, 3 churned this
+        month), Conversion and Forecasting (90% contract-to-subscription, CLV $140,000,
+        Expansion-to-Churn ratio 1.88x — above 1 is healthy).
+      </div>
+    </div>
+
+    <!-- PREV / NEXT NAVIGATION -->
+    <div class="chapter-nav">
+      <a class="prev"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/">
+        <div class="nav-label">← Previous Chapter</div>
+        <div class="nav-title">Chapter 1: Lead-to-Revenue Overview</div>
+      </a>
+      <a class="next" href="#">
+        <div class="nav-label">Next Chapter →</div>
+        <div class="nav-title">Chapter 3: Incentive Compensation (Coming Soon)</div>
+      </a>
+    </div>
+
+    <div class="footer">
+      <p>Created by <a href="https://www.linkedin.com/in/veniltirou"
+         target="_blank">Venil Tirou</a> — Oracle CX Functional Consultant</p>
+      <p style="margin-top:6px;">This is an independently created educational resource.
+      Not affiliated with or endorsed by Oracle Corporation.</p>
+    </div>
+
+  </main>
 </body>
 </html>
