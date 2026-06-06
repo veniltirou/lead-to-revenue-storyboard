@@ -3,19 +3,134 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Oracle CX Lead-to-Revenue Storyboard | ABC Corp to XYZ Corp</title>
+  <title>Chapter 1: Lead-to-Revenue Overview — Oracle CX Storyboard Series</title>
   <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: Arial, sans-serif;
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 20px 30px;
       color: #333;
-      line-height: 1.7;
+      display: flex;
+      min-height: 100vh;
     }
-    h1 { color: #c74b00; font-size: 1.8em; }
-    h2 { color: #333; border-bottom: 2px solid #c74b00; padding-bottom: 6px; margin-top: 40px; }
-    h3 { color: #c74b00; margin-top: 30px; }
+
+    /* SIDEBAR */
+    .sidebar {
+      width: 280px;
+      min-width: 280px;
+      background-color: #1a1a2e;
+      color: #ccc;
+      padding: 30px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .sidebar .logo {
+      padding: 0 20px 24px 20px;
+      border-bottom: 1px solid #333;
+      margin-bottom: 20px;
+    }
+    .sidebar .logo h2 { color: #ff6b2b; font-size: 1em; line-height: 1.5; }
+    .sidebar .logo p { color: #888; font-size: 0.78em; margin-top: 6px; }
+    .sidebar ul { list-style: none; }
+    .sidebar ul .section-label {
+      color: #888;
+      font-size: 0.72em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 16px 20px 6px 20px;
+    }
+    .sidebar ul li a {
+      display: block;
+      padding: 9px 20px;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.88em;
+      border-left: 3px solid transparent;
+      transition: all 0.2s;
+    }
+    .sidebar ul li a:hover {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.active {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.coming-soon {
+      color: #555;
+      cursor: default;
+      font-style: italic;
+    }
+    .sidebar ul li a.coming-soon:hover {
+      background: none;
+      border-left: 3px solid transparent;
+      color: #555;
+    }
+
+    /* MAIN */
+    .main {
+      margin-left: 280px;
+      padding: 40px 50px;
+      flex: 1;
+      max-width: 900px;
+    }
+
+    .chapter-header {
+      margin-bottom: 30px;
+    }
+    .chapter-header .chapter-label {
+      font-size: 0.8em;
+      color: #ff6b2b;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .chapter-header h1 {
+      color: #c74b00;
+      font-size: 1.8em;
+      margin-bottom: 10px;
+    }
+    .chapter-header p { color: #555; line-height: 1.7; }
+
+    .scenario-box {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.95em;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    h2 {
+      color: #333;
+      font-size: 1.15em;
+      margin: 36px 0 16px 0;
+      border-bottom: 2px solid #ff6b2b;
+      padding-bottom: 8px;
+    }
+
+    .storyboard-image {
+      width: 100%;
+      height: auto;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      margin: 16px 0;
+    }
+
+    .tip {
+      font-style: italic;
+      color: #999;
+      font-size: 0.85em;
+      margin: 6px 0 20px 0;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
@@ -26,158 +141,188 @@
       color: white;
       padding: 10px 14px;
       text-align: left;
+      font-size: 0.9em;
     }
-    td { padding: 9px 14px; border-bottom: 1px solid #ddd; }
+    td { padding: 9px 14px; border-bottom: 1px solid #ddd; font-size: 0.9em; }
     tr:nth-child(even) { background-color: #f9f9f9; }
-    img {
-      width: 100%;
-      height: auto;
-      border: 2px solid #ddd;
-      border-radius: 6px;
-      margin: 20px 0;
-    }
-    .tip {
-      background-color: #fff8f0;
-      border-left: 4px solid #c74b00;
-      padding: 10px 16px;
-      margin: 10px 0 20px 0;
-      font-style: italic;
-    }
+
     .scene {
       background-color: #f9f9f9;
       border-left: 4px solid #c74b00;
-      padding: 12px 16px;
+      padding: 14px 18px;
       margin: 14px 0;
-      border-radius: 4px;
+      border-radius: 0 6px 6px 0;
     }
     .scene strong { color: #c74b00; }
-    .footer {
+
+    /* PREV / NEXT NAVIGATION */
+    .chapter-nav {
+      display: flex;
+      justify-content: space-between;
       margin-top: 50px;
-      font-size: 0.85em;
-      color: #888;
-      border-top: 1px solid #ddd;
-      padding-top: 16px;
+      padding-top: 24px;
+      border-top: 2px solid #eee;
+      gap: 16px;
     }
-    a { color: #c74b00; }
+    .chapter-nav a {
+      display: block;
+      padding: 16px 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #333;
+      transition: all 0.2s;
+      flex: 1;
+    }
+    .chapter-nav a:hover {
+      border-color: #ff6b2b;
+      box-shadow: 0 2px 8px rgba(199,75,0,0.15);
+    }
+    .chapter-nav .prev { text-align: left; }
+    .chapter-nav .next { text-align: right; }
+    .chapter-nav .nav-label {
+      font-size: 0.75em;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .chapter-nav .nav-title {
+      font-weight: bold;
+      color: #c74b00;
+      font-size: 0.95em;
+    }
+
+    .footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid #ddd;
+      font-size: 0.82em;
+      color: #999;
+    }
+    .footer a { color: #c74b00; }
+
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 20px; }
+    }
   </style>
 </head>
 <body>
 
-  <h1>Oracle CX Lead-to-Revenue Storyboard Series</h1>
-  <h2>ABC Corporation (Vending Solutions) → XYZ Corporation (Networking Company)</h2>
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="logo">
+      <h2>Oracle CX Storyboard Series</h2>
+      <p>ABC Corp → XYZ Corp</p>
+    </div>
+    <ul>
+      <li class="section-label">Getting Started</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">
+        📋 Table of Contents</a></li>
+      <li class="section-label">Chapters</li>
+      <li><a href="#" class="active">
+        1. Lead-to-Revenue Overview</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">
+        2. Subscription Management</a></li>
+      <li><a href="#" class="coming-soon">
+        3. Incentive Compensation (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        4. Fusion Field Service (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        5. CX Sales & CPQ (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        6. Order Management (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        7. Fusion Service (soon)</a></li>
+      <li class="section-label">Connect</li>
+      <li><a href="https://www.linkedin.com/in/veniltirou" target="_blank">
+        🔗 LinkedIn Profile</a></li>
+    </ul>
+  </nav>
 
-  <h2>About This Series</h2>
-  <p>
-    This storyboard series is designed for beginners and professionals who want to understand
-    how Oracle CX products work together in a real business scenario — told through a simple,
-    relatable story.
-  </p>
+  <!-- MAIN CONTENT -->
+  <main class="main">
 
-  <h3>The Business Scenario</h3>
-  <p>
-    <strong>ABC Corporation</strong> is a specialty vending solutions provider. They have Oracle CX
-    fully implemented across their entire business. ABC Corporation uses Oracle CX products and
-    features to run their sales, service, order management, billing, and renewal operations
-    efficiently from end to end.
-  </p>
-  <p>
-    <strong>XYZ Corporation</strong> is a networking company that needs vending solutions for
-    their offices.
-  </p>
-  <p>
-    This series follows ABC Corporation as they identify, pursue, close, fulfill, and renew
-    the business deal with XYZ Corporation — using Oracle CX every step of the way.
-  </p>
+    <div class="chapter-header">
+      <div class="chapter-label">Chapter 1</div>
+      <h1>Oracle CX Lead-to-Revenue Overview</h1>
+      <p>The complete 15-scene end-to-end storyboard — from the very first
+      marketing campaign all the way through to subscription renewal — showing
+      how all Oracle CX products connect across a single B2B enterprise deal.</p>
+    </div>
 
-  <h2>Oracle CX Products Featured in This Series</h2>
-  <table>
-    <tr>
-      <th>Product</th>
-      <th>Role in the Journey</th>
-    </tr>
-    <tr><td>Oracle CX Sales</td><td>Lead capture, qualification and opportunity management</td></tr>
-    <tr><td>Oracle CPQ</td><td>Configure, price, quote and approval</td></tr>
-    <tr><td>Oracle Order Management</td><td>Order orchestration and sequencing</td></tr>
-    <tr><td>Oracle Field Service</td><td>Field technician dispatch and installation</td></tr>
-    <tr><td>Oracle Subscription Management</td><td>Subscription activation and management</td></tr>
-    <tr><td>Oracle Fusion Service</td><td>Post-sale service and entitlement management</td></tr>
-    <tr><td>Oracle Accounts Receivable</td><td>Billing schedule and invoicing</td></tr>
-    <tr><td>Oracle Revenue Management (RMCS)</td><td>Revenue recognition and reporting</td></tr>
-    <tr><td>Renewal Management</td><td>Renewal preparation, upsell and cross-sell</td></tr>
-  </table>
+    <div class="scenario-box">
+      <strong>Business Scenario:</strong> ABC Corporation is a specialty vending
+      solutions provider with Oracle CX fully implemented across their business.
+      XYZ Corporation is a networking company that needs vending solutions for
+      their offices. This storyboard follows the complete journey as ABC Corporation
+      identifies, pursues, closes, fulfills and renews the deal with XYZ Corporation
+      — using Oracle CX every step of the way.
+    </div>
 
-  <h2>The Full Lead-to-Revenue Flow</h2>
-  <img src="Lead-to-Revenue-workflow.png" alt="Oracle CX Lead-to-Revenue End-to-End Flow" />
-  <div class="tip">📱 On mobile? Pinch to zoom on the image to read each scene clearly.</div>
+    <h2>The Full Lead-to-Revenue Flow</h2>
+    <img class="storyboard-image"
+         src="Lead-to-Revenue-workflow.png"
+         alt="Oracle CX Lead-to-Revenue End-to-End Flow" />
+    <p class="tip">📱 On mobile? Pinch to zoom to read each scene clearly.</p>
 
-  <h2>Scene-by-Scene Breakdown</h2>
+    <h2>Oracle CX Products Featured in This Chapter</h2>
+    <table>
+      <tr>
+        <th>Product</th>
+        <th>Role in the Journey</th>
+      </tr>
+      <tr><td>Oracle CX Sales</td>
+          <td>Lead capture, qualification and opportunity management</td></tr>
+      <tr><td>Oracle CPQ</td>
+          <td>Configure, price, quote and approval</td></tr>
+      <tr><td>Oracle Order Management</td>
+          <td>Order orchestration and sequencing</td></tr>
+      <tr><td>Oracle Field Service</td>
+          <td>Field technician dispatch and installation</td></tr>
+      <tr><td>Oracle Subscription Management</td>
+          <td>Subscription activation and management</td></tr>
+      <tr><td>Oracle Fusion Service</td>
+          <td>Post-sale service and entitlement management</td></tr>
+      <tr><td>Oracle Accounts Receivable</td>
+          <td>Billing schedule and invoicing</td></tr>
+      <tr><td>Oracle Revenue Management (RMCS)</td>
+          <td>Revenue recognition and reporting</td></tr>
+      <tr><td>Renewal Management</td>
+          <td>Renewal preparation, upsell and cross-sell</td></tr>
+    </table>
 
-  <div class="scene"><strong>Scene 1 — Marketing (Demand Generation)</strong><br/>
-  ABC Corporation's marketing team runs targeted campaigns to generate awareness among facility and operations managers. Oracle CX Sales is used to track campaign responses and identify potential leads.</div>
+    <h2>Scene-by-Scene Breakdown</h2>
 
-  <div class="scene"><strong>Scene 2 — Lead (CX Sales)</strong><br/>
-  A form-fill response comes in from J. Smith at XYZ Corporation. The lead is captured in Oracle CX Sales, reviewed and qualified by the inside sales team.</div>
+    <div class="scene"><strong>Scene 1 — Marketing (Demand Generation)</strong><br/>
+    ABC Corporation's marketing team runs targeted campaigns to generate awareness
+    among facility and operations managers. Oracle CX Sales tracks campaign responses
+    and identifies potential leads.</div>
 
-  <div class="scene"><strong>Scene 3 — Opportunity (CX Sales)</strong><br/>
-  The qualified lead is converted into an Opportunity in Oracle CX Sales. The sales representative at ABC Corporation begins engaging with XYZ Corporation to understand their vending requirements.</div>
+    <div class="scene"><strong>Scene 2 — Lead (CX Sales)</strong><br/>
+    A form-fill response comes in from J. Smith at XYZ Corporation. The lead is
+    captured in Oracle CX Sales, reviewed and qualified by the inside sales team.</div>
 
-  <div class="scene"><strong>Scene 4 — CPQ: Configure</strong><br/>
-  The sales rep uses Oracle CPQ to configure the right vending solution for XYZ Corporation — selecting the appropriate machines, service tiers and subscription options.</div>
+    <div class="scene"><strong>Scene 3 — Opportunity (CX Sales)</strong><br/>
+    The qualified lead is converted into an Opportunity in Oracle CX Sales. The
+    sales representative begins engaging with XYZ Corporation to understand their
+    vending requirements.</div>
 
-  <div class="scene"><strong>Scene 5 — CPQ: Price and Approve</strong><br/>
-  Oracle CPQ calculates the pricing based on the configuration. An automated approval workflow is triggered for deals above a threshold value. The manager approves the deal.</div>
+    <div class="scene"><strong>Scene 4 — CPQ: Configure</strong><br/>
+    The sales rep uses Oracle CPQ to configure the right vending solution —
+    selecting the appropriate machines, service tiers and subscription options
+    for XYZ Corporation.</div>
 
-  <div class="scene"><strong>Scene 6 — CPQ: Quote</strong><br/>
-  A formal quote is generated from Oracle CPQ. XYZ Corporation reviews and signs the Agreement of Commitment (AOC). The deal is officially accepted.</div>
+    <div class="scene"><strong>Scene 5 — CPQ: Price and Approve</strong><br/>
+    Oracle CPQ calculates the pricing based on the configuration. An automated
+    approval workflow is triggered for deals above a threshold value. The manager
+    approves the deal.</div>
 
-  <div class="scene"><strong>Scene 7 — Order Management: Orchestrate</strong><br/>
-  Oracle Order Management receives the signed order from CPQ. It acts as the central orchestration hub — coordinating with Supply Chain, Field Service and Subscription Management simultaneously.</div>
+    <div class="scene"><strong>Scene 6 — CPQ: Quote</strong><br/>
+    A formal quote is generated from Oracle CPQ. XYZ Corporation reviews and
+    signs the Agreement of Commitment (AOC). The deal is officially accepted.</div>
 
-  <div class="scene"><strong>Scene 8 — Order Management: Sequence</strong><br/>
-  The order is decomposed into line items — hardware (vending machines), field service installation and intangible subscription services. Pricing, tax and shipping are frozen. Dependencies are managed to prevent billing before installation is confirmed.</div>
-
-  <div class="scene"><strong>Scene 9 — Subscription Management</strong><br/>
-  Once the installation is confirmed, Oracle Subscription Management activates the subscription for XYZ Corporation. The subscription starts in Draft status and moves to Active upon billing trigger.</div>
-
-  <div class="scene"><strong>Scene 10 & 11 — Accounts Receivable (AR)</strong><br/>
-  Oracle Accounts Receivable generates the billing schedule and sends the actual invoice to XYZ Corporation. XYZ Corporation processes payment through their AP system.</div>
-
-  <div class="scene"><strong>Scene 12 — Revenue Management (RMCS)</strong><br/>
-  Oracle Revenue Management recognizes and reports the total term revenue for the XYZ Corporation deal — ensuring strict revenue compliance and reporting accuracy.</div>
-
-  <div class="scene"><strong>Scene 13 — Fusion Service</strong><br/>
-  XYZ Corporation raises a service request post-installation. Oracle Fusion Service verifies the entitlement — confirming the SLA coverage — and dispatches the appropriate support response.</div>
-
-  <div class="scene"><strong>Scene 14 — Renewal: Prepare</strong><br/>
-  With 180 days remaining on the 2-year contract, ABC Corporation's renewal team prepares the renewal strategy. They identify upsell opportunities (premium tier) and cross-sell opportunities (office coffee service).</div>
-
-  <div class="scene"><strong>Scene 15 — Renewal: Upsell and Cross-Sell</strong><br/>
-  The renewal loop is executed. ABC Corporation presents XYZ Corporation with an expanded offering — upselling to a premium vending tier and cross-selling an office coffee subscription — growing the account value.</div>
-
-  <h2>About the Author</h2>
-  <p>
-    This storyboard series was created to demonstrate Oracle CX product knowledge and
-    cross-product integration expertise for professionals, consultants and beginners
-    entering the Oracle CX space.
-  </p>
-  <p>
-    Connect with me on <a href="https://www.linkedin.com/in/veniltirou" target="_blank">LinkedIn</a>
-  </p>
-
-  <h2>Deep Dive: Oracle Subscription Management</h2>
-  <p>
-    For a detailed exploration of Oracle Subscription Management from multiple 
-    perspectives, visit the full storyboard library below. It covers the complete 
-    lifecycle, integration architecture, health metrics, quote-to-cash flow, 
-    upsell and cross-sell scenarios, and the full ABC Corporation implementation story.
-  </p>
-  <p>
-    📂 <a href="https://github.com/veniltirou/lead-to-revenue-storyboard/tree/main/subscription-management" target="_blank">
-    View All Oracle Subscription Management Storyboards on GitHub →</a>
-  </p>
-  <div class="footer">
-    This is an independently created educational resource. Not affiliated with or endorsed by Oracle Corporation.
-  </div>
-
-</body>
-</html>
+    <div class="scene"><strong>Scene 7 — Order Management: Orchestrate</strong><br/>
+    Oracle Order Management receives the signed order from CPQ. It acts as the
+    central orchestration hub — coordinating with Supply Chain, Fiel
