@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oracle CX Storyboard Series — Table of Contents</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* LEFT SIDEBAR */
+    .sidebar {
+      width: 280px;
+      min-width: 280px;
+      background-color: #1a1a2e;
+      color: #ccc;
+      padding: 30px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    .sidebar .logo {
+      padding: 0 20px 24px 20px;
+      border-bottom: 1px solid #333;
+      margin-bottom: 20px;
+    }
+
+    .sidebar .logo h2 {
+      color: #ff6b2b;
+      font-size: 1em;
+      line-height: 1.5;
+    }
+
+    .sidebar .logo p {
+      color: #888;
+      font-size: 0.78em;
+      margin-top: 6px;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar ul .section-label {
+      color: #888;
+      font-size: 0.72em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 16px 20px 6px 20px;
+    }
+
+    .sidebar ul li a {
+      display: block;
+      padding: 9px 20px;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.88em;
+      border-left: 3px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .sidebar ul li a:hover {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+
+    .sidebar ul li a.active {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+
+    .sidebar ul li a.coming-soon {
+      color: #555;
+      cursor: default;
+      font-style: italic;
+    }
+
+    .sidebar ul li a.coming-soon:hover {
+      background: none;
+      border-left: 3px solid transparent;
+      color: #555;
+    }
+
+    /* MAIN CONTENT */
+    .main {
+      margin-left: 280px;
+      padding: 40px 50px;
+      flex: 1;
+      max-width: 860px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #fff8f0, #ffe8d6);
+      border-left: 5px solid #ff6b2b;
+      border-radius: 8px;
+      padding: 30px;
+      margin-bottom: 40px;
+    }
+
+    .hero h1 {
+      color: #c74b00;
+      font-size: 1.7em;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: #555;
+      line-height: 1.7;
+      margin-top: 8px;
+    }
+
+    .scenario-box {
+      background-color: #f0f4ff;
+      border-left: 4px solid #3a5bd9;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+    }
+
+    .scenario-box h3 {
+      color: #3a5bd9;
+      margin-bottom: 8px;
+      font-size: 0.95em;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .scenario-box p {
+      color: #444;
+      font-size: 0.95em;
+      line-height: 1.7;
+    }
+
+    h2 {
+      color: #333;
+      font-size: 1.2em;
+      margin: 36px 0 16px 0;
+      border-bottom: 2px solid #ff6b2b;
+      padding-bottom: 8px;
+    }
+
+    .chapter-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 10px;
+    }
+
+    .chapter-card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      text-decoration: none;
+      color: #333;
+      transition: all 0.2s;
+      display: block;
+      background: #fff;
+    }
+
+    .chapter-card:hover {
+      border-color: #ff6b2b;
+      box-shadow: 0 4px 12px rgba(199,75,0,0.15);
+      transform: translateY(-2px);
+    }
+
+    .chapter-card.disabled {
+      opacity: 0.5;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .chapter-card .chapter-num {
+      font-size: 0.75em;
+      color: #ff6b2b;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .chapter-card h3 {
+      color: #c74b00;
+      font-size: 1em;
+      margin-bottom: 8px;
+    }
+
+    .chapter-card p {
+      font-size: 0.85em;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    .chapter-card .tag {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 0.75em;
+      background-color: #fff0e6;
+      color: #c74b00;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-weight: bold;
+    }
+
+    .chapter-card .tag.soon {
+      background-color: #f0f0f0;
+      color: #999;
+    }
+
+    .products-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .product-badge {
+      background-color: #fff0e6;
+      color: #c74b00;
+      border: 1px solid #ffccaa;
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 0.8em;
+    }
+
+    .footer {
+      margin-top: 60px;
+      padding-top: 20px;
+      border-top: 1px solid #ddd;
+      font-size: 0.82em;
+      color: #999;
+    }
+
+    .footer a { color: #c74b00; }
+
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 20px; }
+      .chapter-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LEFT SIDEBAR -->
+  <nav class="sidebar">
+    <div class="logo">
+      <h2>Oracle CX Storyboard Series</h2>
+      <p>ABC Corp → XYZ Corp</p>
+    </div>
+    <ul>
+      <li class="section-label">Getting Started</li>
+      <li><a href="#" class="active">📋 Table of Contents</a></li>
+
+      <li class="section-label">Chapters</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/">
+        1. Lead-to-Revenue Overview</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">
+        2. Subscription Management</a></li>
+      <li><a href="#" class="coming-soon">
+        3. Incentive Compensation (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        4. Fusion Field Service (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        5. CX Sales & CPQ (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        6. Order Management (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        7. Fusion Service (soon)</a></li>
+
+      <li class="section-label">Connect</li>
+      <li><a href="https://www.linkedin.com/in/veniltirou" target="_blank">
+        🔗 LinkedIn Profile</a></li>
+    </ul>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <div class="hero">
+      <h1>Oracle CX Storyboard Series</h1>
+      <p>A visual, beginner-friendly guide to understanding how Oracle CX products
+      work together in a real B2B enterprise deal — from the very first marketing
+      campaign all the way through to subscription renewal.</p>
+    </div>
+
+    <div class="scenario-box">
+      <h3>🏢 The Business Scenario</h3>
+      <p>
+        <strong>ABC Corporation</strong> is a specialty vending solutions provider
+        with Oracle CX fully implemented across their business. They use Oracle CX
+        to manage their entire sales, service, order, billing and renewal operations.
+        <br/><br/>
+        <strong>XYZ Corporation</strong> is a networking company that needs vending
+        solutions for their offices. This series follows the complete journey as
+        ABC Corporation identifies, pursues, closes, fulfills and renews the deal
+        with XYZ Corporation — using Oracle CX every step of the way.
+      </p>
+    </div>
+
+    <h2>Oracle CX Products Covered in This Series</h2>
+    <div class="products-list">
+      <span class="product-badge">Oracle CX Sales</span>
+      <span class="product-badge">Oracle CPQ</span>
+      <span class="product-badge">Oracle Order Management</span>
+      <span class="product-badge">Oracle Field Service</span>
+      <span class="product-badge">Oracle Subscription Management</span>
+      <span class="product-badge">Oracle Fusion Service</span>
+      <span class="product-badge">Oracle Accounts Receivable</span>
+      <span class="product-badge">Oracle Revenue Management</span>
+      <span class="product-badge">Oracle Incentive Compensation</span>
+      <span class="product-badge">Renewal Management</span>
+    </div>
+
+    <h2>Chapters</h2>
+    <div class="chapter-grid">
+
+      <a class="chapter-card"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/">
+        <div class="chapter-num">Chapter 1</div>
+        <h3>Lead-to-Revenue Overview</h3>
+        <p>The complete 15-scene end-to-end storyboard — from marketing campaign
+        through to subscription renewal — showing how all Oracle CX products
+        connect across a single B2B deal.</p>
+        <span class="tag">✅ Available</span>
+      </a>
+
+      <a class="chapter-card"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">
+        <div class="chapter-num">Chapter 2</div>
+        <h3>Oracle Subscription Management</h3>
+        <p>A 7-storyboard deep dive covering the full subscription lifecycle,
+        integration architecture, health metrics, quote-to-cash flow, upsell
+        and cross-sell scenarios.</p>
+        <span class="tag">✅ Available</span>
+      </a>
+
+      <div class="chapter-card disabled">
+        <div class="chapter-num">Chapter 3</div>
+        <h3>Oracle Incentive Compensation</h3>
+        <p>How James earns his commission on the XYZ Corporation deal — commission
+        plans, calculation engine, payout schedules and payroll integration.</p>
+        <span class="tag soon">🔜 Coming Soon</span>
+      </div>
+
+      <div class="chapter-card disabled">
+        <div class="chapter-num">Chapter 4</div>
+        <h3>Oracle Fusion Field Service</h3>
+        <p>How ABC Corporation dispatches field technicians to install and service
+        vending machines at XYZ Corporation — work orders, scheduling and
+        asset management.</p>
+        <span class="tag soon">🔜 Coming Soon</span>
+      </div>
+
+      <div class="chapter-card disabled">
+        <div class="chapter-num">Chapter 5</div>
+        <h3>Oracle CX Sales & CPQ</h3>
+        <p>Deep dive into lead management, opportunity progression, product
+        configuration, pricing rules and quote approval workflows.</p>
+        <span class="tag soon">🔜 Coming Soon</span>
+      </div>
+
+      <div class="chapter-card disabled">
+        <div class="chapter-num">Chapter 6</div>
+        <h3>Oracle Order Management</h3>
+        <p>Order orchestration, decomposition, fulfillment sequencing and
+        dependency management across supply chain, field service and
+        subscription systems.</p>
+        <span class="tag soon">🔜 Coming Soon</span>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <p>Created by <a href="https://www.linkedin.com/in/veniltirou"
+         target="_blank">Venil Tirou</a> — Oracle CX Functional Consultant</p>
+      <p style="margin-top:6px;">This is an independently created educational
+      resource. Not affiliated with or endorsed by Oracle Corporation.</p>
+    </div>
+
+  </main>
+
+</body>
+</html>
