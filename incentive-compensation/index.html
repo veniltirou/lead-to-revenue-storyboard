@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chapter 3: Oracle Incentive Compensation — Oracle CX Storyboard Series</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 280px;
+      min-width: 280px;
+      background-color: #1a1a2e;
+      color: #ccc;
+      padding: 30px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .sidebar .logo {
+      padding: 0 20px 24px 20px;
+      border-bottom: 1px solid #333;
+      margin-bottom: 20px;
+    }
+    .sidebar .logo h2 { color: #ff6b2b; font-size: 1em; line-height: 1.5; }
+    .sidebar .logo p { color: #888; font-size: 0.78em; margin-top: 6px; }
+    .sidebar ul { list-style: none; }
+    .sidebar ul .section-label {
+      color: #888;
+      font-size: 0.72em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 16px 20px 6px 20px;
+    }
+    .sidebar ul li a {
+      display: block;
+      padding: 9px 20px;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.88em;
+      border-left: 3px solid transparent;
+      transition: all 0.2s;
+    }
+    .sidebar ul li a:hover {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.active {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.coming-soon {
+      color: #555;
+      cursor: default;
+      font-style: italic;
+    }
+    .sidebar ul li a.coming-soon:hover {
+      background: none;
+      border-left: 3px solid transparent;
+      color: #555;
+    }
+    .main {
+      margin-left: 280px;
+      padding: 40px 50px;
+      flex: 1;
+      max-width: 900px;
+    }
+    .chapter-header { margin-bottom: 30px; }
+    .chapter-header .chapter-label {
+      font-size: 0.8em;
+      color: #ff6b2b;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .chapter-header h1 { color: #c74b00; font-size: 1.8em; margin-bottom: 10px; }
+    .chapter-header p { color: #555; line-height: 1.7; }
+    .scenario-box {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.95em;
+      line-height: 1.7;
+      color: #444;
+    }
+    .characters-box {
+      background-color: #f0f4ff;
+      border-left: 4px solid #3a5bd9;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.92em;
+      line-height: 1.8;
+      color: #444;
+    }
+    .characters-box h3 {
+      color: #3a5bd9;
+      font-size: 0.9em;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    h2 {
+      color: #333;
+      font-size: 1.15em;
+      margin: 36px 0 16px 0;
+      border-bottom: 2px solid #ff6b2b;
+      padding-bottom: 8px;
+    }
+    .storyboard {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 24px;
+      margin: 28px 0;
+    }
+    .storyboard h3 {
+      color: #c74b00;
+      font-size: 1.05em;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    .storyboard img {
+      width: 100%;
+      height: auto;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      margin: 12px 0;
+    }
+    .storyboard .tip {
+      font-style: italic;
+      color: #999;
+      font-size: 0.85em;
+      margin: 6px 0 14px 0;
+    }
+    .storyboard .what-it-shows {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      padding: 12px 16px;
+      font-size: 0.92em;
+      line-height: 1.7;
+      color: #444;
+      border-radius: 0 4px 4px 0;
+    }
+    .storyboard .what-it-shows strong { color: #c74b00; }
+    .chapter-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+      padding-top: 24px;
+      border-top: 2px solid #eee;
+      gap: 16px;
+    }
+    .chapter-nav a {
+      display: block;
+      padding: 16px 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #333;
+      transition: all 0.2s;
+      flex: 1;
+    }
+    .chapter-nav a:hover {
+      border-color: #ff6b2b;
+      box-shadow: 0 2px 8px rgba(199,75,0,0.15);
+    }
+    .chapter-nav .prev { text-align: left; }
+    .chapter-nav .next { text-align: right; }
+    .chapter-nav .nav-label {
+      font-size: 0.75em;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .chapter-nav .nav-title {
+      font-weight: bold;
+      color: #c74b00;
+      font-size: 0.95em;
+    }
+    .footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid #ddd;
+      font-size: 0.82em;
+      color: #999;
+    }
+    .footer a { color: #c74b00; }
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="logo">
+      <h2>Oracle CX Storyboard Series</h2>
+      <p>ABC Corp → XYZ Corp</p>
+    </div>
+    <ul>
+      <li class="section-label">Getting Started</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">
+        📋 Table of Contents</a></li>
+      <li class="section-label">Chapters</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/">
+        1. Lead-to-Revenue Overview</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">
+        2. Subscription Management</a></li>
+      <li><a href="#" class="active">
+        3. Incentive Compensation</a></li>
+      <li><a href="#" class="coming-soon">
+        4. Fusion Field Service (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        5. CX Sales & CPQ (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        6. Order Management (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        7. Fusion Service (soon)</a></li>
+      <li class="section-label">Connect</li>
+      <li><a href="https://www.linkedin.com/in/veniltirou" target="_blank">
+        🔗 LinkedIn Profile</a></li>
+    </ul>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <div class="chapter-header">
+      <div class="chapter-label">Chapter 3</div>
+      <h1>Oracle Incentive Compensation</h1>
+      <p>A 13-scene storyboard series covering the complete Oracle Incentive
+      Compensation engine — from compensation plan setup through commission
+      calculation, payment processing and analytics — all through the
+      ABC Corporation vending scenario.</p>
+    </div>
+
+    <div class="scenario-box">
+      <strong>Business Scenario:</strong> James, a Senior Sales Rep at ABC
+      Corporation (Vending Solutions), closes a deal with XYZ Corporation
+      (Networking Company) worth $78,500. This series follows how Oracle
+      Incentive Compensation automatically calculates and pays James's
+      commission — from the moment the deal closes to the payment appearing
+      in his paycheck.
+    </div>
+
+    <div class="characters-box">
+      <h3>👥 Characters in This Series</h3>
+      <strong>James</strong> (GREEN shirt) — Senior Sales Rep at ABC Corporation
+      who closes the XYZ Corporation deal<br/>
+      <strong>Sarah</strong> (NAVY blazer) — Sales Manager at ABC Corporation
+      who supports and oversees James<br/>
+      <strong>Lisa</strong> (ORANGE blazer) — Compensation Admin who configures
+      and manages Oracle IC at ABC Corporation<br/>
+      <strong>Tom</strong> (WHITE shirt + TIE) — New Admin learning Oracle IC
+      from Lisa
+    </div>
+
+    <!-- SCENE 1 -->
+    <h2>Scene 1 — James Wins the XYZ Corporation Deal</h2>
+    <div class="storyboard">
+      <h3>The Business Context — How Oracle IC Gets Triggered</h3>
+      <img src="OIC_Scene01_Business_Context.png"
+           alt="Scene 1 - James Wins the XYZ Corporation Deal" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> James closes the XYZ Corporation deal —
+        50 vending machines, 36-month subscription, $78,500 total contract value.
+        The moment the deal is marked Closed Won in Oracle CX Sales, Oracle
+        Incentive Compensation automatically picks it up and begins the commission
+        calculation process. Sarah confirms that no manual intervention is needed —
+        Oracle IC handles everything automatically.
+      </div>
+    </div>
+
+    <!-- SCENE 2 -->
+    <h2>Scene 2 — Compensation Plan Setup</h2>
+    <div class="storyboard">
+      <h3>How ABC Corporation Defines What James Earns</h3>
+      <img src="OIC_Scene02_Compensation_Plan.png"
+           alt="Scene 2 - Compensation Plan Setup" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Lisa, the Compensation Admin, assigns
+        James to the Senior Sales Rep — Vending 2026 Compensation Plan. The plan
+        has two components — Component 1 is a transaction-based Vending Machine
+        Sales Commission that pays on every deal closed, and Component 2 is an
+        objective-based Quarterly Territory Bonus that pays when James hits
+        strategic targets. A Compensation Plan defines HOW a sales rep earns
+        money — it contains plan components, performance measures, incentive
+        formulas and effective dates.
+      </div>
+    </div>
+
+    <!-- SCENE 3 -->
+    <h2>Scene 3 — Performance Measures and Incentive Formulas</h2>
+    <div class="storyboard">
+      <h3>The Scoreboard and the Calculation Rule</h3>
+      <img src="OIC_Scene03_Performance_Measures_Formulas.png"
+           alt="Scene 3 - Performance Measures and Incentive Formulas" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Lisa explains to Tom the two core
+        building blocks of Oracle IC. The Performance Measure is the scoreboard
+        — it tracks what James sold (Revenue Booked — Vending, measured monthly,
+        James's YTD total is $78,500). The Incentive Formula is the calculation
+        rule — it takes James's score from the Performance Measure and converts
+        it into a dollar amount using a Tiered Commission Formula that looks up
+        the Rate Table based on revenue tier. They always work together:
+        Measure tracks → Formula calculates → Earning generated.
+      </div>
+    </div>
+
+    <!-- SCENE 4 -->
+    <h2>Scene 4 — Rate Tables</h2>
+    <div class="storyboard">
+      <h3>Exactly What Percentage James Earns at Each Revenue Level</h3>
+      <img src="OIC_Scene04_Rate_Tables.png"
+           alt="Scene 4 - Rate Tables" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> The Senior Sales Rep Vending Commission
+        Rate Table for 2026. Tier 1 — $0 to $50,000 earns 5%. Tier 2 — $50,001
+        to $100,000 earns 7%. Tier 3 — $100,001 to $150,000 earns 9%. Tier 4 —
+        above $150,000 earns 12%. Applied to James's XYZ Corporation deal of
+        $78,500 — the first $50,000 earns 5% = $2,500, the next $28,500 earns
+        7% = $1,995, giving a total commission of $4,495. Rate Tables reward
+        higher performance — the more James sells, the higher his commission rate.
+      </div>
+    </div>
+
+    <!-- SCENE 5 -->
+    <h2>Scene 5 — Participants, Roles and Pay Groups</h2>
+    <div class="storyboard">
+      <h3>Registering James in Oracle IC Before Calculations Begin</h3>
+      <img src="OIC_Scene05_Participants_Roles_PayGroups.png"
+           alt="Scene 5 - Participants Roles and Pay Groups" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Three setup steps required before
+        Oracle IC can process any earnings for James. Participant Record —
+        James Mitchell, Employee ID EMP-00445, Senior Sales Rep, Active status.
+        Role Assignment — Senior Sales Rep role, Northern California territory,
+        Vending Machines product line, assigned to Senior Sales Rep 2026 plan.
+        Pay Group — Monthly Commission Field Sales group, monthly payment
+        frequency, USD currency. All three must be correctly configured or
+        Oracle IC cannot calculate or pay James's commission.
+      </div>
+    </div>
+
+    <!-- SCENE 6 -->
+    <h2>Scene 6 — Automated Role Assignment and Classification Rules</h2>
+    <div class="storyboard">
+      <h3>How Oracle IC Assigns Plans Automatically — No Manual Work</h3>
+      <img src="OIC_Scene06_Classification_Rules.png"
+           alt="Scene 6 - Automated Role Assignment and Classification Rules" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Lisa explains to Tom that Classification
+        Rules eliminate manual plan assignment. Rule 1 — if Job Title is Senior
+        Sales Rep and Territory is Northern California, then assign Senior Sales
+        Rep 2026 plan. Rule 2 — if Job Title is Sales Rep, assign Sales Rep
+        Standard 2026. Rule 3 — if Job Title is Sales Manager, assign Manager
+        Overlay 2026. When HR promotes James to Senior Sales Rep, the
+        Classification Rule fires instantly and Oracle IC automatically moves
+        him to the correct plan. No manual work. Full audit trail of every
+        assignment change.
+      </div>
+    </div>
+
+    <!-- SCENE 7 -->
+    <h2>Scene 7 — Sales Crediting and Credit Categories</h2>
+    <div class="storyboard">
+      <h3>Who Gets Credit for the XYZ Corporation Deal?</h3>
+      <img src="OIC_Scene07_Sales_Crediting.png"
+           alt="Scene 7 - Sales Crediting and Credit Categories" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Sarah asks Lisa how credit is
+        distributed since she also supported the XYZ deal. Oracle IC assigns
+        three types of credit — James Mitchell receives 100% Direct Credit as
+        the primary rep who owns and closes the deal ($78,500). Sarah Johnson
+        receives 100% Overlay Credit as the supporting manager ($78,500) —
+        importantly this does NOT reduce James's credit, both earn independently.
+        Mike Chen receives 50% Split Credit as the pre-sales support rep
+        ($39,250). Each person's commission is calculated based on their
+        credited amount independently.
+      </div>
+    </div>
+
+    <!-- SCENE 8 -->
+    <h2>Scene 8 — Sales Crediting Rules</h2>
+    <div class="storyboard">
+      <h3>The Rules Engine That Distributes Credit Automatically</h3>
+      <img src="OIC_Scene08_Crediting_Rules.png"
+           alt="Scene 8 - Sales Crediting Rules" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> The four Sales Crediting Rules
+        configured at ABC Corporation. Rule 1 — Primary Rep Direct Credit:
+        if Opportunity Owner is a Sales Rep, assign 100% Direct Credit to
+        that rep. Rule 2 — Manager Overlay Credit: if the Sales Rep has an
+        assigned Manager, assign 100% Overlay Credit to the Manager. Rule 3
+        — Pre-Sales Support Split: if a Pre-Sales Rep is tagged on the
+        Opportunity, assign 50% Split Credit to them. Rule 4 — Territory
+        Override: if the deal territory differs from the rep's primary
+        territory, flag for manual review. These rules ensure the right
+        people get credit automatically for every deal with full auditability.
+      </div>
+    </div>
+
+    <!-- SCENE 9 -->
+    <h2>Scene 9 — Transactions and Earning Transactions</h2>
+    <div class="storyboard">
+      <h3>From Closed Deal to Commission Dollar Amount</h3>
+      <img src="OIC_Scene09_Transactions_Earnings.png"
+           alt="Scene 9 - Transactions and Earning Transactions" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> The XYZ Corporation deal is imported
+        into Oracle IC as Transaction TXN-2026-004521 — source Oracle CX Sales,
+        amount $78,500, participant James Mitchell, status Processed. Oracle IC
+        then processes it and generates Earning Transaction EARN-2026-004521 —
+        applying the Senior Sales Rep 2026 plan, calculating Tier 1 ($50,000 ×
+        5% = $2,500) and Tier 2 ($28,500 × 7% = $1,995) giving Total Earning
+        $4,495, status Calculated. Transaction is the input — the raw deal data.
+        Earning Transaction is the output — the calculated commission amount.
+      </div>
+    </div>
+
+    <!-- SCENE 10 -->
+    <h2>Scene 10 — The Calculation Process</h2>
+    <div class="storyboard">
+      <h3>6 Automated Steps From Transaction to Net Payable Amount</h3>
+      <img src="OIC_Scene10_Calculation_Process.png"
+           alt="Scene 10 - The Calculation Process" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Lisa runs the monthly calculation
+        batch which processes all 47 transactions for all participants in one
+        automated run. Step 1 — Import Transactions from Oracle CX Sales.
+        Step 2 — Apply Sales Crediting Rules to assign credit to James, Sarah
+        and Mike. Step 3 — Update Performance Measures, updating James's YTD
+        Revenue to $78,500. Step 4 — Apply Incentive Formula using the Tiered
+        Rate Table, result $4,495. Step 5 — Generate Earning Transaction
+        EARN-2026-004521. Step 6 — Hold and Recovery Check, net payable $4,495
+        with no deductions. The entire 6-step process runs automatically —
+        Lisa triggers it once.
+      </div>
+    </div>
+
+    <!-- SCENE 11 -->
+    <h2>Scene 11 — Objectives Based Performance Incentive Plan</h2>
+    <div class="storyboard">
+      <h3>James's Q2 2026 Quarterly Bonus — Beyond Transaction Commission</h3>
+      <img src="OIC_Scene11_Objectives_Based_Plan.png"
+           alt="Scene 11 - Objectives Based Performance Incentive Plan" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> In addition to his transaction-based
+        commission, James also has a Quarterly Objectives Based Incentive Plan
+        with a maximum bonus of $3,000. Objective 1 — Quarterly Revenue Target
+        $150,000, current attainment 52% ($78,500), bonus earned so far $735.
+        Objective 2 — New Customer Acquisition target 3, current 1 (XYZ
+        Corporation), attainment 33%, earned $333. Objective 3 — Pipeline
+        Coverage Ratio target 3x, current 47%, earned $235. Total bonus earned
+        to date $1,303. James runs both plans simultaneously in Oracle IC —
+        transaction commission AND quarterly bonus.
+      </div>
+    </div>
+
+    <!-- SCENE 12 -->
+    <h2>Scene 12 — Payment Plan and Payment Processing</h2>
+    <div class="storyboard">
+      <h3>James Gets Paid — From Oracle IC to Payroll</h3>
+      <img src="OIC_Scene12_Payment_Processing.png"
+           alt="Scene 12 - Payment Plan and Payment Processing" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> The Payment Plan for James — Monthly
+        Commission Field Sales pay group, monthly frequency, USD currency, 0%
+        hold, 90-day clawback on deal cancellation. Lisa runs the May 2026
+        Payment Processing batch — Vending Machine Commission $4,495, Q2
+        Quarterly Bonus partial $1,303, Hold Deduction $0, Recovery Deduction
+        $0, Net Payment to Payroll $5,798. Status sent to Oracle Fusion HCM
+        Payroll, expected in James's June 1, 2026 paycheck. Oracle IC
+        integrates directly with Oracle Fusion HCM Payroll — no manual data
+        entry between systems.
+      </div>
+    </div>
+
+    <!-- SCENE 13 -->
+    <h2>Scene 13 — Reports and Analytics</h2>
+    <div class="storyboard">
+      <h3>Full Visibility for Managers and Sales Reps</h3>
+      <img src="OIC_Scene13_Reports_Analytics.png"
+           alt="Scene 13 - Reports and Analytics" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Two dashboards running simultaneously.
+        Sarah's Manager Dashboard shows team performance — Team Revenue $373,500,
+        Team Commission $25,890, Average Attainment 62%, with individual rep
+        breakdowns showing James at 52%, Amanda Torres at 75%, Kevin Park at
+        97% and Priya Nair at 25%. James's personal Earnings Statement shows
+        May Revenue $78,500, May Commission $4,495, May Bonus $1,303, YTD
+        Total $5,798, Next Payment June 1, 2026. Transparency builds trust —
+        when James can verify every calculation, disputes are eliminated and
+        motivation stays high.
+      </div>
+    </div>
+
+    <!-- PREV / NEXT NAVIGATION -->
+    <div class="chapter-nav">
+      <a class="prev"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">
+        <div class="nav-label">← Previous Chapter</div>
+        <div class="nav-title">Chapter 2: Subscription Management</div>
+      </a>
+      <a class="next" href="#">
+        <div class="nav-label">Next Chapter →</div>
+        <div class="nav-title">Chapter 4: Fusion Field Service (Coming Soon)</div>
+      </a>
+    </div>
+
+    <div class="footer">
+      <p>Created by <a href="https://www.linkedin.com/in/veniltirou"
+         target="_blank">Venil Tirou</a> — Oracle CX Functional Consultant</p>
+      <p style="margin-top:6px;">© 2026 Venil Tirou. All rights reserved.
+      This is an independently created educational resource.
+      Not affiliated with or endorsed by Oracle Corporation.</p>
+    </div>
+
+  </main>
+</body>
+</html>
