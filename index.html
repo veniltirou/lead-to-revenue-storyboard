@@ -325,4 +325,74 @@
 
     <div class="scene"><strong>Scene 7 — Order Management: Orchestrate</strong><br/>
     Oracle Order Management receives the signed order from CPQ. It acts as the
-    central orchestration hub — coordinating with Supply Chain, Fiel
+    central orchestration hub — coordinating with Supply Chain, Field Service and
+    Subscription Management so the entire order is fulfilled from a single point.</div>
+
+    <div class="scene"><strong>Scene 8 — Order Management: Sequence</strong><br/>
+    The approved order is decomposed into its component line items and sequenced in
+    the correct dependency order — the physical vending machines, the field-service
+    installation and the intangible subscription service. Pricing, tax and shipping
+    are frozen, and billing is deliberately held back until installation is confirmed
+    so nothing is billed improperly.</div>
+
+    <div class="scene"><strong>Scene 9 — Subscription Management</strong><br/>
+    Oracle Subscription Management activates the subscription for the ongoing vending
+    service. It is created in Draft status carrying the frozen pricing from the order,
+    and only moves to active billing once the field installation is confirmed.</div>
+
+    <div class="scene"><strong>Scene 10 — Accounts Receivable: Billing Schedule</strong><br/>
+    With installation confirmed, Oracle Accounts Receivable generates the active
+    billing schedule from the subscription and issues the first actual invoice to
+    XYZ Corporation. J. Smith receives the invoice for the vending service.</div>
+
+    <div class="scene"><strong>Scene 11 — Accounts Receivable: Invoicing &amp; Payment</strong><br/>
+    The recurring billing cycle runs. Each period the actual invoice is generated
+    against the billing schedule, XYZ Corporation pays, and the payment is applied —
+    keeping the subscription revenue stream current.</div>
+
+    <div class="scene"><strong>Scene 12 — Revenue Management (RMCS)</strong><br/>
+    Oracle Revenue Management (RMCS) takes over the accounting side. It allocates the
+    contract value across performance obligations and recognises revenue over the
+    subscription term in line with accounting standards — separating the recurring
+    subscription revenue from one-time hardware and installation revenue.</div>
+
+    <div class="scene"><strong>Scene 13 — Fusion Service</strong><br/>
+    After go-live, Oracle Fusion Service handles ongoing support. When XYZ Corporation
+    logs a service request, entitlement and SLA coverage are verified against the
+    subscription before a field technician is dispatched to service the vending machine.</div>
+
+    <div class="scene"><strong>Scene 14 — Renewal: Prepare</strong><br/>
+    As the two-year contract nears its end — 180 days out — Renewal Management
+    automatically prepares the renewal. A renewal quote is drafted from the existing
+    subscription, and the rep builds a strategy that includes upsell (Basic to Premium)
+    and cross-sell (adding office coffee service).</div>
+
+    <div class="scene"><strong>Scene 15 — Renewal: Upsell &amp; Cross-Sell</strong><br/>
+    The renewal is executed. The upsell and cross-sell flow back through CPQ and Order
+    Management as an amendment and a new subscription line — closing the loop, and the
+    whole Lead-to-Revenue cycle begins again for the next term.</div>
+
+    <!-- PREV / NEXT NAVIGATION -->
+    <div class="chapter-nav">
+      <a class="prev"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">
+        <div class="nav-label">← Series</div>
+        <div class="nav-title">Table of Contents</div>
+      </a>
+      <a class="next"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">
+        <div class="nav-label">Next Chapter →</div>
+        <div class="nav-title">Chapter 2: Subscription Management</div>
+      </a>
+    </div>
+
+    <div class="footer">
+      <p>Created by <a href="https://www.linkedin.com/in/veniltirou"
+         target="_blank">Venil Tirou</a> — Oracle CX Functional Consultant</p>
+      <p style="margin-top:6px;">This is an independently created educational resource.
+      Not affiliated with or endorsed by Oracle Corporation.</p>
+    </div>
+
+  </main>
+</body>
+</html>
