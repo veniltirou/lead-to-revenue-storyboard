@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Foundation: Customer Data Management — Oracle CX Storyboard Series</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      width: 280px;
+      min-width: 280px;
+      background-color: #1a1a2e;
+      color: #ccc;
+      padding: 30px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .sidebar .logo {
+      padding: 0 20px 24px 20px;
+      border-bottom: 1px solid #333;
+      margin-bottom: 20px;
+    }
+    .sidebar .logo h2 { color: #ff6b2b; font-size: 1em; line-height: 1.5; }
+    .sidebar .logo p { color: #888; font-size: 0.78em; margin-top: 6px; }
+    .sidebar ul { list-style: none; }
+    .sidebar ul .section-label {
+      color: #888;
+      font-size: 0.72em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 16px 20px 6px 20px;
+    }
+    .sidebar ul li a {
+      display: block;
+      padding: 9px 20px;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.88em;
+      border-left: 3px solid transparent;
+      transition: all 0.2s;
+    }
+    .sidebar ul li a:hover {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.active {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.coming-soon {
+      color: #555;
+      cursor: default;
+      font-style: italic;
+    }
+    .sidebar ul li a.coming-soon:hover {
+      background: none;
+      border-left: 3px solid transparent;
+      color: #555;
+    }
+
+    /* MAIN */
+    .main {
+      margin-left: 280px;
+      padding: 40px 50px;
+      flex: 1;
+      max-width: 900px;
+    }
+
+    .chapter-header {
+      margin-bottom: 30px;
+    }
+    .chapter-header .chapter-label {
+      font-size: 0.8em;
+      color: #ff6b2b;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .chapter-header h1 { color: #c74b00; font-size: 1.8em; margin-bottom: 10px; }
+    .chapter-header p { color: #555; line-height: 1.7; }
+
+    .scenario-box {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.95em;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    h2 {
+      color: #333;
+      font-size: 1.15em;
+      margin: 36px 0 16px 0;
+      border-bottom: 2px solid #ff6b2b;
+      padding-bottom: 8px;
+    }
+
+    .tip {
+      font-style: italic;
+      color: #999;
+      font-size: 0.85em;
+      margin: 6px 0 18px 0;
+    }
+
+    /* STORYBOARD PANELS (sequential strip) */
+    .panel {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin: 20px 0;
+    }
+    .panel h3 {
+      color: #c74b00;
+      font-size: 1.02em;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    .panel h3 .num {
+      display: inline-block;
+      background-color: #ff6b2b;
+      color: #fff;
+      font-size: 0.82em;
+      font-weight: bold;
+      border-radius: 50%;
+      width: 26px;
+      height: 26px;
+      line-height: 26px;
+      text-align: center;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    .panel img {
+      width: 100%;
+      height: auto;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      display: block;
+    }
+    .panel .caption {
+      color: #444;
+      font-size: 0.95em;
+      line-height: 1.6;
+      margin-top: 12px;
+      text-align: center;
+      font-style: italic;
+    }
+
+    /* CHAPTER SUMMARY + CONCEPTS */
+    .what-it-shows {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      padding: 14px 18px;
+      font-size: 0.92em;
+      line-height: 1.7;
+      color: #444;
+      border-radius: 0 4px 4px 0;
+      margin: 20px 0;
+    }
+    .what-it-shows strong { color: #c74b00; }
+
+    table.concepts {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 8px 0;
+      font-size: 0.9em;
+    }
+    table.concepts th, table.concepts td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+    table.concepts th {
+      background-color: #fff8f0;
+      color: #c74b00;
+      border-bottom: 2px solid #ff6b2b;
+    }
+    table.concepts td.panelref {
+      white-space: nowrap;
+      color: #999;
+    }
+
+    /* PREV / NEXT NAVIGATION */
+    .chapter-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+      padding-top: 24px;
+      border-top: 2px solid #eee;
+      gap: 16px;
+    }
+    .chapter-nav a {
+      display: block;
+      padding: 16px 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #333;
+      transition: all 0.2s;
+      flex: 1;
+    }
+    .chapter-nav a:hover {
+      border-color: #ff6b2b;
+      box-shadow: 0 2px 8px rgba(199,75,0,0.15);
+    }
+    .chapter-nav .prev { text-align: left; }
+    .chapter-nav .next { text-align: right; }
+    .chapter-nav .nav-label {
+      font-size: 0.75em;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .chapter-nav .nav-title {
+      font-weight: bold;
+      color: #c74b00;
+      font-size: 0.95em;
+    }
+
+    .footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid #ddd;
+      font-size: 0.82em;
+      color: #999;
+    }
+    .footer a { color: #c74b00; }
+
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="logo">
+      <h2>Oracle CX Storyboard Series</h2>
+      <p>ABC Corp → XYZ Corp</p>
+    </div>
+    <ul>
+      <li class="section-label">Getting Started</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">
+        📋 Table of Contents</a></li>
+      <li class="section-label">Foundation</li>
+      <li><a href="#" class="active">
+        Customer Data Management</a></li>
+      <li class="section-label">Chapters</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/">
+        1. Lead-to-Revenue Overview</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">
+        2. Subscription Management</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/incentive-compensation/">
+        3. Incentive Compensation</a></li>
+      <li><a href="#" class="coming-soon">
+        4. Fusion Field Service (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        5. CX Sales &amp; CPQ (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        6. Order Management (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        7. Fusion Service (soon)</a></li>
+      <li class="section-label">Connect</li>
+      <li><a href="https://www.linkedin.com/in/veniltirou" target="_blank">
+        🔗 LinkedIn Profile</a></li>
+    </ul>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <div class="chapter-header">
+      <div class="chapter-label">Foundation Chapter</div>
+      <h1>Customer Data Management — The Golden Record</h1>
+      <p>Before any deal can be sold, the customer data underneath it has to be
+      trustworthy. This 15-panel storyboard follows one duplicate-ridden account
+      through Oracle Customer Data Management — duplicate identification, survivorship,
+      Dun &amp; Bradstreet enrichment, corporate hierarchy and ongoing stewardship —
+      until it becomes a single golden record James can actually sell from.</p>
+    </div>
+
+    <div class="scenario-box">
+      <strong>Business Scenario:</strong> James, a sales representative at ABC
+      Corporation, opens his CRM to work a promising deal with XYZ Corporation — and
+      finds three conflicting records for the same company. He hands the mess to Dana,
+      ABC Corporation's data steward, who uses Oracle Customer Data Management to resolve,
+      enrich and master XYZ into one trusted golden record. With clean data in hand, James
+      sizes the real opportunity and closes.
+    </div>
+
+    <h2>The Storyboard</h2>
+    <p class="tip">📱 On mobile? Pinch to zoom on any panel to read the speech bubbles and labels clearly.</p>
+
+    <div class="panel">
+      <h3><span class="num">1</span>The Opportunity</h3>
+      <img src="Panel01.png" alt="James, a sales rep, excitedly begins work on the XYZ Corporation deal at his desk." />
+      <p class="caption">A networking giant wants vending solutions. James is on the deal!</p>
+    </div>
+
+    <div class="panel">
+      <h3><span class="num">2</span>The Duplicate Problem</h3>
+      <img src="Panel02.png" alt="James looks confused at three different records for XYZ Corporation on his screen: XYZ Corp, XYZ Corporation Inc, and X.Y.Z. Networking LLC." />
+      <p class="caption">Three records. One company? Or three? Conflicting addresses, contacts, and numbers.</p>
+    </div>
+
+    <div class="panel">
+      <h3><span class="num">3</span>Enter the Data Steward</h3>
+      <img src="Panel03.png" alt="James shows the three conflicting records to Dana, the data steward, who offers to sort it out." />
+      <p class="caption">James can't tell which record is real — so he brings the mess to Dana, ABC Corporation's data steward.</p>
+    </div>
+
+    <div class="panel">
+      <h3><span class="num">4</span>The Customer Hub</h3>
+      <img src="Panel04.png" alt="Dana presents the Customer Hub, the single source of truth where every customer is mastered." />
+      <p class="caption">Under every CRM screen lives the Customer Hub — Oracle Customer Data Management, ABC Corporation's single source of truth.</p>
+    </div>
+
+    <div class="panel">
+      <h3><span class="num">5</span>Duplicate Identification</h3>
+      <img src="Panel05.png" alt="Match rules compare three records and score their similarity at 95% and 88%." />
+      <p class="caption">The Hub runs Duplicate Identification — match rules compare names, addresses, and IDs, then score the similarity.</p>
+    </div>
+
+    <div class="panel">
+      <h3><span class="num">6</span>Auto-Merge vs. Human Review</h3>
+      <img src="Panel06.png" alt="A machine auto-merges a clear duplicate while a borderline suspect record is routed to Dana for review." />
+      <p class="caption">Clear duplicates auto-merge. Borderline suspects escalate to a human steward.</p>
+    </div>
+
+    <div class="panel">
+      <h3><span class="num">7</span>Survivorship &amp; the Golden Record</h3>
+      <img src="Panel07.png" alt="Three records merge into one golden record in a trophy, with duplicates cross-referenced back to the master." />
+      <p class="caption">Survivorship picks the best surviving values. Three become ONE golden record — and the old records stay cross-referenced, so past quotes and invoices still point home.</p>
+    </div>
+
+    <div class="panel">
+      <h3><span class="num">8</span>Enrichment (Dun &amp; Bradstreet)</h3>
+      <img src="Panel08.png" alt="A Dun and Bradstreet owl delivers firmographics — locations, industry, employees, revenue — and a D-U-N-S number to the record." />
+      <p class="caption">Dun &amp; Bradstreet enrichment assigns a D-U-N-S number and fills the record with trusted firmography.</p>
+    </div>
+
+    <div class="panel">
+      <h3><span class="num">9</span>Merge vs. Link</h3>
+      <img src="Panel09.png" alt="Diagram contrasting MERGE (same company into one record) with LINK (related companies kept separate but connected in a hierarchy)." />
+      <p class="caption">D&amp;B reveals XYZ's corporate hierarchy — different-but-related entities, kept separate and LINKED.</p>
+    </div>
+
+    <div class="panel">
+      <h3><span class="num">10</span>Continuous Data Stewardship</h3>
+      <img src="Panel10.png" alt="Dana oversees ongoing governance — verifying at entry, monitoring quality, refreshing enrichment and tuning rules." />
+      <p class="caption">Data stewardship isn't a one-time cleanup — it's continuous governance that keeps the golden record golden.</p>
+    </div>
+
+    <div class="panel">
+      <h3><span class="num">11</span>The Golden Record Handoff</h3>
+      <img src="Panel11.png" alt="Dana hands James one trusted, merged, verified and enriched golden record." />
+      <p class="caption">Resolved and enriched — Dana hands James one trusted golden record.</p>
+    </div>
+
+    <div class="panel">
+      <h3><span class="num">12</span>One Clear Picture</h3>
+      <img src="Panel12.png" alt="James views a clean XYZ Corporation profile showing hierarchy, addresses and named contacts." />
+      <p class="caption">One trusted record. One clear picture. No more guessing.</p>
+    </div>
+
+    <div class="panel">
+      <h3><span class="num">13</span>Sizing the Opportunity</h3>
+      <img src="Panel13.png" alt="James maps XYZ's scale on a whiteboard — 5,000 employees across 12 sites — imagining vending across all campuses." />
+      <p class="caption">5,000 employees across 12 sites — this isn't a one-machine deal. It's an enterprise-wide rollout.</p>
+    </div>
+
+    <div class="panel">
+      <h3><span class="num">14</span>Land &amp; Expand</h3>
+      <img src="Panel14.png" alt="The corporate hierarchy reveals subsidiary opportunities to pursue after landing the HQ deal." />
+      <p class="caption">The hierarchy reveals white space — subsidiaries to win after the HQ deal.</p>
+    </div>
+
+    <div class="panel">
+      <h3><span class="num">15</span>The Close</h3>
+      <img src="Panel15.png" alt="James and the XYZ Corporation buyer shake hands over a signed vending proposal, pointing toward Chapter 1: Lead-to-Revenue." />
+      <p class="caption">Grounded in accurate firmography, the proposal lands. XYZ signs.</p>
+    </div>
+
+    <h2>Why This Chapter Matters</h2>
+    <div class="what-it-shows">
+      <strong>The takeaway:</strong> Customer Data Management is the foundation the entire
+      lead-to-revenue journey stands on. Without a golden record, James would have quoted the
+      wrong entity, missed the enterprise-wide scale, and overlooked the subsidiary expansion.
+      Resolve and master the customer first — then every downstream step (Sales, CPQ, Order
+      Management, Subscription, Billing, Renewal) runs on data it can trust.
+    </div>
+
+    <h2>Concepts Covered</h2>
+    <table class="concepts">
+      <tr><th>Concept</th><th>What it means</th><th class="panelref">Panel</th></tr>
+      <tr><td>Duplicate identification</td><td>Match rules compare key fields and score how likely records are the same.</td><td class="panelref">5</td></tr>
+      <tr><td>Match scoring</td><td>A confidence percentage that drives the merge decision.</td><td class="panelref">5–6</td></tr>
+      <tr><td>Auto-merge vs. escalation</td><td>High-confidence matches merge automatically; borderline cases go to a human steward.</td><td class="panelref">6</td></tr>
+      <tr><td>Survivorship</td><td>Choosing the best surviving value for each field across duplicates.</td><td class="panelref">7</td></tr>
+      <tr><td>Golden record</td><td>The single mastered record that represents the customer.</td><td class="panelref">7, 11, 12</td></tr>
+      <tr><td>Cross-reference</td><td>Old duplicate records are linked, not deleted, so history still resolves.</td><td class="panelref">7</td></tr>
+      <tr><td>Enrichment / firmography</td><td>Third-party data — locations, industry, employees, revenue — added to the record.</td><td class="panelref">8</td></tr>
+      <tr><td>D-U-N-S number</td><td>Dun &amp; Bradstreet's unique company identifier.</td><td class="panelref">8</td></tr>
+      <tr><td>Merge vs. link</td><td>Merge = same company into one record; link = related entities kept separate but connected.</td><td class="panelref">9</td></tr>
+      <tr><td>Corporate hierarchy</td><td>Parent/subsidiary structure that reveals expansion opportunities.</td><td class="panelref">9, 14</td></tr>
+      <tr><td>Data stewardship / governance</td><td>Ongoing verification, monitoring and tuning that keeps data trustworthy.</td><td class="panelref">10</td></tr>
+      <tr><td>Land &amp; expand</td><td>Win the HQ first, then grow across the corporate family.</td><td class="panelref">14</td></tr>
+    </table>
+
+    <!-- PREV / NEXT NAVIGATION -->
+    <div class="chapter-nav">
+      <a class="prev"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">
+        <div class="nav-label">← Back to</div>
+        <div class="nav-title">Table of Contents</div>
+      </a>
+      <a class="next" href="https://veniltirou.github.io/lead-to-revenue-storyboard/">
+        <div class="nav-label">Next →</div>
+        <div class="nav-title">Chapter 1: Lead-to-Revenue Overview</div>
+      </a>
+    </div>
+
+    <div class="footer">
+      <p>Created by <a href="https://www.linkedin.com/in/veniltirou"
+         target="_blank">Venil Tirou</a> — Oracle CX Functional Consultant</p>
+      <p style="margin-top:6px;">This is an independently created educational resource.
+      Not affiliated with or endorsed by Oracle Corporation.</p>
+    </div>
+
+  </main>
+</body>
+</html>
