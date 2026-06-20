@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced: Usage Billing — Allowance, Rollover &amp; Overage — Oracle CX Storyboard Series</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      width: 280px;
+      min-width: 280px;
+      background-color: #1a1a2e;
+      color: #ccc;
+      padding: 30px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .sidebar .logo {
+      padding: 0 20px 24px 20px;
+      border-bottom: 1px solid #333;
+      margin-bottom: 20px;
+    }
+    .sidebar .logo h2 { color: #ff6b2b; font-size: 1em; line-height: 1.5; }
+    .sidebar .logo p { color: #888; font-size: 0.78em; margin-top: 6px; }
+    .sidebar ul { list-style: none; }
+    .sidebar ul .section-label {
+      color: #888;
+      font-size: 0.72em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 16px 20px 6px 20px;
+    }
+    .sidebar ul li a {
+      display: block;
+      padding: 9px 20px;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.88em;
+      border-left: 3px solid transparent;
+      transition: all 0.2s;
+    }
+    .sidebar ul li a:hover {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.active {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.coming-soon {
+      color: #555;
+      cursor: default;
+      font-style: italic;
+    }
+    .sidebar ul li a.coming-soon:hover {
+      background: none;
+      border-left: 3px solid transparent;
+      color: #555;
+    }
+
+    /* MAIN */
+    .main {
+      margin-left: 280px;
+      padding: 40px 50px;
+      flex: 1;
+      max-width: 900px;
+    }
+
+    .chapter-header {
+      margin-bottom: 30px;
+    }
+    .chapter-header .chapter-label {
+      font-size: 0.8em;
+      color: #ff6b2b;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .chapter-header h1 { color: #c74b00; font-size: 1.8em; margin-bottom: 10px; }
+    .chapter-header p { color: #555; line-height: 1.7; }
+
+    .scenario-box {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.95em;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    h2 {
+      color: #333;
+      font-size: 1.15em;
+      margin: 36px 0 16px 0;
+      border-bottom: 2px solid #ff6b2b;
+      padding-bottom: 8px;
+    }
+
+    .tip {
+      font-style: italic;
+      color: #999;
+      font-size: 0.85em;
+      margin: 6px 0 18px 0;
+    }
+
+    /* STORYBOARD PANELS (sequential strip) */
+    .panel {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin: 20px 0;
+    }
+    .panel h3 {
+      color: #c74b00;
+      font-size: 1.02em;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    .panel h3 .num {
+      display: inline-block;
+      background-color: #ff6b2b;
+      color: #fff;
+      font-size: 0.82em;
+      font-weight: bold;
+      border-radius: 50%;
+      width: 26px;
+      height: 26px;
+      line-height: 26px;
+      text-align: center;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    .panel img {
+      width: 100%;
+      height: auto;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      display: block;
+    }
+    /* paired (drama + teaching) sublabels */
+    .panel .sublabel {
+      font-size: 0.76em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #999;
+      font-weight: bold;
+      margin: 18px 0 6px 0;
+    }
+    .panel .sublabel:first-of-type { margin-top: 0; }
+    .panel .caption {
+      color: #444;
+      font-size: 0.95em;
+      line-height: 1.6;
+      margin-top: 12px;
+      text-align: center;
+      font-style: italic;
+    }
+
+    /* CHAPTER SUMMARY + CONCEPTS */
+    .what-it-shows {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      padding: 14px 18px;
+      font-size: 0.92em;
+      line-height: 1.7;
+      color: #444;
+      border-radius: 0 4px 4px 0;
+      margin: 20px 0;
+    }
+    .what-it-shows strong { color: #c74b00; }
+
+    table.concepts {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 8px 0;
+      font-size: 0.9em;
+    }
+    table.concepts th, table.concepts td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+    table.concepts th {
+      background-color: #fff8f0;
+      color: #c74b00;
+      border-bottom: 2px solid #ff6b2b;
+    }
+    table.concepts td.panelref {
+      white-space: nowrap;
+      color: #999;
+    }
+
+    /* PREV / NEXT NAVIGATION */
+    .chapter-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+      padding-top: 24px;
+      border-top: 2px solid #eee;
+      gap: 16px;
+    }
+    .chapter-nav a {
+      display: block;
+      padding: 16px 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #333;
+      transition: all 0.2s;
+      flex: 1;
+    }
+    .chapter-nav a:hover {
+      border-color: #ff6b2b;
+      box-shadow: 0 2px 8px rgba(199,75,0,0.15);
+    }
+    .chapter-nav .prev { text-align: left; }
+    .chapter-nav .next { text-align: right; }
+    .chapter-nav .nav-label {
+      font-size: 0.75em;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .chapter-nav .nav-title {
+      font-weight: bold;
+      color: #c74b00;
+      font-size: 0.95em;
+    }
+
+    .footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid #ddd;
+      font-size: 0.82em;
+      color: #999;
+    }
+    .footer a { color: #c74b00; }
+
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="logo">
+      <h2>Oracle CX Storyboard Series</h2>
+      <p>ABC Corp → XYZ Corp</p>
+    </div>
+    <ul>
+      <li class="section-label">Getting Started</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">
+        📋 Table of Contents</a></li>
+      <li class="section-label">Foundation</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/customer-data-management/">
+        Customer Data Management</a></li>
+      <li class="section-label">Chapters</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/">
+        1. Lead-to-Revenue Overview</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">
+        2. Subscription Management</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/incentive-compensation/">
+        3. Incentive Compensation</a></li>
+      <li><a href="#" class="coming-soon">
+        4. Fusion Field Service (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        5. CX Sales &amp; CPQ (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        6. Order Management (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        7. Fusion Service (soon)</a></li>
+      <li class="section-label">Advanced</li>
+      <li><a href="#" class="active">
+        Usage Billing: Allowance, Rollover &amp; Overage (Subscription Management)</a></li>
+      <li class="section-label">Connect</li>
+      <li><a href="https://www.linkedin.com/in/veniltirou" target="_blank">
+        🔗 LinkedIn Profile</a></li>
+    </ul>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <div class="chapter-header">
+      <div class="chapter-label">Advanced · Subscription Management</div>
+      <h1>Usage Billing — Allowance, Rollover &amp; Overage</h1>
+      <p>Most subscriptions bill a simple flat fee. This advanced deep dive follows
+      XYZ Corporation's smart micro-market through a usage-based plan with a prepaid
+      allowance, rollover of unused units, and overage billed in arrears — across four
+      monthly cycles and one mid-cycle amendment. Each beat is told twice: the story
+      in the micro-market on top, and the same beat on the balance register below.</p>
+    </div>
+
+    <div class="scenario-box">
+      <strong>Business Scenario:</strong> James sets up XYZ Corporation's smart
+      micro-market on a prepaid usage plan — 6,000 transactions a month, unused units
+      rolling over one cycle, overage at $0.40 billed in arrears. Across four cycles,
+      usage stays under, a rollover absorbs a spike, a headcount jump triggers an
+      overage, and a mid-cycle amendment right-sizes the allowance — prorated by days —
+      so the final month lands exactly at the limit. No one is ever turned away from the
+      store; going over the allowance simply bills XYZ for the excess.
+    </div>
+
+    <h2>The Storyboard</h2>
+    <p class="tip">📱 On mobile? Pinch to zoom on any panel to read the tables, gauges and speech bubbles clearly. Each numbered step shows the micro-market scene on top and the balance-register mechanics below.</p>
+
+    <!-- STEP 1 -->
+    <div class="panel">
+      <h3><span class="num">1</span>Install Day &amp; the Prepaid Plan</h3>
+      <div class="sublabel">🛒 In the micro-market</div>
+      <img src="BalanceManagementFramework_Scene01D.png" alt="Install day: James switches on the self-checkout micro-market kiosk in a freshly stocked store, with a wall allowance gauge reading 6,000 per month, 0 used." />
+      <div class="sublabel">📊 On the balance register</div>
+      <img src="BalanceManagementFramework_Scene01.png" alt="The XYZ Smart Micro-Market usage billing plan: fixed monthly fee 2,000 billed in advance, included allowance 6,000 transactions per month prepaid, unused allowance rolls over one cycle, overage 0.40 per transaction billed in arrears, allowance resets each cycle." />
+      <p class="caption">XYZ's micro-market opens and the prepaid plan is set — 6,000 transactions a month, unused units roll over one cycle, overage at $0.40 billed in arrears.</p>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="panel">
+      <h3><span class="num">2</span>Month 1 — Within Allowance, Unused Rolls Over</h3>
+      <div class="sublabel">🛒 In the micro-market</div>
+      <img src="BalanceManagementFramework_Scene02D.png" alt="Month 1: a quiet store with a few employees checking out with food, the allowance gauge reading 4,500 of 6,000 used, within allowance." />
+      <div class="sublabel">📊 On the balance register</div>
+      <img src="BalanceManagementFramework_Scene02.png" alt="Balance Register Month 1: rollover in 0, monthly grant 6,000, available 6,000, consumed 4,500, remaining 1,500, overage 0. 1,500 unused rolls over into Month 2." />
+      <p class="caption">A quiet first month — 4,500 of 6,000 used. The unused 1,500 doesn't vanish; it rolls into Month 2.</p>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="panel">
+      <h3><span class="num">3</span>Month 2 — Rollover Used First, Spike Absorbed</h3>
+      <div class="sublabel">🛒 In the micro-market</div>
+      <img src="BalanceManagementFramework_Scene03D.png" alt="Month 2: a busier store, more employees leaving with food, the allowance gauge showing a +1,500 rollover boost and 7,000 of 7,500 used, still within allowance." />
+      <div class="sublabel">📊 On the balance register</div>
+      <img src="BalanceManagementFramework_Scene03.png" alt="Balance Register Month 2: rollover in 1,500, monthly grant 6,000, available 7,500, consumed 7,000, remaining 500, overage 0. Rollover drawn down first, then the monthly grant; usage of 7,000 beat the 6,000 base but the rollover absorbed it." />
+      <p class="caption">Busier — 7,000 checkouts, above the 6,000 base. But the rolled-over 1,500 is spent first, so it's still covered. No overage; 500 carries into Month 3.</p>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="panel">
+      <h3><span class="num">4</span>Month 3 — Headcount Jump → Overage in Arrears</h3>
+      <div class="sublabel">🛒 In the micro-market</div>
+      <img src="BalanceManagementFramework_Scene04D.png" alt="Month 3: a packed store where every employee still leaves with food, the allowance gauge over limit at 8,200 of 6,500 with an overage counter showing 680 dollars, and James on a phone call with XYZ." />
+      <div class="sublabel">📊 On the balance register</div>
+      <img src="BalanceManagementFramework_Scene04.png" alt="Balance Register Month 3: rollover in 500, monthly grant 6,000, available 6,500, consumed 8,200, remaining 0, overage 1,700. Invoice: 1,700 times 0.40 equals 680 dollars, billed in arrears on the next invoice." />
+      <p class="caption">New hires flood the micro-market — 8,200 checkouts, 1,700 over. Everyone's still served; the excess is rated at $0.40 and billed in arrears: $680 on the next invoice.</p>
+    </div>
+
+    <!-- STEP 5 (standalone) -->
+    <div class="panel">
+      <h3><span class="num">5</span>The Amendment — Right-Size the Allowance, Mid-Cycle</h3>
+      <div class="sublabel">📊 On the balance register</div>
+      <img src="BalanceManagementFramework_Scene05.png" alt="Subscription 2002 amendment: status flows Active, Under Amendment, Pending Approval, Active. Before and after: included allowance 6,000 to 8,000 per month, overage rate 0.40 to 0.50, rollover 1 cycle unchanged, effective mid-cycle on Day 16 of Month 4, partial period option set to Prorate." />
+      <p class="caption">XYZ calls. Rather than keep paying overage, the plan is amended mid-cycle — allowance up to 8,000, overage rate to $0.50 — and because the partial-period option is Prorate, Month 4's allowance splits by days.</p>
+    </div>
+
+    <!-- STEP 6 -->
+    <div class="panel">
+      <h3><span class="num">6</span>Month 4 — Right-Sized, the Prorated Split, Exactly Met</h3>
+      <div class="sublabel">🛒 In the micro-market</div>
+      <img src="BalanceManagementFramework_Scene06D.png" alt="Month 4: a full, happy store with everyone served, the resized allowance gauge reading 7,000 of 7,000 used, exactly met, with no overage counter." />
+      <div class="sublabel">📊 On the balance register</div>
+      <img src="BalanceManagementFramework_Scene06.png" alt="Balance Register Month 4 amended mid-cycle: a timeline split at Day 16 into Days 1 to 15 old plan and Days 16 to 30 new plan. Days 1 to 15 prorated allowance 3,000 consumed 3,000; Days 16 to 30 prorated allowance 4,000 consumed 4,000; Month 4 total 7,000 consumed 7,000, zero overage. 6,000 times 15 over 30 equals 3,000 plus 8,000 times 15 over 30 equals 4,000 equals 7,000 blended allowance." />
+      <p class="caption">On the right-sized plan, Month 4 splits into a prorated 3,000 (old) + 4,000 (new) = 7,000 — and 7,000 is exactly used. Full house, no surprise bill.</p>
+    </div>
+
+    <!-- STEP 7 (standalone) -->
+    <div class="panel">
+      <h3><span class="num">7</span>Four Cycles, One Balance Register</h3>
+      <div class="sublabel">📊 On the balance register</div>
+      <img src="BalanceManagementFramework_Scene07.png" alt="Balance Register across 4 cycles. Month 1: rollover 0, grant 6,000, available 6,000, consumed 4,500, remaining 1,500, none. Month 2: 1,500, 6,000, 7,500, 7,000, 500, none. Month 3: 500, 6,000, 6,500, 8,200, 0, overage 1,700 times 0.40 equals 680. Amendment mid-Month-4 Day 16: allowance 6,000 to 8,000, overage 0.40 to 0.50, prorated by days. Month 4: 0, blended 7,000, 7,000, 7,000, 0, none. Key takeaways listed." />
+      <p class="caption">Four cycles in one balance register: roll over, absorb a spike, overflow into arrears, then amend mid-cycle and right-size. Allowance prepaid in advance; overage billed in arrears only when exceeded.</p>
+    </div>
+
+    <h2>Why This Chapter Matters</h2>
+    <div class="what-it-shows">
+      <strong>The takeaway:</strong> A prepaid allowance with rollover and arrears overage is
+      the advanced end of Subscription Management billing. Usage is captured, drawn down against
+      the balance register, and only the excess is rated and billed in arrears — it never blocks
+      a sale or turns a customer away. When demand outgrows the plan, a mid-cycle amendment with
+      partial-period proration right-sizes the allowance by days, without waiting for the next cycle.
+    </div>
+
+    <h2>Concepts Covered</h2>
+    <table class="concepts">
+      <tr><th>Concept</th><th>What it means</th><th class="panelref">Step</th></tr>
+      <tr><td>Entitlement plan / prepaid allowance</td><td>Included units prepaid in advance for each cycle, set on the subscription plan.</td><td class="panelref">1</td></tr>
+      <tr><td>Advance vs. arrears billing</td><td>The allowance is billed in advance; overage is billed in arrears, only when the balance is exceeded.</td><td class="panelref">1, 4, 7</td></tr>
+      <tr><td>Balance register</td><td>The ledger of rollover-in, grant, available, consumed, remaining and overage for each cycle.</td><td class="panelref">2–4, 7</td></tr>
+      <tr><td>Rollover</td><td>Unused allowance carries forward one cycle instead of expiring at reset.</td><td class="panelref">2–3</td></tr>
+      <tr><td>Drawdown order</td><td>Rolled-over (sooner-expiring) units are consumed before the current cycle's grant.</td><td class="panelref">3</td></tr>
+      <tr><td>Overage in arrears</td><td>Usage above the available balance is rated and billed on the next invoice — no service is denied.</td><td class="panelref">4</td></tr>
+      <tr><td>Mid-cycle amendment</td><td>Changing the plan partway through a cycle, not only at renewal.</td><td class="panelref">5</td></tr>
+      <tr><td>Partial-period proration</td><td>The Prorate partial-period option splits the affected period's allowance by days between the old and new plan.</td><td class="panelref">5–6</td></tr>
+    </table>
+
+    <!-- PREV / NEXT NAVIGATION -->
+    <div class="chapter-nav">
+      <a class="prev"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">
+        <div class="nav-label">← Builds on</div>
+        <div class="nav-title">Chapter 2: Subscription Management</div>
+      </a>
+      <a class="next" href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">
+        <div class="nav-label">Next →</div>
+        <div class="nav-title">Table of Contents</div>
+      </a>
+    </div>
+
+    <div class="footer">
+      <p>Created by <a href="https://www.linkedin.com/in/veniltirou"
+         target="_blank">Venil Tirou</a> — Oracle CX Functional Consultant</p>
+      <p style="margin-top:6px;">This is an independently created educational resource.
+      Not affiliated with or endorsed by Oracle Corporation.</p>
+    </div>
+
+  </main>
+</body>
+</html>
