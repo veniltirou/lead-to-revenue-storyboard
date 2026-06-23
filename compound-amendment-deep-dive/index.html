@@ -273,6 +273,9 @@
     pre.flow { background:#f6f7f9; border:1px solid #e2e4e8; border-left:3px solid #ff6b2b;
                border-radius:4px; padding:14px 16px; overflow:auto; font-size:0.82em;
                line-height:1.5; margin:14px 0; }
+    /* constrain the standalone diagrams (overview & re-flow) that sit outside .panel */
+    .main > img { max-width: 100%; height: auto; display: block;
+                  border: 2px solid #ddd; border-radius: 6px; margin: 16px 0; }
 </style>
 </head><body>
 
