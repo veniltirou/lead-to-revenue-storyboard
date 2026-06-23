@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced: Usage Billing — Allowance, Rollover &amp; Overage — Oracle CX Storyboard Series</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      width: 280px;
+      min-width: 280px;
+      background-color: #1a1a2e;
+      color: #ccc;
+      padding: 30px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .sidebar .logo {
+      padding: 0 20px 24px 20px;
+      border-bottom: 1px solid #333;
+      margin-bottom: 20px;
+    }
+    .sidebar .logo h2 { color: #ff6b2b; font-size: 1em; line-height: 1.5; }
+    .sidebar .logo p { color: #888; font-size: 0.78em; margin-top: 6px; }
+    .sidebar ul { list-style: none; }
+    .sidebar ul .section-label {
+      color: #888;
+      font-size: 0.72em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 16px 20px 6px 20px;
+    }
+    .sidebar ul li a {
+      display: block;
+      padding: 9px 20px;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.88em;
+      border-left: 3px solid transparent;
+      transition: all 0.2s;
+    }
+    .sidebar ul li a:hover {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.active {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.coming-soon {
+      color: #555;
+      cursor: default;
+      font-style: italic;
+    }
+    .sidebar ul li a.coming-soon:hover {
+      background: none;
+      border-left: 3px solid transparent;
+      color: #555;
+    }
+
+    /* MAIN */
+    .main {
+      margin-left: 280px;
+      padding: 40px 50px;
+      flex: 1;
+      max-width: 900px;
+    }
+
+    .chapter-header {
+      margin-bottom: 30px;
+    }
+    .chapter-header .chapter-label {
+      font-size: 0.8em;
+      color: #ff6b2b;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .chapter-header h1 { color: #c74b00; font-size: 1.8em; margin-bottom: 10px; }
+    .chapter-header p { color: #555; line-height: 1.7; }
+
+    .scenario-box {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.95em;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    h2 {
+      color: #333;
+      font-size: 1.15em;
+      margin: 36px 0 16px 0;
+      border-bottom: 2px solid #ff6b2b;
+      padding-bottom: 8px;
+    }
+
+    .tip {
+      font-style: italic;
+      color: #999;
+      font-size: 0.85em;
+      margin: 6px 0 18px 0;
+    }
+
+    /* STORYBOARD PANELS (sequential strip) */
+    .panel {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin: 20px 0;
+    }
+    .panel h3 {
+      color: #c74b00;
+      font-size: 1.02em;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    .panel h3 .num {
+      display: inline-block;
+      background-color: #ff6b2b;
+      color: #fff;
+      font-size: 0.82em;
+      font-weight: bold;
+      border-radius: 50%;
+      width: 26px;
+      height: 26px;
+      line-height: 26px;
+      text-align: center;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    .panel img {
+      width: 100%;
+      height: auto;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      display: block;
+    }
+    /* paired (drama + teaching) sublabels */
+    .panel .sublabel {
+      font-size: 0.76em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #999;
+      font-weight: bold;
+      margin: 18px 0 6px 0;
+    }
+    .panel .sublabel:first-of-type { margin-top: 0; }
+    .panel .caption {
+      color: #444;
+      font-size: 0.95em;
+      line-height: 1.6;
+      margin-top: 12px;
+      text-align: center;
+      font-style: italic;
+    }
+
+    /* CHAPTER SUMMARY + CONCEPTS */
+    .what-it-shows {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      padding: 14px 18px;
+      font-size: 0.92em;
+      line-height: 1.7;
+      color: #444;
+      border-radius: 0 4px 4px 0;
+      margin: 20px 0;
+    }
+    .what-it-shows strong { color: #c74b00; }
+
+    table.concepts {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 8px 0;
+      font-size: 0.9em;
+    }
+    table.concepts th, table.concepts td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+    table.concepts th {
+      background-color: #fff8f0;
+      color: #c74b00;
+      border-bottom: 2px solid #ff6b2b;
+    }
+    table.concepts td.panelref {
+      white-space: nowrap;
+      color: #999;
+    }
+
+    /* PREV / NEXT NAVIGATION */
+    .chapter-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+      padding-top: 24px;
+      border-top: 2px solid #eee;
+      gap: 16px;
+    }
+    .chapter-nav a {
+      display: block;
+      padding: 16px 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #333;
+      transition: all 0.2s;
+      flex: 1;
+    }
+    .chapter-nav a:hover {
+      border-color: #ff6b2b;
+      box-shadow: 0 2px 8px rgba(199,75,0,0.15);
+    }
+    .chapter-nav .prev { text-align: left; }
+    .chapter-nav .next { text-align: right; }
+    .chapter-nav .nav-label {
+      font-size: 0.75em;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .chapter-nav .nav-title {
+      font-weight: bold;
+      color: #c74b00;
+      font-size: 0.95em;
+    }
+
+    .footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid #ddd;
+      font-size: 0.82em;
+      color: #999;
+    }
+    .footer a { color: #c74b00; }
+
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 20px; }
+    }
+  
+    /* --- additions for this advanced page --- */
+    .gotcha { background:#fdf3f1; border-left:4px solid #c74634; padding:12px 16px;
+              margin:14px 0 4px 0; border-radius:0 6px 6px 0; font-size:0.92em; }
+    .gotcha strong { color:#a23e2c; }
+    .senior { background:#eef6f1; border-left:4px solid #1d9e75; padding:14px 18px;
+              margin:20px 0; border-radius:0 6px 6px 0; }
+    .senior strong { color:#16785a; }
+    .why { background:#fbf9ec; border-left:4px solid #e8a020; padding:14px 18px;
+           margin:16px 0; border-radius:0 6px 6px 0; }
+    pre.flow { background:#f6f7f9; border:1px solid #e2e4e8; border-left:3px solid #ff6b2b;
+               border-radius:4px; padding:14px 16px; overflow:auto; font-size:0.82em;
+               line-height:1.5; margin:14px 0; }
+</style>
+</head><body>
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="logo">
+      <h2>Oracle CX Storyboard Series</h2>
+      <p>ABC Corp &rarr; XYZ Corp</p>
+    </div>
+    <ul>
+      <li class="section-label">Getting Started</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">
+        &#128203; Table of Contents</a></li>
+      <li class="section-label">Foundation</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/customer-data-management/">
+        Customer Data Management</a></li>
+      <li class="section-label">Chapters</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/">
+        1. Lead-to-Revenue Overview</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">
+        2. Subscription Management</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/incentive-compensation/">
+        3. Incentive Compensation</a></li>
+      <li><a href="#" class="coming-soon">4. Fusion Field Service (soon)</a></li>
+      <li><a href="#" class="coming-soon">5. CX Sales &amp; CPQ (soon)</a></li>
+      <li><a href="#" class="coming-soon">6. Order Management (soon)</a></li>
+      <li><a href="#" class="coming-soon">7. Fusion Service (soon)</a></li>
+      <li class="section-label">Advanced</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/usage-billing-deep-dive/">
+        Usage Billing: Allowance, Rollover &amp; Overage (Subscription Management)</a></li>
+      <li><a href="#" class="active">
+        The Compound Mid-Term Amendment (Subscription Management)</a></li>
+      <li class="section-label">Connect</li>
+      <li><a href="https://www.linkedin.com/in/veniltirou" target="_blank">
+        &#128279; LinkedIn Profile</a></li>
+    </ul>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <div class="chapter-header">
+      <div class="chapter-label">Advanced &middot; Subscription Management</div>
+      <h1>The Compound Mid-Term Amendment</h1>
+      <p>When an upgrade, a cross-sell and a price change all land mid-period &mdash; on a
+      term that has already been invoiced. Most amendment examples, including Storyboard&nbsp;5
+      on this site, show a <em>clean</em> change: a new line added at the start of a period,
+      approved, activated. Real implementations rarely break there. They break when several
+      changes hit at once, mid-period, after the period has already been billed. This page
+      walks that scenario at the data level, on the same XYZ Corporation vending account.</p>
+    </div>
+
+    <div class="scenario-box">
+      <strong>Business Scenario:</strong> XYZ Corporation has been live for 18 months on a
+      36-month subscription &mdash; Basic Snack &amp; Beverage at $800/month plus a usage line
+      with a 5,000-vend monthly minimum commit. On <strong>day 12 of Month 18</strong>, after
+      Month&nbsp;18's invoice has already been generated, XYZ requests three changes at once,
+      all effective that same day: <strong>upgrade</strong> Basic &rarr; Premium Vending
+      ($800 &rarr; $1,200), <strong>add</strong> Office Coffee Service ($600/month) co-termed
+      to the original Month-36 end date, and apply a <strong>10% loyalty discount</strong>
+      across the whole subscription. This single request triggers all five mechanics below.
+    </div>
+
+    <p class="tip">&#128241; On mobile? Pinch to zoom on any diagram to read the tables and labels clearly.</p>
+
+    <img src="compound_amendment_overview.png" alt="Compound amendment overview: the three simultaneous changes - upgrade, cross-sell and re-price - on the XYZ Corporation account at Month 18, day 12, triggering five mechanics." />
+
+    <div class="why">
+      <strong>Why this page exists:</strong> the trap is treating this as a simple price change.
+      The moment <em>scope and price both change mid-period on an already-billed term</em>, you
+      are simultaneously into proration, a revenue-recognition modification decision, a usage
+      true-up, and co-terming &mdash; each touching a different downstream system. Getting the
+      effective-dating and revenue treatment agreed up front is what decides whether the billing
+      and revenue schedules come out clean.
+    </div>
+
+    <h2>Current State</h2>
+    <table class="concepts">
+      <tr><th>Item</th><th>Product</th><th>Charge</th><th>Status</th></tr>
+      <tr><td>Subscription 1001</td><td>(header)</td><td>&mdash;</td><td>ACTIVE (month 18 of 36)</td></tr>
+      <tr><td>Line 1</td><td>Basic Snack &amp; Beverage</td><td>$800 / month recurring</td><td>ACTIVE</td></tr>
+      <tr><td>Line 2</td><td>Usage &mdash; vend transactions</td><td>Tiered, min commit 5,000 vends/mo</td><td>ACTIVE</td></tr>
+    </table>
+
+    <!-- MECHANIC 1 -->
+    <div class="panel">
+      <h3><span class="num">1</span>Proration on an already-billed period</h3>
+      <p>Month&nbsp;18 was invoiced on day&nbsp;1 at the old rate ($800). The amendment is
+      effective day&nbsp;12, so the 30-day period splits:</p>
+      <table class="concepts">
+        <tr><th>Span</th><th>Days</th><th>Rate basis</th><th>Action</th></tr>
+        <tr><td>Day 1&ndash;11</td><td>11</td><td>Basic $800/mo</td><td>Already billed &mdash; keep</td></tr>
+        <tr><td>Day 12&ndash;30</td><td>19</td><td>Premium $1,200/mo (less 10%)</td><td>Credit unused Basic portion, re-bill at new rate</td></tr>
+      </table>
+      <p>The billing schedule regenerates from the effective date forward. To credit the
+      already-invoiced portion, Subscription Management needs the original invoice details back
+      from Receivables first (the <em>Fetch Subscription Invoice Information from Receivables</em>
+      job) &mdash; you cannot credit an invoice you have not yet synced back.</p>
+      <div class="gotcha"><strong>Common mistake:</strong> assuming the amendment &ldquo;just
+      changes next month.&rdquo; It changes the current, already-billed month, forcing a
+      mid-period credit + re-bill, not a clean cutover.</div>
+    </div>
+
+    <!-- MECHANIC 2 -->
+    <div class="panel">
+      <h3><span class="num">2</span>Revenue recognition &mdash; this is a contract modification (ASC&nbsp;606)</h3>
+      <p>A mid-term change to scope and price is not just a billing event &mdash; under ASC&nbsp;606
+      it is a contract modification, and Revenue Management (RMCS) has to decide how to treat it:</p>
+      <table class="concepts">
+        <tr><th>Treatment</th><th>When it applies</th><th>Effect</th></tr>
+        <tr><td>Prospective (new POB)</td><td>Added goods/services are distinct <em>and</em> priced at standalone selling price</td><td>Remaining revenue spread over remaining term; no catch-up</td></tr>
+        <tr><td>Prospective (blended)</td><td>Distinct, but <em>not</em> at standalone price (our 10% discount)</td><td>Remaining + new consideration re-spread prospectively</td></tr>
+        <tr><td>Cumulative catch-up</td><td>Change is <em>not</em> distinct from what is already delivered</td><td>True-up booked in the current period</td></tr>
+      </table>
+      <p>For XYZ: Office Coffee is distinct (prospective), but the 10% discount means it is not at
+      standalone price &rarr; <strong>prospective blended re-allocation</strong> across the
+      remaining 18 months. The amendment feeds RMCS via <em>Interface Subscriptions to Revenue
+      Management</em>, which re-derives the performance obligations.</p>
+      <div class="gotcha"><strong>Common mistake:</strong> letting the billing change drive the
+      books. The customer is <em>billed</em> on the new schedule, but revenue is <em>recognized</em>
+      on the 606 modification logic &mdash; and the two are not the same number in the same month.</div>
+    </div>
+
+    <!-- MECHANIC 3 -->
+    <div class="panel">
+      <h3><span class="num">3</span>Usage true-up against a price that changed mid-period</h3>
+      <p>Line&nbsp;2 is usage-based with a 5,000-vend minimum commit. At day&nbsp;12, actual usage
+      for Month&nbsp;18 is not yet final, so the true-up has to reconcile estimated-vs-actual usage
+      across a price boundary &mdash; part of the month at the old rate, part at the new.</p>
+      <table class="concepts">
+        <tr><th>Step</th><th>Job</th><th>What happens</th></tr>
+        <tr><td>1</td><td>Acquire Subscription Usage Data from an External Web Service</td><td>Pull actual vend counts</td></tr>
+        <tr><td>2</td><td>Fetch Pricing Information for Subscriptions and Generate Billing Schedule</td><td>Re-rate usage against the correct rate per span</td></tr>
+        <tr><td>3</td><td>True Up Usage Bill Lines</td><td>Settle estimated vs actual; apply min-commit if actual &lt; 5,000</td></tr>
+      </table>
+      <div class="gotcha"><strong>Common mistake:</strong> truing up the whole month at one rate.
+      If the per-vend price changed on day&nbsp;12, the pre- and post-amendment usage must be rated
+      separately, or you over/under-bill the customer.</div>
+    </div>
+
+    <!-- MECHANIC 4 -->
+    <div class="panel">
+      <h3><span class="num">4</span>Co-terming the new line</h3>
+      <p>Office Coffee is added in Month&nbsp;18 but must end at the original Month-36 date &mdash;
+      an 18-month line, not 36. Its billing schedule and TCV must align to the existing end date.</p>
+      <table class="concepts">
+        <tr><th>Line</th><th>Start</th><th>End</th><th>Term</th><th>Monthly</th></tr>
+        <tr><td>Premium (was Basic)</td><td>Mo 18 d12</td><td>Mo 36</td><td>~17.6 mo</td><td>$1,200 &minus;10% = $1,080</td></tr>
+        <tr><td>Office Coffee (new)</td><td>Mo 18 d12</td><td>Mo 36</td><td>~17.6 mo</td><td>$600 &minus;10% = $540</td></tr>
+      </table>
+      <div class="gotcha"><strong>Common mistake:</strong> defaulting the new product to its own
+      fresh 36-month term. That breaks co-terming, misstates TCV, and creates a renewal-date
+      mismatch the customer will dispute at renewal.</div>
+    </div>
+
+    <!-- MECHANIC 5 -->
+    <div class="panel">
+      <h3><span class="num">5</span>Versioning &mdash; supersede, never edit in place</h3>
+      <p>As Storyboard&nbsp;5 establishes, Oracle does not edit a line in place &mdash; it
+      <strong>supersedes and cross-references</strong> so quoting and billing history stay intact
+      and auditable. The compound amendment at the data level:</p>
+      <img src="compound_amendment_status_flow.png" alt="Data-level status matrix: the subscription header and each line moving through Before, Amend created, Submitted and Activated - the Basic line is closed and superseded by the new Premium line, while the new Coffee line and re-rated Usage line become Active." />
+      <div class="gotcha"><strong>Common mistake:</strong> expecting Line&nbsp;1 to &ldquo;become&rdquo;
+      Premium. It does not &mdash; Line&nbsp;1 is closed and superseded by a new Premium line that
+      cross-references it. The old line's invoice and quote history remain queryable.</div>
+    </div>
+
+    <h2>How it re-flows through the stack</h2>
+    <p>Every mechanic above touches a different system. The amendment must re-flow without
+    dropping or double-counting a line:</p>
+    <img src="compound_amendment_reflow.png" alt="Re-flow diagram: the amendment passes from CPQ to Subscription Management and fans out to Receivables, Revenue Management and a usage true-up, with the five mechanics mapped to each system." />
+
+    <div class="senior">
+      <strong>The senior framing line:</strong> &ldquo;The moment scope and price both change
+      mid-period on an already-billed term, you&rsquo;re into proration, a 606 modification
+      decision, and a usage true-up at once &mdash; so I&rsquo;d lock down the effective-dating
+      and the revenue treatment with the client up front, because that&rsquo;s what decides whether
+      the billing and revenue schedules come out clean.&rdquo;
+    </div>
+
+    <!-- PREV / NEXT NAVIGATION -->
+    <div class="chapter-nav">
+      <a class="prev" href="https://veniltirou.github.io/lead-to-revenue-storyboard/usage-billing-deep-dive/">
+        <div class="nav-label">&larr; Related advanced</div>
+        <div class="nav-title">Usage Billing: Allowance, Rollover &amp; Overage</div>
+      </a>
+      <a class="next" href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">
+        <div class="nav-label">Builds on &rarr;</div>
+        <div class="nav-title">Chapter 2: Subscription Management</div>
+      </a>
+    </div>
+
+    <div class="footer">
+      <p>Created by <a href="https://www.linkedin.com/in/veniltirou" target="_blank">Venil Tirou</a>
+      &mdash; Oracle CX Functional Consultant</p>
+      <p style="margin-top:6px;">This is an independently created educational resource.
+      Not affiliated with or endorsed by Oracle Corporation. ABC Corporation and XYZ Corporation
+      are fictional examples.</p>
+    </div>
+
+  </main>
+</body>
+</html>
