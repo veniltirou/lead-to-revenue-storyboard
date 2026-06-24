@@ -265,11 +265,9 @@
     .gotcha { background:#fdf3f1; border-left:4px solid #c74634; padding:12px 16px;
               margin:14px 0 4px 0; border-radius:0 6px 6px 0; font-size:0.92em; }
     .gotcha strong { color:#a23e2c; }
-    .senior { background:#eef6f1; border-left:4px solid #1d9e75; padding:14px 18px;
+    .recommend { background:#eef6f1; border-left:4px solid #1d9e75; padding:14px 18px;
               margin:20px 0; border-radius:0 6px 6px 0; }
-    .senior strong { color:#16785a; }
-    .why { background:#fbf9ec; border-left:4px solid #e8a020; padding:14px 18px;
-           margin:16px 0; border-radius:0 6px 6px 0; }
+    .recommend strong { color:#16785a; }
     pre.flow { background:#f6f7f9; border:1px solid #e2e4e8; border-left:3px solid #ff6b2b;
                border-radius:4px; padding:14px 16px; overflow:auto; font-size:0.82em;
                line-height:1.5; margin:14px 0; }
@@ -322,7 +320,8 @@
       <h1>The Compound Mid-Term Amendment</h1>
       <p>When an upgrade, a cross-sell and a price change all land mid-period &mdash; on a
       term that has already been invoiced. Most amendment examples, including Storyboard&nbsp;5
-      on this site, show a <em>clean</em> change: a new line added at the start of a period,
+      in <a href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">Chapter&nbsp;2: Subscription Management</a>,
+      show a <em>clean</em> change: a new line added at the start of a period,
       approved, activated. Real implementations rarely break there. They break when several
       changes hit at once, mid-period, after the period has already been billed. This page
       walks that scenario at the data level, on the same XYZ Corporation vending account.</p>
@@ -343,13 +342,13 @@
 
     <img src="compound_amendment_overview.png" alt="Compound amendment overview: the three simultaneous changes - upgrade, cross-sell and re-price - on the XYZ Corporation account at Month 18, day 12, triggering five mechanics." />
 
-    <div class="why">
-      <strong>Why this page exists:</strong> the trap is treating this as a simple price change.
-      The moment <em>scope and price both change mid-period on an already-billed term</em>, you
-      are simultaneously into proration, a revenue-recognition modification decision, a usage
-      true-up, and co-terming &mdash; each touching a different downstream system. Getting the
-      effective-dating and revenue treatment agreed up front is what decides whether the billing
-      and revenue schedules come out clean.
+    <div class="what-it-shows">
+      <strong>What this shows:</strong> the three changes XYZ requests at once on day&nbsp;12 of
+      Month&nbsp;18 &mdash; the upgrade from Basic to Premium, the Office Coffee cross-sell
+      co-termed to the original end date, and the 10% loyalty discount &mdash; all effective
+      mid-period on a term that has already been invoiced, and the five mechanics this single
+      request triggers: proration, an ASC&nbsp;606 modification, a usage true-up, co-terming,
+      and versioning. Each is unpacked below.
     </div>
 
     <h2>Current State</h2>
@@ -434,7 +433,8 @@
     <!-- MECHANIC 5 -->
     <div class="panel">
       <h3><span class="num">5</span>Versioning &mdash; supersede, never edit in place</h3>
-      <p>As Storyboard&nbsp;5 establishes, Oracle does not edit a line in place &mdash; it
+      <p>As Storyboard&nbsp;5 establishes (see <a href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">Chapter&nbsp;2: Subscription Management</a>),
+      Oracle does not edit a line in place &mdash; it
       <strong>supersedes and cross-references</strong> so quoting and billing history stay intact
       and auditable. The compound amendment at the data level:</p>
       <img src="compound_amendment_status_flow.png" alt="Data-level status matrix: the subscription header and each line moving through Before, Amend created, Submitted and Activated - the Basic line is closed and superseded by the new Premium line, while the new Coffee line and re-rated Usage line become Active." />
@@ -448,12 +448,14 @@
     dropping or double-counting a line:</p>
     <img src="compound_amendment_reflow.png" alt="Re-flow diagram: the amendment passes from CPQ to Subscription Management and fans out to Receivables, Revenue Management and a usage true-up, with the five mechanics mapped to each system." />
 
-    <div class="senior">
-      <strong>The senior framing line:</strong> &ldquo;The moment scope and price both change
-      mid-period on an already-billed term, you&rsquo;re into proration, a 606 modification
-      decision, and a usage true-up at once &mdash; so I&rsquo;d lock down the effective-dating
-      and the revenue treatment with the client up front, because that&rsquo;s what decides whether
-      the billing and revenue schedules come out clean.&rdquo;
+    <div class="recommend">
+      <strong>Recommendation:</strong> treat a change like this as a contract modification from
+      the outset, not a simple price tweak. Agree the effective date and the revenue-recognition
+      treatment with the customer <em>before</em> building the amendment &mdash; that single
+      decision drives whether the proration, the new billing schedule, and the revenue schedule
+      reconcile. Rate usage separately on each side of the price boundary, and co-term the new
+      line to the existing end date so the renewal stays aligned. Settled up front, the billing
+      and revenue schedules come out clean; left until UAT, they become a reconciliation problem.
     </div>
 
     <!-- PREV / NEXT NAVIGATION -->
