@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced: The Anniversary Renewal Promotion — Oracle CX Storyboard Series</title>
+  <meta name="description" content="A governed, time-boxed renewal discount in Oracle Subscription Management — modeled as a $250 credit marking the US 250th anniversary, showing the discount rule, the renewal version, and how billing and revenue differ.">
+  <meta name="author" content="Venil Tirou">
+  <!-- Open Graph / LinkedIn preview -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Oracle CX Storyboard Series">
+  <meta property="og:title" content="The Anniversary Renewal Promotion — Oracle Subscription Management">
+  <meta property="og:description" content="A governed, time-boxed renewal discount in Oracle Subscription Management — modeled as a $250 credit marking the US 250th anniversary, showing the discount rule, the renewal version, and how billing and revenue differ.">
+  <meta property="og:url" content="https://veniltirou.github.io/lead-to-revenue-storyboard/renewal-promotion-deep-dive/">
+  <meta property="og:image" content="https://veniltirou.github.io/lead-to-revenue-storyboard/renewal-promotion-deep-dive/renewal_promotion_overview.png">
+  <meta property="og:image:alt" content="A limited-time $250 renewal credit honoring 250 years of US independence">
+  <!-- Twitter card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Anniversary Renewal Promotion — Oracle Subscription Management">
+  <meta name="twitter:description" content="A governed, time-boxed renewal discount in Oracle Subscription Management — modeled as a $250 credit marking the US 250th anniversary, showing the discount rule, the renewal version, and how billing and revenue differ.">
+  <meta name="twitter:image" content="https://veniltirou.github.io/lead-to-revenue-storyboard/renewal-promotion-deep-dive/renewal_promotion_overview.png">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      width: 280px;
+      min-width: 280px;
+      background-color: #1a1a2e;
+      color: #ccc;
+      padding: 30px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .sidebar .logo {
+      padding: 0 20px 24px 20px;
+      border-bottom: 1px solid #333;
+      margin-bottom: 20px;
+    }
+    .sidebar .logo h2 { color: #ff6b2b; font-size: 1em; line-height: 1.5; }
+    .sidebar .logo p { color: #888; font-size: 0.78em; margin-top: 6px; }
+    .sidebar ul { list-style: none; }
+    .sidebar ul .section-label {
+      color: #888;
+      font-size: 0.72em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 16px 20px 6px 20px;
+    }
+    .sidebar ul li a {
+      display: block;
+      padding: 9px 20px;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.88em;
+      border-left: 3px solid transparent;
+      transition: all 0.2s;
+    }
+    .sidebar ul li a:hover {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.active {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.coming-soon {
+      color: #555;
+      cursor: default;
+      font-style: italic;
+    }
+    .sidebar ul li a.coming-soon:hover {
+      background: none;
+      border-left: 3px solid transparent;
+      color: #555;
+    }
+
+    /* MAIN */
+    .main {
+      margin-left: 280px;
+      padding: 40px 50px;
+      flex: 1;
+      max-width: 900px;
+    }
+
+    .chapter-header {
+      margin-bottom: 30px;
+    }
+    .chapter-header .chapter-label {
+      font-size: 0.8em;
+      color: #ff6b2b;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .chapter-header h1 { color: #c74b00; font-size: 1.8em; margin-bottom: 10px; }
+    .chapter-header p { color: #555; line-height: 1.7; }
+
+    .scenario-box {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.95em;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    h2 {
+      color: #333;
+      font-size: 1.15em;
+      margin: 36px 0 16px 0;
+      border-bottom: 2px solid #ff6b2b;
+      padding-bottom: 8px;
+    }
+
+    .tip {
+      font-style: italic;
+      color: #999;
+      font-size: 0.85em;
+      margin: 6px 0 18px 0;
+    }
+
+    /* STORYBOARD PANELS (sequential strip) */
+    .panel {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin: 20px 0;
+    }
+    .panel h3 {
+      color: #c74b00;
+      font-size: 1.02em;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    .panel h3 .num {
+      display: inline-block;
+      background-color: #ff6b2b;
+      color: #fff;
+      font-size: 0.82em;
+      font-weight: bold;
+      border-radius: 50%;
+      width: 26px;
+      height: 26px;
+      line-height: 26px;
+      text-align: center;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    .panel img {
+      width: 100%;
+      height: auto;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      display: block;
+    }
+    /* paired (drama + teaching) sublabels */
+    .panel .sublabel {
+      font-size: 0.76em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #999;
+      font-weight: bold;
+      margin: 18px 0 6px 0;
+    }
+    .panel .sublabel:first-of-type { margin-top: 0; }
+    .panel .caption {
+      color: #444;
+      font-size: 0.95em;
+      line-height: 1.6;
+      margin-top: 12px;
+      text-align: center;
+      font-style: italic;
+    }
+
+    /* CHAPTER SUMMARY + CONCEPTS */
+    .what-it-shows {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      padding: 14px 18px;
+      font-size: 0.92em;
+      line-height: 1.7;
+      color: #444;
+      border-radius: 0 4px 4px 0;
+      margin: 20px 0;
+    }
+    .what-it-shows strong { color: #c74b00; }
+
+    table.concepts {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 8px 0;
+      font-size: 0.9em;
+    }
+    table.concepts th, table.concepts td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+    table.concepts th {
+      background-color: #fff8f0;
+      color: #c74b00;
+      border-bottom: 2px solid #ff6b2b;
+    }
+    table.concepts td.panelref {
+      white-space: nowrap;
+      color: #999;
+    }
+
+    /* PREV / NEXT NAVIGATION */
+    .chapter-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+      padding-top: 24px;
+      border-top: 2px solid #eee;
+      gap: 16px;
+    }
+    .chapter-nav a {
+      display: block;
+      padding: 16px 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #333;
+      transition: all 0.2s;
+      flex: 1;
+    }
+    .chapter-nav a:hover {
+      border-color: #ff6b2b;
+      box-shadow: 0 2px 8px rgba(199,75,0,0.15);
+    }
+    .chapter-nav .prev { text-align: left; }
+    .chapter-nav .next { text-align: right; }
+    .chapter-nav .nav-label {
+      font-size: 0.75em;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .chapter-nav .nav-title {
+      font-weight: bold;
+      color: #c74b00;
+      font-size: 0.95em;
+    }
+
+    .footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid #ddd;
+      font-size: 0.82em;
+      color: #999;
+    }
+    .footer a { color: #c74b00; }
+
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 20px; }
+    }
+  
+    /* --- additions for this advanced page --- */
+    .gotcha { background:#fdf3f1; border-left:4px solid #c74634; padding:12px 16px;
+              margin:14px 0 4px 0; border-radius:0 6px 6px 0; font-size:0.92em; }
+    .gotcha strong { color:#a23e2c; }
+    .recommend { background:#eef6f1; border-left:4px solid #1d9e75; padding:14px 18px;
+              margin:20px 0; border-radius:0 6px 6px 0; }
+    .recommend strong { color:#16785a; }
+    pre.flow { background:#f6f7f9; border:1px solid #e2e4e8; border-left:3px solid #ff6b2b;
+               border-radius:4px; padding:14px 16px; overflow:auto; font-size:0.82em;
+               line-height:1.5; margin:14px 0; }
+    /* constrain the standalone diagrams (overview & re-flow) that sit outside .panel */
+    .main > img { max-width: 100%; height: auto; display: block;
+                  border: 2px solid #ddd; border-radius: 6px; margin: 16px 0; }
+</style>
+  <!-- GoatCounter analytics -->
+  <script data-goatcounter="https://veniltirou.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+</head><body>
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="logo">
+      <h2>Oracle CX Storyboard Series</h2>
+      <p>ABC Corp &rarr; XYZ Corp</p>
+    </div>
+    <ul>
+      <li class="section-label">Getting Started</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">&#128203; Table of Contents</a></li>
+      <li class="section-label">Foundation</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/customer-data-management/">Customer Data Management</a></li>
+      <li class="section-label">Chapters</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/">1. Lead-to-Revenue Overview</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">2. Subscription Management</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/incentive-compensation/">3. Incentive Compensation</a></li>
+      <li><a href="#" class="coming-soon">4. Fusion Field Service (soon)</a></li>
+      <li><a href="#" class="coming-soon">5. CX Sales &amp; CPQ (soon)</a></li>
+      <li><a href="#" class="coming-soon">6. Order Management (soon)</a></li>
+      <li><a href="#" class="coming-soon">7. Fusion Service (soon)</a></li>
+      <li class="section-label">Advanced</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/usage-billing-deep-dive/">Usage Billing: Allowance, Rollover &amp; Overage (Subscription Management)</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/compound-amendment-deep-dive/">The Compound Mid-Term Amendment (Subscription Management)</a></li>
+      <li><a href="#" class="active">The Anniversary Renewal Promotion (Subscription Management)</a></li>
+      <li class="section-label">Connect</li>
+      <li><a href="https://www.linkedin.com/in/veniltirou" target="_blank">&#128279; LinkedIn Profile</a></li>
+    </ul>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <div class="chapter-header">
+      <div class="chapter-label">Advanced &middot; Subscription Management</div>
+      <h1>The Anniversary Renewal Promotion</h1>
+      <p>A renewal-time discount is a real Oracle Subscription Management capability &mdash; and a good lens
+      on how a <em>governed, time-boxed promotion</em> actually behaves end to end. This chapter uses a
+      timely, fictional occasion: to mark the United States Semiquincentennial &mdash; 250 years since the
+      Declaration of Independence on July&nbsp;4,&nbsp;2026 &mdash; ABC Corporation offers its subscription
+      customers a one-time <strong>$250 renewal credit</strong>. We follow that credit from the rule that
+      defines it, through the renewal itself, all the way to billing and revenue.</p>
+    </div>
+
+    <div class="scenario-box">
+      <strong>Business Scenario:</strong> XYZ Corporation's annual subscription &mdash; a 12-month term at
+      $1,000/month &mdash; is coming up for renewal. To honor the 250th anniversary, ABC Corp runs a
+      limited-time promotion: a flat <strong>$250 credit</strong> on qualifying renewals dated between
+      <strong>Jun&nbsp;15 and Jul&nbsp;31, 2026</strong>. XYZ's renewal falls inside that window, so the
+      credit applies. The interesting part isn't the discount itself &mdash; it's how a well-built promotion
+      stays governed, and how the credit shows up differently in billing versus revenue.
+    </div>
+
+    <p class="tip">&#128241; On mobile? Pinch to zoom on any diagram to read the tables and labels clearly.</p>
+
+    <img src="renewal_promotion_overview.png" alt="The anniversary renewal promotion: a limited-time, rule-driven $250 renewal credit honoring 250 years of US independence, with its five mechanics." />
+
+    <div class="what-it-shows">
+      <strong>What this shows:</strong> the occasion (the US 250th), the offer (a flat $250 renewal credit),
+      and its three defining traits &mdash; it is a <em>credit</em>, it is <em>time-boxed</em> to a date
+      window, and it is <em>rule-driven</em> rather than a manual edit. Those traits map to the five
+      mechanics unpacked below: the discount rule, the effective window, the renewal version, the billing
+      credit, and the revenue spread.
+    </div>
+
+    <!-- MECHANIC 1 -->
+    <div class="panel">
+      <h3><span class="num">1</span>A governed rule, not a manual edit</h3>
+      <p>The cleanest way to run a promotion is as a <strong>discount rule</strong> with an effective date
+      window &mdash; not by hand-editing a price on each renewal. The rule decides, for every renewal,
+      whether the credit applies, and it stops on its own when the window closes.</p>
+      <img src="renewal_promotion_rule.png" alt="A governed discount rule: when a renewal date falls inside the promo window the $250 credit is applied automatically; outside it, the renewal is standard. The rule is flat-amount, time-boxed, eligibility-scoped and auto-expiring." />
+      <div class="gotcha"><strong>Common mistake:</strong> applying the credit as a manual line override.
+      It works once, but it is untracked, inconsistent between customers, and easy to forget to remove &mdash;
+      so it lingers past the occasion. A rule is auditable and time-boxed by design.</div>
+    </div>
+
+    <!-- MECHANIC 2 -->
+    <div class="panel">
+      <h3><span class="num">2</span>The renewal creates a new term &mdash; the credit lives there</h3>
+      <p>A renewal in Subscription Management generates a <strong>new term</strong> (a renewal subscription),
+      rather than silently extending the current one. The promotion applies to the <em>renewal</em> lines,
+      leaving the in-flight term untouched:</p>
+      <table class="concepts">
+        <tr><th>&nbsp;</th><th>Current term (ending)</th><th>Renewal term</th></tr>
+        <tr><td>Duration</td><td>Months 1&ndash;12</td><td>New 12-month term</td></tr>
+        <tr><td>Monthly charge</td><td>$1,000</td><td>$1,000</td></tr>
+        <tr><td>Promotion</td><td>&mdash;</td><td>$250 anniversary credit</td></tr>
+        <tr><td>Term TCV</td><td>$12,000</td><td><strong>$11,750</strong></td></tr>
+      </table>
+      <div class="gotcha"><strong>Common mistake:</strong> discounting the current, in-flight term instead
+      of the renewal. The offer is a <em>renewal</em> incentive &mdash; it belongs on the new term, not as a
+      retroactive credit against a term the customer is already part-way through.</div>
+    </div>
+
+    <!-- MECHANIC 3 -->
+    <div class="panel">
+      <h3><span class="num">3</span>Billing shows the credit once; revenue spreads it</h3>
+      <p>This is the part worth slowing down on. A discount lowers the <strong>transaction price</strong>, so
+      the net renewal is $11,750. But <em>billing</em> and <em>revenue</em> treat that $250 differently in
+      time:</p>
+      <img src="renewal_promotion_numbers.png" alt="The numbers: original renewal TCV $12,000 minus a $250 credit equals $11,750. Billing applies the credit once - month one is $750, the rest $1,000. Revenue recognizes the net price evenly at about $979 per month across the term." />
+      <table class="concepts">
+        <tr><th>&nbsp;</th><th>Billing</th><th>Revenue (ASC&nbsp;606)</th></tr>
+        <tr><td>Month 1</td><td>$750 (credit applied)</td><td>&asymp; $979</td></tr>
+        <tr><td>Months 2&ndash;12</td><td>$1,000 each</td><td>&asymp; $979 each</td></tr>
+        <tr><td>Total over term</td><td>$11,750</td><td>$11,750</td></tr>
+        <tr><td>Timing</td><td>credit up front</td><td>spread evenly</td></tr>
+      </table>
+      <div class="gotcha"><strong>Common mistake:</strong> assuming revenue dips in month&nbsp;1 because the
+      bill did. It doesn't &mdash; the credit reduces the total transaction price, which revenue recognizes
+      evenly across the renewal term. Billing timing and revenue timing are not the same thing.</div>
+    </div>
+
+    <h2>Where it sits in the bigger flow</h2>
+    <p>A discounted renewal still rides the same quote-to-cash rails as everything else in this series: the
+    renewal generates billing that flows to Receivables, and the net price interfaces to Revenue Management.
+    If you want the full upstream-to-downstream picture &mdash; and the supersede-versus-edit mechanic that
+    governs subscription changes &mdash; see
+    <a href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">Chapter&nbsp;2: Subscription Management</a>
+    and
+    <a href="https://veniltirou.github.io/lead-to-revenue-storyboard/compound-amendment-deep-dive/">the Compound Mid-Term Amendment</a>.</p>
+
+    <div class="recommend">
+      <strong>Recommendation:</strong> run a special-occasion offer as a governed discount rule &mdash;
+      flat-amount or percentage &mdash; with an explicit effective window and eligibility, so it applies
+      consistently and expires on its own. Decide the revenue treatment with finance up front: a credit
+      lowers the transaction price and is recognized across the renewal term, even though the customer sees
+      it as an up-front break on the bill. Keeping billing and revenue expectations aligned before launch is
+      what keeps month-end clean.
+    </div>
+
+    <!-- PREV / NEXT NAVIGATION -->
+    <div class="chapter-nav">
+      <a class="prev" href="https://veniltirou.github.io/lead-to-revenue-storyboard/compound-amendment-deep-dive/">
+        <div class="nav-label">&larr; Related advanced</div>
+        <div class="nav-title">The Compound Mid-Term Amendment</div>
+      </a>
+      <a class="next" href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">
+        <div class="nav-label">Builds on &rarr;</div>
+        <div class="nav-title">Chapter 2: Subscription Management</div>
+      </a>
+    </div>
+
+    <div class="footer">
+      <p>Created by <a href="https://www.linkedin.com/in/veniltirou" target="_blank">Venil Tirou</a>
+      &mdash; Oracle CX Functional Consultant</p>
+      <p style="margin-top:6px;">A small nod to a big milestone &mdash; 250 years of US independence. This is an
+      independently created educational resource. Not affiliated with or endorsed by Oracle Corporation.
+      ABC Corporation and XYZ Corporation are fictional examples, and the promotion described is illustrative.</p>
+    </div>
+
+  </main>
+</body>
+</html>
