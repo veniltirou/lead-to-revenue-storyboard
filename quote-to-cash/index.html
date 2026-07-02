@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced: Quote-to-Cash Across Oracle Fusion — Oracle CX Storyboard Series</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; color: #333; display: flex; min-height: 100vh; }
+
+    .sidebar { width: 280px; min-width: 280px; background-color: #1a1a2e; color: #ccc; padding: 30px 0; position: fixed; top: 0; left: 0; height: 100vh; overflow-y: auto; }
+    .sidebar .logo { padding: 0 20px 24px 20px; border-bottom: 1px solid #333; margin-bottom: 20px; }
+    .sidebar .logo h2 { color: #ff6b2b; font-size: 1em; line-height: 1.5; }
+    .sidebar .logo p { color: #888; font-size: 0.78em; margin-top: 6px; }
+    .sidebar ul { list-style: none; }
+    .sidebar ul .section-label { color: #888; font-size: 0.72em; text-transform: uppercase; letter-spacing: 1px; padding: 16px 20px 6px 20px; }
+    .sidebar ul li a { display: block; padding: 9px 20px; color: #ccc; text-decoration: none; font-size: 0.88em; border-left: 3px solid transparent; transition: all 0.2s; }
+    .sidebar ul li a:hover { background-color: #2a2a4a; color: #ff6b2b; border-left: 3px solid #ff6b2b; }
+    .sidebar ul li a.active { background-color: #2a2a4a; color: #ff6b2b; border-left: 3px solid #ff6b2b; }
+    .sidebar ul li a.coming-soon { color: #555; cursor: default; font-style: italic; }
+    .sidebar ul li a.coming-soon:hover { background: none; border-left: 3px solid transparent; color: #555; }
+
+    .main { margin-left: 280px; padding: 40px 50px; flex: 1; max-width: 900px; }
+    .chapter-header { margin-bottom: 30px; }
+    .chapter-header .chapter-label { font-size: 0.8em; color: #ff6b2b; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+    .chapter-header h1 { color: #c74b00; font-size: 1.8em; margin-bottom: 10px; }
+    .chapter-header p { color: #555; line-height: 1.7; }
+
+    .scenario-box { background-color: #fff8f0; border-left: 4px solid #c74b00; border-radius: 6px; padding: 16px 20px; margin: 24px 0; font-size: 0.95em; line-height: 1.7; color: #444; }
+
+    h2 { color: #333; font-size: 1.15em; margin: 36px 0 16px 0; border-bottom: 2px solid #ff6b2b; padding-bottom: 8px; }
+    .tip { font-style: italic; color: #999; font-size: 0.85em; margin: 6px 0 18px 0; }
+
+    .panel { background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; padding: 20px 22px; margin: 20px 0; }
+    .panel h3 { color: #c74b00; font-size: 1.02em; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid #eee; }
+    .panel h3 .num { display: inline-block; background-color: #ff6b2b; color: #fff; font-size: 0.82em; font-weight: bold; border-radius: 50%; width: 26px; height: 26px; line-height: 26px; text-align: center; margin-right: 10px; vertical-align: middle; }
+    .panel h3 .apptag { float: right; font-size: 0.72em; font-weight: normal; color: #888; text-transform: none; letter-spacing: 0; margin-top: 4px; }
+    .panel img { width: 100%; height: auto; border: 2px solid #ddd; border-radius: 6px; display: block; }
+    .panel .shows { color: #444; font-size: 0.93em; line-height: 1.65; margin-top: 14px; }
+    .panel .shows strong { color: #c74b00; }
+
+    .what-it-shows { background-color: #fff8f0; border-left: 4px solid #c74b00; padding: 14px 18px; font-size: 0.92em; line-height: 1.7; color: #444; border-radius: 0 4px 4px 0; margin: 20px 0; }
+    .what-it-shows strong { color: #c74b00; }
+
+    table.concepts { width: 100%; border-collapse: collapse; margin: 16px 0 8px 0; font-size: 0.9em; }
+    table.concepts th, table.concepts td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #eee; vertical-align: top; }
+    table.concepts th { background-color: #fff8f0; color: #c74b00; border-bottom: 2px solid #ff6b2b; }
+    table.concepts td.panelref { white-space: nowrap; color: #999; }
+
+    .chapter-nav { display: flex; justify-content: space-between; margin-top: 50px; padding-top: 24px; border-top: 2px solid #eee; gap: 16px; }
+    .chapter-nav a { display: block; padding: 16px 20px; border: 1px solid #ddd; border-radius: 8px; text-decoration: none; color: #333; transition: all 0.2s; flex: 1; }
+    .chapter-nav a:hover { border-color: #ff6b2b; box-shadow: 0 2px 8px rgba(199,75,0,0.15); }
+    .chapter-nav .prev { text-align: left; }
+    .chapter-nav .next { text-align: right; }
+    .chapter-nav .nav-label { font-size: 0.75em; color: #999; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .chapter-nav .nav-title { font-weight: bold; color: #c74b00; font-size: 0.95em; }
+
+    .footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid #ddd; font-size: 0.82em; color: #999; }
+    .footer a { color: #c74b00; }
+
+    @media (max-width: 768px) { .sidebar { display: none; } .main { margin-left: 0; padding: 20px; } }
+  </style>
+</head>
+<body>
+
+  <nav class="sidebar">
+    <div class="logo">
+      <h2>Oracle CX Storyboard Series</h2>
+      <p>ABC Corp → XYZ Corp</p>
+    </div>
+    <ul>
+      <li class="section-label">Getting Started</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">📋 Table of Contents</a></li>
+      <li class="section-label">Foundation</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/customer-data-management/">Customer Data Management</a></li>
+      <li class="section-label">Chapters</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/">1. Lead-to-Revenue Overview</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">2. Subscription Management</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/incentive-compensation/">3. Incentive Compensation</a></li>
+      <li><a href="#" class="coming-soon">4. Fusion Field Service (soon)</a></li>
+      <li><a href="#" class="coming-soon">5. CX Sales &amp; CPQ (soon)</a></li>
+      <li><a href="#" class="coming-soon">6. Order Management (soon)</a></li>
+      <li><a href="#" class="coming-soon">7. Fusion Service (soon)</a></li>
+      <li class="section-label">Advanced</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/usage-billing-deep-dive/">Usage Billing: Allowance, Rollover &amp; Overage (Subscription Management)</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/compound-amendment-deep-dive/">The Compound Mid-Term Amendment (Subscription Management)</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/renewal-promotion-deep-dive/">The Anniversary Renewal Promotion (Subscription Management)</a></li>
+      <li><a href="#" class="active">Quote-to-Cash Across Oracle Fusion (Subscription Management Integrations)</a></li>
+      <li class="section-label">Connect</li>
+      <li><a href="https://www.linkedin.com/in/veniltirou" target="_blank">🔗 LinkedIn Profile</a></li>
+    </ul>
+  </nav>
+
+  <main class="main">
+
+    <div class="chapter-header">
+      <div class="chapter-label">Advanced · Quote-to-Cash</div>
+      <h1>Quote-to-Cash Across Oracle Fusion</h1>
+      <p>Subscription Management doesn't work alone. This chapter follows one XYZ Corporation
+      deal — 10 beverage vending units on a 36-month subscription — as it moves through eight
+      connected Oracle Fusion applications, from the signed quote all the way to recognized
+      revenue and a closed service ticket. Each scene names the application in play and spells
+      out the integration point: who hands what to whom, and why it matters.</p>
+    </div>
+
+    <div class="scenario-box">
+      <strong>Business Scenario:</strong> James, a sales rep at ABC Corporation (a vending
+      service provider), closes XYZ Corporation on 10 beverage vending units with a 36-month
+      subscription. From that single signed quote, the order orchestrates fulfillment, the
+      subscription contract is created, each unit is tracked as a covered asset, a technician
+      installs on site, Receivables invoices the charges, Revenue Management recognizes the
+      value over the term, and — months later — a service request is logged, verified against
+      the subscription, and resolved. One deal, eight applications, one connected loop.
+    </div>
+
+    <h2>The Storyboard</h2>
+    <p class="tip">📱 On mobile? Pinch to zoom on any panel to read the screens and speech bubbles. Each scene names its Oracle Fusion application and states the integration point below the image.</p>
+
+    <div class="panel">
+      <h3><span class="num">1</span>It Starts with a Signed Quote <span class="apptag">Oracle CPQ / Quoting</span></h3>
+      <img src="Q2C_Scene01.png" alt="James at ABC Corporation holds up a signed quote for XYZ Corporation — 10 beverage vending units, 36-month subscription." />
+      <p class="shows"><strong>What this shows:</strong> Everything downstream begins with one artifact — the signed quote in CPQ. XYZ commits to 10 beverage vending units on a 36-month subscription. Until this quote exists, nothing is created in any other application. This is the upstream origin of the entire quote-to-cash flow.</p>
+    </div>
+
+    <div class="panel">
+      <h3><span class="num">2</span>The Order Orchestrates Everything <span class="apptag">Oracle Order Management</span></h3>
+      <img src="Q2C_Scene02.png" alt="The signed quote becomes an order in Order Management, fanning out to the subscription, the asset record, and the invoice." />
+      <p class="shows"><strong>What this shows:</strong> The quote becomes an order, and Order Management is the orchestration hub. From this single order it fans work out in parallel — creating the subscription, triggering the asset records, and feeding the billing. Order Management is the conductor upstream of Subscription Management, not a step after it.</p>
+    </div>
+
+    <div class="panel">
+      <h3><span class="num">3</span>The Subscription Contract Is Born <span class="apptag">Oracle Subscription Management</span></h3>
+      <img src="Q2C_Scene03.png" alt="Subscription Management creates Subscription 2002 for XYZ — a 36-month header, 10 beverage-unit lines, monthly billing." />
+      <p class="shows"><strong>What this shows:</strong> Subscription Management converts the order lines into a live contract — a header (36-month term), lines (10 covered units), and a monthly billing schedule. This is the center of gravity: every other application in this chapter either feeds it or is driven by it.</p>
+    </div>
+
+    <div class="panel">
+      <h3><span class="num">4</span>Each Unit Becomes a Tracked Asset <span class="apptag">Oracle Asset / Installed Base</span></h3>
+      <img src="Q2C_Scene04.png" alt="Installed Base shows an asset record per unit with serial numbers, each linked to the subscription as a covered asset." />
+      <p class="shows"><strong>What this shows:</strong> As units are delivered, each one gets an asset record in Installed Base, linked to the subscription as a covered asset. Asset Management <em>tracks</em> the units — it does not build them. This covered-asset link is exactly what lets Field and Fusion Service verify what's covered later on.</p>
+    </div>
+
+    <div class="panel">
+      <h3><span class="num">5</span>The Technician Installs the Unit <span class="apptag">Oracle Field Service</span></h3>
+      <img src="Q2C_Scene05.png" alt="A field technician installs a beverage vending unit in XYZ's kitchen, work order in hand, as James looks on." />
+      <p class="shows"><strong>What this shows:</strong> The same order also creates a Field Service work order, so a technician installs the units on site at XYZ. The key point: this install is driven by the <em>order</em> — not by a support call. The moment fulfillment lands, the work order dispatches.</p>
+    </div>
+
+    <div class="panel">
+      <h3><span class="num">6</span>The Invoice Goes Out, Cash Comes In <span class="apptag">Oracle Receivables (AR)</span></h3>
+      <img src="Q2C_Scene06.png" alt="Receivables raises an invoice for XYZ — a one-time install fee and a recurring monthly charge, billed." />
+      <p class="shows"><strong>What this shows:</strong> Subscription Management hands its bill lines — the one-time install fee and the recurring monthly charge — to Receivables, which raises the invoice. This is the cash side of quote-to-cash: money billed and collected. <strong>Financial module 1 of 2.</strong></p>
+    </div>
+
+    <div class="panel">
+      <h3><span class="num">7</span>Revenue Is Earned Month by Month <span class="apptag">Oracle Revenue Management (RMCS)</span></h3>
+      <img src="Q2C_Scene07.png" alt="Revenue Management spreads the contract value evenly across 36 months, recognized a slice at a time, distinct from the lump of cash." />
+      <p class="shows"><strong>What this shows:</strong> Cash arriving is not the same as revenue earned. Revenue Management spreads the contract value evenly across all 36 months, recognizing a slice each period as the service is delivered. This is the accounting side — deliberately distinct from the cash side in Scene 6. <strong>Financial module 2 of 2.</strong></p>
+    </div>
+
+    <div class="panel">
+      <h3><span class="num">8</span>Months Later: A Unit Needs Service <span class="apptag">Oracle Fusion Service</span></h3>
+      <img src="Q2C_Scene08.png" alt="Month 7 after go-live: a unit shows a warning; a call-center agent logs ticket WO-4471 and checks coverage against the active subscription." />
+      <p class="shows"><strong>What this shows:</strong> Well after go-live (Month 7 here), a unit acts up. XYZ calls; the call center logs a ticket in Fusion Service and checks entitlement against the subscription — it's active, so service is covered. Only then is a technician dispatched. This is <em>servicing</em>, not install — and it's why the covered-asset link from Scene 4 matters.</p>
+    </div>
+
+    <div class="panel">
+      <h3><span class="num">9</span>The Loop Closes, Everyone's Happy <span class="apptag">Field Service + Fusion Service</span></h3>
+      <img src="Q2C_Scene09.png" alt="The technician resolves the unit on site, the same ticket WO-4471 is closed, and an XYZ employee enjoys a cold drink." />
+      <p class="shows"><strong>What this shows:</strong> The technician resolves the issue on site and the same ticket (WO-4471, open in Scene 8) is closed. Quote-to-cash becomes quote-to-cash-to-care: CPQ, Order Management, Subscription Management, Asset/Installed Base, Field Service, Receivables, Revenue Management, and Fusion Service have each played their part in one connected loop.</p>
+    </div>
+
+    <h2>The Whole Story in One Map</h2>
+    <div class="panel">
+      <img src="subscription-management-integrations-flow.png" alt="Quote-to-cash integration flow: signed quote, order, subscription, invoice, revenue over time, plus field-service install and call-center service, with the two financial modules highlighted." />
+      <p class="shows"><strong>The nine scenes, summarized:</strong> a signed quote flows into the order, which orchestrates the subscription, the asset records and the billing; Receivables invoices the cash while Revenue Management recognizes the value over the term; and Field Service and Fusion Service deliver and support the units. The two green steps — Receivables and Revenue Management — are the financial modules that make this a genuine cross-module, quote-to-cash flow.</p>
+    </div>
+
+    <h2>Why This Chapter Matters</h2>
+    <div class="what-it-shows">
+      <strong>The takeaway:</strong> Subscription Management is one link in a chain, not an island.
+      Quote-to-cash is a relay across eight Oracle Fusion applications — CPQ originates,
+      Order Management orchestrates, Subscription Management holds the contract, Asset / Installed
+      Base tracks the units, Field Service installs and repairs, Receivables invoices, Revenue
+      Management recognizes, and Fusion Service supports. Two of those — <strong>Receivables</strong>
+      and <strong>Revenue Management</strong> — are financial modules, which is what makes this a
+      true cross-module, quote-to-cash story rather than a single-application walkthrough.
+    </div>
+
+    <h2>Concepts Covered</h2>
+    <table class="concepts">
+      <tr><th>Concept</th><th>What it means</th><th class="panelref">Scene</th></tr>
+      <tr><td>Upstream vs. downstream</td><td>Which applications feed the subscription (CPQ, Order Management) and which it feeds (AR, Revenue, Service).</td><td class="panelref">1–3</td></tr>
+      <tr><td>Orchestration hub</td><td>Order Management fans one order out to many applications in parallel.</td><td class="panelref">2</td></tr>
+      <tr><td>Covered asset</td><td>Each Installed Base asset record links to the subscription, defining what's under coverage.</td><td class="panelref">4</td></tr>
+      <tr><td>Order-driven install</td><td>The install work order comes from fulfillment of the order — not from a support call.</td><td class="panelref">5</td></tr>
+      <tr><td>Cash vs. recognition</td><td>Receivables bills the cash; Revenue Management recognizes the value over the term.</td><td class="panelref">6–7</td></tr>
+      <tr><td>Entitlement check</td><td>Fusion Service verifies subscription coverage before dispatching a technician.</td><td class="panelref">8</td></tr>
+      <tr><td>Service loop closure</td><td>The same ticket is opened, verified, resolved and closed — the loop completes.</td><td class="panelref">8–9</td></tr>
+    </table>
+
+    <div class="chapter-nav">
+      <a class="prev" href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">
+        <div class="nav-label">← Builds on</div>
+        <div class="nav-title">Chapter 2: Subscription Management</div>
+      </a>
+      <a class="next" href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">
+        <div class="nav-label">Next →</div>
+        <div class="nav-title">Table of Contents</div>
+      </a>
+    </div>
+
+    <div class="footer">
+      <p>Created by <a href="https://www.linkedin.com/in/veniltirou" target="_blank">Venil Tirou</a> — Oracle CX Functional Consultant</p>
+      <p style="margin-top:6px;">This is an independently created educational resource. Not affiliated with or endorsed by Oracle Corporation.</p>
+    </div>
+
+  </main>
+</body>
+</html>
