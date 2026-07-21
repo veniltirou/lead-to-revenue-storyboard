@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced: Harrison Builds the Bridge — Oracle CX Storyboard Series</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 280px;
+      min-width: 280px;
+      background-color: #1a1a2e;
+      color: #ccc;
+      padding: 30px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .sidebar .logo {
+      padding: 0 20px 24px 20px;
+      border-bottom: 1px solid #333;
+      margin-bottom: 20px;
+    }
+    .sidebar .logo h2 { color: #ff6b2b; font-size: 1em; line-height: 1.5; }
+    .sidebar .logo p { color: #888; font-size: 0.78em; margin-top: 6px; }
+    .sidebar ul { list-style: none; }
+    .sidebar ul .section-label {
+      color: #888;
+      font-size: 0.72em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 16px 20px 6px 20px;
+    }
+    .sidebar ul li a {
+      display: block;
+      padding: 9px 20px;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.88em;
+      border-left: 3px solid transparent;
+      transition: all 0.2s;
+    }
+    .sidebar ul li a:hover {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.active {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.coming-soon {
+      color: #555;
+      cursor: default;
+      font-style: italic;
+    }
+    .sidebar ul li a.coming-soon:hover {
+      background: none;
+      border-left: 3px solid transparent;
+      color: #555;
+    }
+    .main {
+      margin-left: 280px;
+      padding: 40px 50px;
+      flex: 1;
+      max-width: 900px;
+    }
+    .chapter-header { margin-bottom: 30px; }
+    .chapter-header .chapter-label {
+      font-size: 0.8em;
+      color: #ff6b2b;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .chapter-header h1 { color: #c74b00; font-size: 1.8em; margin-bottom: 10px; }
+    .chapter-header p { color: #555; line-height: 1.7; }
+    .scenario-box {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.95em;
+      line-height: 1.7;
+      color: #444;
+    }
+    .characters-box {
+      background-color: #f0f4ff;
+      border-left: 4px solid #3a5bd9;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.92em;
+      line-height: 1.8;
+      color: #444;
+    }
+    .characters-box h3 {
+      color: #3a5bd9;
+      font-size: 0.9em;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    h2 {
+      color: #333;
+      font-size: 1.15em;
+      margin: 36px 0 16px 0;
+      border-bottom: 2px solid #ff6b2b;
+      padding-bottom: 8px;
+    }
+    .storyboard {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 24px;
+      margin: 28px 0;
+    }
+    .storyboard h3 {
+      color: #c74b00;
+      font-size: 1.05em;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    .storyboard img {
+      width: 100%;
+      height: auto;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      margin: 12px 0;
+    }
+    .storyboard .tip {
+      font-style: italic;
+      color: #999;
+      font-size: 0.85em;
+      margin: 6px 0 14px 0;
+    }
+    .storyboard .what-it-shows {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      padding: 12px 16px;
+      font-size: 0.92em;
+      line-height: 1.7;
+      color: #444;
+      border-radius: 0 4px 4px 0;
+    }
+    .storyboard .what-it-shows strong { color: #c74b00; }
+    .chapter-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+      padding-top: 24px;
+      border-top: 2px solid #eee;
+      gap: 16px;
+    }
+    .chapter-nav a {
+      display: block;
+      padding: 16px 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #333;
+      transition: all 0.2s;
+      flex: 1;
+    }
+    .chapter-nav a:hover {
+      border-color: #ff6b2b;
+      box-shadow: 0 2px 8px rgba(199,75,0,0.15);
+    }
+    .chapter-nav .prev { text-align: left; }
+    .chapter-nav .next { text-align: right; }
+    .chapter-nav .nav-label {
+      font-size: 0.75em;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .chapter-nav .nav-title {
+      font-weight: bold;
+      color: #c74b00;
+      font-size: 0.95em;
+    }
+    .footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid #ddd;
+      font-size: 0.82em;
+      color: #999;
+    }
+    .footer a { color: #c74b00; }
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 20px; }
+    }
+  </style>
+  <script data-goatcounter="https://veniltirou.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+
+  <nav class="sidebar">
+    <div class="logo">
+      <h2>Oracle CX Storyboard Series</h2>
+      <p>ABC Corp → XYZ Corp</p>
+    </div>
+    <ul>
+      <li class="section-label">Getting Started</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">
+        📋 Table of Contents</a></li>
+      <li class="section-label">Foundation</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/customer-data-management/">
+        Customer Data Management</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-force-automation-one-day/">
+        A Day in Sales Force Automation</a></li>
+      <li class="section-label">Chapters</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/">
+        1. Lead-to-Revenue Overview</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">
+        2. Subscription Management</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/incentive-compensation/">
+        3. Incentive Compensation</a></li>
+      <li><a href="#" class="coming-soon">
+        4. Fusion Field Service (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        5. CX Sales & CPQ (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        6. Order Management (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        7. Fusion Service (soon)</a></li>
+      <li class="section-label">Advanced</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/usage-billing-deep-dive/">
+        Usage Billing: Allowance, Rollover &amp; Overage (Subscription Management)</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/compound-amendment-deep-dive/">
+        The Compound Mid-Term Amendment (Subscription Management)</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/renewal-promotion-deep-dive/">
+        The Anniversary Renewal Promotion (Subscription Management)</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/quote-to-cash/">
+        Quote-to-Cash Across Oracle Fusion (Subscription Management Integrations)</a></li>
+      <li><a href="#" class="active">
+        Harrison Builds the Bridge (OIC Integrations)</a></li>
+      <li class="section-label">Connect</li>
+      <li><a href="https://www.linkedin.com/in/veniltirou" target="_blank">
+        🔗 LinkedIn Profile</a></li>
+    </ul>
+  </nav>
+
+  <main class="main">
+
+    <div class="chapter-header">
+      <div class="chapter-label">Advanced · OIC Integrations</div>
+      <h1>Harrison Builds the Bridge</h1>
+      <p>A 12-scene storyboard showing how Oracle Integration Cloud (OIC)
+      connects a completely non-Oracle, third-party SaaS order system to
+      ABC Corporation's Oracle environment — built by a summer intern,
+      end to end, with the real technical details behind every step.</p>
+    </div>
+
+    <div class="scenario-box">
+      <strong>Business Scenario:</strong> Home, Sweet Home Realty wants
+      to push sales orders directly from their own non-Oracle SaaS
+      platform into ABC Corporation's Oracle system — no manual
+      re-entry, no portal. ABC Corporation runs Oracle ERP, SCM, and CX.
+      Oracle Integration Cloud (OIC) is the tool built for exactly this
+      kind of scenario: a middleware bridge between two systems that
+      don't natively speak to each other. This chapter follows Harrison,
+      a rising-junior CS undergrad on his summer internship, as he
+      designs and builds that bridge — and the demo that proves it
+      works.
+    </div>
+
+    <div class="characters-box">
+      <h3>👥 Characters in This Chapter</h3>
+      <strong>Harrison</strong> — CS undergrad, rising junior,
+      summer intern at ABC Corporation, assigned the technical build<br/>
+      <strong>James</strong> (GREEN shirt) — ABC Corporation Sales Rep,
+      focused on winning the Home, Sweet Home business<br/>
+      <strong>Sarah</strong> — ABC Corporation Sales Manager, assigns
+      Harrison to the integration problem<br/>
+      <strong>Leila</strong> — Contact at Home, Sweet Home Realty,
+      the third-party SaaS customer pushing the orders
+    </div>
+
+    <h2>Scene 1 — The Problem Statement</h2>
+    <div class="storyboard">
+      <h3>Can a Third-Party Sales Order Be Accepted and Processed by Oracle?</h3>
+      <img src="Scene01.png" alt="Scene 1 - Leila raises the integration requirement to James and Sarah" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Leila, on a video call with
+        James and Sarah, explains that Home, Sweet Home's property
+        teams already place every vendor order through their own
+        SaaS procurement system — and she wants that system to push
+        orders straight into ABC's platform, automatically. Sarah
+        crystallizes the real question: can a third-party sales order
+        be accepted and processed by ABC's Oracle system, with a
+        response sent back automatically? Everything that follows in
+        this chapter exists to answer that one question.
+      </div>
+    </div>
+
+    <h2>Scene 2 — Harrison Gets the Assignment</h2>
+    <div class="storyboard">
+      <h3>A Technical Integration Problem, Not a Sales Problem</h3>
+      <img src="Scene02.png" alt="Scene 2 - Sarah assigns Harrison to the integration task" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Sarah hands the problem to
+        Harrison directly: a technical integration challenge, suited
+        to his Computer Science background, to be tackled alongside
+        James. Home, Sweet Home's order system is not Oracle — for ABC
+        to receive orders from it automatically, something has to sit
+        in between, translating and routing data between two systems
+        that don't natively speak to each other. That "something in
+        between" is Oracle Integration Cloud (OIC).
+      </div>
+    </div>
+
+    <h2>Scene 3 — Harrison Explains the Approach</h2>
+    <div class="storyboard">
+      <h3>Introducing OIC as the Translator</h3>
+      <img src="Scene03.png" alt="Scene 3 - Harrison explains the OIC approach to James" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Harrison walks James through
+        the concept: Oracle Integration Cloud is a middleware platform
+        that doesn't replace either system — it sits between them,
+        receiving data from Home, Sweet Home's third-party SaaS
+        platform, reshaping it into what ABC's Oracle system expects,
+        and sending it through without either side needing to know the
+        other's internal format.
+      </div>
+    </div>
+
+    <h2>Scene 4 — OIC Workflow, Step 1: The Trigger and the Response Back</h2>
+    <div class="storyboard">
+      <h3>A Secured Door for the Order, and a Confirmation on the Way Out</h3>
+      <img src="Scene04.png" alt="Scene 4 - Harrison configures the OIC trigger and response" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Harrison configures a REST
+        Adapter as the trigger — a secured, OAuth2-protected endpoint
+        that Home, Sweet Home's order system can call whenever a new
+        sales order is placed. Crucially, it isn't one-way: the same
+        call returns a synchronous confirmation, so their system knows
+        immediately whether the order actually went through.
+      </div>
+    </div>
+
+    <h2>Scene 5 — OIC Workflow, Step 2: Connecting to Order Management</h2>
+    <div class="storyboard">
+      <h3>Telling OIC Where the Sales Order Is Going Next</h3>
+      <img src="Scene05.png" alt="Scene 5 - Harrison sets up the connection to Oracle Order Management" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Harrison sets up the outbound
+        connection to Oracle Order Management using the Oracle ERP
+        Cloud Adapter — the correctly documented entry point for an
+        external order, not Subscription Management directly. Once a
+        sales order lands there correctly, ABC's existing Oracle setup
+        already knows what to do with it downstream.
+      </div>
+    </div>
+
+    <h2>Scene 6 — OIC Workflow, Step 3: Mapping the Sales Order Header</h2>
+    <div class="storyboard">
+      <h3>Translating Fields — and a Live Customer Lookup</h3>
+      <img src="Scene06.png" alt="Scene 6 - Harrison maps the sales order header fields" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> The real work of the
+        integration: mapping Home, Sweet Home's order fields into the
+        structure Oracle Order Management expects, including a live
+        lookup that resolves their property ID into ABC's actual
+        customer record. Order Management won't auto-create a missing
+        customer, so this lookup has to succeed before anything else
+        can happen.
+      </div>
+    </div>
+
+    <h2>Scene 7 — OIC Workflow, Step 4: Mapping the Sales Order Lines</h2>
+    <div class="storyboard">
+      <h3>A Real Mistake, Caught and Corrected</h3>
+      <img src="Scene07.png" alt="Scene 7 - Harrison maps order lines and fixes the FreezePriceFlag mistake" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Harrison maps the order line
+        items — and catches a mistake on his own first pass.
+        FreezePriceFlag = true doesn't mean "keep my price frozen," it
+        means the opposite: "go ahead and recalculate a price." Setting
+        it to false is what actually protects the price James already
+        negotiated with Home, Sweet Home from being silently
+        overwritten.
+      </div>
+    </div>
+
+    <h2>Scene 8 — OIC Workflow, Step 5: Adding a Logger</h2>
+    <div class="storyboard">
+      <h3>The Difference Between Monitoring and Actually Troubleshooting</h3>
+      <img src="Scene08.png" alt="Scene 8 - Harrison adds Logger actions for troubleshooting" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> OIC already tracks every
+        integration run automatically — but that only confirms an
+        order passed through, not what data it actually carried.
+        Harrison adds explicit Logger actions at key checkpoints, so
+        that if a sales order ever goes missing, there's an exact
+        record of what was received and what was sent, not a guess.
+      </div>
+    </div>
+
+    <h2>Scene 9 — OIC Workflow, Step 6: Testing the Full Flow End to End</h2>
+    <div class="storyboard">
+      <h3>A Failed Test, a Clean Test, and an Automatic Hand-Off</h3>
+      <img src="Scene09.png" alt="Scene 9 - Harrison tests the integration end to end" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Harrison runs a bad test first
+        — a property ID that doesn't exist — and OIC flags it loudly
+        instead of failing silently. Then a valid test sales order
+        flows straight through: Order Management creates it, and
+        because ABC's Oracle environment already connects Order
+        Management to Subscription Management, AR, and Revenue
+        Management, a subscription appears automatically, seconds
+        later, with nothing further built.
+      </div>
+    </div>
+
+    <h2>Scene 10 — Demo Day: Leila Confirms the Handshake</h2>
+    <div class="storyboard">
+      <h3>Two Different SaaS Platforms, One Smooth Handshake</h3>
+      <img src="Scene10.png" alt="Scene 10 - Harrison demos the integration live to Leila, James, and Sarah" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Harrison runs a live demo for
+        Leila, James, and Sarah — pushing a sample sales order and
+        showing the confirmation response land back instantly. Leila
+        also probes the design directly: what happens if an order gets
+        cancelled minutes later (handled by a unique source ID, not a
+        blind duplicate), and how billing actually reaches her team
+        (native Oracle AR, already configured, nothing extra to build).
+        She confirms the response payload proves the handshake between
+        two completely different platforms actually works.
+      </div>
+    </div>
+
+    <h2>Scene 11 — The Win</h2>
+    <div class="storyboard">
+      <h3>The Technical Depth That Closed the Deal</h3>
+      <img src="Scene11.png" alt="Scene 11 - James thanks Harrison as the deal closes" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Home, Sweet Home signs on.
+        James credits the win to the one question Harrison had already
+        built an answer for — the duplicate-order handling that almost
+        didn't make the original scope. The technical depth of an
+        integration isn't invisible to the business outcome; it's
+        often what actually wins the deal.
+      </div>
+    </div>
+
+    <h2>Scene 12 — Technical Recap: The OIC Flow</h2>
+    <div class="storyboard">
+      <h3>The Full Mechanism, in One Diagram</h3>
+      <img src="Scene12.png" alt="Scene 12 - The complete OIC workflow diagram: trigger, logger, mapper, invoke, logger, respond" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> A clean, non-narrative closer
+        summarizing the whole chapter's mechanism: receive, record,
+        translate, call, record, confirm. Everything past Invoke —
+        Order Management's fulfillment and the native hand-off to
+        Subscription Management, AR, and Revenue Management — is
+        Oracle's own internal processing, outside this integration's
+        scope and outside this diagram.
+      </div>
+    </div>
+
+    <div class="chapter-nav">
+      <a class="prev"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/quote-to-cash/">
+        <div class="nav-label">← Related</div>
+        <div class="nav-title">Quote-to-Cash Across Oracle Fusion</div>
+      </a>
+      <a class="next"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">
+        <div class="nav-label">Next →</div>
+        <div class="nav-title">Table of Contents</div>
+      </a>
+    </div>
+
+    <div class="footer">
+      <p>Created by <a href="https://www.linkedin.com/in/veniltirou"
+         target="_blank">Venil Tirou</a> — Oracle CX Functional Consultant</p>
+      <p style="margin-top:6px;">© 2026 Venil Tirou. All rights reserved.
+      This is an independently created educational resource.
+      Not affiliated with or endorsed by Oracle Corporation.</p>
+    </div>
+
+  </main>
+</body>
+</html>
