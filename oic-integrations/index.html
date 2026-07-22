@@ -475,13 +475,17 @@
     <h2>Scene 12 — Technical Recap: The OIC Flow</h2>
     <div class="storyboard">
       <h3>The Full Mechanism, in One Diagram</h3>
-      <img src="Scene12.png" alt="Scene 12 - The complete OIC workflow diagram: trigger, logger, mapper, invoke, logger, respond" />
+      <img src="Scene12.png" alt="Scene 12 - The complete OIC workflow diagram: trigger, logger, mapper, invoke, logger, mapper, respond" />
       <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
       <div class="what-it-shows">
         <strong>What this shows:</strong> A clean, non-narrative closer
         summarizing the whole chapter's mechanism: receive, record,
-        translate, call, record, confirm. Everything past Invoke —
-        Order Management's fulfillment and the native hand-off to
+        translate, call, record, translate, confirm. Mapping happens
+        twice, not once — once to shape the outbound request into
+        Oracle's schema, and again to shape Order Management's raw
+        response into whatever Home, Sweet Home's system actually
+        receives. Everything past Invoke on the Oracle side — Order
+        Management's fulfillment and the native hand-off to
         Subscription Management, AR, and Revenue Management — is
         Oracle's own internal processing, outside this integration's
         scope and outside this diagram.
