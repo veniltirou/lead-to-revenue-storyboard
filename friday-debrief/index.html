@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>A Day in Sales Force Automation — Oracle CX Storyboard Series</title>
+  <title>The Friday Debrief (OIC) — Oracle CX Storyboard Series</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -222,7 +222,7 @@
       <li class="section-label">Foundation</li>
       <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/customer-data-management/">
         Customer Data Management</a></li>
-      <li><a href="#" class="active">
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-force-automation-one-day/">
         A Day in Sales Force Automation</a></li>
       <li class="section-label">Chapters</li>
       <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/">
@@ -248,10 +248,11 @@
         The Anniversary Renewal Promotion (Subscription Management)</a></li>
       <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/quote-to-cash/">
         Quote-to-Cash Across Oracle Fusion (Subscription Management Integrations)</a></li>
-                  <li class="section-label">Integrations</li>
+      
+      <li class="section-label">Integrations</li>
       <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-integrations/">
         Oracle Integration Cloud</a></li>
-      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/friday-debrief/">
+      <li><a href="#" class="active">
         The Friday Debrief (OIC)</a></li>
       <li class="section-label">Connect</li>
       <li><a href="https://www.linkedin.com/in/veniltirou" target="_blank">
@@ -262,198 +263,210 @@
   <main class="main">
 
     <div class="chapter-header">
-      <div class="chapter-label">Foundation</div>
-      <h1>A Day in Sales Force Automation</h1>
-      <p>A 10-scene storyboard following one full day of James, a Senior
-      Sales Rep at ABC Corporation (Vending Solutions), across every core
-      Oracle CX Sales Force Automation feature — leads, opportunities,
-      quota, forecasting, and the AI-assisted tools that help him
-      prioritize his day.</p>
+      <div class="chapter-label">Integrations</div>
+      <h1>The Friday Debrief (OIC)</h1>
+      <p>A 10-scene follow-up to "Oracle Integration Cloud." Harrison built
+      the integration and James won the deal — now James needs to be able
+      to explain <em>how</em> to people who won't read a line of JSON.
+      This chapter follows Harrison walking James through the real build,
+      entirely in plain language, using the actual payloads only as
+      visual backup.</p>
     </div>
 
     <div class="scenario-box">
-      <strong>Business Scenario:</strong> Before any single deal becomes
-      the subject of its own chapter, it's one line on James's daily list.
-      This storyboard shows how James manages five deals across five
-      different industries in a single day — including his first touch on
-      an opportunity with XYZ Corporation, the same deal that becomes the
-      subject of Chapters 1 through 3.
+      <strong>Business Scenario:</strong> This chapter assumes the build
+      in "Oracle Integration Cloud" already happened — Home, Sweet Home's
+      orders are flowing into ABC Corporation's Oracle Order Management
+      automatically. James now needs to carry that story to his own
+      stakeholders without touching code himself, so he asks Harrison for
+      a Friday afternoon walkthrough: no code, just what actually happens,
+      in order. It closes on the question that matters most to a sales
+      rep — will this same approach work for the next non-Oracle customer
+      too?
     </div>
 
     <div class="characters-box">
-      <h3>👥 Characters in This Series</h3>
-      <strong>James</strong> (GREEN shirt) — Senior Sales Rep at ABC
-      Corporation, juggling multiple leads and opportunities in a single
-      day<br/>
-      <strong>Sarah Chen</strong> — Contact at Multimedia Company, a new
-      lead James is qualifying today
+      <h3>👥 Characters in This Chapter</h3>
+      <strong>Harrison</strong> — CS undergrad, rising junior,
+      summer intern at ABC Corporation, explaining his own build back
+      in business terms<br/>
+      <strong>James</strong> (GREEN shirt) — ABC Corporation Sales Rep,
+      translating the technical win for his own stakeholders
     </div>
 
-    <h2>Scene 1 — Morning Status Check</h2>
+    <div class="scenario-box" style="border-left-color:#3a5bd9; background-color:#f0f4ff;">
+      <strong>A note on technical accuracy:</strong> The REST field names
+      shown in this chapter (<code>BuyingPartyNumber</code>,
+      <code>ProductNumber</code>, <code>FreezePriceFlag</code>,
+      <code>SourceTransactionSystem</code>, <code>TransactionalCurrencyCode</code>,
+      <code>BusinessUnitId</code>, <code>OrderNumber</code>,
+      <code>HeaderId</code>, <code>StatusCode</code>) are checked against
+      Oracle's published <code>salesOrdersForOrderHub</code> REST API
+      schema for Oracle Fusion Cloud Order Management. The on-screen
+      monitor mockups themselves are illustrative reconstructions, not
+      actual product screenshots — Oracle's UI and API details can change
+      across releases, so treat this chapter as educational rather than
+      a substitute for current Oracle documentation.
+    </div>
+
+        <h2>Scene 1 — The Assignment</h2>
     <div class="storyboard">
-      <h3>Starting the Day with Infolets</h3>
-      <img src="Scene01.png" alt="Scene 1 - James gets a morning status check" />
+      <h3>Explain It Friday, No Code</h3>
+      <img src="Scene01.png" alt="Scene 1 - James asks Harrison to walk him through the OIC build in plain language" />
       <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
       <div class="what-it-shows">
-        <strong>What this shows:</strong> Before touching a single record,
-        James opens his home page infolets — My Tasks, My Appointments,
-        Quota Attainment, and Forecast. In under a minute he knows what's
-        due today, what's on his calendar, and where he stands against
-        his number. This is the daily entry point into everything that
-        follows.
+        <strong>What this shows:</strong> James credits Harrison's Oracle
+        Integration Cloud work for winning the Home, Sweet Home deal,
+        then asks for a plain-language walkthrough — no JSON — that he
+        can repeat to his own stakeholders. They set Friday afternoon to
+        reconvene, no code, just what actually happens, in order.
       </div>
     </div>
 
-    <h2>Scene 2 — Two Wins Before the Day Really Starts</h2>
+    <h2>Scene 2 — The Service Window</h2>
     <div class="storyboard">
-      <h3>An Auto Dealer Payment and a Realty Renewal</h3>
-      <img src="Scene02.png" alt="Scene 2 - James reviews won opportunity and renewed subscription" />
+      <h3>One Request In, One Receipt Back</h3>
+      <img src="Scene02.png" alt="Scene 2 - Harrison explains the incoming POST request using a service-window analogy" />
       <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
       <div class="what-it-shows">
-        <strong>What this shows:</strong> Two revenue events land in
-        James's inbox before he's done anything today — a payment
-        confirmation tied to a recently closed Auto Dealer opportunity,
-        and a renewed subscription from an existing Realty Company
-        account. They're not the same kind of event: the payment is
-        downstream of a deal James already closed, while the renewal
-        originates in Subscription Management. Both ultimately count
-        toward revenue, but how they're credited toward his quota can
-        differ depending on how sales goals are configured.
+        <strong>What this shows:</strong> Harrison opens with the actual
+        payload Home, Sweet Home's system sends — a simple POST request
+        to ABC's REST endpoint. He frames it in plain terms: think of it
+        as a dedicated service window. HSH pulls up, hands over the
+        order, and gets a receipt back immediately, same stop — one HTTP
+        call, not a back-and-forth.
       </div>
     </div>
 
-    <h2>Scene 3 — Advancing the XYZ Corporation Opportunity</h2>
+    <h2>Scene 3 — Mapper 1, the Concept</h2>
     <div class="storyboard">
-      <h3>Stage Progression Triggers an Approval Workflow</h3>
-      <img src="Scene03.png" alt="Scene 3 - James advances the XYZ Corporation opportunity" />
+      <h3>Why a Mapper Exists</h3>
+      <img src="Scene03.png" alt="Scene 3 - Harrison explains the purpose of Mapper 1" />
       <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
       <div class="what-it-shows">
-        <strong>What this shows:</strong> James moves the XYZ Corporation
-        opportunity into the Agreement stage — and immediately triggers
-        an approval workflow, because the discount on the table exceeds
-        his authorization threshold. This is the same opportunity that
-        becomes the subject of Chapter 1: right now, it's just one of
-        five deals on James's plate today, and not even the one he'll
-        spend the most time on.
+        <strong>What this shows:</strong> James asks why a mapper is even
+        needed. Harrison lays out the shape of it: OIC receives HSH's
+        simple request, maps and fills in whatever additional detail
+        ABC's Oracle Order Management needs, then sends the fully
+        detailed request onward. This is the concept, before the
+        specifics.
       </div>
     </div>
 
-    <h2>Scene 4 — Capturing the Conversation</h2>
+    <h2>Scene 4 — Mapper 1, the Specifics</h2>
     <div class="storyboard">
-      <h3>Notes and Call Logs, in the Moment</h3>
-      <img src="Scene04.png" alt="Scene 4 - James captures meeting notes and call logs" />
+      <h3>Lookups, Fixed Values, and What Each One Means</h3>
+      <img src="Scene04.png" alt="Scene 4 - The field-by-field mapping from HSH's request to Oracle Order Management" />
       <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
       <div class="what-it-shows">
-        <strong>What this shows:</strong> Right after the XYZ Corporation
-        agreement call, James logs the call and adds notes directly
-        against the opportunity — before he moves to his next task. This
-        record becomes part of the permanent history any future rep,
-        manager, or auditor can review to see not just where the deal
-        stands, but why.
+        <strong>What this shows:</strong> The actual mapping table:
+        <code>propertyId</code> and <code>equipmentRequested</code> are
+        resolved through live lookups into
+        <code>BuyingPartyNumber</code> and <code>ProductNumber</code>,
+        while <code>BusinessUnitId</code>,
+        <code>TransactionalCurrencyCode</code>,
+        <code>SourceTransactionSystem</code>, and
+        <code>FreezePriceFlag</code> are fixed values Order Management
+        needs but HSH's system never sends. Harrison confirms it's now
+        ready to POST.
       </div>
     </div>
 
-    <h2>Scene 5 — Pricing a New Lead</h2>
+    <h2>Scene 5 — Invoking Order Management</h2>
     <div class="storyboard">
-      <h3>Product Groups and Price Books for Multimedia Company</h3>
-      <img src="Scene05.png" alt="Scene 5 - James checks Product Groups and Price Books to share some details to Sarah" />
+      <h3>Oracle Order Management Creates the Sales Order</h3>
+      <img src="Scene05.png" alt="Scene 5 - OIC invokes Oracle Order Management and receives a 200 OK with the new order number" />
       <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
       <div class="what-it-shows">
-        <strong>What this shows:</strong> James turns to a new lead —
-        Sarah Chen at Multimedia Company — and checks the product catalog
-        and price book before their call, so he can speak to real numbers
-        instead of guessing. This is the first touch on what will become
-        a completely different kind of deal than XYZ Corporation, in a
-        completely different industry.
+        <strong>What this shows:</strong> OIC's Invoke step calls Oracle
+        Order Management with the mapped payload. Order Management
+        creates the sales order and responds with a 200 OK — the order
+        number, its internal header ID, and a Processing status —
+        confirming the order landed on Oracle's side.
       </div>
     </div>
 
-    <h2>Scene 6 — Qualifying the Lead</h2>
+    <h2>Scene 6 — Mapper 2, the Response</h2>
     <div class="storyboard">
-      <h3>The Assessment Template Moves the Score from Warm to Hot</h3>
-      <img src="Scene06.png" alt="Scene 6 - James works the Multimedia Company lead through the assessment template" />
+      <h3>Translating the Response Back — On Purpose, Not Completely</h3>
+      <img src="Scene06.png" alt="Scene 6 - Harrison maps Order Management's response into a simplified response for HSH" />
       <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
       <div class="what-it-shows">
-        <strong>What this shows:</strong> As James talks to Sarah, he
-        works through a structured assessment template — budget,
-        timeline, decision maker, site readiness — and each answer
-        recalculates the lead's score in real time. By the end of the
-        call, the lead has moved from warm toward hot, and the notes
-        he's logging alongside it become the record of why.
+        <strong>What this shows:</strong> Same translation, opposite
+        direction. Harrison deliberately keeps only what HSH actually
+        cares about — the order number and its status — and leaves out
+        internal Oracle identifiers like <code>HeaderId</code> and
+        <code>Revision</code> that mean nothing outside ABC's system.
       </div>
     </div>
 
-    <h2>Scene 7 — Checking the Competitive Picture</h2>
+    <h2>Scene 7 — Responding to HSH</h2>
     <div class="storyboard">
-      <h3>Competitor Risk and a Recommended Next Action</h3>
-      <img src="Scene07.png" alt="Scene 7 - James checks competitor risk and gets a next-action recommendation" />
+      <h3>Simple In, Simple Out</h3>
+      <img src="Scene07.png" alt="Scene 7 - The final simplified response sent back to HSH" />
       <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
       <div class="what-it-shows">
-        <strong>What this shows:</strong> Before investing more time,
-        James checks which competitors are circling the Multimedia
-        Company account and how much revenue is genuinely at stake. A
-        recommended next action — schedule a value proposition call —
-        gives him a specific, data-informed move rather than a generic
-        follow-up.
+        <strong>What this shows:</strong> The response HSH's system
+        actually receives — a clean, minimal JSON confirmation with a
+        status, both order numbers for cross-reference, and a plain
+        message. James's takeaway: all the complexity stays on ABC's
+        side of the window.
       </div>
     </div>
 
-    <h2>Scene 8 — Learning From Past Wins</h2>
+    <h2>Scene 8 — The Logger</h2>
     <div class="storyboard">
-      <h3>Reviewing the Hardware Sector for Reference</h3>
-      <img src="Scene08.png" alt="Scene 8 - James reviews past wins across the hardware sector for reference" />
+      <h3>Why Log When OIC Already Tracks Every Run</h3>
+      <img src="Scene08.png" alt="Scene 8 - Harrison explains the purpose of the Logger actions" />
       <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
       <div class="what-it-shows">
-        <strong>What this shows:</strong> James pulls up a list of
-        similar won opportunities — this time from the Hardware sector,
-        a completely different industry than the deal in front of him.
-        Studying how comparable deals actually closed gives him a
-        reference point that a generic playbook can't.
+        <strong>What this shows:</strong> James asks why a Logger is even
+        necessary. Harrison's answer: OIC's built-in run history confirms
+        an order passed through, but a Logger records exactly what was
+        received and what was sent — the detail actually needed to debug
+        a problem, rather than just knowing one occurred.
       </div>
     </div>
 
-    <h2>Scene 9 — Planning Tomorrow, Protecting Yesterday's Win</h2>
+    <h2>Scene 9 — The Whole Flow, in One Breath</h2>
     <div class="storyboard">
-      <h3>Scheduling Ahead and Checking a Prior Account's Service Request</h3>
-      <img src="Scene09.png" alt="Scene 9 - James plans tomorrow and checks in on a prior won account" />
+      <h3>Seven Steps, Start to Finish</h3>
+      <img src="Scene09.png" alt="Scene 9 - The complete seven-step flow recapped as a simple list" />
       <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
       <div class="what-it-shows">
-        <strong>What this shows:</strong> As the day winds down, James
-        schedules a follow-up task for tomorrow — and separately checks
-        in on Apex Manufacturing, an account he won previously, to
-        confirm their open service request is progressing. He's not
-        doing the support engineer's job; he's using visibility into a
-        related object to protect an existing relationship before it
-        becomes a retention problem.
+        <strong>What this shows:</strong> Harrison closes the technical
+        walkthrough with the full sequence in plain language: receive,
+        log, map, POST, log the response, map the response down to the
+        essentials, respond. James recognizes it as the complete
+        mechanism, in one breath.
       </div>
     </div>
 
-    <h2>Scene 10 — Closing the Day</h2>
+    <h2>Scene 10 — Same Pattern, Every Customer</h2>
     <div class="storyboard">
-      <h3>92% of Quota, Ahead of Pace</h3>
-      <img src="Scene10.png" alt="Scene 10 - James wraps up the day ahead of quota" />
+      <h3>Does This Repeat for the Next Deal?</h3>
+      <img src="Scene10.png" alt="Scene 10 - James and Harrison discuss whether the same approach applies to the next non-Oracle customer" />
       <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
       <div class="what-it-shows">
-        <strong>What this shows:</strong> James closes the loop the same
-        way he opened it — back on his dashboard. Quota attainment,
-        forecast trend, and pipeline summary all reflect a day's worth of
-        real movement: one deal advanced toward XYZ Corporation, one lead
-        qualified from scratch, and one existing account protected.
-        Nothing he did today required leaving the platform to manage his
-        day separately from his data.
+        <strong>What this shows:</strong> Wrapping up for the week, James
+        asks the real payoff question: will the same approach work for
+        the next customer running their own non-Oracle system, like the
+        automobile-sector prospect already in the pipeline? Harrison
+        confirms it — this isn't a one-off, it's a repeatable pattern for
+        any customer running third-party, non-Oracle SaaS.
       </div>
     </div>
 
     <div class="chapter-nav">
       <a class="prev"
-         href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">
-        <div class="nav-label">← Table of Contents</div>
-        <div class="nav-title">All Chapters</div>
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-integrations/">
+        <div class="nav-label">← Related</div>
+        <div class="nav-title">Oracle Integration Cloud</div>
       </a>
       <a class="next"
-         href="https://veniltirou.github.io/lead-to-revenue-storyboard/">
-        <div class="nav-label">Next Chapter →</div>
-        <div class="nav-title">Chapter 1: Lead-to-Revenue Overview</div>
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">
+        <div class="nav-label">Next →</div>
+        <div class="nav-title">Table of Contents</div>
       </a>
     </div>
 
