@@ -366,56 +366,56 @@
     <div class="panel">
       <h3><span class="num">1</span>The Ask</h3>
       <img src="Scene01.png" alt="James asks Harrison for a deeper technical walkthrough of the OIC build, beyond the plain-language Friday recap." />
-      <p class="caption">James: "The Oracle Integration Cloud (OIC) work you did is the reason why Home, Sweet Home signed the deal. Can you walk me through that integration this Friday, in simple non technical style?"</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> James credits the OIC build for winning the Home, Sweet Home deal and asks Harrison for a full technical walkthrough — not the simplified Friday version — before pitching the same pattern to the next customer.</div>
     </div>
 
     <!-- STEP 2 -->
     <div class="panel">
       <h3><span class="num">2</span>Phase 1 — Proving Who's Calling</h3>
       <img src="Scene02.png" alt="Harrison explains Phase 1 to James: HSH's system requests a token via OAuth 2.0 client credentials from OCI IAM, receives a JWT bearer token, then calls OIC's trigger endpoint with that token in the Authorization header." />
-      <p class="caption">Harrison: "This is Phase 1: Home, Sweet Home Realty Services (HSH) establishes a secure connection to ABC Corp (Vending Solutions Provider) — it requests a token, OCI IAM validates it and issues a JWT bearer token, and HSH uses that token on every call from here on. ABC Corp never sees a password."</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> Before HSH's system can call ABC at all, it has to prove its identity — requesting a token, having OCI IAM validate and issue a JWT bearer token, then presenting that token on every subsequent call. ABC never handles a password directly.</div>
     </div>
 
     <!-- STEP 3 -->
     <div class="panel">
       <h3><span class="num">3</span>Phase 2 — Receiving It, Logging It First</h3>
       <img src="Scene03.png" alt="Harrison explains Phase 2 to James: the REST trigger at /createSalesOrder receives HSH's order payload, and a Logger records the tracking ID before anything else happens." />
-      <p class="caption">Harrison: "This is Phase 2: HSH sends a simple JSON payload with their sales order information and initiates a POST request to our URI /createSalesOrder. Think of it like ABC Corp has a dedicated service window — HSH pulls up, hands over a sales order. We log exactly what came in before touching a single field."</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> HSH's actual JSON payload — order ID, property ID, and requested equipment — arrives at ABC's own REST endpoint, /createSalesOrder, and gets logged immediately, before any processing happens.</div>
     </div>
 
     <!-- STEP 4 -->
     <div class="panel">
       <h3><span class="num">4</span>Phase 3 — Translating Into Oracle's Terms</h3>
       <img src="Scene04.png" alt="Harrison explains Phase 3 to James: a Lookup table translates HSH's property ID into Oracle's internal BuyingPartyNumber, and an Assign action sets a fixed business unit variable." />
-      <p class="caption">Harrison: "This is Phase 3: At our end, we derive and enrich some more information about HSH — a Lookup translates their property ID, HSH-PROP-1180, into the internal BuyingPartyNumber Oracle needs, and we assign a fixed business unit code."</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> A Lookup table resolves HSH's property ID into the internal BuyingPartyNumber Oracle Order Management actually needs, and a fixed business unit code gets assigned — a value HSH's system was never expected to provide.</div>
     </div>
 
     <!-- STEP 5 -->
     <div class="panel">
       <h3><span class="num">5</span>Phase 4 — Two Separate Things, Not One</h3>
       <img src="Scene05.png" alt="Harrison explains Phase 4 to James: a Mapper builds the enriched payload with no network call, then a separate Invoke action POSTs it to Oracle's actual salesOrdersForOrderHub REST resource." />
-      <p class="caption">Harrison: "This is Phase 4: By now, we've translated the simple payload we received into the detailed payload Oracle actually needs. We POST that detailed payload to salesOrdersForOrderHub — Oracle's own REST resource."</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> Two distinct actions, not one — a Mapper assembles the full payload Oracle expects (no network call yet), then Invoke actually POSTs it to Oracle's real REST resource, salesOrdersForOrderHub, which HSH never sees or needs to know about.</div>
     </div>
 
     <!-- STEP 6 -->
     <div class="panel">
       <h3><span class="num">6</span>Phase 5 — Narrowing the Response on Purpose</h3>
       <img src="Scene06.png" alt="Harrison explains Phase 5 to James: on success, a second Mapper strips Oracle's full response down to status, order number and a message. On fault, the same branch formats a clean error." />
-      <p class="caption">Harrison: "This is Phase 5: We get a response back from Oracle for our POST request. A decision point determines whether it was a success or a fault. Either way, we translate Oracle's response into something simple and meaningful, and relay that to HSH."</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> Oracle's raw response — order number, header ID, internal status codes — gets deliberately trimmed by a second Mapper down to just what HSH needs, on both the success and fault paths.</div>
     </div>
 
     <!-- STEP 7 -->
     <div class="panel">
       <h3><span class="num">7</span>All Five Phases, Left to Right</h3>
       <img src="Scene07.png" alt="The complete five-phase flow in one diagram: secure connection, inbound trigger and logging, data enrichment, JSON transformation and invoke, and response management, with the public ABC-defined URI and Oracle's internal REST resource both labeled." />
-      <p class="caption">Harrison pulls up the full picture: five phases, start to finish, the same ones he just walked through one at a time — now as a single reference James can point to when he's the one explaining it to someone else.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> All five phases in one continuous diagram — the same ones just walked through individually — now as a single reference.</div>
     </div>
 
     <!-- STEP 8 -->
     <div class="panel">
       <h3><span class="num">8</span>The Payoff</h3>
       <img src="Scene08.png" alt="James and Harrison in the lobby. James notes this technical detail is exactly what was needed to move the automobile-sector deal forward, already proven rather than theoretical." />
-      <p class="caption">James: "Will this approach work for our next pipelined automobile customer?" Harrison: "Same approach works for any customer running their own non-Oracle SaaS."</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> James connects the technical depth just covered to the next deal already in the pipeline, confirming this is a repeatable pattern, not a one-off build.</div>
     </div>
 
     <h2>Why This Chapter Matters</h2>
