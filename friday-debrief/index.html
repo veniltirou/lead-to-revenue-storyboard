@@ -156,6 +156,29 @@
       border-radius: 0 4px 4px 0;
     }
     .storyboard .what-it-shows strong { color: #c74b00; }
+
+    table.concepts {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 8px 0;
+      font-size: 0.9em;
+    }
+    table.concepts th, table.concepts td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+    table.concepts th {
+      background-color: #fff8f0;
+      color: #c74b00;
+      border-bottom: 2px solid #ff6b2b;
+    }
+    table.concepts td.panelref {
+      white-space: nowrap;
+      color: #999;
+    }
+
     .chapter-nav {
       display: flex;
       justify-content: space-between;
@@ -249,6 +272,8 @@
       <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/quote-to-cash/">
         Quote-to-Cash Across Oracle Fusion (Subscription Management Integrations)</a></li>
       
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-under-the-hood/">
+        OIC Under the Hood: What Home, Sweet Home Never Sees (Integrations)</a></li>
       <li class="section-label">Integrations</li>
       <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-integrations/">
         Oracle Integration Cloud</a></li>
@@ -457,6 +482,20 @@
       </div>
     </div>
 
+    <h2>Concepts Covered</h2>
+    <table class="concepts">
+      <tr><th>Concept</th><th>What it means</th><th class="panelref">Scene</th></tr>
+      <tr><td>App-driven orchestration</td><td>An OIC integration style triggered by an inbound REST call, then run as an ordered set of action steps (map, invoke, log, respond) that executes synchronously and hands a response straight back to the caller.</td><td class="panelref">1–10</td></tr>
+      <tr><td>REST Adapter (Trigger)</td><td>The inbound connection that exposes ABC's REST endpoint and receives HSH's POST request — the "service window" HSH's system pulls up to.</td><td class="panelref">2</td></tr>
+      <tr><td>Mapper (request)</td><td>The action step that translates and enriches an inbound payload into the shape the downstream system — Oracle Order Management — actually expects.</td><td class="panelref">3–4</td></tr>
+      <tr><td>Lookup vs. fixed value</td><td>Two ways a mapper fills a target field: a lookup resolves a value from the source data (propertyId → BuyingPartyNumber); a fixed value is hard-coded because the source system never sends it at all.</td><td class="panelref">4</td></tr>
+      <tr><td>Invoke</td><td>The action step that calls a downstream system's own API — here, Oracle Order Management's REST API — with the mapped payload, and captures whatever it sends back.</td><td class="panelref">5</td></tr>
+      <tr><td>Mapper (response)</td><td>A second mapper, translating the downstream system's full response back down into only the fields the original caller actually needs.</td><td class="panelref">6</td></tr>
+      <tr><td>Logger</td><td>An action step that records exactly what was received and sent at key points in the flow — the detail needed to debug a specific failure, beyond what OIC's built-in run history already tracks.</td><td class="panelref">8</td></tr>
+      <tr><td>Respond</td><td>The final action step that returns a response to the original caller, closing out the synchronous request-response cycle.</td><td class="panelref">7</td></tr>
+      <tr><td>Reusable integration pattern</td><td>The same trigger → log → map → invoke → log → map → respond shape applies to any non-Oracle system integrating this way — not a one-off build for a single customer.</td><td class="panelref">9–10</td></tr>
+    </table>
+
     <div class="chapter-nav">
       <a class="prev"
          href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-integrations/">
@@ -464,9 +503,9 @@
         <div class="nav-title">Oracle Integration Cloud</div>
       </a>
       <a class="next"
-         href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-under-the-hood/">
         <div class="nav-label">Next →</div>
-        <div class="nav-title">Table of Contents</div>
+        <div class="nav-title">Advanced: OIC Under the Hood</div>
       </a>
     </div>
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Advanced: Usage Billing — Allowance, Rollover &amp; Overage — Oracle CX Storyboard Series</title>
+  <title>Advanced: OIC Under the Hood — What Home, Sweet Home Never Sees — Oracle CX Storyboard Series</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -298,7 +298,7 @@
       <li><a href="#" class="coming-soon">
         7. Fusion Service (soon)</a></li>
       <li class="section-label">Advanced</li>
-      <li><a href="#" class="active">
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/usage-billing-deep-dive/">
         Usage Billing: Allowance, Rollover &amp; Overage (Subscription Management)</a></li>
       <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/compound-amendment-deep-dive/">
         The Compound Mid-Term Amendment (Subscription Management)</a></li>
@@ -306,7 +306,7 @@
         The Anniversary Renewal Promotion (Subscription Management)</a></li>
       <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/quote-to-cash/">
         Quote-to-Cash Across Oracle Fusion (Subscription Management Integrations)</a></li>      
-      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-under-the-hood/">
+      <li><a href="#" class="active">
         OIC Under the Hood: What Home, Sweet Home Never Sees (Integrations)</a></li>
                   <li class="section-label">Integrations</li>
       <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-integrations/">
@@ -322,123 +322,138 @@
   <!-- MAIN CONTENT -->
   <main class="main">
 
-    <div class="chapter-header">
-      <div class="chapter-label">Advanced · Subscription Management</div>
-      <h1>Usage Billing — Allowance, Rollover &amp; Overage</h1>
-      <p>Most subscriptions bill a simple flat fee. This advanced deep dive follows
-      XYZ Corporation's smart micro-market through a usage-based plan with a prepaid
-      allowance, rollover of unused units, and overage billed in arrears — across four
-      monthly cycles and one mid-cycle amendment. Each beat is told twice: the story
-      in the micro-market on top, and the same beat on the balance register below.</p>
+        <div class="chapter-header">
+      <div class="chapter-label">Advanced · Integrations</div>
+      <h1>OIC Under the Hood — What Home, Sweet Home Never Sees</h1>
+      <p>A 7-scene follow-up to both "Oracle Integration Cloud" and "The Friday
+      Debrief." Those chapters covered the build and the plain-language recap.
+      This one goes one layer deeper — the OAuth handshake, the real Oracle
+      field names, the actual REST endpoint Oracle exposes, and the fault
+      path — narrated left to right as one continuous flow, phase by phase,
+      from Harrison to James.</p>
     </div>
 
     <div class="scenario-box">
-      <strong>Business Scenario:</strong> James sets up XYZ Corporation's smart
-      micro-market on a prepaid usage plan — 6,000 transactions a month, unused units
-      rolling over one cycle, overage at $0.40 billed in arrears. Across four cycles,
-      usage stays under, a rollover absorbs a spike, a headcount jump triggers an
-      overage, and a mid-cycle amendment right-sizes the allowance — prorated by days —
-      so the final month lands exactly at the limit. No one is ever turned away from the
-      store; going over the allowance simply bills XYZ for the excess.
+      <strong>Business Scenario:</strong> The OIC build from earlier chapters
+      is live and working — Home, Sweet Home's orders are flowing into ABC
+      Corporation's Oracle Order Management automatically. Before James
+      pitches the same pattern to the next non-Oracle customer in the
+      pipeline, he wants the technical detail he can stand behind under
+      scrutiny — not the simplified version, the real one. Harrison walks him
+      through all five phases in sequence: how a request proves who it is,
+      how it's received and logged, how it's translated into Oracle's terms,
+      how it's actually invoked, and how the response is deliberately
+      narrowed down before HSH ever sees it.
+    </div>
+
+    <div class="scenario-box" style="border-left-color:#3a5bd9; background-color:#f0f4ff;">
+      <strong>A note on technical accuracy:</strong> The security flow,
+      field names, and REST resource path in this chapter
+      (<code>OAuth 2.0</code> via <code>OCI IAM</code>, <code>JWT bearer
+      token</code>, <code>BuyingPartyNumber</code>, <code>FreezePriceFlag</code>,
+      <code>salesOrdersForOrderHub</code>) are checked against Oracle's
+      current documentation for Oracle Integration and Oracle Fusion Cloud
+      Order Management. The diagrams are illustrative reconstructions built
+      to be technically accurate, not actual product screenshots — Oracle's
+      UI and API details can change across releases.
     </div>
 
     <h2>The Storyboard</h2>
-    <p class="tip">📱 On mobile? Pinch to zoom on any panel to read the tables, gauges and speech bubbles clearly. Each numbered step shows the micro-market scene on top and the balance-register mechanics below.</p>
+    <p class="tip">📱 On mobile? Pinch to zoom on each screen to read the
+    payloads and field names clearly.</p>
 
     <!-- STEP 1 -->
     <div class="panel">
-      <h3><span class="num">1</span>Install Day &amp; the Prepaid Plan</h3>
-      <div class="sublabel">🛒 In the micro-market</div>
-      <img src="BalanceManagementFramework_Scene01D.png" alt="Install day: James switches on the self-checkout micro-market kiosk in a freshly stocked store, with a wall allowance gauge reading 6,000 per month, 0 used." />
-      <div class="sublabel">📊 On the balance register</div>
-      <img src="BalanceManagementFramework_Scene01.png" alt="The XYZ Smart Micro-Market usage billing plan: fixed monthly fee 2,000 billed in advance, included allowance 6,000 transactions per month prepaid, unused allowance rolls over one cycle, overage 0.40 per transaction billed in arrears, allowance resets each cycle." />
-      <p class="caption">XYZ's micro-market opens and the prepaid plan is set — 6,000 transactions a month, unused units roll over one cycle, overage at $0.40 billed in arrears.</p>
+      <h3><span class="num">1</span>The Ask</h3>
+      <img src="Scene01.png" alt="James asks Harrison for a deeper technical walkthrough of the OIC build, beyond the plain-language Friday recap." />
+      <p class="caption">James: "The Oracle Integration Cloud (OIC) work you did is the reason why Home, Sweet Home signed the deal. Can you walk me through that integration this Friday, in simple non technical style?"</p>
     </div>
 
     <!-- STEP 2 -->
     <div class="panel">
-      <h3><span class="num">2</span>Month 1 — Within Allowance, Unused Rolls Over</h3>
-      <div class="sublabel">🛒 In the micro-market</div>
-      <img src="BalanceManagementFramework_Scene02D.png" alt="Month 1: a quiet store with a few employees checking out with food, the allowance gauge reading 4,500 of 6,000 used, within allowance." />
-      <div class="sublabel">📊 On the balance register</div>
-      <img src="BalanceManagementFramework_Scene02.png" alt="Balance Register Month 1: rollover in 0, monthly grant 6,000, available 6,000, consumed 4,500, remaining 1,500, overage 0. 1,500 unused rolls over into Month 2." />
-      <p class="caption">A quiet first month — 4,500 of 6,000 used. The unused 1,500 doesn't vanish; it rolls into Month 2.</p>
+      <h3><span class="num">2</span>Phase 1 — Proving Who's Calling</h3>
+      <img src="Scene02.png" alt="Harrison explains Phase 1 to James: HSH's system requests a token via OAuth 2.0 client credentials from OCI IAM, receives a JWT bearer token, then calls OIC's trigger endpoint with that token in the Authorization header." />
+      <p class="caption">Harrison: "This is Phase 1: Home, Sweet Home Realty Services (HSH) establishes a secure connection to ABC Corp (Vending Solutions Provider) — it requests a token, OCI IAM validates it and issues a JWT bearer token, and HSH uses that token on every call from here on. ABC Corp never sees a password."</p>
     </div>
 
     <!-- STEP 3 -->
     <div class="panel">
-      <h3><span class="num">3</span>Month 2 — Rollover Used First, Spike Absorbed</h3>
-      <div class="sublabel">🛒 In the micro-market</div>
-      <img src="BalanceManagementFramework_Scene03D.png" alt="Month 2: a busier store, more employees leaving with food, the allowance gauge showing a +1,500 rollover boost and 7,000 of 7,500 used, still within allowance." />
-      <div class="sublabel">📊 On the balance register</div>
-      <img src="BalanceManagementFramework_Scene03.png" alt="Balance Register Month 2: rollover in 1,500, monthly grant 6,000, available 7,500, consumed 7,000, remaining 500, overage 0. Rollover drawn down first, then the monthly grant; usage of 7,000 beat the 6,000 base but the rollover absorbed it." />
-      <p class="caption">Busier — 7,000 checkouts, above the 6,000 base. But the rolled-over 1,500 is spent first, so it's still covered. No overage; 500 carries into Month 3.</p>
+      <h3><span class="num">3</span>Phase 2 — Receiving It, Logging It First</h3>
+      <img src="Scene03.png" alt="Harrison explains Phase 2 to James: the REST trigger at /createSalesOrder receives HSH's order payload, and a Logger records the tracking ID before anything else happens." />
+      <p class="caption">Harrison: "This is Phase 2: HSH sends a simple JSON payload with their sales order information and initiates a POST request to our URI /createSalesOrder. Think of it like ABC Corp has a dedicated service window — HSH pulls up, hands over a sales order. We log exactly what came in before touching a single field."</p>
     </div>
 
     <!-- STEP 4 -->
     <div class="panel">
-      <h3><span class="num">4</span>Month 3 — Headcount Jump → Overage in Arrears</h3>
-      <div class="sublabel">🛒 In the micro-market</div>
-      <img src="BalanceManagementFramework_Scene04D.png" alt="Month 3: a packed store where every employee still leaves with food, the allowance gauge over limit at 8,200 of 6,500 with an overage counter showing 680 dollars, and James on a phone call with XYZ." />
-      <div class="sublabel">📊 On the balance register</div>
-      <img src="BalanceManagementFramework_Scene04.png" alt="Balance Register Month 3: rollover in 500, monthly grant 6,000, available 6,500, consumed 8,200, remaining 0, overage 1,700. Invoice: 1,700 times 0.40 equals 680 dollars, billed in arrears on the next invoice." />
-      <p class="caption">New hires flood the micro-market — 8,200 checkouts, 1,700 over. Everyone's still served; the excess is rated at $0.40 and billed in arrears: $680 on the next invoice.</p>
+      <h3><span class="num">4</span>Phase 3 — Translating Into Oracle's Terms</h3>
+      <img src="Scene04.png" alt="Harrison explains Phase 3 to James: a Lookup table translates HSH's property ID into Oracle's internal BuyingPartyNumber, and an Assign action sets a fixed business unit variable." />
+      <p class="caption">Harrison: "This is Phase 3: At our end, we derive and enrich some more information about HSH — a Lookup translates their property ID, HSH-PROP-1180, into the internal BuyingPartyNumber Oracle needs, and we assign a fixed business unit code."</p>
     </div>
 
-    <!-- STEP 5 (standalone) -->
+    <!-- STEP 5 -->
     <div class="panel">
-      <h3><span class="num">5</span>The Amendment — Right-Size the Allowance, Mid-Cycle</h3>
-      <div class="sublabel">📊 On the balance register</div>
-      <img src="BalanceManagementFramework_Scene05.png" alt="Subscription 2002 amendment: status flows Active, Under Amendment, Pending Approval, Active. Before and after: included allowance 6,000 to 8,000 per month, overage rate 0.40 to 0.50, rollover 1 cycle unchanged, effective mid-cycle on Day 16 of Month 4, partial period option set to Prorate." />
-      <p class="caption">XYZ calls. Rather than keep paying overage, the plan is amended mid-cycle — allowance up to 8,000, overage rate to $0.50 — and because the partial-period option is Prorate, Month 4's allowance splits by days.</p>
+      <h3><span class="num">5</span>Phase 4 — Two Separate Things, Not One</h3>
+      <img src="Scene05.png" alt="Harrison explains Phase 4 to James: a Mapper builds the enriched payload with no network call, then a separate Invoke action POSTs it to Oracle's actual salesOrdersForOrderHub REST resource." />
+      <p class="caption">Harrison: "This is Phase 4: By now, we've translated the simple payload we received into the detailed payload Oracle actually needs. We POST that detailed payload to salesOrdersForOrderHub — Oracle's own REST resource."</p>
     </div>
 
     <!-- STEP 6 -->
     <div class="panel">
-      <h3><span class="num">6</span>Month 4 — Right-Sized, the Prorated Split, Exactly Met</h3>
-      <div class="sublabel">🛒 In the micro-market</div>
-      <img src="BalanceManagementFramework_Scene06D.png" alt="Month 4: a full, happy store with everyone served, the resized allowance gauge reading 7,000 of 7,000 used, exactly met, with no overage counter." />
-      <div class="sublabel">📊 On the balance register</div>
-      <img src="BalanceManagementFramework_Scene06.png" alt="Balance Register Month 4 amended mid-cycle: a timeline split at Day 16 into Days 1 to 15 old plan and Days 16 to 30 new plan. Days 1 to 15 prorated allowance 3,000 consumed 3,000; Days 16 to 30 prorated allowance 4,000 consumed 4,000; Month 4 total 7,000 consumed 7,000, zero overage. 6,000 times 15 over 30 equals 3,000 plus 8,000 times 15 over 30 equals 4,000 equals 7,000 blended allowance." />
-      <p class="caption">On the right-sized plan, Month 4 splits into a prorated 3,000 (old) + 4,000 (new) = 7,000 — and 7,000 is exactly used. Full house, no surprise bill.</p>
+      <h3><span class="num">6</span>Phase 5 — Narrowing the Response on Purpose</h3>
+      <img src="Scene06.png" alt="Harrison explains Phase 5 to James: on success, a second Mapper strips Oracle's full response down to status, order number and a message. On fault, the same branch formats a clean error." />
+      <p class="caption">Harrison: "This is Phase 5: We get a response back from Oracle for our POST request. A decision point determines whether it was a success or a fault. Either way, we translate Oracle's response into something simple and meaningful, and relay that to HSH."</p>
     </div>
 
-    <!-- STEP 7 (standalone) -->
+    <!-- STEP 7 -->
     <div class="panel">
-      <h3><span class="num">7</span>Four Cycles, One Balance Register</h3>
-      <div class="sublabel">📊 On the balance register</div>
-      <img src="BalanceManagementFramework_Scene07.png" alt="Balance Register across 4 cycles. Month 1: rollover 0, grant 6,000, available 6,000, consumed 4,500, remaining 1,500, none. Month 2: 1,500, 6,000, 7,500, 7,000, 500, none. Month 3: 500, 6,000, 6,500, 8,200, 0, overage 1,700 times 0.40 equals 680. Amendment mid-Month-4 Day 16: allowance 6,000 to 8,000, overage 0.40 to 0.50, prorated by days. Month 4: 0, blended 7,000, 7,000, 7,000, 0, none. Key takeaways listed." />
-      <p class="caption">Four cycles in one balance register: roll over, absorb a spike, overflow into arrears, then amend mid-cycle and right-size. Allowance prepaid in advance; overage billed in arrears only when exceeded.</p>
+      <h3><span class="num">7</span>All Five Phases, Left to Right</h3>
+      <img src="Scene07.png" alt="The complete five-phase flow in one diagram: secure connection, inbound trigger and logging, data enrichment, JSON transformation and invoke, and response management, with the public ABC-defined URI and Oracle's internal REST resource both labeled." />
+      <p class="caption">Harrison pulls up the full picture: five phases, start to finish, the same ones he just walked through one at a time — now as a single reference James can point to when he's the one explaining it to someone else.</p>
+    </div>
+
+    <!-- STEP 8 -->
+    <div class="panel">
+      <h3><span class="num">8</span>The Payoff</h3>
+      <img src="Scene08.png" alt="James and Harrison in the lobby. James notes this technical detail is exactly what was needed to move the automobile-sector deal forward, already proven rather than theoretical." />
+      <p class="caption">James: "Will this approach work for our next pipelined automobile customer?" Harrison: "Same approach works for any customer running their own non-Oracle SaaS."</p>
     </div>
 
     <h2>Why This Chapter Matters</h2>
     <div class="what-it-shows">
-      <strong>The takeaway:</strong> A prepaid allowance with rollover and arrears overage is
-      the advanced end of Subscription Management billing. Usage is captured, drawn down against
-      the balance register, and only the excess is rated and billed in arrears — it never blocks
-      a sale or turns a customer away. When demand outgrows the plan, a mid-cycle amendment with
-      partial-period proration right-sizes the allowance by days, without waiting for the next cycle.
+      <strong>The takeaway:</strong> Every phase in this build quietly draws
+      a line between what the outside world sees and what stays internal to
+      ABC. HSH gets a stable, ABC-defined URI and a deliberately minimal
+      response; it never sees Oracle's real REST resource name, Oracle's
+      internal identifiers, or Oracle's raw response shape. That boundary —
+      not the individual actions — is the actual design decision worth
+      understanding, and it's what makes the same pattern reusable for the
+      next non-Oracle customer without HSH's integration ever needing to
+      change.
     </div>
 
     <h2>Concepts Covered</h2>
     <table class="concepts">
       <tr><th>Concept</th><th>What it means</th><th class="panelref">Step</th></tr>
-      <tr><td>Entitlement plan / prepaid allowance</td><td>Included units prepaid in advance for each cycle, set on the subscription plan.</td><td class="panelref">1</td></tr>
-      <tr><td>Advance vs. arrears billing</td><td>The allowance is billed in advance; overage is billed in arrears, only when the balance is exceeded.</td><td class="panelref">1, 4, 7</td></tr>
-      <tr><td>Balance register</td><td>The ledger of rollover-in, grant, available, consumed, remaining and overage for each cycle.</td><td class="panelref">2–4, 7</td></tr>
-      <tr><td>Rollover</td><td>Unused allowance carries forward one cycle instead of expiring at reset.</td><td class="panelref">2–3</td></tr>
-      <tr><td>Drawdown order</td><td>Rolled-over (sooner-expiring) units are consumed before the current cycle's grant.</td><td class="panelref">3</td></tr>
-      <tr><td>Overage in arrears</td><td>Usage above the available balance is rated and billed on the next invoice — no service is denied.</td><td class="panelref">4</td></tr>
-      <tr><td>Mid-cycle amendment</td><td>Changing the plan partway through a cycle, not only at renewal.</td><td class="panelref">5</td></tr>
-      <tr><td>Partial-period proration</td><td>The Prorate partial-period option splits the affected period's allowance by days between the old and new plan.</td><td class="panelref">5–6</td></tr>
+      <tr><td>OAuth 2.0 via OCI IAM</td><td>The REST trigger's security policy; the actual grant type (client credentials, authorization code, etc.) is configured on a confidential client application in OCI Identity and Access Management, not on the trigger itself.</td><td class="panelref">2</td></tr>
+      <tr><td>JWT bearer token</td><td>The signed token HSH's system presents on every call, in the Authorization header — proves identity without ever sending a password to OIC directly.</td><td class="panelref">2</td></tr>
+      <tr><td>REST Adapter (Trigger)</td><td>The inbound connection exposing ABC's REST endpoint — an ABC-chosen, stable URI that has nothing to do with Oracle's own naming.</td><td class="panelref">3</td></tr>
+      <tr><td>Logger</td><td>Records what was received (and later, what was sent) at key points — the detail actually needed to debug a specific failure.</td><td class="panelref">3, 6</td></tr>
+      <tr><td>OIC Lookup</td><td>Translates an external value HSH provides into the internal Oracle identifier Oracle Order Management actually expects.</td><td class="panelref">4</td></tr>
+      <tr><td>Assign</td><td>Sets a fixed or derived variable the source system never sent, because it's constant on ABC's side (like a business unit code).</td><td class="panelref">4</td></tr>
+      <tr><td>Mapper (request)</td><td>Builds the enriched payload in memory — a data transformation step with no network call of its own.</td><td class="panelref">5</td></tr>
+      <tr><td>Invoke</td><td>The step that actually fires the HTTP call — here, a POST to Oracle's real REST resource, Business (REST) API style, JSON end to end.</td><td class="panelref">5</td></tr>
+      <tr><td>Public vs. internal URI</td><td>/createSalesOrder is ABC's own, stable, HSH-facing name. salesOrdersForOrderHub is Oracle's actual resource — internal only, and free to change without breaking HSH's integration.</td><td class="panelref">5</td></tr>
+      <tr><td>Mapper (response)</td><td>A second mapper that deliberately discards most of Oracle's raw response, keeping only what the original caller needs.</td><td class="panelref">6</td></tr>
+      <tr><td>Fault routing</td><td>The same condition branch that handles success also formats a clean, minimal error response on failure — HSH gets a readable message, not an internal stack trace.</td><td class="panelref">6</td></tr>
+      <tr><td>Reusable pattern</td><td>The same five-phase shape applies to the next non-Oracle customer, not just this one build.</td><td class="panelref">8</td></tr>
     </table>
 
-    <!-- PREV / NEXT NAVIGATION -->
+<!-- PREV / NEXT NAVIGATION -->
     <div class="chapter-nav">
       <a class="prev"
-         href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/friday-debrief/">
         <div class="nav-label">← Builds on</div>
-        <div class="nav-title">Chapter 2: Subscription Management</div>
+        <div class="nav-title">The Friday Debrief (OIC)</div>
       </a>
       <a class="next" href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">
         <div class="nav-label">Next →</div>
