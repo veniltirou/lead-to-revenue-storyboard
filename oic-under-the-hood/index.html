@@ -434,6 +434,7 @@
     <h2>Concepts Covered</h2>
     <table class="concepts">
       <tr><th>Concept</th><th>What it means</th><th class="panelref">Step</th></tr>
+      <tr><td>App Driven Orchestration</td><td>The OIC integration style used throughout this build — triggered by an inbound call rather than a schedule, built as an ordered set of actions. This particular integration is synchronous: it processes and responds within the same call, rather than acknowledging receipt and finishing the work later.</td><td class="panelref">1&ndash;8</td></tr>
       <tr><td>OAuth 2.0 via OCI IAM</td><td>The REST trigger's security policy; the actual grant type (client credentials, authorization code, etc.) is configured on a confidential client application in OCI Identity and Access Management, not on the trigger itself.</td><td class="panelref">2</td></tr>
       <tr><td>JWT bearer token</td><td>The signed token HSH's system presents on every call, in the Authorization header — proves identity without ever sending a password to OIC directly.</td><td class="panelref">2</td></tr>
       <tr><td>REST Adapter (Trigger)</td><td>The inbound connection exposing ABC's REST endpoint — an ABC-chosen, stable URI that has nothing to do with Oracle's own naming.</td><td class="panelref">3</td></tr>
