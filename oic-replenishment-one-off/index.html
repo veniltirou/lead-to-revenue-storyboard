@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced: The One-Off — An OIC Replenishment Integration for a Single Hilltop Site — Oracle CX Storyboard Series</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      width: 280px;
+      min-width: 280px;
+      background-color: #1a1a2e;
+      color: #ccc;
+      padding: 30px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .sidebar .logo {
+      padding: 0 20px 24px 20px;
+      border-bottom: 1px solid #333;
+      margin-bottom: 20px;
+    }
+    .sidebar .logo h2 { color: #ff6b2b; font-size: 1em; line-height: 1.5; }
+    .sidebar .logo p { color: #888; font-size: 0.78em; margin-top: 6px; }
+    .sidebar ul { list-style: none; }
+    .sidebar ul .section-label {
+      color: #888;
+      font-size: 0.72em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 16px 20px 6px 20px;
+    }
+    .sidebar ul li a {
+      display: block;
+      padding: 9px 20px;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.88em;
+      border-left: 3px solid transparent;
+      transition: all 0.2s;
+    }
+    .sidebar ul li a:hover {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.active {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.coming-soon {
+      color: #555;
+      cursor: default;
+      font-style: italic;
+    }
+    .sidebar ul li a.coming-soon:hover {
+      background: none;
+      border-left: 3px solid transparent;
+      color: #555;
+    }
+
+    /* MAIN */
+    .main {
+      margin-left: 280px;
+      padding: 40px 50px;
+      flex: 1;
+      max-width: 900px;
+    }
+
+    .chapter-header {
+      margin-bottom: 30px;
+    }
+    .chapter-header .chapter-label {
+      font-size: 0.8em;
+      color: #ff6b2b;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .chapter-header h1 { color: #c74b00; font-size: 1.8em; margin-bottom: 10px; }
+    .chapter-header p { color: #555; line-height: 1.7; }
+
+    .scenario-box {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.95em;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    h2 {
+      color: #333;
+      font-size: 1.15em;
+      margin: 36px 0 16px 0;
+      border-bottom: 2px solid #ff6b2b;
+      padding-bottom: 8px;
+    }
+
+    .tip {
+      font-style: italic;
+      color: #999;
+      font-size: 0.85em;
+      margin: 6px 0 18px 0;
+    }
+
+    /* STORYBOARD PANELS (sequential strip) */
+    .panel {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin: 20px 0;
+    }
+    .panel h3 {
+      color: #c74b00;
+      font-size: 1.02em;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    .panel h3 .num {
+      display: inline-block;
+      background-color: #ff6b2b;
+      color: #fff;
+      font-size: 0.82em;
+      font-weight: bold;
+      border-radius: 50%;
+      width: 26px;
+      height: 26px;
+      line-height: 26px;
+      text-align: center;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    .panel img {
+      width: 100%;
+      height: auto;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      display: block;
+    }
+    /* paired (drama + teaching) sublabels */
+    .panel .sublabel {
+      font-size: 0.76em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #999;
+      font-weight: bold;
+      margin: 18px 0 6px 0;
+    }
+    .panel .sublabel:first-of-type { margin-top: 0; }
+    .panel .caption {
+      color: #444;
+      font-size: 0.95em;
+      line-height: 1.6;
+      margin-top: 12px;
+      text-align: center;
+      font-style: italic;
+    }
+
+    /* CHAPTER SUMMARY + CONCEPTS */
+    .what-it-shows {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      padding: 14px 18px;
+      font-size: 0.92em;
+      line-height: 1.7;
+      color: #444;
+      border-radius: 0 4px 4px 0;
+      margin: 20px 0;
+    }
+    .what-it-shows strong { color: #c74b00; }
+
+    table.concepts {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 8px 0;
+      font-size: 0.9em;
+    }
+    table.concepts th, table.concepts td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+    table.concepts th {
+      background-color: #fff8f0;
+      color: #c74b00;
+      border-bottom: 2px solid #ff6b2b;
+    }
+    table.concepts td.panelref {
+      white-space: nowrap;
+      color: #999;
+    }
+
+    /* PREV / NEXT NAVIGATION */
+    .chapter-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+      padding-top: 24px;
+      border-top: 2px solid #eee;
+      gap: 16px;
+    }
+    .chapter-nav a {
+      display: block;
+      padding: 16px 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #333;
+      transition: all 0.2s;
+      flex: 1;
+    }
+    .chapter-nav a:hover {
+      border-color: #ff6b2b;
+      box-shadow: 0 2px 8px rgba(199,75,0,0.15);
+    }
+    .chapter-nav .prev { text-align: left; }
+    .chapter-nav .next { text-align: right; }
+    .chapter-nav .nav-label {
+      font-size: 0.75em;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .chapter-nav .nav-title {
+      font-weight: bold;
+      color: #c74b00;
+      font-size: 0.95em;
+    }
+
+    .footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid #ddd;
+      font-size: 0.82em;
+      color: #999;
+    }
+    .footer a { color: #c74b00; }
+
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 20px; }
+    }
+  </style>
+  <!-- GoatCounter analytics -->
+  <script data-goatcounter="https://veniltirou.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="logo">
+      <h2>Oracle CX Storyboard Series</h2>
+      <p>ABC Corp → XYZ Corp</p>
+    </div>
+    <ul>
+      <li class="section-label">Getting Started</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">
+        📋 Table of Contents</a></li>
+      <li class="section-label">Foundation</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/customer-data-management/">
+        Customer Data Management</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-force-automation-one-day/">
+        A Day in Sales Force Automation</a></li>      
+      <li class="section-label">Chapters</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/">
+        1. Lead-to-Revenue Overview</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">
+        2. Subscription Management</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/incentive-compensation/">
+        3. Incentive Compensation</a></li>
+      <li><a href="#" class="coming-soon">
+        4. Fusion Field Service (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        5. CX Sales &amp; CPQ (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        6. Order Management (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        7. Fusion Service (soon)</a></li>
+      <li class="section-label">Advanced</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/usage-billing-deep-dive/">
+        Usage Billing: Allowance, Rollover &amp; Overage (Subscription Management)</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/compound-amendment-deep-dive/">
+        The Compound Mid-Term Amendment (Subscription Management)</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/renewal-promotion-deep-dive/">
+        The Anniversary Renewal Promotion (Subscription Management)</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/quote-to-cash/">
+        Quote-to-Cash Across Oracle Fusion (Subscription Management Integrations)</a></li>      
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-under-the-hood/">
+        OIC Under the Hood: What Home, Sweet Home Never Sees (Integrations)</a></li>
+      <li><a href="#" class="active">
+        The One-Off: OIC Replenishment for a Single Hilltop Site (Integrations)</a></li>
+                  <li class="section-label">Integrations</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-integrations/">
+        Oracle Integration Cloud</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/friday-debrief/">
+        The Friday Debrief (OIC)</a></li>
+      <li class="section-label">Connect</li>
+      <li><a href="https://www.linkedin.com/in/veniltirou" target="_blank">
+        🔗 LinkedIn Profile</a></li>
+    </ul>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+        <div class="chapter-header">
+      <div class="chapter-label">Advanced · Integrations</div>
+      <h1>The One-Off — An OIC Replenishment Integration for a Single Hilltop Site</h1>
+      <p>A follow-up in the OIC series. Earlier chapters covered a real-time
+      <em>sales order</em> integration from a non-Oracle customer into ABC's
+      Order Management. This one tackles a different shape of problem — a
+      genuine one-off. A single remote hilltop office site of Home, Sweet Home
+      needs its restock route driver to place <em>replenishment orders</em>,
+      from a non-Oracle mobile app, into ABC Corporation's Oracle Fusion Cloud
+      Procurement. Rather than reconfigure the core system for one edge case,
+      Harrison builds a targeted OIC integration around Oracle's own
+      externally-managed-requisition pattern — narrated phase by phase, with
+      the real Procurement field names and a full fault-handling path.</p>
+    </div>
+
+    <div class="scenario-box">
+      <strong>Business Scenario:</strong> Most of ABC's replenishment runs
+      through its standard Oracle ecosystem. But one HSH property — a remote
+      hilltop office with only a handful of occupants and a special
+      route-driver arrangement — falls outside the normal flow. Its route
+      driver needs to log low-stock items on-site and have a purchase
+      requisition created automatically in Oracle Procurement. James brings
+      this one-off to Harrison; Harrison first checks whether Oracle's
+      <em>own</em> Procurement can accept requisitions originating from a
+      non-Oracle system, discovers Oracle's externally-managed-requisition
+      pattern, and builds an OIC integration around it. This chapter walks all
+      five phases — and, importantly, what happens when the requisition
+      <em>fails</em>.
+    </div>
+
+    <div class="scenario-box" style="border-left-color:#3a5bd9; background-color:#f0f4ff;">
+      <strong>A note on technical accuracy:</strong> The field names, REST
+      resource path, and submit mechanism in this chapter
+      (<code>ExternallyManagedFlag</code>, <code>PreparerEmail</code>,
+      <code>RequesterEmail</code>, <code>LineTypeCode: "Goods"</code>,
+      <code>DestinationType: "Expense"</code>, <code>UOM: "Each"</code>, the
+      <code>distributions</code> child array, <code>purchaseRequisitions</code>,
+      and the <code>submitRequisition</code> action) are checked against
+      Oracle's current documentation for Oracle Fusion Cloud Procurement,
+      including Oracle's own worked example for creating externally-managed
+      requisitions. The integration user requires the Procurement REST Service
+      Duty role (<code>ORA_PO_PROCUREMENT_REST_SERVICE_DUTY</code>). The
+      diagrams are illustrative reconstructions built to be technically
+      accurate, not actual product screenshots — Oracle's UI and API details
+      can change across releases.
+    </div>
+
+    <h2>The Storyboard</h2>
+    <p class="tip">📱 On mobile? Pinch to zoom on each screen to read the
+    payloads and field names clearly.</p>
+
+    <!-- SCENE 1 -->
+    <div class="panel">
+      <h3><span class="num">1</span>The Ask</h3>
+      <img src="Scene01.png" alt="James brings Harrison a one-off request at the ABC Corporation office: a single remote HSH hilltop site needs its restock route driver to place replenishment orders from a non-Oracle mobile app into Oracle Procurement." />
+      <div class="what-it-shows"><strong>What this shows:</strong> James brings Harrison a one-off — a single remote HSH hilltop site needs its restock route driver to place replenishment orders, from a non-Oracle mobile app, into ABC's Oracle Procurement. It's a scenario the standard setup doesn't cover.</div>
+    </div>
+
+    <!-- SCENE 2 -->
+    <div class="panel">
+      <h3><span class="num">2</span>The Situation</h3>
+      <img src="Scene02.png" alt="A route driver restocking beverages in a vending machine at a remote hilltop office site, with a rolling green-hills view through the window." />
+      <div class="what-it-shows"><strong>What this shows:</strong> The real-world scenario, wordless — a route driver restocking beverages at a remote hilltop office site. Few occupants, a special route arrangement, off the beaten path: exactly the kind of edge case that justifies a targeted integration rather than reconfiguring the core system.</div>
+    </div>
+
+    <!-- SCENE 3 -->
+    <div class="panel">
+      <h3><span class="num">3</span>Harrison Takes It On</h3>
+      <img src="Scene03.png" alt="Harrison at his desk working on a laptop, building the OIC integration." />
+      <div class="what-it-shows"><strong>What this shows:</strong> Rather than build from scratch, Harrison first checks whether Oracle's own Procurement can accept requisitions from a non-Oracle system — and finds Oracle's <em>externally-managed-requisition</em> pattern, purpose-built for exactly this. He spends the week implementing it in OIC.</div>
+    </div>
+
+    <!-- SCENE 4 -->
+    <div class="panel">
+      <h3><span class="num">4</span>The Overview</h3>
+      <img src="Scene04.png" alt="The complete five-phase replenishment flow diagram: route driver's VBCS app POSTs to ABC's OIC trigger, then Phase 1 secure connection, Phase 2 inbound trigger and logging, Phase 3 enrichment and lookup, Phase 4 create and submit requisition inside a scope with a fault handler, and Phase 5 response." />
+      <div class="what-it-shows"><strong>What this shows:</strong> A week later, Harrison presents the finished design — the complete five-phase replenishment flow in one diagram. The route driver's app POSTs to ABC's own trigger at the top; from there the flow runs left to right through to the requisition created and submitted in Oracle, with the fault-handling path drawn in.</div>
+    </div>
+
+    <!-- SCENE 5 -->
+    <div class="panel">
+      <h3><span class="num">5</span>Phase 1 — Secure OAuth 2.0 Connection</h3>
+      <img src="Scene05.png" alt="Phase 1 detail: five steps — initiate token request, OCI IAM validates and issues a JWT, receive and store the token, prepare the API request with the Authorization Bearer header, and invoke the OIC trigger." />
+      <div class="what-it-shows"><strong>What this shows:</strong> Before the route driver's app can call ABC at all, it proves its identity — a token request (<code>grant_type=client_credentials</code>), OCI IAM validating the client and issuing a JWT bearer token (commonly ~3600s), then presenting <code>Authorization: Bearer &lt;TOKEN&gt;</code> on the call to ABC's own endpoint. The app only ever knows ABC's URI, never Oracle Procurement.</div>
+    </div>
+
+    <!-- SCENE 6 -->
+    <div class="panel">
+      <h3><span class="num">6</span>Phase 2 — Inbound Trigger &amp; Logging</h3>
+      <img src="Scene06.png" alt="Phase 2 detail: the inbound JSON payload with visitId, routeDriverId, propertyId, siteId, machineId and itemsLow, and a Logger writing the request to the Activity Stream." />
+      <div class="what-it-shows"><strong>What this shows:</strong> The route driver's simple visit payload — visit ID, driver ID, site and machine IDs, and the low-stock items — arrives at ABC's REST trigger, <code>/logReplenishmentVisit</code>, and a Logger records it to the Activity Stream immediately, before any processing.</div>
+    </div>
+
+    <!-- SCENE 7 -->
+    <div class="panel">
+      <h3><span class="num">7</span>Phase 3 — Enrichment (Lookup + Assign)</h3>
+      <img src="Scene07.png" alt="Phase 3 detail: a Lookup resolving siteId, machineId and sku into Oracle's item and DeliverToLocationCode, and an Assign setting fixed values including ExternallyManagedFlag true." />
+      <div class="what-it-shows"><strong>What this shows:</strong> A Lookup resolves the driver's <code>siteId</code>, <code>machineId</code>, and <code>sku</code> into Oracle's item and the hilltop site's <code>DeliverToLocationCode</code>. An Assign sets the fixed values the app never sends — <code>RequisitioningBU</code>, <code>LineTypeCode: "Goods"</code>, <code>DestinationType: "Expense"</code>, and <code>ExternallyManagedFlag: true</code>.</div>
+    </div>
+
+    <!-- SCENE 8 -->
+    <div class="panel">
+      <h3><span class="num">8</span>Phase 4a — The Happy Path (Create + Submit)</h3>
+      <img src="Scene08.png" alt="Phase 4 happy path detail: the enriched purchaseRequisitions payload, and inside a Scope two invokes — create requisition (POST purchaseRequisitions, Incomplete status) followed by submit requisition via the submitRequisition action." />
+      <div class="what-it-shows"><strong>What this shows:</strong> Inside a Scope, two separate Invokes. First a POST to Oracle's real <code>purchaseRequisitions</code> resource creates the requisition in <em>Incomplete</em> status; then a second call submits it via the <code>submitRequisition</code> action — and because it's externally managed, Oracle bypasses the approval workflow. Note the two-call reality: "created" and "submitted" are distinct steps, and the gap between them is a real failure surface.</div>
+    </div>
+
+    <!-- SCENE 9 -->
+    <div class="panel">
+      <h3><span class="num">9</span>Phase 4b — When It Fails (The Fault Handler)</h3>
+      <img src="Scene09.png" alt="Phase 4 fault handler detail: on failure, a Logger records the fault, an ATP Invoke inserts the failure into REPLENISHMENT_ERROR_LOG, an URGENT email notification is sent, and a Rethrow pushes the fault onto the OIC Errors page." />
+      <div class="what-it-shows"><strong>What this shows:</strong> The error path, in its own spotlight. If either invoke fails — including the real "created but not submitted" gap — the Scope Fault Handler fires: a Logger captures the fault, an ATP Adapter <code>INSERT</code>s the failure (transaction ID, error code, timestamp, full failed payload, and <em>which</em> step failed) into a <code>REPLENISHMENT_ERROR_LOG</code> table, an <code>[URGENT]</code> email alerts ABC's Procurement contact, and a Rethrow pushes the failure onto OIC's Errors page so it stays visible and resubmittable. A Global Fault Handler sits beneath as the last-resort net.</div>
+    </div>
+
+    <!-- SCENE 10 -->
+    <div class="panel">
+      <h3><span class="num">10</span>Phase 5 — Simplified Response</h3>
+      <img src="Scene10.png" alt="Phase 5 detail: a Mapper narrowing Oracle's response down to status, requisitionNumber and a plain message, and a Respond action returning it to the route driver's app." />
+      <div class="what-it-shows"><strong>What this shows:</strong> On success, a second Mapper narrows Oracle's full response down to just what the route driver's app needs — status, requisition number, and a plain-language message — and Respond returns it. Simple in, simple out.</div>
+    </div>
+
+    <!-- SCENE 11 -->
+    <div class="panel">
+      <h3><span class="num">11</span>The Whole Flow, and Why a One-Off Deserves OIC</h3>
+      <img src="Scene04.png" alt="The complete five-phase replenishment flow diagram shown once more end to end." />
+      <div class="what-it-shows"><strong>What this shows:</strong> The complete flow once more, end to end. The takeaway: the vast majority of ABC's replenishment runs through the standard Oracle ecosystem — but a genuine one-off like this hilltop site is exactly where a lightweight, targeted OIC integration earns its place, without disturbing the core system.</div>
+    </div>
+
+    <h2>Why This Chapter Matters</h2>
+    <div class="what-it-shows">
+      <strong>The takeaway:</strong> The real architectural decision here isn't
+      any single action — it's knowing <em>when</em> to reach for an integration
+      at all. The vast majority of ABC's replenishment flows through the
+      standard Oracle ecosystem, and that's correct. A genuine one-off — a
+      remote hilltop site with a handful of occupants and a special
+      route-driver arrangement — is exactly the case where a lightweight,
+      targeted OIC integration earns its place, rather than bending the core
+      system around a single edge case. And rather than reinventing anything,
+      Harrison used Oracle's <em>own</em> externally-managed-requisition
+      pattern — the create-then-submit sequence Oracle documents for exactly
+      this "outside system creates the requisition" scenario. The two-call gap
+      between create and submit is a real failure surface, which is precisely
+      why the scope fault handler, the ATP error log, the URGENT alert, and the
+      rethrow all exist: so a failure is captured, announced, and recoverable
+      rather than silently lost.
+    </div>
+
+    <h2>Concepts Covered</h2>
+    <table class="concepts">
+      <tr><th>Concept</th><th>What it means</th><th class="panelref">Step</th></tr>
+      <tr><td>Application-driven integration</td><td>An App Driven Orchestration triggered by an inbound REST call — the route driver's app submitting a visit — rather than by a schedule. Built as an ordered set of actions that process and respond within the same call.</td><td class="panelref">4&ndash;11</td></tr>
+      <tr><td>REST Adapter (trigger)</td><td>The inbound connection exposing ABC's own endpoint, <code>/logReplenishmentVisit</code> — an ABC-chosen, stable URI that has nothing to do with Oracle's own naming.</td><td class="panelref">5, 6</td></tr>
+      <tr><td>Logger</td><td>Writes the incoming request to OIC's Activity Stream for traceability — Activity Stream only. (Persisting a durable record to a database is a separate action; see ATP insert below.)</td><td class="panelref">6</td></tr>
+      <tr><td>Lookup</td><td>Resolves the driver's <code>siteId</code>, <code>machineId</code>, and <code>sku</code> into Oracle's item and the hilltop site's <code>DeliverToLocationCode</code>.</td><td class="panelref">7</td></tr>
+      <tr><td>Assign</td><td>Sets the fixed values the app never sends — <code>RequisitioningBU</code>, <code>LineTypeCode</code>, <code>DestinationType</code>, and <code>ExternallyManagedFlag: true</code>.</td><td class="panelref">7</td></tr>
+      <tr><td>Mapper</td><td>Builds the enriched Oracle payload before the invoke, and later narrows Oracle's response down to what the app needs.</td><td class="panelref">8, 10</td></tr>
+      <tr><td>REST Adapter (invoke) — Procurement</td><td>POSTs to Oracle's real <code>purchaseRequisitions</code> resource, then calls the <code>submitRequisition</code> action — two distinct calls, JSON end to end.</td><td class="panelref">8</td></tr>
+      <tr><td>Externally-managed requisition</td><td>Oracle's built-in pattern for requisitions created by an outside system. Set with <code>ExternallyManagedFlag: true</code>; the requisition is created in <em>Incomplete</em> status, then submitted, and the approval workflow is bypassed.</td><td class="panelref">7, 8</td></tr>
+      <tr><td>Scope fault handler</td><td>Catches a failure around the specific Procurement invoke — not the whole flow — so the error message can name exactly what failed, including the "created but not submitted" gap.</td><td class="panelref">9</td></tr>
+      <tr><td>ATP database insert</td><td>A separate ATP Adapter Invoke, inside the fault handler, that <code>INSERT</code>s the failure (error code, timestamp, full failed payload, and which step failed) into a <code>REPLENISHMENT_ERROR_LOG</code> table for support to query and reprocess.</td><td class="panelref">9</td></tr>
+      <tr><td>Email notification</td><td>Sends the <code>[URGENT]</code> alert to ABC's Procurement contact from within the fault handler. (OIC's Notification action conveys urgency through subject and content, not a literal priority flag.)</td><td class="panelref">9</td></tr>
+      <tr><td>Rethrow</td><td>Pushes the caught fault back up after logging and alerting, so the instance lands on OIC's Errors page — visible and resubmittable — rather than being silently swallowed. Rethrow re-surfaces the failure; it does not re-attempt the call.</td><td class="panelref">9</td></tr>
+      <tr><td>Global fault handler</td><td>The last-resort safety net beneath the whole flow, catching anything the scope handler doesn't — for example an enrichment error, or the ATP write itself failing.</td><td class="panelref">9</td></tr>
+    </table>
+
+<!-- PREV / NEXT NAVIGATION -->
+    <div class="chapter-nav">
+      <a class="prev"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-under-the-hood/">
+        <div class="nav-label">← Builds on</div>
+        <div class="nav-title">OIC Under the Hood: What Home, Sweet Home Never Sees</div>
+      </a>
+      <a class="next" href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">
+        <div class="nav-label">Next →</div>
+        <div class="nav-title">Table of Contents</div>
+      </a>
+    </div>
+
+    <div class="footer">
+      <p>Created by <a href="https://www.linkedin.com/in/veniltirou"
+         target="_blank">Venil Tirou</a> — Oracle CX Functional Consultant</p>
+      <p style="margin-top:6px;">© 2026 Venil Tirou. All rights reserved. This is an independently created educational resource.
+      Not affiliated with or endorsed by Oracle Corporation.</p>
+    </div>
+
+  </main>
+</body>
+</html> 
