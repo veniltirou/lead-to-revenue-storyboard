@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chapter 3: Oracle Incentive Compensation — Oracle CX Storyboard Series</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 280px;
+      min-width: 280px;
+      background-color: #1a1a2e;
+      color: #ccc;
+      padding: 30px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .sidebar .logo {
+      padding: 0 20px 24px 20px;
+      border-bottom: 1px solid #333;
+      margin-bottom: 20px;
+    }
+    .sidebar .logo h2 { color: #ff6b2b; font-size: 1em; line-height: 1.5; }
+    .sidebar .logo p { color: #888; font-size: 0.78em; margin-top: 6px; }
+    .sidebar ul { list-style: none; }
+    .sidebar ul .section-label {
+      color: #888;
+      font-size: 0.72em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 16px 20px 6px 20px;
+    }
+    .sidebar ul li a {
+      display: block;
+      padding: 9px 20px;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.88em;
+      border-left: 3px solid transparent;
+      transition: all 0.2s;
+    }
+    .sidebar ul li a:hover {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.active {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.coming-soon {
+      color: #555;
+      cursor: default;
+      font-style: italic;
+    }
+    .sidebar ul li a.coming-soon:hover {
+      background: none;
+      border-left: 3px solid transparent;
+      color: #555;
+    }
+    .main {
+      margin-left: 280px;
+      padding: 40px 50px;
+      flex: 1;
+      max-width: 900px;
+    }
+    .chapter-header { margin-bottom: 30px; }
+    .chapter-header .chapter-label {
+      font-size: 0.8em;
+      color: #ff6b2b;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .chapter-header h1 { color: #c74b00; font-size: 1.8em; margin-bottom: 10px; }
+    .chapter-header p { color: #555; line-height: 1.7; }
+    .scenario-box {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.95em;
+      line-height: 1.7;
+      color: #444;
+    }
+    .characters-box {
+      background-color: #f0f4ff;
+      border-left: 4px solid #3a5bd9;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.92em;
+      line-height: 1.8;
+      color: #444;
+    }
+    .characters-box h3 {
+      color: #3a5bd9;
+      font-size: 0.9em;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    h2 {
+      color: #333;
+      font-size: 1.15em;
+      margin: 36px 0 16px 0;
+      border-bottom: 2px solid #ff6b2b;
+      padding-bottom: 8px;
+    }
+    .storyboard {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 24px;
+      margin: 28px 0;
+    }
+    .storyboard h3 {
+      color: #c74b00;
+      font-size: 1.05em;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    .storyboard img {
+      width: 100%;
+      height: auto;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      margin: 12px 0;
+    }
+    .storyboard .tip {
+      font-style: italic;
+      color: #999;
+      font-size: 0.85em;
+      margin: 6px 0 14px 0;
+    }
+    .storyboard .what-it-shows {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      padding: 12px 16px;
+      font-size: 0.92em;
+      line-height: 1.7;
+      color: #444;
+      border-radius: 0 4px 4px 0;
+    }
+    .storyboard .what-it-shows strong { color: #c74b00; }
+    table.concepts {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 8px 0;
+      font-size: 0.9em;
+    }
+    table.concepts th, table.concepts td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+    table.concepts th {
+      background-color: #fff8f0;
+      color: #c74b00;
+      border-bottom: 2px solid #ff6b2b;
+    }
+    table.concepts td.panelref {
+      white-space: nowrap;
+      color: #999;
+    }
+
+    .chapter-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+      padding-top: 24px;
+      border-top: 2px solid #eee;
+      gap: 16px;
+    }
+    .chapter-nav a {
+      display: block;
+      padding: 16px 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #333;
+      transition: all 0.2s;
+      flex: 1;
+    }
+    .chapter-nav a:hover {
+      border-color: #ff6b2b;
+      box-shadow: 0 2px 8px rgba(199,75,0,0.15);
+    }
+    .chapter-nav .prev { text-align: left; }
+    .chapter-nav .next { text-align: right; }
+    .chapter-nav .nav-label {
+      font-size: 0.75em;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .chapter-nav .nav-title {
+      font-weight: bold;
+      color: #c74b00;
+      font-size: 0.95em;
+    }
+    .footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid #ddd;
+      font-size: 0.82em;
+      color: #999;
+    }
+    .footer a { color: #c74b00; }
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 20px; }
+    }
+  </style>
+  <!-- GoatCounter analytics -->
+  <script data-goatcounter="https://veniltirou.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="logo">
+      <h2>Oracle CX Storyboard Series</h2>
+      <p>ABC Corp → XYZ Corp</p>
+    </div>
+    <ul>
+      <li class="section-label">Getting Started</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">
+        📋 Table of Contents</a></li>
+      <li class="section-label">Foundation</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/customer-data-management/">
+        Customer Data Management</a></li>    
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-force-automation-one-day/">
+        A Day in Sales Force Automation</a></li>
+      <li><a href="#" class="active">
+        Sales Performance Management: The Landscape</a></li>      
+      <li class="section-label">Chapters</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/">
+        1. Lead-to-Revenue Overview</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">
+        2. Subscription Management</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/incentive-compensation/">
+        3. Incentive Compensation</a></li>
+      <li><a href="#" class="coming-soon">
+        4. Fusion Field Service (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        5. CX Sales & CPQ (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        6. Order Management (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        7. Fusion Service (soon)</a></li>
+      <li class="section-label">Advanced</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/usage-billing-deep-dive/">
+        Usage Billing: Allowance, Rollover &amp; Overage (Subscription Management)</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/compound-amendment-deep-dive/">
+        The Compound Mid-Term Amendment (Subscription Management)</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/renewal-promotion-deep-dive/">
+        The Anniversary Renewal Promotion (Subscription Management)</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/quote-to-cash/">
+        Quote-to-Cash Across Oracle Fusion (Subscription Management Integrations)</a></li>      
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-under-the-hood/">
+        OIC Under the Hood: What Home, Sweet Home Never Sees (Integrations)</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-replenishment-one-off/">
+        The One-Off: OIC Replenishment for a Single Hilltop Site (Integrations)</a></li>
+                  <li class="section-label">Integrations</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-integrations/">
+        Oracle Integration Cloud</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/friday-debrief/">
+        The Friday Debrief (OIC)</a></li>
+      <li class="section-label">Connect</li>
+      <li><a href="https://www.linkedin.com/in/veniltirou" target="_blank">
+        🔗 LinkedIn Profile</a></li>
+    </ul>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <div class="chapter-header">
+      <div class="chapter-label">Foundation</div>
+      <h1>Sales Performance Management — The Landscape</h1>
+      <p>Before going deep on any one capability, it helps to see the whole
+      map. This chapter covers what Oracle Sales Performance Management (SPM)
+      actually is, the six capabilities that sit under it, how they chain
+      together, and — a detail that trips up a lot of people — how you
+      actually switch them on, which is not what the marketing name would
+      lead you to expect.</p>
+    </div>
+
+    <div class="scenario-box">
+      <strong>Why this chapter exists:</strong> Incentive Compensation is the
+      capability most people meet first, because commission is the visible
+      part. But it doesn't work in isolation. It depends on territories to
+      decide who owns which accounts, and quotas to define what each rep is
+      measured against. Coaching, gamification and analytics sit alongside it,
+      closing the loop between what a rep does and what the business wants.
+      Understanding that landscape first makes every individual capability
+      easier to place.
+    </div>
+
+    <div class="scenario-box" style="border-left-color:#3a5bd9; background-color:#f0f4ff;">
+      <strong>A note on terminology:</strong> "SPM" is a solution name Oracle
+      uses to describe a group of capabilities that work together. It is not a
+      product you install or a single switch you turn on. In the application
+      itself, these capabilities appear as separate <em>functional areas</em>
+      that you enable individually under the <strong>Sales</strong> offering.
+      The second diagram below shows that structure, because the gap between
+      the marketing name and the setup name is a genuine source of confusion.
+    </div>
+
+    <h2>The Umbrella</h2>
+    <div class="storyboard">
+      <h3>Six Capabilities, One Purpose</h3>
+      <img src="SPM_Umbrella.png"
+           alt="The Sales Performance Management umbrella covering Territory Management, Quota Management, Incentive Compensation, Sales Coaching, Gamification and Sales Analytics" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> The six capabilities Oracle groups
+        under Sales Performance Management, and what each one is responsible
+        for. They aren't a random collection — they chain together in a
+        specific order. <strong>Territory Management</strong> decides who owns
+        which accounts. <strong>Quota Management</strong> sets the target each
+        rep carries against that territory. <strong>Incentive
+        Compensation</strong> calculates and pays what they earn against that
+        quota — the engine covered in depth in Chapter 3. Then
+        <strong>Sales Coaching</strong>, <strong>Gamification</strong> and
+        <strong>Sales Analytics</strong> close the loop: developing the
+        behaviour, motivating it, and making all of it visible. Read left to
+        right, it's the lifecycle of a sales rep's year — where they sell,
+        what they're aiming at, what they earn, and how they improve.
+      </div>
+    </div>
+
+    <h2>Enabling It</h2>
+    <div class="storyboard">
+      <h3>Offerings, Functional Areas and Tasks</h3>
+      <img src="SPM_Setup_Functional_Areas.png"
+           alt="How SPM capabilities are enabled - the Offering to Functional Area to Task hierarchy, the Navigator path through My Enterprise and Offerings, and the list of functional areas under the Sales offering" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> How the capabilities above translate
+        into things you actually configure. Oracle's structure is
+        <strong>Offering → Functional Area → Task</strong>: an offering (like
+        Sales) contains functional areas, each functional area contains the
+        tasks you open to configure it, and features are opt-in toggles within
+        them. There is no single "SPM" switch — you enable functional areas one
+        by one under the Sales offering, via <em>Navigator → My Enterprise →
+        Offerings → Sales → Opt In Features</em>. Two things are worth noticing.
+        First, the names don't match the marketing: the functional areas are
+        called <strong>Incentives</strong> and <strong>Quotas</strong>, not
+        "Incentive Compensation" and "Quota Management." Second, only three of
+        the six capabilities appear as functional areas at all — Sales
+        Coaching, Gamification and Analytics are delivered through the Sales
+        application and its dashboards rather than as separate setup areas. The
+        solution grouping and the setup structure simply don't map one-to-one,
+        and knowing that saves a lot of hunting.
+      </div>
+    </div>
+
+    <h2>Where to Go Next</h2>
+    <div class="what-it-shows">
+      <strong>The takeaway:</strong> SPM is the map; the capabilities under it
+      are the territory. Most of the depth in this series so far sits in one of
+      those six boxes — <strong>Chapter 3: Incentive Compensation</strong>
+      follows a single deal from Closed Won through crediting, calculation and
+      payment, and is the natural next step from here. The remaining
+      capabilities each have their own chapters ahead of them; this page is the
+      frame they'll hang on.
+    </div>
+
+    <!-- PREV / NEXT NAVIGATION -->
+    <div class="chapter-nav">
+      <a class="prev"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-force-automation-one-day/">
+        <div class="nav-label">← Previous</div>
+        <div class="nav-title">A Day in Sales Force Automation</div>
+      </a>
+      <a class="next"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/incentive-compensation/">
+        <div class="nav-label">Goes deep on one of these →</div>
+        <div class="nav-title">Chapter 3: Incentive Compensation</div>
+      </a>
+    </div>
+
+    <div class="footer">
+      <p>Created by <a href="https://www.linkedin.com/in/veniltirou"
+         target="_blank">Venil Tirou</a> — Oracle CX Functional Consultant</p>
+      <p style="margin-top:6px;">© 2026 Venil Tirou. All rights reserved.
+      This is an independently created educational resource.
+      Not affiliated with or endorsed by Oracle Corporation.</p>
+    </div>
+
+  </main>
+</body>
+</html>
