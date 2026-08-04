@@ -578,6 +578,35 @@
       </div>
     </div>
 
+    <!-- THE MODULES AROUND IT -->
+    <h2>The Modules Around It</h2>
+    <div class="storyboard">
+      <h3>Where Transactions Come From, and Who Actually Pays</h3>
+      <img src="OIC_Modules_Around_It.png"
+           alt="The modules around Incentive Compensation - upstream sources Order Management, Receivables, Resource Manager/HCM/Trading Community and Territory Manager feeding the engine, with Payroll and Payables downstream" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Incentive Compensation doesn't work in
+        isolation — it sits in the middle of a chain. Its transactions arrive
+        from <strong>Order Management</strong> (booked orders and adjustments)
+        and <strong>Receivables</strong> (invoices); these are the two seeded
+        transaction sources Oracle delivers out of the box. Its people aren't
+        created inside it either — participants are imported from
+        <strong>Resource Manager, HCM, or Trading Community</strong>, which is
+        why someone must already exist there before they can earn. Territory
+        Manager feeds the sales-credit allocation that decides who gets credited
+        in the first place. On the way out, the routing depends on <em>who the
+        earner is</em>: an employee's commission goes to
+        <strong>Payroll</strong>, through the normal payroll cycle with tax
+        withholding, while <strong>Payables</strong> handles commission for
+        non-employees such as partners, vendors and external channel reps.
+        General Ledger receives the accounting entries throughout. Understanding
+        these boundaries matters as much as understanding the engine itself —
+        most real implementation problems live at the seams between modules, not
+        inside any one of them.
+      </div>
+    </div>
+
     <!-- PREV / NEXT NAVIGATION -->
     <div class="chapter-nav">
       <a class="prev"
