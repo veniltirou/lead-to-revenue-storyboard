@@ -156,6 +156,28 @@
       border-radius: 0 4px 4px 0;
     }
     .storyboard .what-it-shows strong { color: #c74b00; }
+    table.concepts {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 8px 0;
+      font-size: 0.9em;
+    }
+    table.concepts th, table.concepts td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+    table.concepts th {
+      background-color: #fff8f0;
+      color: #c74b00;
+      border-bottom: 2px solid #ff6b2b;
+    }
+    table.concepts td.panelref {
+      white-space: nowrap;
+      color: #999;
+    }
+
     .chapter-nav {
       display: flex;
       justify-content: space-between;
@@ -606,6 +628,27 @@
         inside any one of them.
       </div>
     </div>
+
+    <h2>Concepts Covered</h2>
+    <table class="concepts">
+      <tr><th>Concept</th><th>What it means</th><th class="panelref">Scene</th></tr>
+      <tr><td>Compensation Plan</td><td>The complete package of what a rep can earn. A reusable container holding one or more plan components, each pairing a performance measure with an incentive formula. Assigned to a <em>role</em> rather than directly to a person, so one plan serves everyone in that role.</td><td class="panelref">2</td></tr>
+      <tr><td>Performance Measure</td><td>What is being measured, over what period, against what target. It accumulates a running total across the period — and that running total is what decides which rate tier a deal falls into.</td><td class="panelref">2, 3</td></tr>
+      <tr><td>Incentive Formula</td><td>The calculation method that turns a credited amount into an earned amount. It holds the logic, not the numbers, so rates can change without rewriting the formula.</td><td class="panelref">4</td></tr>
+      <tr><td>Rate Table</td><td>The lookup grid mapping attainment to payout rate. Tiering is what creates an accelerating incentive: a deal spanning two tiers is split, with each portion earning its own rate.</td><td class="panelref">4, 9</td></tr>
+      <tr><td>Participant</td><td>A person enrolled in the incentive compensation process. Participants are <em>imported</em> from HCM, Trading Community, or Resource Manager — they must already exist there first. Oracle distinguishes two types: PARTICIPANT (earns compensation) and ANALYST (administers the application).</td><td class="panelref">5</td></tr>
+      <tr><td>Participant Role</td><td>The bridge between a person and a plan. The role carries the compensation plan, so changing the plan on a role updates everyone in it — this indirection is what lets plans scale beyond one-off assignments.</td><td class="panelref">5</td></tr>
+      <tr><td>Pay Group</td><td>How participants are grouped for payment: frequency, currency and processing cycle. The role determines <em>what</em> a rep earns; the pay group determines <em>when it arrives</em>.</td><td class="panelref">5</td></tr>
+      <tr><td>Classification Rules</td><td>Automated rules that read a transaction's attributes and assign it a credit category. At real transaction volumes, hand-sorting isn't feasible — rules make classification consistent and auditable.</td><td class="panelref">6</td></tr>
+      <tr><td>Credit Category</td><td>The bucket a transaction counts toward, connecting it to the right performance measure so unrelated revenue never pollutes a metric.</td><td class="panelref">6</td></tr>
+      <tr><td>Sales Crediting</td><td>Rules deciding who gets credit and how much: <strong>direct</strong> to the closing rep, <strong>rollup</strong> up the management hierarchy, <strong>overlay</strong> to supporting specialists, and <strong>split</strong> across co-sellers. Crucially, overlay and rollup credit do not reduce the closer's direct credit — each participant is calculated independently against their own plan.</td><td class="panelref">7</td></tr>
+      <tr><td>Transactions and Earnings</td><td>A source transaction becomes a credited transaction, then a classified one, and finally an <em>earning transaction</em> once calculation runs. Each stage produces the input the next stage consumes.</td><td class="panelref">8</td></tr>
+      <tr><td>Calculation Process</td><td>The sequence that turns credited, classified transactions into earnings by applying the formula and rate table. It can be rerun safely as corrections arrive.</td><td class="panelref">8, 9</td></tr>
+      <tr><td>Objectives-Based Incentive</td><td>A second plan that pays on goal attainment rather than per transaction — revenue targets, new customers, pipeline coverage. It runs on a parallel plan alongside transaction commission and merges only at the payment step.</td><td class="panelref">11</td></tr>
+      <tr><td>Payment Plan &amp; Processing</td><td>Governs how calculated earnings become actual money: frequency, hold percentage, draws and recovery, caps, and clawback windows. An earning is not a payment — a rep earns the moment calculation runs, but what leaves the building is decided here.</td><td class="panelref">12</td></tr>
+      <tr><td>Reports and Analytics</td><td>Visibility for each audience: reps see estimated earnings and attainment, managers see team performance, and compensation administrators see plan cost and exceptions.</td><td class="panelref">13</td></tr>
+      <tr><td>Module boundaries</td><td>Incentive Compensation sits in a chain. Order Management and Receivables are the two seeded transaction sources; participants come from Resource Manager, HCM or Trading Community; and payment routes to Payroll for employees or Payables for non-employees, with General Ledger receiving the accounting entries.</td><td class="panelref">Modules</td></tr>
+    </table>
 
     <!-- PREV / NEXT NAVIGATION -->
     <div class="chapter-nav">
