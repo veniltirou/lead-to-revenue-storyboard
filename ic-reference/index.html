@@ -248,7 +248,7 @@
         Customer Data Management</a></li>    
       <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-force-automation-one-day/">
         A Day in Sales Force Automation</a></li>
-      <li><a href="#" class="active">
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-performance-management/">
         Sales Performance Management: The Landscape</a></li>      
       <li class="section-label">Chapters</li>
       <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/">
@@ -284,7 +284,7 @@
       <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/friday-debrief/">
         The Friday Debrief (OIC)</a></li>
       <li class="section-label">Reference</li>
-      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-reference/">
+      <li><a href="#" class="active">
         Incentive Compensation: Setup &amp; Data Reference</a></li>
       <li class="section-label">Connect</li>
       <li><a href="https://www.linkedin.com/in/veniltirou" target="_blank">
@@ -296,110 +296,119 @@
   <main class="main">
 
     <div class="chapter-header">
-      <div class="chapter-label">Foundation</div>
-      <h1>Sales Performance Management — The Landscape</h1>
-      <p>Before going deep on any one capability, it helps to see the whole
-      map. This chapter covers what Oracle Sales Performance Management (SPM)
-      actually is, the six capabilities that sit under it, how they chain
-      together, and — a detail that trips up a lot of people — how you
-      actually switch them on, which is not what the marketing name would
-      lead you to expect.</p>
+      <div class="chapter-label">Reference</div>
+      <h1>Incentive Compensation — Setup and Data Reference</h1>
+      <p>This page is a reference rather than a story. Chapter 3 follows a
+      single deal from Closed Won through to a paycheck; these two maps lay
+      out the whole surface area behind that journey — every setup screen and
+      scheduled process in dependency order, and which of that data can be
+      bulk loaded rather than entered by hand. They're meant to be consulted
+      while you work, not read start to finish.</p>
     </div>
 
     <div class="scenario-box">
-      <strong>Why this chapter exists:</strong> Incentive Compensation is the
-      capability most people meet first, because commission is the visible
-      part. But it doesn't work in isolation. It depends on territories to
-      decide who owns which accounts, and quotas to define what each rep is
-      measured against. Coaching, gamification and analytics sit alongside it,
-      closing the loop between what a rep does and what the business wants.
-      Understanding that landscape first makes every individual capability
-      easier to place.
+      <strong>How to use these:</strong> The first map answers <em>"what do I
+      have to build, and in what order?"</em> — useful when standing up a new
+      implementation or trying to place an unfamiliar screen. The second
+      answers <em>"can I load this data rather than key it in?"</em> — useful
+      at go-live, during a migration between instances, or any time the volume
+      makes manual entry impractical. Both are organised into the same seven
+      layers, so a screen and its import object sit under the same heading.
     </div>
 
     <div class="scenario-box" style="border-left-color:#3a5bd9; background-color:#f0f4ff;">
-      <strong>A note on terminology:</strong> "SPM" is a solution name Oracle
-      uses to describe a group of capabilities that work together. It is not a
-      product you install or a single switch you turn on. In the application
-      itself, these capabilities appear as separate <em>functional areas</em>
-      that you enable individually under the <strong>Sales</strong> offering.
-      The second diagram below shows that structure, because the gap between
-      the marketing name and the setup name is a genuine source of confusion.
+      <strong>A note on accuracy:</strong> Screen names, process names and
+      import object availability all vary by Oracle release and by what your
+      organisation is licensed for. Treat these maps as a guide to the
+      structure and the dependencies, and confirm the specifics in your own
+      environment: <em>Setup and Maintenance → Setup: Sales → Incentives</em>
+      for tasks, <em>Tools → Scheduled Processes</em> for the process catalog,
+      and <em>Tools → Import Management → Import Objects</em> for the
+      importable objects.
     </div>
 
-    <h2>The Umbrella</h2>
+    <h2>The Setup and Process Map</h2>
     <div class="storyboard">
-      <h3>Six Capabilities, One Purpose</h3>
-      <img src="SPM_Umbrella.png"
-           alt="The Sales Performance Management umbrella covering Territory Management, Quota Management, Incentive Compensation, Sales Coaching, Gamification and Sales Analytics" />
+      <h3>Every Screen and Process, in Dependency Order</h3>
+      <img src="IC_Setup_Process_Map.png"
+           alt="The complete Incentive Compensation screen and process map, organised into seven layers: rules of earning, people, sorting and crediting, cross-cutting setup, runtime, payment and reporting" />
       <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
       <div class="what-it-shows">
-        <strong>What this shows:</strong> The six capabilities Oracle groups
-        under Sales Performance Management, drawn as what the name suggests —
-        one canopy, six panels. They aren't a random collection; they chain
-        together in a specific order. <strong>Territory Management</strong>
-        decides who owns which accounts. <strong>Quota Management</strong> sets
-        the target each rep carries against that territory. <strong>Incentive
-        Compensation</strong> calculates and pays what they earn against that
-        quota — the engine covered in depth in Chapter 3. Then <strong>Sales
-        Coaching</strong>, <strong>Gamification</strong> and <strong>Sales
-        Analytics</strong> close the loop: developing the behaviour, motivating
-        it, and making all of it visible. Read left to right, it's the lifecycle
-        of a sales rep's year — where they sell, what they're aiming at, what
-        they earn, and how they improve. Each panel is a distinct capability,
-        but they share a single frame, and a gap in any one of them is felt
-        across the rest.
+        <strong>What this shows:</strong> Sixty-seven screens and processes,
+        bucketed by what they configure and ordered by what depends on what.
+        Read top to bottom: you cannot build a layer before the one above it
+        exists. Parts 1 to 4 are all setup — the rules of earning, the people
+        those rules apply to, the rules for sorting and crediting transactions,
+        and the calendar everything is measured against. None of it produces
+        anything on its own. Part 5 is where a real deal arrives and moves
+        through import, crediting, classification and calculation to become an
+        earning. Part 6 converts that earning into money and sends it to
+        Payroll. Part 7 makes all of it visible. The colour coding separates
+        setup screens from bulk imports, from the processes you run, from the
+        outputs they produce.
+        <br><br>
+        <strong>The detail worth carrying away:</strong> there are
+        <em>four</em> deploy gates on this map — compensation plans,
+        participant assignment rules, classification rules and credit rules.
+        Defining an object and activating it are always two separate acts in
+        this system, and forgetting the second is the most common reason a
+        configuration that looks entirely correct produces nothing at all.
       </div>
     </div>
 
-    <h2>Enabling It</h2>
+    <h2>Bulk Import Support</h2>
     <div class="storyboard">
-      <h3>Offerings, Functional Areas and Tasks</h3>
-      <img src="SPM_Setup_Functional_Areas.png"
-           alt="How SPM capabilities are enabled - the Offering to Functional Area to Task hierarchy, the Navigator path through My Enterprise and Offerings, and the list of functional areas under the Sales offering" />
+      <h3>Which Data You Can Load Rather Than Key In</h3>
+      <img src="IC_Bulk_Import_Support.png"
+           alt="The twelve Incentive Compensation import objects available through Import Management, grouped by setup layer" />
       <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
       <div class="what-it-shows">
-        <strong>What this shows:</strong> How the capabilities above translate
-        into things you actually configure. Oracle's structure is
-        <strong>Offering → Functional Area → Task</strong>: an offering (like
-        Sales) contains functional areas, each functional area contains the
-        tasks you open to configure it, and features are opt-in toggles within
-        them. There is no single "SPM" switch — you enable functional areas one
-        by one under the Sales offering, via <em>Navigator → My Enterprise →
-        Offerings → Sales → Opt In Features</em>. Two things are worth noticing.
-        First, the names don't match the marketing: the functional areas are
-        called <strong>Incentives</strong> and <strong>Quotas</strong>, not
-        "Incentive Compensation" and "Quota Management." Second, only three of
-        the six capabilities appear as functional areas at all — Sales
-        Coaching, Gamification and Analytics are delivered through the Sales
-        application and its dashboards rather than as separate setup areas. The
-        solution grouping and the setup structure simply don't map one-to-one,
-        and knowing that saves a lot of hunting.
+        <strong>What this shows:</strong> The Incentive Compensation objects
+        available through Import Management, placed against the same layers as
+        the map above. Plans come in as a parent with two children —
+        Compensation Plan, then Plan Flex and Plan Component — and rules split
+        three ways across the rule itself, where it's assigned, and the
+        attribute values inside it. Transactions land in a <em>staging</em>
+        table first; Collect Transactions is what moves them into Incentive
+        Compensation proper.
+        <br><br>
+        <strong>Two practical points.</strong> First, child objects need their
+        parent's internal ID, so a bulk plan load is really four steps: export
+        the parent to obtain the IDs, build the child files against those IDs,
+        import the parent, then import the children. Second, notice which
+        layers are absent — periods and currency rates, payment batches,
+        paysheets and reporting have no import objects at all. Import
+        Management reaches the setup and inbound-data end of the module and
+        stops there, because the rest is what the business <em>runs</em> rather
+        than what you load. That boundary is a reasonable way to guess, for any
+        unfamiliar screen, whether a bulk-load path is likely to exist behind
+        it.
       </div>
     </div>
 
-    <h2>Where to Go Next</h2>
+    <h2>Where the Story Is</h2>
     <div class="what-it-shows">
-      <strong>The takeaway:</strong> SPM is the map; the capabilities under it
-      are the territory. Most of the depth in this series so far sits in one of
-      those six boxes — <strong>Chapter 3: Incentive Compensation</strong>
-      follows a single deal from Closed Won through crediting, calculation and
-      payment, and is the natural next step from here. The remaining
-      capabilities each have their own chapters ahead of them; this page is the
-      frame they'll hang on.
+      <strong>If you want the narrative version:</strong>
+      <strong>Chapter 3 — Oracle Incentive Compensation</strong> follows James
+      through a single $78,500 deal, from the moment he marks it Closed Won to
+      the payment landing in his June paycheck, and explains each concept as
+      the story reaches it. These maps are the surface area; that chapter is
+      the path through it. For where Incentive Compensation sits among the
+      wider Sales Performance Management capabilities, see the Foundation
+      chapter on <strong>Sales Performance Management</strong>.
     </div>
 
     <!-- PREV / NEXT NAVIGATION -->
     <div class="chapter-nav">
       <a class="prev"
-         href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-force-automation-one-day/">
-        <div class="nav-label">← Previous</div>
-        <div class="nav-title">A Day in Sales Force Automation</div>
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/incentive-compensation/">
+        <div class="nav-label">← The narrative version</div>
+        <div class="nav-title">Chapter 3: Incentive Compensation</div>
       </a>
       <a class="next"
-         href="https://veniltirou.github.io/lead-to-revenue-storyboard/incentive-compensation/">
-        <div class="nav-label">Goes deep on one of these →</div>
-        <div class="nav-title">Chapter 3: Incentive Compensation</div>
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-performance-management/">
+        <div class="nav-label">The wider picture →</div>
+        <div class="nav-title">Sales Performance Management: The Landscape</div>
       </a>
     </div>
 
