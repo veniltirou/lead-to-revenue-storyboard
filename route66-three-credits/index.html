@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chapter 3: Oracle Incentive Compensation — Oracle CX Storyboard Series</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 280px;
+      min-width: 280px;
+      background-color: #1a1a2e;
+      color: #ccc;
+      padding: 30px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .sidebar .logo {
+      padding: 0 20px 24px 20px;
+      border-bottom: 1px solid #333;
+      margin-bottom: 20px;
+    }
+    .sidebar .logo h2 { color: #ff6b2b; font-size: 1em; line-height: 1.5; }
+    .sidebar .logo p { color: #888; font-size: 0.78em; margin-top: 6px; }
+    .sidebar ul { list-style: none; }
+    .sidebar ul .section-label {
+      color: #888;
+      font-size: 0.72em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 16px 20px 6px 20px;
+    }
+    .sidebar ul li a {
+      display: block;
+      padding: 9px 20px;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.88em;
+      border-left: 3px solid transparent;
+      transition: all 0.2s;
+    }
+    .sidebar ul li a:hover {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.active {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.coming-soon {
+      color: #555;
+      cursor: default;
+      font-style: italic;
+    }
+    .sidebar ul li a.coming-soon:hover {
+      background: none;
+      border-left: 3px solid transparent;
+      color: #555;
+    }
+    .main {
+      margin-left: 280px;
+      padding: 40px 50px;
+      flex: 1;
+      max-width: 900px;
+    }
+    .chapter-header { margin-bottom: 30px; }
+    .chapter-header .chapter-label {
+      font-size: 0.8em;
+      color: #ff6b2b;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .chapter-header h1 { color: #c74b00; font-size: 1.8em; margin-bottom: 10px; }
+    .chapter-header p { color: #555; line-height: 1.7; }
+    .scenario-box {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.95em;
+      line-height: 1.7;
+      color: #444;
+    }
+    .characters-box {
+      background-color: #f0f4ff;
+      border-left: 4px solid #3a5bd9;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.92em;
+      line-height: 1.8;
+      color: #444;
+    }
+    .characters-box h3 {
+      color: #3a5bd9;
+      font-size: 0.9em;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    h2 {
+      color: #333;
+      font-size: 1.15em;
+      margin: 36px 0 16px 0;
+      border-bottom: 2px solid #ff6b2b;
+      padding-bottom: 8px;
+    }
+    .storyboard {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 24px;
+      margin: 28px 0;
+    }
+    .storyboard h3 {
+      color: #c74b00;
+      font-size: 1.05em;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    .storyboard img {
+      width: 100%;
+      height: auto;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      margin: 12px 0;
+    }
+    .storyboard .tip {
+      font-style: italic;
+      color: #999;
+      font-size: 0.85em;
+      margin: 6px 0 14px 0;
+    }
+    .storyboard .what-it-shows {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      padding: 12px 16px;
+      font-size: 0.92em;
+      line-height: 1.7;
+      color: #444;
+      border-radius: 0 4px 4px 0;
+    }
+    .storyboard .what-it-shows strong { color: #c74b00; }
+    table.concepts {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 8px 0;
+      font-size: 0.9em;
+    }
+    table.concepts th, table.concepts td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+    table.concepts th {
+      background-color: #fff8f0;
+      color: #c74b00;
+      border-bottom: 2px solid #ff6b2b;
+    }
+    table.concepts td.panelref {
+      white-space: nowrap;
+      color: #999;
+    }
+
+    .chapter-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+      padding-top: 24px;
+      border-top: 2px solid #eee;
+      gap: 16px;
+    }
+    .chapter-nav a {
+      display: block;
+      padding: 16px 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #333;
+      transition: all 0.2s;
+      flex: 1;
+    }
+    .chapter-nav a:hover {
+      border-color: #ff6b2b;
+      box-shadow: 0 2px 8px rgba(199,75,0,0.15);
+    }
+    .chapter-nav .prev { text-align: left; }
+    .chapter-nav .next { text-align: right; }
+    .chapter-nav .nav-label {
+      font-size: 0.75em;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .chapter-nav .nav-title {
+      font-weight: bold;
+      color: #c74b00;
+      font-size: 0.95em;
+    }
+    .footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid #ddd;
+      font-size: 0.82em;
+      color: #999;
+    }
+    .footer a { color: #c74b00; }
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 20px; }
+    }
+  </style>
+  <!-- GoatCounter analytics -->
+  <script data-goatcounter="https://veniltirou.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="logo">
+      <h2>Oracle CX Storyboard Series</h2>
+      <p>ABC Corp → XYZ Corp</p>
+    </div>
+    <ul>
+      <li class="section-label">Getting Started</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">
+        📋 Table of Contents</a></li>
+      <li class="section-label">Foundation</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/customer-data-management/">
+        Customer Data Management</a></li>    
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-force-automation-one-day/">
+        A Day in Sales Force Automation</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-performance-management/">
+        Sales Performance Management: The Landscape</a></li>      
+      <li class="section-label">Chapters</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/">
+        1. Lead-to-Revenue Overview</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">
+        2. Subscription Management</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/incentive-compensation/">
+        3. Incentive Compensation</a></li>
+      <li><a href="#" class="coming-soon">
+        4. Fusion Field Service (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        5. CX Sales & CPQ (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        6. Order Management (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        7. Fusion Service (soon)</a></li>
+      <li class="section-label">Advanced</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/usage-billing-deep-dive/">
+        Usage Billing: Allowance, Rollover &amp; Overage (Subscription Management)</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/compound-amendment-deep-dive/">
+        The Compound Mid-Term Amendment (Subscription Management)</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/renewal-promotion-deep-dive/">
+        The Anniversary Renewal Promotion (Subscription Management)</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/quote-to-cash/">
+        Quote-to-Cash Across Oracle Fusion (Subscription Management Integrations)</a></li>      
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-under-the-hood/">
+        OIC Under the Hood: What Home, Sweet Home Never Sees (Integrations)</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-replenishment-one-off/">
+        The One-Off: OIC Replenishment for a Single Hilltop Site (Integrations)</a></li>
+      <li><a href="#" class="active">
+        One Deal, Three Credits: The Route 66 Story (Incentive Compensation)</a></li>
+                  <li class="section-label">Integrations</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-integrations/">
+        Oracle Integration Cloud</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/friday-debrief/">
+        The Friday Debrief (OIC)</a></li>
+      <li class="section-label">Reference</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-reference/">
+        Incentive Compensation: Setup &amp; Data Reference</a></li>
+      <li class="section-label">Connect</li>
+      <li><a href="https://www.linkedin.com/in/veniltirou" target="_blank">
+        🔗 LinkedIn Profile</a></li>
+    </ul>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <div class="chapter-header">
+      <div class="chapter-label">Advanced · Incentive Compensation</div>
+      <div style="display:flex; align-items:flex-start; gap:20px;">
+        <img src="route66_emblem.png" alt="Route 66 Automobiles emblem"
+             style="width:78px; height:auto; flex:0 0 auto; margin-top:4px;" />
+        <h1 style="margin:0;">One Deal, Three Credits — The Route 66 Automobiles Story</h1>
+      </div>
+      <p>Chapter 3 followed a single deal from Closed Won to a paycheck, through
+      one person's plan. This chapter asks a harder question: when three
+      different people all had a hand in the same deal, who gets paid, and how
+      much? The answer is more surprising than it sounds — the total credit
+      awarded can exceed the deal's own value, and that isn't a bug.</p>
+    </div>
+
+    <div class="scenario-box">
+      <strong>Business Scenario:</strong> James closes ABC Corporation's largest
+      deal of the year with <strong>Route 66 Automobiles</strong>, a dealership
+      group — vending machines across showroom floors, service waiting areas and
+      staff break rooms at eleven sites. It's a $150,000 contract. But James
+      didn't close it alone. <strong>Sarah</strong> manages him.
+      <strong>Jeff</strong> was brought in as the multi-site specialist who
+      designed the rollout. All three earn from this one transaction, under
+      three different plans, by three different rules.
+    </div>
+
+    <div class="scenario-box" style="border-left-color:#3a5bd9; background-color:#f0f4ff;">
+      <strong>A note on the numbers:</strong> The credit percentages, rates and
+      resulting earnings in this chapter follow Oracle's own instructor-led
+      training material for Fusion Incentive Compensation. The three-way split
+      shown here — direct, rollup and overlay on a single transaction — is the
+      standard pattern Oracle uses to teach why transactions and credits are
+      kept as separate objects. Every figure has been checked to reconcile.
+    </div>
+
+    <h2>Scene 1 — The Biggest Deal of the Year</h2>
+    <div class="storyboard">
+      <img src="Scene01.png" alt="James stands beside a screen showing the Route 66 Automobiles opportunity marked Closed Won at $150,000, holding a signed contract" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> James marks the Route 66 Automobiles opportunity <strong>Closed Won</strong>
+      in Oracle CX Sales — $150,000 for vending across the dealer group's
+      showrooms, service lounges and staff break rooms. It is ABC's largest
+      single order this year. The transaction flows into Oracle Incentive
+      Compensation automatically, and from this point on the interesting
+      question is no longer whether it closed, but who gets paid for it.</div>
+    </div>
+
+    <h2>Scene 2 — Three People, One Deal</h2>
+    <div class="storyboard">
+      <img src="Scene02.png" alt="James, Jeff and Sarah standing together in the office" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> James closed it, but he wasn't alone. <strong>Sarah Johnson</strong> is his
+      sales manager. <strong>Jeff</strong> is ABC's multi-site solutions
+      specialist, brought in to design the rollout across eleven Route 66
+      locations. All three will be paid on this deal. Understanding <em>why</em>
+      each of them is credited, and why the amounts differ so sharply, is what
+      the rest of this chapter is about.</div>
+    </div>
+
+    <h2>Scene 3 — Transaction, Credit and Earning Are Three Different Things</h2>
+    <div class="storyboard">
+      <img src="Scene03.png" alt="Three linked panels defining transaction, credit and earning, with the Route 66 deal as the worked example" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> The distinction everything else depends on, and the most common source of
+      confusion in Incentive Compensation. A <strong>transaction</strong> is the
+      deal itself ($150,000). A <strong>credit</strong> is an award to a specific
+      person for that deal. An <strong>earning</strong> is what a credit becomes
+      once a formula has run against it. They are three separate objects — and
+      the reason they are separate is precisely because multiple people can be
+      credited for one transaction. If credit were simply a field on the deal,
+      only one person could ever be paid.</div>
+    </div>
+
+    <h2>Scene 4 — Direct Credit — James</h2>
+    <div class="storyboard">
+      <img src="Scene04.png" alt="James beside his credit calculation: $150,000 credit at 8% producing $12,000" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> James owns the Route 66 opportunity and closed it, so he receives
+      <strong>100% Direct Credit — the full $150,000</strong>. His Enterprise
+      Sales Plan pays <strong>8%</strong>, giving him <strong>$12,000</strong>.
+      Direct credit is the simplest of the three types and the one most people
+      picture when they think of commission. Note that it is not a share of a
+      pool: James is credited with the entire deal value, and crediting other
+      people does nothing to reduce it.</div>
+    </div>
+
+    <h2>Scene 5 — Rollup Credit — Sarah</h2>
+    <div class="storyboard">
+      <img src="Scene05.png" alt="Sarah beside her credit calculation: $150,000 rollup credit at 1.5% producing $2,250" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> Sarah did not close this deal. She is credited because <strong>she manages
+      James</strong> — rollup credit flows <em>up</em> the management line
+      automatically whenever anyone in the team sells. She too receives
+      <strong>100% credit, the same full $150,000</strong>, but her Management
+      Override Plan pays a deliberately low <strong>1.5%</strong>, giving
+      <strong>$2,250</strong>. The credit reflects that the deal happened in her
+      team; the rate reflects that she did not sell it herself. Changing either
+      changes the message the plan sends.</div>
+    </div>
+
+    <h2>Scene 6 — Overlay Credit — Jeff</h2>
+    <div class="storyboard">
+      <img src="Scene06.png" alt="Jeff beside his credit calculation: $75,000 overlay credit at 10% producing $7,500" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> Jeff is not James's manager and does not report to him — he sits
+      <em>beside</em> the sales line rather than above it. He was brought in for
+      his expertise in multi-site deployments, and <strong>overlay credit</strong>
+      exists for exactly this: specialists who contribute to deals they will
+      never own. He receives <strong>50% — $75,000</strong>, a partial award, at
+      the highest rate of the three, <strong>10%</strong>, giving
+      <strong>$7,500</strong>. He earns more than Sarah despite being credited
+      with half as much, because ABC wants specialists genuinely motivated to
+      support deals that will never carry their name.
+      <br><br>
+      <strong>The distinction worth holding onto:</strong> Sarah is credited
+      because she is <em>above</em> James in the hierarchy. Jeff is credited
+      because he worked <em>alongside</em> him. Same deal, different
+      relationships, different credit types, different plans.</div>
+    </div>
+
+    <h2>Scene 7 — The Numbers Don't Add Up — and That Is Correct</h2>
+    <div class="storyboard">
+      <img src="Scene07.png" alt="The three credits summed to $375,000 against the total cost of $21,750" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> Add the credits together: $150,000 + $150,000 + $75,000 =
+      <strong>$375,000 of credit awarded on a $150,000 deal — 250% of its
+      value</strong>. This looks wrong and isn't. Oracle tracks each credit
+      independently because each one feeds a different person's plan; credit was
+      never meant to sum to the deal value. What matters commercially is not
+      total credit but total <em>cost</em>: $12,000 + $2,250 + $7,500 =
+      <strong>$21,750</strong>, or <strong>14.5%</strong> of the deal. That is
+      the number ABC budgets against, and confusing the two is the most common
+      misreading of an incentive compensation report.</div>
+    </div>
+
+    <h2>Scene 8 — Three Plans, Three Formulas</h2>
+    <div class="storyboard">
+      <img src="Scene08.png" alt="A table comparing the three plans, their credit percentages, rates and resulting earnings" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> Each person's credit lands on a different plan, and the rates encode ABC's
+      intent rather than being arbitrary. James's 8% rewards closing. Sarah's
+      1.5% acknowledges leadership without paying her as though she sold it.
+      Jeff's 10% is deliberately the highest rate on the smallest credit base.
+      The two levers work independently: <strong>credit percentage</strong>
+      decides how much of the deal counts for someone, while <strong>rate</strong>
+      decides what that is worth to them. ABC could halve Jeff's credit to 25%
+      and double his rate to 20% and he would earn exactly the same $7,500 — the
+      arithmetic identical, the message to the participant quite different.</div>
+    </div>
+
+    <h2>Scene 9 — The Nine Stages</h2>
+    <div class="storyboard">
+      <img src="Scene09.png" alt="The nine-stage lifecycle from Design through to Dispute, with the Route 66 deal's figures at each stage" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> The complete lifecycle, and where crediting sits within it. Stages ①
+      <strong>Design</strong> and ② <strong>Assign</strong> happened before the
+      deal existed — the plans were configured and the three participants placed
+      on them. Everything from ③ <strong>Import</strong> onward is triggered by
+      the transaction itself: it is classified, credited three ways, each
+      participant's attainment is updated, formulas run, and paysheets are
+      released. Stage ⑨ <strong>Dispute</strong> is the loop back, if anyone
+      disagrees with what they see.</div>
+    </div>
+
+    <h2>Scene 10 — Lisa Explains the Design</h2>
+    <div class="storyboard">
+      <img src="Scene10.png" alt="Lisa explains the one-deal-three-credits diagram on a whiteboard to James" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> Lisa, ABC's compensation administrator, explains the reasoning to James at
+      the whiteboard. Crediting rules are configured once and then applied
+      automatically to every transaction that qualifies — which is what makes the
+      whole arrangement scalable. Without separate credit objects, ABC would
+      need either three copies of every transaction or a manual process to work
+      out who earned what, and both fall apart at volume.</div>
+    </div>
+
+    <h2>Scene 11 — The Whole Flow</h2>
+    <div class="storyboard">
+      <img src="Scene11.png" alt="The complete flow: one $150,000 transaction fanning into three credit paths and converging on $21,750 of cost" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> Everything in one view. The $150,000 transaction arrives, fans into three
+      credits, each meets a different plan at a different rate, and the three
+      earnings converge on a total cost of <strong>$21,750</strong>. One sale,
+      three people paid, three sets of rules — and a total that remains a
+      sensible fraction of the deal's value.</div>
+    </div>
+
+    <h2>Why This Chapter Matters</h2>
+    <div class="what-it-shows">
+      <strong>The takeaway:</strong> the separation of transaction, credit and
+      earning is not bureaucratic layering — it is what makes team selling
+      possible to compensate at all. Once you see that a credit is an
+      <em>award to a person</em> rather than a property of the deal, the
+      arithmetic that looked broken becomes obvious: three people were credited
+      because three people contributed, and each was paid according to a plan
+      written for the part they played. The figure that alarms people
+      ($375,000 of credit) measures contribution. The figure that matters
+      ($21,750 of cost) measures spend. They were never the same number.
+    </div>
+
+    <h2>Concepts Covered</h2>
+    <table class="concepts">
+      <tr><th>Concept</th><th>What it means</th><th class="panelref">Scene</th></tr>
+      <tr><td>Transaction</td><td>The deal itself — one record of one sale, with a value, a customer and a date, but no owner yet. It is the input to crediting, not the thing anyone is paid on directly.</td><td class="panelref">3</td></tr>
+      <tr><td>Credit</td><td>An award to a specific person for a transaction. This is where a deal acquires an owner — and because credit is its own object rather than a field on the deal, one transaction can produce several credits to several people.</td><td class="panelref">3</td></tr>
+      <tr><td>Earning</td><td>What a credit becomes once a formula has run against it. The same credit meeting different plans produces different earnings, which is why three people credited on one deal are paid three different amounts.</td><td class="panelref">3</td></tr>
+      <tr><td>Direct Credit</td><td>Credit to the rep who owns and closes the opportunity, normally 100% of the deal value. It is not a share of a pool: crediting others does nothing to reduce it.</td><td class="panelref">4</td></tr>
+      <tr><td>Rollup Credit</td><td>Credit that flows <em>up</em> the management hierarchy automatically whenever anyone in the team sells. The manager is credited with the full deal value but paid at a much lower rate, acknowledging leadership without paying as though they had sold it.</td><td class="panelref">5</td></tr>
+      <tr><td>Overlay Credit</td><td>Credit for a specialist who supports a deal from <em>outside</em> the selling rep's management line — typically a partial percentage at a high rate, so that specialists are motivated to support deals they will never own.</td><td class="panelref">6</td></tr>
+      <tr><td>Credit independence</td><td>Each participant is calculated separately against their own plan. Rollup and overlay credit do not reduce the closing rep's direct credit, and none of the three competes with the others.</td><td class="panelref">4&ndash;7</td></tr>
+      <tr><td>Total credit vs total cost</td><td>Credit can exceed the transaction value — here $375,000 of credit on a $150,000 deal. Credit measures contribution; only the sum of the <em>earnings</em> ($21,750) measures what the company actually spends.</td><td class="panelref">7</td></tr>
+      <tr><td>Credit percentage and rate</td><td>The two independent levers of plan design. Credit percentage decides how much of a deal counts for someone; rate decides what that is worth. The same earning can be produced by very different combinations, each sending a different message.</td><td class="panelref">8</td></tr>
+      <tr><td>Multiple plans per transaction</td><td>One transaction can be processed against several compensation plans simultaneously, each with its own measures, formula and rate table.</td><td class="panelref">5, 6, 8</td></tr>
+      <tr><td>Crediting rules</td><td>Configured once and applied automatically to every qualifying transaction — a direct rule for the owning rep, a rollup rule that walks the management hierarchy, and overlay rules for named specialists.</td><td class="panelref">4&ndash;6, 10</td></tr>
+      <tr><td>The nine-stage lifecycle</td><td>Design, Assign, Import, Classify, Credit, Measure, Calculate, Payment, Dispute. The first two are configured in advance; the rest are triggered by a transaction arriving.</td><td class="panelref">9</td></tr>
+    </table>
+
+    <!-- PREV / NEXT NAVIGATION -->
+    <div class="chapter-nav">
+      <a class="prev"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/incentive-compensation/">
+        <div class="nav-label">← Builds on</div>
+        <div class="nav-title">Chapter 3: Incentive Compensation</div>
+      </a>
+      <a class="next"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-reference/">
+        <div class="nav-label">The reference maps →</div>
+        <div class="nav-title">Incentive Compensation: Setup &amp; Data Reference</div>
+      </a>
+    </div>
+
+    <div class="footer">
+      <p>Created by <a href="https://www.linkedin.com/in/veniltirou"
+         target="_blank">Venil Tirou</a> — Oracle CX Functional Consultant</p>
+      <p style="margin-top:6px;">© 2026 Venil Tirou. All rights reserved.
+      This is an independently created educational resource.
+      Not affiliated with or endorsed by Oracle Corporation.</p>
+    </div>
+
+  </main>
+</body>
+</html>
