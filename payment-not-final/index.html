@@ -312,14 +312,23 @@
 
     <div class="scenario-box">
       <strong>Business Scenario:</strong> James is a sales representative at ABC
-      Corporation. His income should swing with his deals — some months three
-      close, some months none — but his rent does not. Lisa, ABC's compensation
-      analyst, configures a <strong>draw</strong> so his pay never drops below a
-      floor, and a <strong>recovery</strong> so the company gets those advances
-      back out of his good months. Separately, when a customer fails to pay an
-      invoice James was already commissioned on, a <strong>takeback</strong>
-      quietly reverses that commission — and a <strong>giveback</strong>
-      restores it if the customer eventually pays.
+      Corporation, and this chapter follows him through
+      <strong>two separate situations</strong> — deliberately, because they
+      illustrate opposite halves of the same idea.
+      <br><br>
+      <strong>In the first</strong>, his income should swing with his deals —
+      some months three close, some months none — but his rent does not. Lisa,
+      ABC's compensation analyst, configures a <strong>draw</strong> so his pay
+      never drops below a floor, and a <strong>recovery</strong> so the company
+      gets those advances back out of his good months.
+      <br><br>
+      <strong>In the second</strong>, an entirely different deal and a later
+      year: James closes a contract with <strong>Home, Sweet Home</strong>, the
+      realty services client from the OIC chapters, and is paid commission on
+      it. Months afterwards HSH fails to pay part of the invoice. A
+      <strong>takeback</strong> quietly reverses the commission he has already
+      received — and a <strong>giveback</strong> would restore it if HSH
+      eventually pays.
     </div>
 
     <div class="scenario-box" style="border-left-color:#3a5bd9; background-color:#f0f4ff;">
@@ -332,7 +341,62 @@
       paysheet — are all documented Oracle behaviour rather than illustration.
     </div>
 
-    <h2>Scene 1 — Paid Before It Is Earned: Draws and Recovery</h2>
+    <h2>Two Setups, Two Behaviours</h2>
+    <p style="margin:0 0 14px 0;">Both situations in this chapter involve the
+    same person, the same module and the same kind of money. What makes them
+    behave so differently is <strong>configuration</strong> — two distinct
+    setups, each producing its own outcome. Worth holding these side by side
+    before reading either one.</p>
+
+    <table class="concepts">
+      <tr>
+        <th style="width:22%">&nbsp;</th>
+        <th style="width:39%">Setup A — the draw arrangement</th>
+        <th style="width:39%">Setup B — the unpaid-invoice arrangement</th>
+      </tr>
+      <tr>
+        <td><strong>The problem it solves</strong></td>
+        <td>A rep's income swings with the deal cycle, but their outgoings don't. The company absorbs the gap.</td>
+        <td>Commission is paid on a sale before the customer's money actually arrives. Sometimes it never does.</td>
+      </tr>
+      <tr>
+        <td><strong>What is configured</strong></td>
+        <td>A <strong>payment plan</strong> carrying a minimum payment amount, a duration, whether it is recoverable, and when recovery begins.</td>
+        <td>A <strong>system parameter</strong> for days allowed after the invoice due date, plus a payment plan with a <strong>minimum of zero</strong>.</td>
+      </tr>
+      <tr>
+        <td><strong>Which way money moves</strong></td>
+        <td><strong>Forward.</strong> The company advances money the rep has not yet earned, then reclaims it later.</td>
+        <td><strong>Backward.</strong> Money already paid is reversed once the sale fails to hold.</td>
+      </tr>
+      <tr>
+        <td><strong>The mechanism</strong></td>
+        <td><strong>Draw</strong> tops the payment up to the floor; <strong>recovery</strong> collects those advances from later earnings.</td>
+        <td><strong>Takeback</strong> creates a negative credit transaction; <strong>giveback</strong> restores it if the invoice is later paid.</td>
+      </tr>
+      <tr>
+        <td><strong>The protection</strong></td>
+        <td>Recovery can never push the payment below the guaranteed floor.</td>
+        <td>The zero minimum prevents a paysheet showing the rep owes the company money.</td>
+      </tr>
+      <tr>
+        <td><strong>In this chapter</strong></td>
+        <td>Situation 1 — six periods of James's own earnings, on a $1,000 floor.</td>
+        <td>Situation 2 — a separate Home, Sweet Home deal, later, with no draw running.</td>
+      </tr>
+    </table>
+
+    <div class="what-it-shows" style="margin-top:16px;">
+      <strong>The point of putting them together:</strong> neither behaviour is
+      something Incentive Compensation does on its own. Both are consequences of
+      choices someone made in setup — a floor amount, a recovery start date, a
+      grace period, a minimum of zero. Change those settings and the same events
+      produce different outcomes for the same rep. That is why the two
+      situations below are best read as <em>two configurations</em> rather than
+      two stories.
+    </div>
+
+    <h2>Situation 1 <span style="font-weight:400;font-size:0.8em;color:#8a6a3a;">(Setup A)</span> — Paid Before It Is Earned: Draws and Recovery</h2>
     <div class="storyboard">
       <img src="Scene01.png"
            alt="A bar chart of six periods showing earnings varying while pay stays flat at the one thousand dollar floor, with top-ups in amber and recoveries in red, and Lisa explaining the mechanism to James beneath" />
@@ -364,16 +428,23 @@
       </div>
     </div>
 
-    <h2>Scene 2 — Reclaimed After It Is Paid: Takeback and Giveback</h2>
+    <h2>Situation 2 <span style="font-weight:400;font-size:0.8em;color:#8a6a3a;">(Setup B)</span> — A Different Deal: Reclaimed After It Is Paid</h2>
     <div class="storyboard">
       <img src="Scene02.png"
            alt="A three-step timeline showing a six thousand dollar commission paid in March, a fifteen hundred dollar takeback in June when the invoice goes unpaid, and the net payment in July, with the negative paysheet scenarios beneath" />
       <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
       <div class="what-it-shows">
-        <strong>What this shows:</strong> The mirror image of a draw. Here the
-        money has already been paid, and something later makes it unearned.
-        James closes Home, Sweet Home in March and is paid $6,000 in April. In
-        June, part of that invoice goes unpaid and the grace period lapses.
+        <strong>A different deal entirely — and Setup B.</strong> Set the draw aside — this
+        is a separate situation, with a separate customer and its own timeline.
+        James closes a vending contract with <strong>Home, Sweet Home</strong>,
+        the realty services client familiar from the OIC chapters, and his
+        commission of <strong>$6,000</strong> is paid in April. Everything looks
+        settled.
+        <br><br>
+        <strong>What this shows:</strong> the mirror image of a draw. There, the
+        company paid James money he had not yet earned. Here, the money has
+        already reached him and something later makes it unearned. In June, HSH
+        still has not paid part of that invoice, and the grace period lapses.
         <br><br>
         The system does not send anyone to ask for the money back. It creates a
         <strong>new transaction for a negative amount</strong> of the sales
@@ -381,6 +452,12 @@
         his next payment. In July he earns $4,200, the takeback deducts $1,500,
         and he is paid $2,700. Recovery happens quietly, through the normal pay
         cycle.
+        <br><br>
+        Note that James is no longer on a draw here — that arrangement ended in
+        Situation 1 — which is why his July pay reflects his actual earnings
+        rather than a flat floor. Had a draw still been running, the guardrail
+        from Situation 1 would have applied and his payment could not have
+        fallen below it.
         <br><br>
         The setting behind it is a business decision rather than a technical
         one: a system parameter defines how many days may pass after the invoice
@@ -422,7 +499,7 @@
 
     <h2>Concepts Covered</h2>
     <table class="concepts">
-      <tr><th>Concept</th><th>What it means</th><th class="panelref">Scene</th></tr>
+      <tr><th>Concept</th><th>What it means</th><th class="panelref">Situation</th></tr>
       <tr><td>Draw</td><td>A guaranteed minimum payment per period, configured on a payment plan. Whatever the participant actually earns, the draw ensures at least the floor amount reaches them — smoothing income that would otherwise swing with the deal cycle.</td><td class="panelref">1</td></tr>
       <tr><td>Draw adjustment</td><td>The top-up added when earnings fall short of the floor. It is an advance rather than a gift, so it is added to a running balance the participant owes.</td><td class="panelref">1</td></tr>
       <tr><td>Recovery</td><td>How the company collects those advances back — out of earnings above the floor in later periods, rather than by requesting repayment. Recovery can be set to start immediately or after a delay.</td><td class="panelref">1</td></tr>
