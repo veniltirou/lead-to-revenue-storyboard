@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chapter 3: Oracle Incentive Compensation — Oracle CX Storyboard Series</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 280px;
+      min-width: 280px;
+      background-color: #1a1a2e;
+      color: #ccc;
+      padding: 30px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .sidebar .logo {
+      padding: 0 20px 24px 20px;
+      border-bottom: 1px solid #333;
+      margin-bottom: 20px;
+    }
+    .sidebar .logo h2 { color: #ff6b2b; font-size: 1em; line-height: 1.5; }
+    .sidebar .logo p { color: #888; font-size: 0.78em; margin-top: 6px; }
+    .sidebar ul { list-style: none; }
+    .sidebar ul .section-label {
+      color: #888;
+      font-size: 0.72em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 16px 20px 6px 20px;
+    }
+    .sidebar ul li a {
+      display: block;
+      padding: 9px 20px;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.88em;
+      border-left: 3px solid transparent;
+      transition: all 0.2s;
+    }
+    .sidebar ul li a:hover {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.active {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.coming-soon {
+      color: #555;
+      cursor: default;
+      font-style: italic;
+    }
+    .sidebar ul li a.coming-soon:hover {
+      background: none;
+      border-left: 3px solid transparent;
+      color: #555;
+    }
+    .main {
+      margin-left: 280px;
+      padding: 40px 50px;
+      flex: 1;
+      max-width: 900px;
+    }
+    .chapter-header { margin-bottom: 30px; }
+    .chapter-header .chapter-label {
+      font-size: 0.8em;
+      color: #ff6b2b;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .chapter-header h1 { color: #c74b00; font-size: 1.8em; margin-bottom: 10px; }
+    .chapter-header p { color: #555; line-height: 1.7; }
+    .scenario-box {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.95em;
+      line-height: 1.7;
+      color: #444;
+    }
+    .characters-box {
+      background-color: #f0f4ff;
+      border-left: 4px solid #3a5bd9;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.92em;
+      line-height: 1.8;
+      color: #444;
+    }
+    .characters-box h3 {
+      color: #3a5bd9;
+      font-size: 0.9em;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    h2 {
+      color: #333;
+      font-size: 1.15em;
+      margin: 36px 0 16px 0;
+      border-bottom: 2px solid #ff6b2b;
+      padding-bottom: 8px;
+    }
+    .storyboard {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 24px;
+      margin: 28px 0;
+    }
+    .storyboard h3 {
+      color: #c74b00;
+      font-size: 1.05em;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    .storyboard img {
+      width: 100%;
+      height: auto;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      margin: 12px 0;
+    }
+    .storyboard .tip {
+      font-style: italic;
+      color: #999;
+      font-size: 0.85em;
+      margin: 6px 0 14px 0;
+    }
+    .storyboard .what-it-shows {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      padding: 12px 16px;
+      font-size: 0.92em;
+      line-height: 1.7;
+      color: #444;
+      border-radius: 0 4px 4px 0;
+    }
+    .storyboard .what-it-shows strong { color: #c74b00; }
+    table.concepts {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 8px 0;
+      font-size: 0.9em;
+    }
+    table.concepts th, table.concepts td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+    table.concepts th {
+      background-color: #fff8f0;
+      color: #c74b00;
+      border-bottom: 2px solid #ff6b2b;
+    }
+    table.concepts td.panelref {
+      white-space: nowrap;
+      color: #999;
+    }
+
+    .chapter-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+      padding-top: 24px;
+      border-top: 2px solid #eee;
+      gap: 16px;
+    }
+    .chapter-nav a {
+      display: block;
+      padding: 16px 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #333;
+      transition: all 0.2s;
+      flex: 1;
+    }
+    .chapter-nav a:hover {
+      border-color: #ff6b2b;
+      box-shadow: 0 2px 8px rgba(199,75,0,0.15);
+    }
+    .chapter-nav .prev { text-align: left; }
+    .chapter-nav .next { text-align: right; }
+    .chapter-nav .nav-label {
+      font-size: 0.75em;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .chapter-nav .nav-title {
+      font-weight: bold;
+      color: #c74b00;
+      font-size: 0.95em;
+    }
+    .footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid #ddd;
+      font-size: 0.82em;
+      color: #999;
+    }
+    .footer a { color: #c74b00; }
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 20px; }
+    }
+  </style>
+  <!-- GoatCounter analytics -->
+  <script data-goatcounter="https://veniltirou.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="logo">
+      <h2>Oracle CX Storyboard Series</h2>
+      <p>ABC Corp → XYZ Corp</p>
+    </div>
+    <ul>
+      <li class="section-label">Getting Started</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">
+        📋 Table of Contents</a></li>
+      <li class="section-label">Foundation</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/customer-data-management/">
+        Customer Data Management</a></li>    
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-force-automation-one-day/">
+        A Day in Sales Force Automation</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-performance-management/">
+        Sales Performance Management: The Landscape</a></li>      
+      <li class="section-label">Chapters</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/">
+        1. Lead-to-Revenue Overview</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">
+        2. Subscription Management</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/incentive-compensation/">
+        3. Incentive Compensation</a></li>
+      <li><a href="#" class="coming-soon">
+        4. Fusion Field Service (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        5. CX Sales & CPQ (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        6. Order Management (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        7. Fusion Service (soon)</a></li>
+      <li class="section-label">Advanced</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/usage-billing-deep-dive/">
+        Usage Billing: Allowance, Rollover &amp; Overage (Subscription Management)</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/compound-amendment-deep-dive/">
+        The Compound Mid-Term Amendment (Subscription Management)</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/renewal-promotion-deep-dive/">
+        The Anniversary Renewal Promotion (Subscription Management)</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/quote-to-cash/">
+        Quote-to-Cash Across Oracle Fusion (Subscription Management Integrations)</a></li>      
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-under-the-hood/">
+        OIC Under the Hood: What Home, Sweet Home Never Sees (Integrations)</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-replenishment-one-off/">
+        The One-Off: OIC Replenishment for a Single Hilltop Site (Integrations)</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/route66-three-credits/">
+        One Deal, Three Credits: The Route 66 Story (Incentive Compensation)</a></li>
+      <li><a href="#" class="active">
+        When the Payment Isn't Final: Draws, Recovery, Takeback &amp; Giveback (Incentive Compensation)</a></li>
+                  <li class="section-label">Integrations</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-integrations/">
+        Oracle Integration Cloud</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/friday-debrief/">
+        The Friday Debrief (OIC)</a></li>
+      <li class="section-label">Reference</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-reference/">
+        Incentive Compensation: Setup &amp; Data Reference</a></li>
+      <li class="section-label">Connect</li>
+      <li><a href="https://www.linkedin.com/in/veniltirou" target="_blank">
+        🔗 LinkedIn Profile</a></li>
+    </ul>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <div class="chapter-header">
+      <div class="chapter-label">Advanced · Incentive Compensation</div>
+      <h1>When the Payment Isn't Final — Draws, Recovery, Takeback and Giveback</h1>
+      <p>Most explanations of sales compensation stop at the happy path: a deal
+      closes, a formula runs, money lands. This chapter covers the two
+      mechanisms that break that tidy picture — money paid <em>before</em> it
+      was earned, and money reclaimed <em>after</em> it was paid. Both are
+      ordinary, both are configured deliberately, and both surprise people the
+      first time they meet them.</p>
+    </div>
+
+    <div class="scenario-box">
+      <strong>Business Scenario:</strong> James is a sales representative at ABC
+      Corporation. His income should swing with his deals — some months three
+      close, some months none — but his rent does not. Lisa, ABC's compensation
+      analyst, configures a <strong>draw</strong> so his pay never drops below a
+      floor, and a <strong>recovery</strong> so the company gets those advances
+      back out of his good months. Separately, when a customer fails to pay an
+      invoice James was already commissioned on, a <strong>takeback</strong>
+      quietly reverses that commission — and a <strong>giveback</strong>
+      restores it if the customer eventually pays.
+    </div>
+
+    <div class="scenario-box" style="border-left-color:#3a5bd9; background-color:#f0f4ff;">
+      <strong>A note on the numbers:</strong> The draw and recovery figures
+      follow Oracle's own worked example in the <em>Using Incentive
+      Compensation</em> guide, and were reproduced independently to confirm
+      every period reconciles. The takeback mechanics — the negative
+      transaction, the grace period after the invoice due date, the giveback
+      reversal, and the zero-minimum payment plan that prevents a negative
+      paysheet — are all documented Oracle behaviour rather than illustration.
+    </div>
+
+    <h2>Scene 1 — Paid Before It Is Earned: Draws and Recovery</h2>
+    <div class="storyboard">
+      <img src="Scene01.png"
+           alt="A bar chart of six periods showing earnings varying while pay stays flat at the one thousand dollar floor, with top-ups in amber and recoveries in red, and Lisa explaining the mechanism to James beneath" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> A <strong>draw</strong> is a
+        guaranteed floor. Whatever James actually earns, Lisa's payment plan
+        ensures at least $1,000 reaches him each period. When he earns less, the
+        company tops him up — the amber blocks. But that top-up is an
+        <em>advance</em>, not a gift: it is added to a running balance he owes,
+        shown as the tab beneath each period.
+        <br><br>
+        <strong>Recovery</strong> is how the company collects that balance, out
+        of his good months rather than by asking for a cheque — the red blocks.
+        The striking thing is the row of paid amounts: <strong>$1,000 in every
+        one of the first six periods</strong>, while his actual earnings swing
+        between $400 and $2,200. That flatness is the entire purpose of a draw.
+        Only in period 7, once the draw has ended, does his pay reflect what he
+        genuinely earned.
+        <br><br>
+        Two guardrails keep it fair. Recovery <strong>never breaks the
+        floor</strong> — in periods 4, 5 and 6 the company is reclaiming money
+        yet James is still paid exactly $1,000. And recovery <strong>never takes
+        more than is owed</strong>. In the final period the outstanding $450 is
+        waived rather than pursued, which is itself a plan-design choice: a
+        <em>recoverable</em> draw is a loan, while a <em>non-recoverable</em>
+        draw is a genuine guarantee, often given to new hires who need runway
+        before their pipeline matures.
+      </div>
+    </div>
+
+    <h2>Scene 2 — Reclaimed After It Is Paid: Takeback and Giveback</h2>
+    <div class="storyboard">
+      <img src="Scene02.png"
+           alt="A three-step timeline showing a six thousand dollar commission paid in March, a fifteen hundred dollar takeback in June when the invoice goes unpaid, and the net payment in July, with the negative paysheet scenarios beneath" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> The mirror image of a draw. Here the
+        money has already been paid, and something later makes it unearned.
+        James closes Home, Sweet Home in March and is paid $6,000 in April. In
+        June, part of that invoice goes unpaid and the grace period lapses.
+        <br><br>
+        The system does not send anyone to ask for the money back. It creates a
+        <strong>new transaction for a negative amount</strong> of the sales
+        credit — $1,500, being the unpaid quarter — and that simply nets against
+        his next payment. In July he earns $4,200, the takeback deducts $1,500,
+        and he is paid $2,700. Recovery happens quietly, through the normal pay
+        cycle.
+        <br><br>
+        The setting behind it is a business decision rather than a technical
+        one: a system parameter defines how many days may pass after the invoice
+        due date before paid-out credit is reclaimed. Thirty days, ninety days —
+        the number expresses how long a sale must hold before the company treats
+        the commission as settled.
+        <br><br>
+        <strong>The case worth planning for</strong> is when a takeback is
+        larger than the month's earnings. Without a floor, the paysheet would
+        show that the rep owes the company money. A payment plan with a
+        <strong>minimum of zero</strong> prevents that, setting the paysheet to
+        zero instead — but this must be configured deliberately, and it applies
+        against the participant's <em>period</em> earnings rather than a single
+        batch, so off-cycle payments need separate handling. And if the customer
+        eventually pays, a <strong>giveback</strong> restores the credit.
+        Takeback and giveback are a matched pair; the system can undo the undo.
+      </div>
+    </div>
+
+    <h2>Why This Chapter Matters</h2>
+    <div class="what-it-shows">
+      <strong>The takeaway:</strong> a payment in incentive compensation is not
+      a full stop. Money can move in either direction across time — forward, as
+      an advance against commissions not yet earned, and backward, as a
+      reclamation of commission that turned out not to be deserved. Both
+      mechanisms exist because a sale and its cash are separated by weeks or
+      months, and someone has to absorb that gap. The draw shifts it onto the
+      company so the rep can plan; the takeback shifts it back when the sale
+      does not hold.
+      <br><br>
+      What makes both workable is that neither is punitive by default. Recovery
+      cannot break the floor. Takebacks net against future pay rather than
+      demanding repayment. A negative paysheet can be prevented outright, and an
+      outstanding balance can be waived. Every one of those is a configuration
+      choice made by someone like Lisa long before the awkward month arrives —
+      which is the real lesson: the humane behaviour is designed in, not
+      discovered later.
+    </div>
+
+    <h2>Concepts Covered</h2>
+    <table class="concepts">
+      <tr><th>Concept</th><th>What it means</th><th class="panelref">Scene</th></tr>
+      <tr><td>Draw</td><td>A guaranteed minimum payment per period, configured on a payment plan. Whatever the participant actually earns, the draw ensures at least the floor amount reaches them — smoothing income that would otherwise swing with the deal cycle.</td><td class="panelref">1</td></tr>
+      <tr><td>Draw adjustment</td><td>The top-up added when earnings fall short of the floor. It is an advance rather than a gift, so it is added to a running balance the participant owes.</td><td class="panelref">1</td></tr>
+      <tr><td>Recovery</td><td>How the company collects those advances back — out of earnings above the floor in later periods, rather than by requesting repayment. Recovery can be set to start immediately or after a delay.</td><td class="panelref">1</td></tr>
+      <tr><td>Balance due</td><td>The running tally of advances not yet recovered. It rises with every top-up and falls with every recovery, and can be waived at the end rather than pursued.</td><td class="panelref">1</td></tr>
+      <tr><td>Recoverable vs non-recoverable</td><td>A recoverable draw is a loan against future commission. A non-recoverable draw is a genuine guarantee the participant never repays — commonly used for new hires who need runway before their pipeline matures.</td><td class="panelref">1</td></tr>
+      <tr><td>The floor guardrail</td><td>While a draw is in effect, recovery is capped so it can never push the payment below the guaranteed minimum. The company is repaid, but never at the cost of the participant's floor.</td><td class="panelref">1</td></tr>
+      <tr><td>Takeback</td><td>Oracle's term for what is colloquially called a clawback. When an invoice goes unpaid past the grace period, the system creates a new transaction for a <em>negative</em> amount of the sales credit, reversing commission already paid.</td><td class="panelref">2</td></tr>
+      <tr><td>Netting against future pay</td><td>A takeback is not a demand for repayment. The negative amount simply offsets whatever the participant earns next, so recovery happens through the normal pay cycle.</td><td class="panelref">2</td></tr>
+      <tr><td>The grace-period parameter</td><td>A system setting defining how many days may pass after the invoice payment due date before paid-out credit is reclaimed. The number is a business decision about how long a sale must hold before commission is treated as settled.</td><td class="panelref">2</td></tr>
+      <tr><td>Giveback</td><td>The matched reversal of a takeback. If the invoice is subsequently paid, the credit is restored to the participant — so the system can undo the undo.</td><td class="panelref">2</td></tr>
+      <tr><td>Preventing negative payments</td><td>If a takeback exceeds the period's earnings, the paysheet would show the participant owing money. A payment plan with a minimum of zero prevents this — but it must be configured deliberately, and applies against period earnings rather than a single batch.</td><td class="panelref">2</td></tr>
+      <tr><td>Payment plan</td><td>The object where all of this is configured: the draw amount and duration, whether it is recoverable, when recovery starts, the cap, and the minimum that prevents a negative paysheet.</td><td class="panelref">1, 2</td></tr>
+    </table>
+
+    <!-- PREV / NEXT NAVIGATION -->
+    <div class="chapter-nav">
+      <a class="prev"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/route66-three-credits/">
+        <div class="nav-label">← Previous</div>
+        <div class="nav-title">One Deal, Three Credits: The Route 66 Story</div>
+      </a>
+      <a class="next"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-reference/">
+        <div class="nav-label">The reference maps →</div>
+        <div class="nav-title">Incentive Compensation: Setup &amp; Data Reference</div>
+      </a>
+    </div>
+
+    <div class="footer">
+      <p>Created by <a href="https://www.linkedin.com/in/veniltirou"
+         target="_blank">Venil Tirou</a> — Oracle CX Functional Consultant</p>
+      <p style="margin-top:6px;">© 2026 Venil Tirou. All rights reserved.
+      This is an independently created educational resource.
+      Not affiliated with or endorsed by Oracle Corporation.</p>
+    </div>
+
+  </main>
+</body>
+</html>
