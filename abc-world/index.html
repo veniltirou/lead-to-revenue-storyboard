@@ -247,11 +247,11 @@
       <p>ABC Corp → XYZ Corp</p>
     </div>
     <ul>
-            <li class="section-label">Getting Started</li>
+                  <li class="section-label">Getting Started</li>
       <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">
         📋 Table of Contents</a></li>
       <li class="section-label">Foundation</li>
-      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/abc-world/">
+      <li><a href="#" class="active">
         The World of ABC Corporation</a></li>
       <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/customer-data-management/">
         Customer Data Management</a></li>
@@ -303,7 +303,7 @@
       <li><a href="#" class="coming-soon">
         Fusion Service (soon)</a></li>
       <li class="section-label">Reference</li>
-      <li><a href="#" class="active">
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-reference/">
         Incentive Compensation: Setup &amp; Data Reference</a></li>
       <li class="section-label">Connect</li>
       <li><a href="https://www.linkedin.com/in/veniltirou" target="_blank">
@@ -315,119 +315,134 @@
   <main class="main">
 
     <div class="chapter-header">
-      <div class="chapter-label">Reference</div>
-      <h1>Incentive Compensation — Setup and Data Reference</h1>
-      <p>This page is a reference rather than a story. Chapter 3 follows a
-      single deal from Closed Won through to a paycheck; these two maps lay
-      out the whole surface area behind that journey — every setup screen and
-      scheduled process in dependency order, and which of that data can be
-      bulk loaded rather than entered by hand. They're meant to be consulted
-      while you work, not read start to finish.</p>
+      <div class="chapter-label">Foundation</div>
+      <h1>The World of ABC Corporation</h1>
+      <p>Every chapter in this series takes place inside one company. Before
+      going anywhere near a compensation plan or an integration flow, it helps
+      to know who that company is, who works there, who it sells to, and what it
+      runs on. This page is the map — read it first, or come back to it whenever
+      a name in another chapter feels unfamiliar.</p>
     </div>
 
     <div class="scenario-box">
-      <strong>How to use these:</strong> The first map answers <em>"what do I
-      have to build, and in what order?"</em> — useful when standing up a new
-      implementation or trying to place an unfamiliar screen. The second
-      answers <em>"can I load this data rather than key it in?"</em> — useful
-      at go-live, during a migration between instances, or any time the volume
-      makes manual entry impractical. Both are organised into the same seven
-      layers, so a screen and its import object sit under the same heading.
+      <strong>The premise:</strong> <strong>ABC Corporation</strong> is a vending
+      solutions provider based in Denver. It places and services vending
+      machines — drinks, snacks, the equipment itself — for other businesses,
+      typically on multi-year subscriptions rather than outright sales. A hotel
+      group, a dealership, a bank: each becomes a recurring customer with
+      machines across multiple sites, service coverage, and a monthly bill.
+      <br><br>
+      Some years ago ABC implemented <strong>Oracle Fusion</strong> to run that
+      business. Everything in this series is a story about people at ABC using
+      that implementation to do their jobs — and occasionally about what happens
+      when the software does something they did not expect.
     </div>
 
     <div class="scenario-box" style="border-left-color:#3a5bd9; background-color:#f0f4ff;">
-      <strong>A note on accuracy:</strong> Screen names, process names and
-      import object availability all vary by Oracle release and by what your
-      organisation is licensed for. Treat these maps as a guide to the
-      structure and the dependencies, and confirm the specifics in your own
-      environment: <em>Setup and Maintenance → Setup: Sales → Incentives</em>
-      for tasks, <em>Tools → Scheduled Processes</em> for the process catalog,
-      and <em>Tools → Import Management → Import Objects</em> for the
-      importable objects.
+      <strong>A note on what is real and what is not:</strong> ABC Corporation
+      and its customers are fictional. The Oracle products, the mechanics, the
+      terminology and the behaviour are not — those are drawn from Oracle's
+      documentation, and each chapter says explicitly where it is following
+      documented behaviour and where it is illustrating. The company exists so
+      the products have somewhere to happen.
     </div>
 
-    <h2>The Setup and Process Map</h2>
+    <h2>The People</h2>
     <div class="storyboard">
-      <h3>Every Screen and Process, in Dependency Order</h3>
-      <img src="IC_Setup_Process_Map.png"
-           alt="The complete Incentive Compensation screen and process map, organised into seven layers: rules of earning, people, sorting and crediting, cross-cutting setup, runtime, payment and reporting" />
+      <img src="Scene01.png" alt="The recurring cast: James Mitchell, Sarah Johnson, Jeff, Lisa and Harrison" />
       <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
       <div class="what-it-shows">
-        <strong>What this shows:</strong> Sixty-seven screens and processes,
-        bucketed by what they configure and ordered by what depends on what.
-        Read top to bottom: you cannot build a layer before the one above it
-        exists. Parts 1 to 4 are all setup — the rules of earning, the people
-        those rules apply to, the rules for sorting and crediting transactions,
-        and the calendar everything is measured against. None of it produces
-        anything on its own. Part 5 is where a real deal arrives and moves
-        through import, crediting, classification and calculation to become an
-        earning. Part 6 converts that earning into money and sends it to
-        Payroll. Part 7 makes all of it visible. The colour coding separates
-        setup screens from bulk imports, from the processes you run, from the
-        outputs they produce.
+        <strong>Who you will keep meeting.</strong> <strong>James Mitchell</strong>
+        is the senior sales rep whose deals and commission the series follows
+        most closely. <strong>Sarah Johnson</strong> manages him — which matters
+        more than it sounds, because credit for his deals rolls up to her.
+        <strong>Jeff</strong> is the multi-site specialist brought in on complex
+        rollouts, and is credited as an overlay rather than through the
+        management line. <strong>Lisa</strong> is the compensation analyst who
+        configures the plans and investigates the disputes.
+        <strong>Harrison</strong> is the summer intern on the integrations side,
+        and is usually the one explaining what OIC is actually doing.
         <br><br>
-        <strong>The detail worth carrying away:</strong> there are
-        <em>four</em> deploy gates on this map — compensation plans,
-        participant assignment rules, classification rules and credit rules.
-        Defining an object and activating it are always two separate acts in
-        this system, and forgetting the second is the most common reason a
-        configuration that looks entirely correct produces nothing at all.
+        Others appear as the stories need them — Mike on a split credit, Priya
+        and Daniel in a dispute queue — but these five carry most of it.
       </div>
     </div>
 
-    <h2>Bulk Import Support</h2>
+    <h2>The Customers</h2>
     <div class="storyboard">
-      <h3>Which Data You Can Load Rather Than Key In</h3>
-      <img src="IC_Bulk_Import_Support.png"
-           alt="The twelve Incentive Compensation import objects available through Import Management, grouped by setup layer" />
+      <img src="Scene02.png" alt="The four recurring customers: Home Sweet Home, Route 66 Automobiles, Mile High City Bank and XYZ Corporation" />
       <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
       <div class="what-it-shows">
-        <strong>What this shows:</strong> The Incentive Compensation objects
-        available through Import Management, placed against the same layers as
-        the map above. Plans come in as a parent with two children —
-        Compensation Plan, then Plan Flex and Plan Component — and rules split
-        three ways across the rule itself, where it's assigned, and the
-        attribute values inside it. Transactions land in a <em>staging</em>
-        table first; Collect Transactions is what moves them into Incentive
-        Compensation proper.
+        <strong>Four customers recur across the series</strong>, and knowing
+        which is which makes the chapters considerably easier to follow.
+        <strong>Home, Sweet Home</strong> is the longest-standing — a realty
+        services company whose properties include the remote hilltop office that
+        needed its own integration. <strong>Route 66 Automobiles</strong> is a
+        dealership group and the source of ABC's largest single order.
+        <strong>Mile High City Bank</strong> buys online through the self-service
+        portal rather than through a sales rep. <strong>XYZ Corporation</strong>
+        is the $78,500 deal followed from Closed Won to a paycheck.
         <br><br>
-        <strong>Two practical points.</strong> First, child objects need their
-        parent's internal ID, so a bulk plan load is really four steps: export
-        the parent to obtain the IDs, build the child files against those IDs,
-        import the parent, then import the children. Second, notice which
-        layers are absent — periods and currency rates, payment batches,
-        paysheets and reporting have no import objects at all. Import
-        Management reaches the setup and inbound-data end of the module and
-        stops there, because the rest is what the business <em>runs</em> rather
-        than what you load. That boundary is a reasonable way to guess, for any
-        unfamiliar screen, whether a bulk-load path is likely to exist behind
-        it.
+        They recur deliberately. The hilltop site in the replenishment chapter is
+        an HSH property; the takeback chapter reverses commission on an HSH
+        invoice; the disputes chapter turns on a Route 66 deal that landed one
+        day into the wrong period. That continuity is what makes this a series
+        rather than a collection of articles.
       </div>
     </div>
 
-    <h2>Where the Story Is</h2>
+    <h2>The Implementation</h2>
+    <div class="storyboard">
+      <img src="Scene03.png" alt="ABC Corporation's Oracle Fusion footprint across CX, fulfilment and finance, with OIC as the connective layer" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What ABC actually runs</strong>, and where each chapter sits on
+        it. The customer-facing side is <strong>CX Sales</strong>,
+        <strong>Customer Data Management</strong>, <strong>Incentive
+        Compensation</strong> and <strong>Commerce</strong>. The fulfilment and
+        finance side is <strong>Order Management</strong>, <strong>Subscription
+        Management</strong>, <strong>Receivables and Revenue</strong> and
+        <strong>Procurement</strong>. Between them sits <strong>Oracle
+        Integration Cloud</strong>, which holds no data of its own and exists
+        purely so the rest can talk.
+        <br><br>
+        <strong>The reason this map is worth having:</strong> most confusion in
+        this space comes from asking one system a question that belongs to
+        another. Commerce cannot tell you whether an invoice was paid.
+        Subscription Management does not decide who gets sales credit. Incentive
+        Compensation has no opinion about fulfilment. Several chapters spend as
+        much time on those boundaries as on the features themselves.
+      </div>
+    </div>
+
+    <h2>How to Read the Series</h2>
     <div class="what-it-shows">
-      <strong>If you want the narrative version:</strong>
-      <strong>Chapter 3 — Oracle Incentive Compensation</strong> follows James
-      through a single $78,500 deal, from the moment he marks it Closed Won to
-      the payment landing in his June paycheck, and explains each concept as
-      the story reaches it. These maps are the surface area; that chapter is
-      the path through it. For where Incentive Compensation sits among the
-      wider Sales Performance Management capabilities, see the Foundation
-      chapter on <strong>Sales Performance Management</strong>.
+      <strong>Foundation</strong> pages like this one set context and do not
+      follow a single deal. <strong>Chapters 1 to 4</strong> each introduce a
+      module by following one story through it end to end — start here if you
+      are new to a product. The <strong>Advanced</strong> sections go deeper into
+      a module already introduced, so <em>S1&ndash;S4</em> assume Chapter 2 and
+      <em>I1&ndash;I3</em> assume Chapter 3. <strong>Integrations</strong>
+      (<em>G1&ndash;G4</em>) are about what happens between the systems rather
+      than inside any one of them. <strong>Reference</strong> pages are maps to
+      consult while working rather than stories to read.
+      <br><br>
+      There is no required order. But if you are starting cold, Chapter 1 gives
+      the widest view of how a deal travels from first contact to recurring
+      revenue, and most other chapters are a magnified piece of it.
     </div>
 
     <!-- PREV / NEXT NAVIGATION -->
     <div class="chapter-nav">
       <a class="prev"
-         href="https://veniltirou.github.io/lead-to-revenue-storyboard/incentive-compensation/">
-        <div class="nav-label">← The narrative version</div>
-        <div class="nav-title">Chapter 3: Incentive Compensation</div>
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">
+        <div class="nav-label">← Back to</div>
+        <div class="nav-title">Table of Contents</div>
       </a>
       <a class="next"
-         href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-performance-management/">
-        <div class="nav-label">The wider picture →</div>
-        <div class="nav-title">Sales Performance Management: The Landscape</div>
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/">
+        <div class="nav-label">Start the series →</div>
+        <div class="nav-title">Chapter 1: Lead-to-Revenue Overview</div>
       </a>
     </div>
 

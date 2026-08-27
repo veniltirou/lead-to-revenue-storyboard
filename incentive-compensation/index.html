@@ -33,11 +33,18 @@
     .sidebar .logo p { color: #888; font-size: 0.78em; margin-top: 6px; }
     .sidebar ul { list-style: none; }
     .sidebar ul .section-label {
-      color: #888;
+      color: #ff9a5c;
       font-size: 0.72em;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      padding: 16px 20px 6px 20px;
+      letter-spacing: 1.4px;
+      padding: 18px 20px 7px 20px;
+      margin-top: 6px;
+      border-top: 1px solid rgba(255,155,92,0.22);
+    }
+    .sidebar ul .section-label:first-of-type {
+      border-top: none;
+      margin-top: 0;
     }
     .sidebar ul li a {
       display: block;
@@ -240,16 +247,18 @@
       <p>ABC Corp → XYZ Corp</p>
     </div>
     <ul>
-      <li class="section-label">Getting Started</li>
+            <li class="section-label">Getting Started</li>
       <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">
         📋 Table of Contents</a></li>
       <li class="section-label">Foundation</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/abc-world/">
+        The World of ABC Corporation</a></li>
       <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/customer-data-management/">
-        Customer Data Management</a></li>    
+        Customer Data Management</a></li>
       <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-force-automation-one-day/">
         A Day in Sales Force Automation</a></li>
       <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-performance-management/">
-        Sales Performance Management: The Landscape</a></li>      
+        Sales Performance Management: The Landscape</a></li>
       <li class="section-label">Chapters</li>
       <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/">
         1. Lead-to-Revenue Overview</a></li>
@@ -257,40 +266,42 @@
         2. Subscription Management</a></li>
       <li><a href="#" class="active">
         3. Incentive Compensation</a></li>
-      <li><a href="#" class="coming-soon">
-        4. Fusion Field Service (soon)</a></li>
-      <li><a href="#" class="coming-soon">
-        5. CX Sales & CPQ (soon)</a></li>
-      <li><a href="#" class="coming-soon">
-        6. Order Management (soon)</a></li>
-      <li><a href="#" class="coming-soon">
-        7. Fusion Service (soon)</a></li>
-      <li class="section-label">Advanced</li>
-      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/usage-billing-deep-dive/">
-        Usage Billing: Allowance, Rollover &amp; Overage (Subscription Management)</a></li>
-      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/compound-amendment-deep-dive/">
-        The Compound Mid-Term Amendment (Subscription Management)</a></li>
-      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/renewal-promotion-deep-dive/">
-        The Anniversary Renewal Promotion (Subscription Management)</a></li>
-      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/quote-to-cash/">
-        Quote-to-Cash Across Oracle Fusion (Subscription Management Integrations)</a></li>      
-      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-under-the-hood/">
-        OIC Under the Hood: What Home, Sweet Home Never Sees (Integrations)</a></li>
-      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-replenishment-one-off/">
-        The One-Off: OIC Replenishment for a Single Hilltop Site (Integrations)</a></li>
-      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/route66-three-credits/">
-        One Deal, Three Credits: The Route 66 Story (Incentive Compensation)</a></li>
-      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/payment-not-final/">
-        When the Payment Isn't Final: Draws, Recovery, Takeback &amp; Giveback (Incentive Compensation)</a></li>
-      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/disputes/">
-        When the Rep Says the Number Is Wrong: Disputes (Incentive Compensation)</a></li>
       <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/commerce-mile-high/">
-        Self-Service at Scale: Mile High City Bank Orders Online (Commerce)</a></li>
-                  <li class="section-label">Integrations</li>
+        4. Oracle Commerce: Mile High City Bank</a></li>
+      <li class="section-label">Advanced · Subscription Management</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/usage-billing-deep-dive/">
+        S1. Usage Billing: Allowance, Rollover &amp; Overage</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/compound-amendment-deep-dive/">
+        S2. The Compound Mid-Term Amendment</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/renewal-promotion-deep-dive/">
+        S3. The Anniversary Renewal Promotion</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/quote-to-cash/">
+        S4. Quote-to-Cash Across Oracle Fusion</a></li>
+      <li class="section-label">Advanced · Incentive Compensation</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/route66-three-credits/">
+        I1. One Deal, Three Credits: The Route 66 Story</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/payment-not-final/">
+        I2. When the Payment Isn't Final</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/disputes/">
+        I3. When the Rep Says the Number Is Wrong: Disputes</a></li>
+      <li class="section-label">Integrations</li>
       <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-integrations/">
-        Oracle Integration Cloud</a></li>
+        G1. Oracle Integration Cloud</a></li>
       <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/friday-debrief/">
-        The Friday Debrief (OIC)</a></li>
+        G2. The Friday Debrief</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-under-the-hood/">
+        G3. OIC Under the Hood</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-replenishment-one-off/">
+        G4. The One-Off: Hilltop Replenishment</a></li>
+      <li class="section-label">Coming Soon</li>
+      <li><a href="#" class="coming-soon">
+        Fusion Field Service (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        CX Sales &amp; CPQ (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        Order Management (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        Fusion Service (soon)</a></li>
       <li class="section-label">Reference</li>
       <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-reference/">
         Incentive Compensation: Setup &amp; Data Reference</a></li>
@@ -671,9 +682,10 @@
         <div class="nav-label">← Previous Chapter</div>
         <div class="nav-title">Chapter 2: Subscription Management</div>
       </a>
-      <a class="next" href="#">
+      <a class="next"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/commerce-mile-high/">
         <div class="nav-label">Next Chapter →</div>
-        <div class="nav-title">Chapter 4: Fusion Field Service (Coming Soon)</div>
+        <div class="nav-title">Chapter 4: Oracle Commerce — Mile High City Bank</div>
       </a>
     </div>
 
