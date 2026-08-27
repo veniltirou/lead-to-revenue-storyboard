@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chapter 3: Oracle Incentive Compensation — Oracle CX Storyboard Series</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 280px;
+      min-width: 280px;
+      background-color: #1a1a2e;
+      color: #ccc;
+      padding: 30px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .sidebar .logo {
+      padding: 0 20px 24px 20px;
+      border-bottom: 1px solid #333;
+      margin-bottom: 20px;
+    }
+    .sidebar .logo h2 { color: #ff6b2b; font-size: 1em; line-height: 1.5; }
+    .sidebar .logo p { color: #888; font-size: 0.78em; margin-top: 6px; }
+    .sidebar ul { list-style: none; }
+    .sidebar ul .section-label {
+      color: #888;
+      font-size: 0.72em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 16px 20px 6px 20px;
+    }
+    .sidebar ul li a {
+      display: block;
+      padding: 9px 20px;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.88em;
+      border-left: 3px solid transparent;
+      transition: all 0.2s;
+    }
+    .sidebar ul li a:hover {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.active {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.coming-soon {
+      color: #555;
+      cursor: default;
+      font-style: italic;
+    }
+    .sidebar ul li a.coming-soon:hover {
+      background: none;
+      border-left: 3px solid transparent;
+      color: #555;
+    }
+    .main {
+      margin-left: 280px;
+      padding: 40px 50px;
+      flex: 1;
+      max-width: 900px;
+    }
+    .chapter-header { margin-bottom: 30px; }
+    .chapter-header .chapter-label {
+      font-size: 0.8em;
+      color: #ff6b2b;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .chapter-header h1 { color: #c74b00; font-size: 1.8em; margin-bottom: 10px; }
+    .chapter-header p { color: #555; line-height: 1.7; }
+    .scenario-box {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.95em;
+      line-height: 1.7;
+      color: #444;
+    }
+    .characters-box {
+      background-color: #f0f4ff;
+      border-left: 4px solid #3a5bd9;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.92em;
+      line-height: 1.8;
+      color: #444;
+    }
+    .characters-box h3 {
+      color: #3a5bd9;
+      font-size: 0.9em;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    h2 {
+      color: #333;
+      font-size: 1.15em;
+      margin: 36px 0 16px 0;
+      border-bottom: 2px solid #ff6b2b;
+      padding-bottom: 8px;
+    }
+    .storyboard {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 24px;
+      margin: 28px 0;
+    }
+    .storyboard h3 {
+      color: #c74b00;
+      font-size: 1.05em;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    .storyboard img {
+      width: 100%;
+      height: auto;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      margin: 12px 0;
+    }
+    .storyboard .tip {
+      font-style: italic;
+      color: #999;
+      font-size: 0.85em;
+      margin: 6px 0 14px 0;
+    }
+    .storyboard .what-it-shows {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      padding: 12px 16px;
+      font-size: 0.92em;
+      line-height: 1.7;
+      color: #444;
+      border-radius: 0 4px 4px 0;
+    }
+    .storyboard .what-it-shows strong { color: #c74b00; }
+    table.concepts {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 8px 0;
+      font-size: 0.9em;
+    }
+    table.concepts th, table.concepts td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+    table.concepts th {
+      background-color: #fff8f0;
+      color: #c74b00;
+      border-bottom: 2px solid #ff6b2b;
+    }
+    table.concepts td.panelref {
+      white-space: nowrap;
+      color: #999;
+    }
+
+    .chapter-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+      padding-top: 24px;
+      border-top: 2px solid #eee;
+      gap: 16px;
+    }
+    .chapter-nav a {
+      display: block;
+      padding: 16px 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #333;
+      transition: all 0.2s;
+      flex: 1;
+    }
+    .chapter-nav a:hover {
+      border-color: #ff6b2b;
+      box-shadow: 0 2px 8px rgba(199,75,0,0.15);
+    }
+    .chapter-nav .prev { text-align: left; }
+    .chapter-nav .next { text-align: right; }
+    .chapter-nav .nav-label {
+      font-size: 0.75em;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .chapter-nav .nav-title {
+      font-weight: bold;
+      color: #c74b00;
+      font-size: 0.95em;
+    }
+    .footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid #ddd;
+      font-size: 0.82em;
+      color: #999;
+    }
+    .footer a { color: #c74b00; }
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 20px; }
+    }
+  </style>
+  <!-- GoatCounter analytics -->
+  <script data-goatcounter="https://veniltirou.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="logo">
+      <h2>Oracle CX Storyboard Series</h2>
+      <p>ABC Corp → XYZ Corp</p>
+    </div>
+    <ul>
+      <li class="section-label">Getting Started</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">
+        📋 Table of Contents</a></li>
+      <li class="section-label">Foundation</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/customer-data-management/">
+        Customer Data Management</a></li>    
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-force-automation-one-day/">
+        A Day in Sales Force Automation</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-performance-management/">
+        Sales Performance Management: The Landscape</a></li>      
+      <li class="section-label">Chapters</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/">
+        1. Lead-to-Revenue Overview</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">
+        2. Subscription Management</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/incentive-compensation/">
+        3. Incentive Compensation</a></li>
+      <li><a href="#" class="coming-soon">
+        4. Fusion Field Service (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        5. CX Sales & CPQ (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        6. Order Management (soon)</a></li>
+      <li><a href="#" class="coming-soon">
+        7. Fusion Service (soon)</a></li>
+      <li class="section-label">Advanced</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/usage-billing-deep-dive/">
+        Usage Billing: Allowance, Rollover &amp; Overage (Subscription Management)</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/compound-amendment-deep-dive/">
+        The Compound Mid-Term Amendment (Subscription Management)</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/renewal-promotion-deep-dive/">
+        The Anniversary Renewal Promotion (Subscription Management)</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/quote-to-cash/">
+        Quote-to-Cash Across Oracle Fusion (Subscription Management Integrations)</a></li>      
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-under-the-hood/">
+        OIC Under the Hood: What Home, Sweet Home Never Sees (Integrations)</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-replenishment-one-off/">
+        The One-Off: OIC Replenishment for a Single Hilltop Site (Integrations)</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/route66-three-credits/">
+        One Deal, Three Credits: The Route 66 Story (Incentive Compensation)</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/payment-not-final/">
+        When the Payment Isn't Final: Draws, Recovery, Takeback &amp; Giveback (Incentive Compensation)</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/disputes/">
+        When the Rep Says the Number Is Wrong: Disputes (Incentive Compensation)</a></li>
+      <li><a href="#" class="active">
+        Self-Service at Scale: Mile High City Bank Orders Online (Commerce)</a></li>
+                  <li class="section-label">Integrations</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-integrations/">
+        Oracle Integration Cloud</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/friday-debrief/">
+        The Friday Debrief (OIC)</a></li>
+      <li class="section-label">Reference</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-reference/">
+        Incentive Compensation: Setup &amp; Data Reference</a></li>
+      <li class="section-label">Connect</li>
+      <li><a href="https://www.linkedin.com/in/veniltirou" target="_blank">
+        🔗 LinkedIn Profile</a></li>
+    </ul>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <div class="chapter-header">
+      <div class="chapter-label">Advanced · Oracle Commerce</div>
+      <div style="display:flex; align-items:flex-start; gap:20px;">
+        <img src="mhcb_logo.png" alt="Mile High City Bank emblem"
+             style="width:78px; height:auto; flex:0 0 auto; margin-top:4px;" />
+        <h1 style="margin:0;">Self-Service at Scale — Mile High City Bank Orders Online</h1>
+      </div>
+      <p>Every chapter so far has had a salesperson in it. This one doesn't.
+      The customer opens a browser, sees prices that were negotiated months ago,
+      and places an order for a branch that opened last week — and nobody at ABC
+      Corporation touches it until fulfilment. That is what B2B commerce is
+      actually for.</p>
+    </div>
+
+    <div class="scenario-box">
+      <strong>Business Scenario:</strong> ABC Corporation has supplied vending
+      solutions to <strong>Mile High City Bank</strong> for years — machines in
+      the staff areas of their Denver, Aurora and Lakewood branches, each on its
+      own subscription. The bank is now opening a branch in
+      <strong>Commerce City</strong>. Rather than calling James,
+      <strong>Cynthia Michael</strong> from the bank's facilities team goes to
+      ABC's portal and orders it herself: bottled and canned drinks on a
+      12-month subscription, with warranty and Bronze service coverage.
+    </div>
+
+    <div class="scenario-box" style="border-left-color:#3a5bd9; background-color:#f0f4ff;">
+      <strong>A note on accuracy:</strong> The account model — principal
+      accounts, sub accounts, contacts, roles and contracts — follows Oracle's
+      documentation, as does the statement that sub accounts inherit contract
+      details from their parent, and that a contact cannot access a site until
+      their account has a contract. The Commerce-to-Order-Management
+      architecture through OIC is Oracle's own documented pattern. The bank, the
+      branches and the figures are illustration.
+    </div>
+
+    <h2>Scene 1 — A New Branch Opens <span style="font-weight:400;font-size:0.78em;color:#6B5B95;">(ABC Corporation)</span></h2>
+    <div class="storyboard">
+      <img src="Scene01.png" alt="Lisa at her monitor in the ABC Corporation office, adding Commerce City Branch as a sub account beneath Mile High City Bank" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> Before Cynthia can order anything, the new
+      branch has to exist. Lisa creates <strong>Commerce City Branch</strong> as
+      a <strong>sub account</strong> beneath Mile High City Bank — not as a new
+      customer, and not merely as a delivery address.
+      <br><br>
+      That distinction is the whole chapter in miniature. Because it is a sub
+      account, it <em>inherits</em> the parent's contract, catalogue and price
+      group automatically. Nobody negotiates a price for Commerce City. The
+      moment the branch exists, it already carries the bank's terms.</div>
+    </div>
+
+    <h2>Scene 2 — The Account Model <span style="font-weight:400;font-size:0.78em;color:#6B5B95;">(ABC Corporation)</span></h2>
+    <div class="storyboard">
+      <img src="Scene02.png" alt="A diagram of the account hierarchy with Mile High City Bank as principal account and four branch sub accounts, alongside explanations of account, contact and contract" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> the three objects that decide everything
+      Cynthia will see. An <strong>account</strong> is the organisation, and it
+      can hold <strong>sub accounts</strong> representing divisions or business
+      units. A <strong>contact</strong> is a person authorised to act for that
+      account — every contact gets the <strong>buyer</strong> role by default,
+      with administrator, approver and address manager available beyond it.
+      <br><br>
+      The <strong>contract</strong> is the mechanism people usually miss. It
+      assigns a catalogue and a group of price lists, so it decides both what
+      the organisation may buy and what it pays. It is also a hard gate: a
+      contact cannot access the site at all until their account has one.
+      <br><br>
+      <strong>One word, two meanings.</strong> A contract in Commerce is this
+      catalogue-and-price binding. It is not a subscription contract in
+      Subscription Management, which governs term, renewal and billing. Same
+      word, different object, different system.</div>
+    </div>
+
+    <h2>Scene 4 — Cynthia Logs In <span style="font-weight:400;font-size:0.78em;color:#123a5c;">(Mile High City Bank)</span></h2>
+    <div class="storyboard">
+      <img src="Scene04.png" alt="Cynthia Michael seated at her desk in the Mile High City Bank branch, viewing her existing branch subscriptions on a laptop" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> Cynthia is not an anonymous shopper. She
+      logs in as a contact on Mile High City Bank, and the portal already knows
+      her: Denver, Aurora and Lakewood are listed, all active. Commerce City is
+      there too, with nothing against it yet.
+      <br><br>
+      This is the account model paying off in the first thirty seconds. A
+      consumer storefront would greet her as a stranger. Here she arrives into a
+      relationship that predates her session by several years.</div>
+    </div>
+
+    <h2>Scene 5 — What She Sees in the Catalogue <span style="font-weight:400;font-size:0.78em;color:#123a5c;">(Mile High City Bank)</span></h2>
+    <div class="storyboard">
+      <img src="Scene05.png" alt="Cynthia standing and pointing at a monitor showing the vending solutions catalogue with the bank's contract prices" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> the catalogue Cynthia browses is not the
+      public one. Her account's contract assigns both the catalogue and the
+      price group, so she sees the products ABC has made available to this bank,
+      at <strong>$1,250 per month</strong> rather than the $1,500 list price.
+      <br><br>
+      Nothing about that is a discount code or a promotion. It is the contract
+      resolving, silently, on every price she looks at. If a colleague at a
+      different company logged in, the same catalogue page would show different
+      products at different prices.</div>
+    </div>
+
+    <h2>Scene 6 — The Solution Bundle <span style="font-weight:400;font-size:0.78em;color:#123a5c;">(Mile High City Bank)</span></h2>
+    <div class="storyboard">
+      <img src="Scene07.png" alt="Cynthia at checkout reviewing the bundle: beverage solution, warranty and Bronze coverage, at $1,250 monthly, shipping to Commerce City Branch" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> what she is buying is not one product but a
+      <strong>bundle</strong> — the beverage solution, a 12-month warranty and
+      Bronze service coverage, sold and billed as a single monthly figure.
+      <br><br>
+      Checkout confirms the destination: <strong>Commerce City Branch</strong>.
+      That matters more than a shipping address usually does, because it decides
+      which sub account the subscription attaches to, where the machines are
+      installed and serviced, and which branch appears on the billing. The cart
+      is still only intent — pressing the button is what turns it into an
+      order.</div>
+    </div>
+
+    <h2>Scene 8 — The Order Crosses to ABC <span style="font-weight:400;font-size:0.78em;color:#6B5B95;">(ABC Corporation)</span></h2>
+    <div class="storyboard">
+      <img src="Scene08.png" alt="Harrison showing James an integration monitoring screen tracing the order from Commerce through OIC into Order Management" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> the moment the order leaves the buying side
+      and arrives at the selling one. Oracle's own integration guide describes
+      Commerce and Order Management being combined through
+      <strong>Oracle Integration Cloud</strong> to capture and fulfil orders
+      placed in an online store, and that is exactly what happens here: OIC
+      receives the Commerce order, transforms it into the payload Order
+      Management expects, and calls
+      <strong>salesOrdersForOrderHub</strong> to create the sales order.
+      <br><br>
+      Readers of the replenishment chapter will recognise that endpoint — it is
+      the same Order Management API a route driver's mobile app used to raise a
+      requisition. Different front end, same door into Fusion.</div>
+    </div>
+
+    <h2>Scene 9 — The Subscription Is Created <span style="font-weight:400;font-size:0.78em;color:#6B5B95;">(ABC Corporation)</span></h2>
+    <div class="storyboard">
+      <img src="Scene09.png" alt="James viewing the newly created subscription record for Mile High City Bank, Commerce City Branch" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> the order becomes a
+      <strong>subscription</strong> — SUB-98452, twelve months, $1,250 monthly,
+      attached to Commerce City Branch. From here the recurring charge,
+      amendments, renewal and eventual cancellation are Subscription
+      Management's responsibility, and billing flows into Receivables.
+      <br><br>
+      Note what James did in this transaction: nothing. He owns the account and
+      will hear about the new branch, but he did not quote it, key it or chase
+      it. For a repeat purchase against an existing contract, that is the
+      point.</div>
+    </div>
+
+    <h2>Scene 10 — What Cynthia Can and Cannot See <span style="font-weight:400;font-size:0.78em;color:#123a5c;">(Mile High City Bank)</span></h2>
+    <div class="storyboard">
+      <img src="Scene11.png" alt="Cynthia reviewing a dashboard showing the completed order, active subscription and services, with invoices marked as not shown" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> the honest boundary of the portal. Cynthia
+      can see her <strong>order</strong> and its status, the
+      <strong>subscription</strong> and the services active at Commerce City —
+      all natively.
+      <br><br>
+      What she cannot see is <strong>invoices and payments</strong>. Those live
+      in Receivables. Surfacing them in the storefront is an integration, not a
+      feature — and "the customer wants to see their invoices in the portal" is
+      one of the most common requirements implementers meet, with an answer that
+      always disappoints slightly.
+      <br><br>
+      Order status is worth noticing too. It originates in Order Management on
+      ABC's side and reaches Cynthia's portal through the same integration layer
+      the order travelled out on. The loop closes.</div>
+    </div>
+
+    <h2>Scene 12 — The Whole Architecture</h2>
+    <div class="storyboard">
+      <img src="Scene12.png" alt="A full architecture diagram showing the bank's buying side, the OIC crossing, ABC's fulfilling side, and status flowing back to the portal" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> everything in one view, split by whose
+      systems are whose. The bank's side is account, contact, catalogue and
+      checkout. ABC's side is Order Management, Subscription Management and
+      Receivables. Between them sits OIC — the only component here that is not a
+      system of record. It holds no data of its own; it exists so the other four
+      can talk.
+      <br><br>
+      The four questions worth carrying away: <strong>Commerce</strong> answers
+      <em>how does the customer buy</em>. <strong>Order Management</strong>
+      answers <em>what do we do with the order</em>. <strong>Subscription
+      Management</strong> answers <em>how do we run the recurring service</em>.
+      <strong>Receivables</strong> answers <em>how do we bill for it</em>.</div>
+    </div>
+
+    <h2>Why This Chapter Matters</h2>
+    <div class="what-it-shows">
+      <strong>The takeaway:</strong> B2B self-service is not a consumer
+      storefront with a company name on the invoice. Almost everything that
+      makes Cynthia's five-minute purchase work was decided before she opened
+      her browser — which account she belongs to, which contract governs it,
+      what catalogue that contract assigns, what price group it carries, and
+      whether the branch she is buying for exists as a sub account at all.
+      <br><br>
+      That is why the account model deserves the attention this chapter gives
+      it. The storefront is the visible part, but it is mostly a rendering of
+      decisions taken elsewhere. When a B2B commerce implementation goes wrong,
+      it is rarely the cart that is broken — it is that somebody is on the wrong
+      contract, or a location was created as an address when it needed to be a
+      sub account.
+      <br><br>
+      And note what did not happen. No quote, no negotiation, no sales rep, no
+      re-keying an order into Order Management by hand. For a repeat customer
+      buying a known bundle against an existing contract, the whole point is
+      that the transaction is uneventful.
+    </div>
+
+    <h2>Concepts Covered</h2>
+    <table class="concepts">
+      <tr><th>Concept</th><th>What it means</th><th class="panelref">Scene</th></tr>
+      <tr><td>Account</td><td>The organisation being sold to. In B2B Commerce a buyer is never anonymous — every session belongs to an account, and what the shopper sees is decided by it.</td><td class="panelref">2</td></tr>
+      <tr><td>Sub account</td><td>A division, business unit or site beneath a principal account. Sub accounts automatically inherit account properties, addresses and contract details from their parent — which is why a brand-new branch already carries the negotiated price.</td><td class="panelref">1, 2</td></tr>
+      <tr><td>Contact</td><td>A person authorised to act for an account. Cynthia is a contact on Mile High City Bank, not a private shopper with a corporate card.</td><td class="panelref">2, 4</td></tr>
+      <tr><td>Roles</td><td>Every contact receives the <em>buyer</em> role by default. Beyond it sit administrator, approver and address manager — including delegated administrators who manage the account from My Account pages rather than an admin console.</td><td class="panelref">2</td></tr>
+      <tr><td>Contract</td><td>Assigns a catalogue and a group of price lists for a site, deciding both what an organisation may buy and what it pays. It is also an access gate: a contact cannot reach the site until their account has one. Not the same object as a subscription contract.</td><td class="panelref">2, 5</td></tr>
+      <tr><td>Account-specific catalogue and pricing</td><td>The products and prices Cynthia sees are resolved through her account's contract. The $1,250 is not a discount applied at checkout — it is the price her contract carries.</td><td class="panelref">5</td></tr>
+      <tr><td>Solution bundle</td><td>The purchase is not a single SKU but a bundle — beverage solution, warranty and Bronze coverage — sold and billed as one recurring figure.</td><td class="panelref">6</td></tr>
+      <tr><td>Cart vs order</td><td>A cart is intent; an order is a commitment. Checkout is what converts one into the other, and it also fixes the ship-to sub account that the subscription will attach to.</td><td class="panelref">6</td></tr>
+      <tr><td>Commerce to Order Management via OIC</td><td>Oracle's documented pattern: Commerce and Order Management combined through Oracle Integration Cloud to capture and fulfil orders placed in an online store, calling the <em>salesOrdersForOrderHub</em> API.</td><td class="panelref">8, 12</td></tr>
+      <tr><td>Order to subscription</td><td>The confirmed order creates a subscription record — term, recurring charge, renewal and amendment all owned by Subscription Management rather than Commerce.</td><td class="panelref">9</td></tr>
+      <tr><td>Order status round trip</td><td>Status originates in Order Management and reaches the customer's portal through the same integration layer the order left on. The loop closes rather than ending at fulfilment.</td><td class="panelref">10, 12</td></tr>
+      <tr><td>The visibility boundary</td><td>Orders and subscriptions are native to the portal. Invoices and payments live in Receivables and appear only if an integration puts them there — a distinction worth knowing before promising a customer portal that shows everything.</td><td class="panelref">10</td></tr>
+      <tr><td>Who answers what</td><td>Commerce: how does the customer buy. Order Management: what do we do with the order. Subscription Management: how do we run the recurring service. Receivables: how do we bill. OIC holds no data — it exists so the others can talk.</td><td class="panelref">12</td></tr>
+    </table>
+
+    <!-- PREV / NEXT NAVIGATION -->
+    <div class="chapter-nav">
+      <a class="prev"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/quote-to-cash/">
+        <div class="nav-label">← Related</div>
+        <div class="nav-title">Quote-to-Cash Across Oracle Fusion</div>
+      </a>
+      <a class="next"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-under-the-hood/">
+        <div class="nav-label">The integration underneath →</div>
+        <div class="nav-title">OIC Under the Hood</div>
+      </a>
+    </div>
+
+    <div class="footer">
+      <p>Created by <a href="https://www.linkedin.com/in/veniltirou"
+         target="_blank">Venil Tirou</a> — Oracle CX Functional Consultant</p>
+      <p style="margin-top:6px;">© 2026 Venil Tirou. All rights reserved.
+      This is an independently created educational resource.
+      Not affiliated with or endorsed by Oracle Corporation.</p>
+    </div>
+
+  </main>
+</body>
+</html>
