@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chapter 3: Oracle Incentive Compensation — Oracle CX Storyboard Series</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 280px;
+      min-width: 280px;
+      background-color: #1a1a2e;
+      color: #ccc;
+      padding: 30px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .sidebar .logo {
+      padding: 0 20px 24px 20px;
+      border-bottom: 1px solid #333;
+      margin-bottom: 20px;
+    }
+    .sidebar .logo h2 { color: #ff6b2b; font-size: 1em; line-height: 1.5; }
+    .sidebar .logo p { color: #888; font-size: 0.78em; margin-top: 6px; }
+    .sidebar ul { list-style: none; }
+    .sidebar ul .section-label {
+      color: #ff9a5c;
+      font-size: 0.72em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      padding: 18px 20px 7px 20px;
+      margin-top: 6px;
+      border-top: 1px solid rgba(255,155,92,0.22);
+    }
+    .sidebar ul .section-label:first-of-type {
+      border-top: none;
+      margin-top: 0;
+    }
+    .sidebar ul li a {
+      display: block;
+      padding: 9px 20px;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.88em;
+      border-left: 3px solid transparent;
+      transition: all 0.2s;
+    }
+    .sidebar ul li a:hover {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.active {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .main {
+      margin-left: 280px;
+      padding: 40px 50px;
+      flex: 1;
+      max-width: 900px;
+    }
+    .chapter-header { margin-bottom: 30px; }
+    .chapter-header .chapter-label {
+      font-size: 0.8em;
+      color: #ff6b2b;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .chapter-header h1 { color: #c74b00; font-size: 1.8em; margin-bottom: 10px; }
+    .chapter-header p { color: #555; line-height: 1.7; }
+    .scenario-box {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.95em;
+      line-height: 1.7;
+      color: #444;
+    }
+    .characters-box {
+      background-color: #f0f4ff;
+      border-left: 4px solid #3a5bd9;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.92em;
+      line-height: 1.8;
+      color: #444;
+    }
+    .characters-box h3 {
+      color: #3a5bd9;
+      font-size: 0.9em;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    h2 {
+      color: #333;
+      font-size: 1.15em;
+      margin: 36px 0 16px 0;
+      border-bottom: 2px solid #ff6b2b;
+      padding-bottom: 8px;
+    }
+    .storyboard {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 24px;
+      margin: 28px 0;
+    }
+    .storyboard h3 {
+      color: #c74b00;
+      font-size: 1.05em;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    .storyboard img {
+      width: 100%;
+      height: auto;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      margin: 12px 0;
+    }
+    .storyboard .tip {
+      font-style: italic;
+      color: #999;
+      font-size: 0.85em;
+      margin: 6px 0 14px 0;
+    }
+    .storyboard .what-it-shows {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      padding: 12px 16px;
+      font-size: 0.92em;
+      line-height: 1.7;
+      color: #444;
+      border-radius: 0 4px 4px 0;
+    }
+    .storyboard .what-it-shows strong { color: #c74b00; }
+    table.concepts {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 8px 0;
+      font-size: 0.9em;
+    }
+    table.concepts th, table.concepts td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+    table.concepts th {
+      background-color: #fff8f0;
+      color: #c74b00;
+      border-bottom: 2px solid #ff6b2b;
+    }
+    table.concepts td.panelref {
+      white-space: nowrap;
+      color: #999;
+    }
+
+    .chapter-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+      padding-top: 24px;
+      border-top: 2px solid #eee;
+      gap: 16px;
+    }
+    .chapter-nav a {
+      display: block;
+      padding: 16px 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #333;
+      transition: all 0.2s;
+      flex: 1;
+    }
+    .chapter-nav a:hover {
+      border-color: #ff6b2b;
+      box-shadow: 0 2px 8px rgba(199,75,0,0.15);
+    }
+    .chapter-nav .prev { text-align: left; }
+    .chapter-nav .next { text-align: right; }
+    .chapter-nav .nav-label {
+      font-size: 0.75em;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .chapter-nav .nav-title {
+      font-weight: bold;
+      color: #c74b00;
+      font-size: 0.95em;
+    }
+    .footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid #ddd;
+      font-size: 0.82em;
+      color: #999;
+    }
+    .footer a { color: #c74b00; }
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 20px; }
+    }
+  </style>
+  <!-- GoatCounter analytics -->
+  <script data-goatcounter="https://veniltirou.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="logo">
+      <h2>Oracle CX Storyboard Series</h2>
+    </div>
+    <ul>
+                  <li class="section-label">Getting Started</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">
+        📋 Table of Contents</a></li>
+      <li class="section-label">Foundation</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/abc-world/">
+        The World of ABC Corporation</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/customer-data-management/">
+        Customer Data Management</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-force-automation-one-day/">
+        A Day in Sales Force Automation</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-performance-management/">
+        Sales Performance Management: The Landscape</a></li>
+      <li class="section-label">Chapters</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/">
+        1. Lead-to-Revenue Overview</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">
+        2. Subscription Management</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/incentive-compensation/">
+        3. Incentive Compensation</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/commerce-mile-high/">
+        4. Oracle Commerce: Mile High City Bank</a></li>
+      <li class="section-label">Advanced · Subscription Management</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/usage-billing-deep-dive/">
+        S1. Usage Billing: Allowance, Rollover &amp; Overage</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/compound-amendment-deep-dive/">
+        S2. The Compound Mid-Term Amendment</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/renewal-promotion-deep-dive/">
+        S3. The Anniversary Renewal Promotion</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/quote-to-cash/">
+        S4. Quote-to-Cash Across Oracle Fusion</a></li>
+      <li class="section-label">Advanced · Incentive Compensation</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/route66-three-credits/">
+        I1. One Deal, Three Credits: The Route 66 Story</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/payment-not-final/">
+        I2. When the Payment Isn't Final</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/disputes/">
+        I3. When the Rep Says the Number Is Wrong: Disputes</a></li>
+      <li><a href="#" class="active">
+        I4. Three Transactions, One Paycheck</a></li>
+      <li class="section-label">Integrations</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-integrations/">
+        G1. Oracle Integration Cloud</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/friday-debrief/">
+        G2. The Friday Debrief</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-under-the-hood/">
+        G3. OIC Under the Hood</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-replenishment-one-off/">
+        G4. The One-Off: Hilltop Replenishment</a></li>
+      <li class="section-label">Reference</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-reference/">
+        Incentive Compensation: Setup &amp; Data Reference</a></li>
+      <li class="section-label">Connect</li>
+      <li><a href="https://www.linkedin.com/in/veniltirou" target="_blank">
+        🔗 LinkedIn Profile</a></li>
+    </ul>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <div class="chapter-header">
+      <div class="chapter-label">Advanced · Incentive Compensation</div>
+      <h1>Three Transactions, One Paycheck</h1>
+      <p>Three sales land in Incentive Compensation on the same October week, for
+      the same rep, from the same customer. By the time the month closes, one has
+      become a commission, one a bonus, and one has produced nothing at all. This
+      chapter follows all three through every stage of the pipeline to show why —
+      and, along the way, sorts out the objects that sit closest together and are
+      hardest to tell apart.</p>
+    </div>
+
+    <div class="scenario-box">
+      <strong>Business Scenario:</strong> James Mitchell covers the Denver Metro
+      territory for ABC Corporation. In October 2026 three transactions arrive
+      against <strong>Mile High City Bank</strong>: a
+      <strong>$100,000 beverage supply agreement</strong>, <strong>60 vending
+      machines placed</strong>, and a <strong>$50,000 third-party equipment
+      resale</strong>. His role carries two compensation plans — one paying
+      commission on revenue, one paying a bonus on machines placed. Nothing about
+      the three transactions is unusual. They simply meet the rules differently.
+    </div>
+
+    <div class="scenario-box" style="border-left-color:#3a5bd9; background-color:#f0f4ff;">
+      <strong>A note on accuracy:</strong> The pipeline stages, the two-phase
+      calculation, the relationships between plan, component, measure and formula,
+      and the payment objects all follow Oracle's documentation. The company, the
+      customer, the products and the figures are illustration — but every number
+      reconciles, and the rate and bonus tables were checked against the amounts
+      they produce.
+    </div>
+
+    <h2>Part 1 — The Journey: What Actually Happens to a Transaction</h2>
+    <div class="storyboard">
+      <img src="Scene01.png" alt="A pipeline diagram showing a sale entering from Order Management, travelling through collect, revert, credit, classify, calculate and pay, and leaving to Payroll or Payables" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> the whole route, before any of it is
+      magnified. A sale is captured in <strong>Order Management</strong> —
+      outside Incentive Compensation entirely — then travels through six stages
+      inside it, and leaves again as an amount for another system to pay.
+      <br><br>
+      Two boundaries are worth noticing straight away. Incentive Compensation
+      does not originate the sale, and it does not pay the money. It decides
+      <em>how much</em>, and nothing else.
+      <br><br>
+      <strong>Stage ③ Credit is drawn in red because it is the only gate that can
+      end the journey outright.</strong> A transaction that matches no crediting
+      rule does not continue and produce a zero — it stops, so there is nothing
+      to classify, nothing to measure and nothing to calculate. That is exactly
+      what happens to one of our three, and it is the first place to look when a
+      deal does not appear on a statement.</div>
+    </div>
+
+    <h2>Part 2 — The Objects That Look Alike, and What Each One Does</h2>
+    <div class="storyboard">
+      <img src="Scene02.png" alt="A nested diagram showing compensation plan containing plan component containing performance measure, with measure formula, incentive formula and rate table inside" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> the other axis. Part 1 was the journey — what
+      <em>happens</em>. This is the structure that stage ⑤ <em>consults</em>.
+      Nothing here ever runs; it is all looked up.
+      <br><br>
+      Read it as nesting. A <strong>compensation plan</strong> is assigned to a
+      role and contains components. A <strong>plan component</strong> is one
+      earning opportunity, and exists for reuse — Oracle notes that a single
+      component can be assigned to multiple plans, so a small library configures
+      many. It also carries the <strong>incentive type</strong>, commission or
+      bonus, which later decides what a payment batch picks up. Inside it, a
+      <strong>performance measure</strong> says what is tracked and against what
+      goal.
+      <br><br>
+      <strong>The distinction that does the most work</strong> is between the two
+      formulas. A <strong>measure formula</strong> outputs a number — an
+      attainment figure like 125%. An <strong>incentive formula</strong> outputs
+      money. One answers <em>how much did they achieve</em>, the other <em>what
+      is that achievement worth</em>.
+      <br><br>
+      And on the names: <em>Revenue</em>, <em>Qualifying Revenue</em> and
+      <em>Revenue Commission</em> sit at three different levels of the same
+      structure. The first is the raw amount on the transaction, the second is a
+      measure name, the third a component name — each chosen by whoever built the
+      plan.</div>
+    </div>
+
+    <h2>Part 3 — Three Transactions Arrive</h2>
+    <div class="storyboard">
+      <img src="Scene03.png" alt="The three October transactions side by side, with the six things that were already true before any of them could earn" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> the three transactions, and the six things
+      that were already true before any of them could earn a penny. The source
+      system, the two-step collect, the correction path, James existing as a
+      participant, his role carrying two plans, and the plan version in effect.
+      <br><br>
+      <strong>The one worth dwelling on is the plan version.</strong> A
+      transaction is measured against the version in effect on its
+      <em>order date</em>, not the version live when the calculation runs. An
+      October deal calculated in December still uses the version that was current
+      in October — which is how a rep can be paid at a rate that no longer
+      exists.</div>
+    </div>
+
+    <h2>Part 4 — Crediting and Classification: Where Transaction C Stops</h2>
+    <div class="storyboard">
+      <img src="Scene04.png" alt="The three transactions at the crediting stage, with A and B credited and classified, and C halted because no crediting rule matches it" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> two questions decide whether a transaction
+      survives. <strong>Who gets credit</strong>, and <strong>what does that
+      credit count toward</strong>.
+      <br><br>
+      A and B both give James 100% credit. What separates them is the
+      <strong>credit category</strong> — Beverage Revenue against Equipment
+      Placement — and that single label decides everything downstream.
+      <br><br>
+      <strong>Transaction C matches no crediting rule at all</strong>, because
+      third-party resale is not an eligible product line. It does not produce a
+      zero. It produces nothing: no credit record, no category, no measure
+      contribution. Steps beyond this point are not skipped for C — they are
+      unreachable.</div>
+    </div>
+
+    <h2>Part 5 — Eligibility: Which Plan Component Does This Credit Qualify For?</h2>
+    <div class="storyboard">
+      <img src="Scene05.png" alt="The eligibility phase matching each credit to a plan component and measure, with both attainments landing at 125%" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> Oracle runs calculation in two phases, and
+      this is the first. <strong>Eligibility</strong> identifies the plan
+      component and performance measure a credit qualifies for, based on the
+      participant's assigned plan and the credit's category.
+      <br><br>
+      <strong>The order runs plan → component → measure, not the reverse.</strong>
+      James's plan is already fixed by his role; eligibility searches only inside
+      it. A perfectly good credit in a category that no component of his plans
+      measures simply earns nothing, however sensible the sale was. Coverage is
+      decided by plan assignment, not by the transaction.
+      <br><br>
+      Both credits then run their <strong>measure formula</strong> and land at
+      <strong>125% attainment</strong> — one from $100,000 against an $80,000
+      goal, the other from 60 machines against a goal of 48. Neither has an
+      earning yet. Attainment is a number, not money.</div>
+    </div>
+
+    <h2>Part 6 — The Calculation Phase: Turning Attainment into Money</h2>
+    <div class="storyboard">
+      <img src="Scene06.png" alt="Rate table and bonus table side by side, producing $2,000 and $1,000, with Transaction C at zero" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> the second phase. The
+      <strong>incentive formula</strong> takes each credit and prices it,
+      consulting a table — and the two tables answer very differently despite
+      identical attainment.
+      <br><br>
+      A <strong>rate table</strong> rewards <em>more</em>: $100,000 falls in the
+      2% band and every additional dollar of revenue earns. A <strong>bonus
+      table</strong> rewards <em>reaching</em>: machine 60 crosses into the
+      $1,000 band, and machines 61 through 89 add nothing further. That is a
+      deliberate design choice about what each behaviour is worth.
+      <br><br>
+      The separation of the two formulas is what makes plans maintainable. Change
+      what you reward by editing the measure; change what it is worth by editing
+      the rate table. Neither touches the other, which is how rates can be
+      revised annually without rewriting how attainment is calculated.</div>
+    </div>
+
+    <h2>Part 7 — From Earnings to Money: Pay Group, Batch, Paysheet, Payment</h2>
+    <div class="storyboard">
+      <img src="Scene07.png" alt="The four payment objects, James's October paysheet totalling $3,000, and the approval and handoff sequence" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> James has earned $3,000. He has not been paid
+      $3,000. Four more objects stand between the two.
+      <br><br>
+      A <strong>pay group</strong> decides who is paid together, how often, and to
+      which downstream system — Oracle's own example groups monthly participants
+      into one pay group for Payables and another for Payroll. A
+      <strong>payment batch</strong> takes one pay group and a period, and
+      generates a <strong>paysheet</strong> per participant. The
+      <strong>payment plan</strong> supplies the rules that adjust what actually
+      goes out: draw, recovery, caps, and the minimum that prevents a negative
+      paysheet.
+      <br><br>
+      <strong>Where the money actually comes from:</strong> Oracle states plainly
+      that Incentive Compensation does not produce paychecks. It determines
+      amounts and hands the totals to Payroll for employees or Payables for
+      non-employees. Every number in the preceding six parts exists to produce
+      one figure that another system will pay.
+      <br><br>
+      One operational detail worth carrying: a paysheet is a
+      <strong>snapshot</strong> of the earnings table at the moment the batch was
+      created, not a live view. Rerun the calculation afterwards and the paysheet
+      shows the old numbers until refreshed.</div>
+    </div>
+
+    <h2>Why This Chapter Matters</h2>
+    <div class="what-it-shows">
+      <strong>The takeaway:</strong> earning money in Incentive Compensation is
+      not one test but a sequence of them, and a transaction has to pass every
+      one. Credit rule, classification, eligibility, measure, formula, rate,
+      payment. Two of our three passed every gate and arrived at different
+      answers because they entered by different doors. The third stopped at the
+      first gate.
+      <br><br>
+      That distinction is the practical value of the chapter. When a rep asks why
+      a deal is not on their statement, the instinct is to check the calculation
+      — but a transaction that never got credited was never calculated, and no
+      amount of examining formulas will reveal it. The question worth asking
+      first is not "is the formula right" but "which gate did this fall at".
+      <br><br>
+      The two axes are worth holding separately too. The
+      <strong>journey</strong> is what happens, in sequence, to a transaction.
+      The <strong>structure</strong> — plan, component, measure, formulas, rate
+      table — is what the calculation consults. A transaction moves; the objects
+      simply exist. Most of the difficulty in reading an incentive compensation
+      setup comes from looking at one and expecting the other.
+    </div>
+
+    <h2>Concepts Covered</h2>
+    <table class="concepts">
+      <tr><th>Concept</th><th>What it means</th><th class="panelref">Part</th></tr>
+      <tr><td>The two axes</td><td>The <em>journey</em> is what happens in sequence to a transaction. The <em>structure</em> is the set of objects the calculation consults. A transaction moves; the objects simply exist.</td><td class="panelref">1, 2</td></tr>
+      <tr><td>Transaction source</td><td>Sales originate in Order Management, outside Incentive Compensation. IC knows nothing of a sale until it is handed over.</td><td class="panelref">1, 3</td></tr>
+      <tr><td>Collect transactions</td><td>Two steps, not one: transactions are staged first, then collected into base transactions.</td><td class="panelref">1, 3</td></tr>
+      <tr><td>Revert transactions</td><td>The correction path for a transaction that arrived wrong. Optional, and skipped when transactions are valid.</td><td class="panelref">1, 3</td></tr>
+      <tr><td>Plan version and effective dates</td><td>A transaction is measured against the plan version in effect on its <em>order date</em>, not the version live when calculation runs — so a deal can be paid at a rate that no longer exists.</td><td class="panelref">3</td></tr>
+      <tr><td>Crediting rules</td><td>Decide who receives credit for a transaction. The only gate that can end the journey outright: a transaction matching no rule produces nothing at all, not a zero.</td><td class="panelref">1, 4</td></tr>
+      <tr><td>Credit category and classification</td><td>The label assigned to a credit, deciding what it can count toward. Two identically credited transactions with different categories take entirely different routes.</td><td class="panelref">4</td></tr>
+      <tr><td>Compensation plan</td><td>The package assigned to a role rather than a person. A container for components — it produces nothing itself.</td><td class="panelref">2, 5</td></tr>
+      <tr><td>Plan component</td><td>One earning opportunity, built for reuse: a single component can be assigned to multiple plans. Carries the incentive type.</td><td class="panelref">2, 5</td></tr>
+      <tr><td>Incentive type</td><td>Commission or bonus, held on the plan component. Payment batches filter on it, matching exactly against the component's value.</td><td class="panelref">2, 5, 7</td></tr>
+      <tr><td>Performance measure</td><td>What is being tracked, over what period, against what goal. The credit category decides whether a given credit counts toward it.</td><td class="panelref">2, 5</td></tr>
+      <tr><td>Measure formula</td><td>How attainment is computed from the credits. Outputs a <em>number</em> — 125%, 60 machines — never money.</td><td class="panelref">2, 5</td></tr>
+      <tr><td>Incentive formula</td><td>What that attainment is worth. Takes the measure's result and outputs <em>money</em>. The separation from the measure formula is what lets rates change without rewriting attainment logic.</td><td class="panelref">2, 6</td></tr>
+      <tr><td>Rate table and bonus table</td><td>The lookups an incentive formula consults. A rate table rewards <em>more</em>; a bonus table rewards <em>reaching</em> a band. Holding the numbers separately means rates change without touching formulas.</td><td class="panelref">6</td></tr>
+      <tr><td>Eligibility phase</td><td>The first phase of calculation: identifies which plan component and measure a credit qualifies for, searching only within the participant's assigned plan. Plan comes first, then component, then measure.</td><td class="panelref">5</td></tr>
+      <tr><td>Calculation phase</td><td>The second phase: computes attainment from the measure formula, then earnings from the incentive formula and rate.</td><td class="panelref">5, 6</td></tr>
+      <tr><td>Pay group</td><td>Who is paid together, how often, and to which downstream system. A participant may hold several but only one is active at a time, and without one they cannot appear in a batch.</td><td class="panelref">7</td></tr>
+      <tr><td>Payment batch</td><td>One pay group, one period, one pay date. Generates a paysheet for every participant in the group.</td><td class="panelref">7</td></tr>
+      <tr><td>Paysheet</td><td>One participant's worksheet within a batch, holding earnings and adjustments. A snapshot of the earnings table at creation — stale after any recalculation until refreshed.</td><td class="panelref">7</td></tr>
+      <tr><td>Payment plan</td><td>The rules applied at payment: draw, recovery, caps, and the minimum that prevents a negative paysheet.</td><td class="panelref">7</td></tr>
+      <tr><td>Handoff to Payroll or Payables</td><td>Incentive Compensation does not produce paychecks. It determines amounts and transfers the totals — Payroll for employees, Payables for non-employees.</td><td class="panelref">1, 7</td></tr>
+    </table>
+
+    <!-- PREV / NEXT NAVIGATION -->
+    <div class="chapter-nav">
+      <a class="prev"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/disputes/">
+        <div class="nav-label">← Previous</div>
+        <div class="nav-title">I3. When the Rep Says the Number Is Wrong: Disputes</div>
+      </a>
+      <a class="next"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-reference/">
+        <div class="nav-label">The reference maps →</div>
+        <div class="nav-title">Incentive Compensation: Setup &amp; Data Reference</div>
+      </a>
+    </div>
+
+    <div class="footer">
+      <p>Created by <a href="https://www.linkedin.com/in/veniltirou"
+         target="_blank">Venil Tirou</a> — Oracle CX Functional Consultant</p>
+      <p style="margin-top:6px;">© 2026 Venil Tirou. All rights reserved.
+      This is an independently created educational resource.
+      Not affiliated with or endorsed by Oracle Corporation.</p>
+    </div>
+
+  </main>
+</body>
+</html>
