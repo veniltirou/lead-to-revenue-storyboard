@@ -53,6 +53,7 @@ below describe target state for new work, not a mandate to fix old work.
 | **Sarah** | ⚪ Free (does not appear in Friday Debrief) | *Frozen:* Incentive Compensation, OIC Integrations | No action needed now — she isn't in the chapter currently being touched. If she's written into a future new chapter, that's when she graduates to 🟡 Pending and gets a canonical pick, styled to match James's locked look. |
 | **Harrison** | ⚪ Free (one lineage, both frozen so far) | *Frozen:* OIC Integrations. *Active:* Friday Debrief | Both his appearances are within scope-frozen chapters as of this policy — Friday Debrief is being corrected for text/disclaimer issues but his design itself isn't being touched. Treat as a Rule 3 candidate the moment he's written into a chapter outside the OIC storyline. |
 | **Leila** | ⚪ Free | *Frozen:* OIC Integrations | Appeared once, in a frozen chapter. No obligation. |
+| **Leila (intern)** | ⚪ Free | *Active:* I4 Three Transactions, One Paycheck (Prologue) | Fall intern from a local Denver university, introduced October 2026: early twenties, glasses, ponytail, floral lavender cardigan, teal lanyard with "Leila – Intern" badge. A different person from Leila at Home, Sweet Home (OIC Integrations). Reference image: `ic-three-transactions/Prologue.png`. If she reappears, she graduates to 🟡 Pending. |
 
 ## Workflow going forward
 
