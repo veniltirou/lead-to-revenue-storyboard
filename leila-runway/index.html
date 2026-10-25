@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>I5: Leila's Nine-Month Runway — A Recoverable Draw, Month by Month | Oracle CX Storyboard Series</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 280px;
+      min-width: 280px;
+      background-color: #1a1a2e;
+      color: #ccc;
+      padding: 30px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .sidebar .logo {
+      padding: 0 20px 24px 20px;
+      border-bottom: 1px solid #333;
+      margin-bottom: 20px;
+    }
+    .sidebar .logo h2 { color: #ff6b2b; font-size: 1em; line-height: 1.5; }
+    .sidebar .logo p { color: #888; font-size: 0.78em; margin-top: 6px; }
+    .sidebar ul { list-style: none; }
+    .sidebar ul .section-label {
+      color: #ff9a5c;
+      font-size: 0.72em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      padding: 18px 20px 7px 20px;
+      margin-top: 6px;
+      border-top: 1px solid rgba(255,155,92,0.22);
+    }
+    .sidebar ul .section-label:first-of-type {
+      border-top: none;
+      margin-top: 0;
+    }
+    .sidebar ul li a {
+      display: block;
+      padding: 9px 20px;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.88em;
+      border-left: 3px solid transparent;
+      transition: all 0.2s;
+    }
+    .sidebar ul li a:hover {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.active {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .main {
+      margin-left: 280px;
+      padding: 40px 50px;
+      flex: 1;
+      max-width: 900px;
+    }
+    .chapter-header { margin-bottom: 30px; }
+    .chapter-header .chapter-label {
+      font-size: 0.8em;
+      color: #ff6b2b;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .chapter-header h1 { color: #c74b00; font-size: 1.8em; margin-bottom: 10px; }
+    .chapter-header p { color: #555; line-height: 1.7; }
+    .scenario-box {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.95em;
+      line-height: 1.7;
+      color: #444;
+    }
+    .characters-box {
+      background-color: #f0f4ff;
+      border-left: 4px solid #3a5bd9;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.92em;
+      line-height: 1.8;
+      color: #444;
+    }
+    .characters-box h3 {
+      color: #3a5bd9;
+      font-size: 0.9em;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    h2 {
+      color: #333;
+      font-size: 1.15em;
+      margin: 36px 0 16px 0;
+      border-bottom: 2px solid #ff6b2b;
+      padding-bottom: 8px;
+    }
+    .storyboard {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 24px;
+      margin: 28px 0;
+    }
+    .storyboard h3 {
+      color: #c74b00;
+      font-size: 1.05em;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    .storyboard img {
+      width: 100%;
+      height: auto;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      margin: 12px 0;
+    }
+    .storyboard .tip {
+      font-style: italic;
+      color: #999;
+      font-size: 0.85em;
+      margin: 6px 0 14px 0;
+    }
+    .storyboard .what-it-shows {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      padding: 12px 16px;
+      font-size: 0.92em;
+      line-height: 1.7;
+      color: #444;
+      border-radius: 0 4px 4px 0;
+    }
+    .storyboard .what-it-shows strong { color: #c74b00; }
+    table.concepts {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 8px 0;
+      font-size: 0.9em;
+    }
+    table.concepts th, table.concepts td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+    table.concepts th {
+      background-color: #fff8f0;
+      color: #c74b00;
+      border-bottom: 2px solid #ff6b2b;
+    }
+    table.concepts td.panelref {
+      white-space: nowrap;
+      color: #999;
+    }
+
+    .chapter-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+      padding-top: 24px;
+      border-top: 2px solid #eee;
+      gap: 16px;
+    }
+    .chapter-nav a {
+      display: block;
+      padding: 16px 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #333;
+      transition: all 0.2s;
+      flex: 1;
+    }
+    .chapter-nav a:hover {
+      border-color: #ff6b2b;
+      box-shadow: 0 2px 8px rgba(199,75,0,0.15);
+    }
+    .chapter-nav .prev { text-align: left; }
+    .chapter-nav .next { text-align: right; }
+    .chapter-nav .nav-label {
+      font-size: 0.75em;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .chapter-nav .nav-title {
+      font-weight: bold;
+      color: #c74b00;
+      font-size: 0.95em;
+    }
+    .footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid #ddd;
+      font-size: 0.82em;
+      color: #999;
+    }
+    .footer a { color: #c74b00; }
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 20px; }
+    }
+  </style>
+  <!-- GoatCounter analytics -->
+  <script data-goatcounter="https://veniltirou.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="logo">
+      <h2>Oracle CX Storyboard Series</h2>
+    </div>
+    <ul>
+                  <li class="section-label">Getting Started</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">
+        📋 Table of Contents</a></li>
+      <li class="section-label">Foundation</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/abc-world/">
+        The World of ABC Corporation</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/customer-data-management/">
+        Customer Data Management</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-force-automation-one-day/">
+        A Day in Sales Force Automation</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-performance-management/">
+        Sales Performance Management: The Landscape</a></li>
+      <li class="section-label">Chapters</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/">
+        1. Lead-to-Revenue Overview</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">
+        2. Subscription Management</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/incentive-compensation/">
+        3. Incentive Compensation</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/commerce-mile-high/">
+        4. Oracle Commerce: Mile High City Bank</a></li>
+      <li class="section-label">Advanced · Subscription Management</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/usage-billing-deep-dive/">
+        S1. Usage Billing: Allowance, Rollover &amp; Overage</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/compound-amendment-deep-dive/">
+        S2. The Compound Mid-Term Amendment</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/renewal-promotion-deep-dive/">
+        S3. The Anniversary Renewal Promotion</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/quote-to-cash/">
+        S4. Quote-to-Cash Across Oracle Fusion</a></li>
+      <li class="section-label">Advanced · Incentive Compensation</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/route66-three-credits/">
+        I1. One Deal, Three Credits: The Route 66 Story</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/payment-not-final/">
+        I2. When the Payment Isn't Final</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/disputes/">
+        I3. When the Rep Says the Number Is Wrong: Disputes</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-three-transactions/">
+        I4. Three Transactions, One Paycheck</a></li>
+      <li><a href="#" class="active">
+        I5. Leila's Nine-Month Runway</a></li>
+      <li class="section-label">Integrations</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-integrations/">
+        G1. Oracle Integration Cloud</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/friday-debrief/">
+        G2. The Friday Debrief</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-under-the-hood/">
+        G3. OIC Under the Hood</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-replenishment-one-off/">
+        G4. The One-Off: Hilltop Replenishment</a></li>
+      <li class="section-label">Reference</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-reference/">
+        Incentive Compensation: Setup &amp; Data Reference</a></li>
+      <li class="section-label">Connect</li>
+      <li><a href="https://www.linkedin.com/in/veniltirou" target="_blank">
+        🔗 LinkedIn Profile</a></li>
+    </ul>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <div class="chapter-header">
+      <div class="chapter-label">Advanced · Incentive Compensation</div>
+      <h1>Leila's Nine-Month Runway — A Recoverable Draw, Month by Month</h1>
+      <p>A new rep's first months are the hardest to pay for: the pipeline is
+      empty, so commission is small, but the rent is not. A <strong>draw</strong>
+      bridges that gap. This chapter follows one new hire through a nine-month
+      recoverable draw, one month at a time, so that every top-up and every
+      recovery can be traced to the dollar. It is the story form of Situation 1
+      in <a href="https://veniltirou.github.io/lead-to-revenue-storyboard/payment-not-final/">When the Payment Isn't Final</a>.</p>
+    </div>
+
+    <div class="scenario-box">
+      <strong>Business Scenario:</strong> <strong>Leila</strong> has just moved
+      from intern to junior sales rep at ABC Corporation, which sells
+      high-tech office vending solutions. Her work is renewals and cross-sell
+      with existing Denver accounts. <strong>James</strong>, a senior sales rep,
+      is the colleague she shadows. <strong>Lisa</strong>, ABC's compensation
+      analyst, configures the plan and explains it to her.
+      <br><br>
+      ABC's sales strategy gives new reps a <strong>nine-month runway</strong>:
+      a guaranteed floor of <strong>$5,000 a month</strong>, with the advance
+      <strong>recoverable</strong> from later earnings.
+    </div>
+
+    <div class="scenario-box" style="border-left-color:#3a5bd9; background-color:#f0f4ff;">
+      <strong>A note on the numbers:</strong> unlike Situation 1 of the previous
+      chapter, these figures are an illustrative example built for this story,
+      not Oracle's documented worked example. Every month reconciles: earned,
+      plus top-up or less recovery, equals paid, and the draw balance carries
+      forward. Real plans vary by company.
+    </div>
+
+    <p class="tip" style="font-style:italic;color:#999;font-size:0.85em;margin:6px 0 14px 0;">📱 On mobile? Pinch to zoom to read the numbers clearly.</p>
+
+    <div class="storyboard">
+      <h3>Scene 1 — Day One: Intern to Junior Rep</h3>
+      <img src="Runway01.jpg"
+           alt="Leila, a new junior sales rep, receives a welcome from James, a senior sales rep, with Lisa the compensation analyst beside them and a card explaining the nine-month, five thousand dollar draw" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Leila has just moved from intern to junior sales rep at ABC Corporation. James, a senior sales rep, is welcoming her, and Lisa, the compensation analyst, is beside them. Leila's challenge is the one every new rep has: her pipeline is empty, so her commission will be small for months. ABC's answer is a <strong>draw</strong> with a $5,000-a-month floor and a nine-month runway. It is <strong>recoverable</strong>, which means the company is advancing money it expects to get back.
+      </div>
+    </div>
+    <div class="storyboard">
+      <h3>Scene 2 — Lisa Explains the Runway</h3>
+      <img src="Runway02.jpg"
+           alt="Lisa at a whiteboard explaining the runway rule to Leila and colleagues: five thousand dollars guaranteed a month, earn less and receive a top-up, earn more and repay" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Lisa puts the whole rule on the whiteboard before the first payment: <strong>earn less than the floor and the company tops you up; earn more and the extra repays the advance.</strong> The ordering matters. A rep who understands this in week one will not be alarmed in month seven. The plan is the same one Situation 1 describes, a floor, a top-up and a recovery, only with a longer runway and a bigger floor.
+      </div>
+    </div>
+    <div class="storyboard">
+      <h3>Scene 3 — Month 1: The Floor Holds</h3>
+      <img src="Runway03.jpg"
+           alt="Leila shaking hands with a Denver client while James watches, with a card showing Month 1: earned 1,200, top-up 3,800, paid 5,000, draw balance 3,800" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Leila earns <strong>$1,200</strong> on a $5,000 floor, so the company tops her up by <strong>$3,800</strong> and she is paid <strong>$5,000</strong>. The top-up is not a bonus. It is added to her <strong>draw balance</strong>, which now stands at $3,800. Leila is shaking hands with a Denver client here because her work is renewals and cross-sell with existing accounts, and those deals take months to close.
+      </div>
+    </div>
+    <div class="storyboard">
+      <h3>Scene 4 — Month 2: Still Climbing</h3>
+      <img src="Runway04.jpg"
+           alt="Leila talking with colleagues in a meeting, with a card showing Month 2: earned 2,500, top-up 2,500, paid 5,000, draw balance 6,300" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Earnings rise to <strong>$2,500</strong>, the top-up falls to <strong>$2,500</strong>, and she is again paid <strong>$5,000</strong>. The draw balance grows by the top-up: $3,800 + $2,500 = <strong>$6,300</strong>. Her earnings are improving, but while they sit below the floor the balance can only go up.
+      </div>
+    </div>
+    <div class="storyboard">
+      <h3>Scene 5 — Month 3: Gaining Momentum</h3>
+      <img src="Runway05.jpg"
+           alt="Leila shaking hands with a client while Lisa and James look on, with a card showing Month 3: earned 4,000, top-up 1,000, paid 5,000, draw balance 7,300" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Earnings reach <strong>$4,000</strong> and the top-up shrinks to <strong>$1,000</strong>. Pay is still <strong>$5,000</strong> and the balance is now <strong>$7,300</strong>. Notice the pattern across three months: her pay never moves, while the balance behind it keeps climbing at a slowing rate.
+      </div>
+    </div>
+    <div class="storyboard">
+      <h3>Scene 6 — Months 4 and 5: Almost There</h3>
+      <img src="Runway06.jpg"
+           alt="Leila visiting a coffee shop client, with cards for Month 4 (earned 4,500, top-up 500, balance 7,800) and Month 5 (earned 4,800, top-up 200, balance 8,000)" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Month 4: earned <strong>$4,500</strong>, top-up <strong>$500</strong>, balance <strong>$7,800</strong>. Month 5: earned <strong>$4,800</strong>, top-up <strong>$200</strong>, balance <strong>$8,000</strong>. The scene is a client visit at a coffee shop, where Leila is now winning real business. The top-ups are nearly gone, and the balance is about to stop growing.
+      </div>
+    </div>
+    <div class="storyboard">
+      <h3>Scene 7 — Month 6: Earnings Meet the Floor</h3>
+      <img src="Runway07.jpg"
+           alt="Leila and Lisa high-fiving, with a chart of the draw balance rising to a peak of 8,000 and Month 6 earned 5,000, top-up 0, paid 5,000" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Leila earns exactly <strong>$5,000</strong>. No top-up is needed and no recovery has begun, so the balance stays at its peak of <strong>$8,000</strong>. This is the turning point of the whole runway. Up to here the company has been lending; from the next month, Leila starts paying it back out of earnings she would otherwise have been paid.
+      </div>
+    </div>
+    <div class="storyboard">
+      <h3>Scene 8 — Months 7 and 8: Earning More, Paid the Same</h3>
+      <img src="Runway08.jpg"
+           alt="Leila asking Lisa why her pay is still five thousand dollars, with Lisa answering that the extra is repaying the draw, and cards for Months 7 and 8 splitting earnings into paid and repaid" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> This is the scene that surprises people. In month 7 Leila earns <strong>$7,500</strong>, yet is paid <strong>$5,000</strong>. The extra <strong>$2,500</strong> is <strong>recovery</strong>, and the balance falls to <strong>$5,500</strong>. In month 8 she earns <strong>$8,000</strong>, <strong>$3,000</strong> is recovered, she is paid <strong>$5,000</strong> again, and the balance falls to <strong>$2,500</strong>. Her question, <em>why is my pay still $5,000?</em>, is the one every recoverable draw produces. It is the same guardrail as in Situation 1: while the draw runs, pay sits at the floor, and recovery takes only what is above it.
+      </div>
+    </div>
+    <div class="storyboard">
+      <h3>Scene 9 — Month 9: Draw Balance Cleared</h3>
+      <img src="Runway09.jpg"
+           alt="Leila celebrating with confetti as James and Lisa applaud, with a Paid Off card for Month 9: earned 9,000, repaid 2,500, paid 6,500, draw balance 0" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Leila earns <strong>$9,000</strong>, but only <strong>$2,500</strong> remains to be recovered, so recovery stops there and she is paid <strong>$6,500</strong>, the first payment above the floor. The draw balance is now <strong>$0</strong>. This is the second guardrail from Situation 1: recovery never takes more than is owed. The runway then ends, and from the next period her pay reflects what she earns.
+      </div>
+    </div>
+    <div class="storyboard">
+      <h3>Scene 10 — Nine Months: A Runway, Not a Gift</h3>
+      <img src="Runway10.jpg"
+           alt="A road through a city at sunset with Leila walking along it, six teal top-up markers and three amber recovery markers, and a summary: earned 46,500 equals paid 46,500" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Months 1 to 6 added $8,000 of top-ups ($3,800 + $2,500 + $1,000 + $500 + $200 + $0). Months 7 to 9 recovered exactly $8,000 ($2,500 + $3,000 + $2,500). Across the nine months Leila <strong>earned $46,500 and was paid $46,500</strong>. A recoverable draw does not create money; it moves it earlier in time. Had the draw been <strong>non-recoverable</strong>, a genuine guarantee, she would have kept the $8,000 of top-ups on top of what she earned, for $54,500 in total. Which of the two applies is a decision made in plan design, not by the rep.
+      </div>
+    </div>
+
+
+    <h2>Why This Chapter Matters</h2>
+    <p style="line-height:1.8; margin-bottom:14px;"><strong>The takeaway:</strong>
+    a recoverable draw does not change how much a rep earns; it changes
+    <em>when</em> the money arrives. Across nine months Leila earned $46,500 and
+    was paid $46,500. The top-ups in months 1 to 6 and the recoveries in months
+    7 to 9 each came to $8,000, and the draw balance ended at zero.</p>
+    <p style="line-height:1.8; margin-bottom:14px;">What decides all of it is a
+    handful of settings on the payment plan: the <strong>floor</strong>, the
+    <strong>duration</strong>, whether the draw is <strong>recoverable</strong>,
+    and <strong>when recovery begins</strong>. Change the recoverable setting
+    and the same nine months pay Leila $54,500 instead. That is why the
+    conversation worth having with a new rep happens in week one, not in month
+    seven, when a pay slip that stays at $5,000 while earnings reach $7,500 looks
+    like a mistake and is in fact the plan working.</p>
+
+    <h2>Concepts Covered</h2>
+    <table class="concepts">
+      <tr><th>Concept</th><th>What it means</th><th>Scene</th></tr>
+      <tr><td>Runway</td><td>The period during which the draw applies. Here, nine months, after which the floor ends and pay follows earnings.</td><td class="panelref">1, 2, 9</td></tr>
+      <tr><td>Floor (minimum payment)</td><td>The guaranteed amount a rep is paid each period while the draw runs. Here, $5,000.</td><td class="panelref">1, 2</td></tr>
+      <tr><td>Top-up</td><td>The amount the company adds when earnings fall below the floor. It is an advance, not a bonus.</td><td class="panelref">3 to 6</td></tr>
+      <tr><td>Draw balance</td><td>The running total of advances not yet recovered. In this story it climbs to $8,000 by month 5 and holds there in month 6.</td><td class="panelref">3 to 7</td></tr>
+      <tr><td>Recovery</td><td>Earnings above the floor applied to the draw balance. Pay stays at the floor while recovery runs.</td><td class="panelref">8, 9</td></tr>
+      <tr><td>Recovery cap</td><td>Recovery never takes more than the balance owed. In month 9 only $2,500 of $9,000 is recovered, and the rest is paid.</td><td class="panelref">9</td></tr>
+      <tr><td>Recoverable vs non-recoverable draw</td><td>A recoverable draw is an advance repaid from later earnings. A non-recoverable draw is a true guarantee: the top-ups are kept.</td><td class="panelref">1, 10</td></tr>
+      <tr><td>Payment plan</td><td>The object where the floor, duration, recoverable setting and recovery start are configured.</td><td class="panelref">1, 2</td></tr>
+    </table>
+
+    <!-- PREV / NEXT NAVIGATION -->
+    <div class="chapter-nav">
+      <a class="prev"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/payment-not-final/">
+        <div class="nav-label">← Previous</div>
+        <div class="nav-title">I2. When the Payment Isn't Final</div>
+      </a>
+      <a class="next"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-reference/">
+        <div class="nav-label">The reference maps →</div>
+        <div class="nav-title">Incentive Compensation: Setup &amp; Data Reference</div>
+      </a>
+    </div>
+
+    <div class="footer">
+      <p>Created by <a href="https://www.linkedin.com/in/veniltirou"
+         target="_blank">Venil Tirou</a> — Oracle CX Functional Consultant</p>
+      <p style="margin-top:6px;">© 2026 Venil Tirou. All rights reserved.
+      This is an independently created educational resource.
+      Not affiliated with or endorsed by Oracle Corporation.</p>
+    </div>
+
+  </main>
+</body>
+</html>
