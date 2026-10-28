@@ -52,9 +52,32 @@ below describe target state for new work, not a mandate to fix old work.
 | **James** | 🔒 Locked for new work (anchor not yet finalized) | *Frozen:* Sales Force Automation, Incentive Compensation, OIC Integrations. *Active:* Friday Debrief | Three visually distinct lineages exist across frozen chapters — left as-is, not being fixed. Friday Debrief's version (OIC/Friday-Debrief style: name badges, peach background, matches site branding) becomes the anchor for every *new* chapter going forward. Frozen chapters keep their own look. |
 | **Sarah** | ⚪ Free (does not appear in Friday Debrief) | *Frozen:* Incentive Compensation, OIC Integrations | No action needed now — she isn't in the chapter currently being touched. If she's written into a future new chapter, that's when she graduates to 🟡 Pending and gets a canonical pick, styled to match James's locked look. |
 | **Harrison** | ⚪ Free (one lineage, both frozen so far) | *Frozen:* OIC Integrations. *Active:* Friday Debrief | Both his appearances are within scope-frozen chapters as of this policy — Friday Debrief is being corrected for text/disclaimer issues but his design itself isn't being touched. Treat as a Rule 3 candidate the moment he's written into a chapter outside the OIC storyline. |
-| **Leila** | ⚪ Free | *Frozen:* OIC Integrations | Appeared once, in a frozen chapter. No obligation. |
-| **Lisa** | 🟡 Pending decision | *Active:* The World of ABC Corporation (cast lineup, fourth card); I5 Leila's Nine-Month Runway; I6 From Order to Earnings | Compensation Analyst. Two lineages: the cast lineup (shoulder-length light-brown hair, orange blazer, grey trousers) and I5/I6 (long wavy dark-brown hair, warm tan skin, burnt-orange blazer over a white top, dark teal trousers, navy lanyard). Pick one before her next chapter. I5/I6 references: `leila-runway/Runway02.jpg`, `order-to-earnings/Earnings00.jpg`. |
-| **Leila (intern)** | 🔒 Locked | *Active:* I4 Three Transactions, One Paycheck (Prologue); The World of ABC Corporation (cast lineup, sixth card) | Fall intern from a local Denver university, introduced October 2026 and added to the core cast: early twenties, honey-brown ponytail, dark rectangular glasses, lavender cardigan with small white flowers over a white top, dark grey trousers, dark flats, teal lanyard with a white badge. Locked because she is on the cast lineup, so every new chapter must match this design. Reference images: `abc-world/Scene01.png` (sixth card, standing) and `ic-three-transactions/Prologue.png` (seated, café). A different person from Leila at Home, Sweet Home (OIC Integrations). |
+| **Leila (Home, Sweet Home)** | ⚪ Free | *Frozen:* OIC Integrations | Appeared once, in a frozen chapter. No obligation. A different person from Leila at ABC (below). |
+| **Lisa** | 🔒 Locked (decided 2026-10-28) | *Active:* The World of ABC Corporation (cast lineup, fourth card); I1 One Deal, Three Credits (Scene 10); I2 When the Payment Isn't Final (Scene 1, small figure); I3 Disputes (Scene 4); Chapter 4 Oracle Commerce: Mile High City Bank (Scene 1); I5 Leila's Nine-Month Runway; I6 From Order to Earnings. *Frozen:* Chapter 3 Incentive Compensation | Compensation Analyst. **Canonical look (the I5/I6 lineage):** long wavy dark-brown hair past the shoulders, warm tan skin, burnt-orange blazer over a white V-neck top, navy lanyard with a white "Lisa" badge, dark teal trousers, dark low heels. Reference: `characters/lisa-reference.jpg` (cropped from `leila-runway/Runway01.jpg` and `Runway07.jpg`). Still drawn in an older look, awaiting redraw: the cast lineup card, I1 Scene 10, I2 Scene 1, I3 Scene 4, Chapter 4 Scene 1 (see open items). |
+| **Leila (ABC)** | 🔒 Locked (canonical look changed 2026-10-28) | *Active:* I4 Three Transactions, One Paycheck (Prologue); The World of ABC Corporation (cast lineup, sixth card); I5 Leila's Nine-Month Runway; I6 From Order to Earnings | Joined as the fall intern from a local Denver university (I4, October 2026); a junior sales rep on James's team from I5 on. **Canonical look (the I5/I6 lineage):** early twenties, medium chestnut-brown high ponytail with a lavender scrunchie, thin round dark glasses, lavender cardigan with a lighter lavender flower pattern over a white top, mustard-yellow trousers, lavender sneakers. **The lanyard marks her role:** teal with a "Leila – Intern" badge while she is an intern (I4); green with a "Leila" badge as a junior rep (I5 on). Reference: `characters/leila-reference.jpg` (cropped from `leila-runway/Runway01.jpg` and `Runway03.jpg`). This replaces the earlier lock (honey-brown ponytail, dark rectangular glasses, dark grey trousers). Still drawn in that earlier look, awaiting redraw: the cast lineup card and the I4 Prologue (see open items). |
+
+## Decision log
+
+**2026-10-28: Lisa and Leila take their I5/I6 look.** Both had two
+lineages. The I5/I6 one was chosen over the cast-lineup one because:
+
+1. **It is the only consistent version.** I5 and I6 draw both women the
+   same way across 18 images. The older Lisa is not one look but three
+   (short light-brown hair in the lineup and I3, auburn in I1, long copper
+   in Chapter 4).
+2. **It tells the cast apart.** The lineup Lisa has the same hair, face and
+   build as Sarah; only the blazer colour separates them. The I5/I6 Lisa is
+   recognisable at LinkedIn thumbnail size.
+3. **It costs less to fix and keeps text safe.** Moving to the lineup look
+   would mean redrawing 17 text-heavy I5/I6 scenes, each a fresh chance of
+   misspelt on-screen text. Moving to the I5/I6 look means redrawing six
+   images, mostly single-figure scenes, and pasting only the redrawn person
+   back into each original so every caption stays pixel-identical.
+4. **They carry the Incentive Compensation storyline from I5 on**, and I6
+   was drawn from I5 as its reference.
+
+Leila's lanyard is allowed to change with her role (teal as an intern,
+green as a junior rep). Everything else about her look is fixed.
 
 ## Workflow going forward
 
@@ -81,8 +104,16 @@ below describe target state for new work, not a mandate to fix old work.
 - [ ] Whenever Sarah (or any other repeat character) is written into a
       new chapter for the first time under this policy, pick her
       canonical version then — don't defer it a second time.
-- [ ] Leila in I5 and I6 (round glasses, mustard trousers, green lanyard)
-      differs from her locked design (dark rectangular glasses, dark grey
-      trousers, teal lanyard). Either regenerate those chapters' art from the
-      locked reference or adopt the I5/I6 look as canonical.
-- [ ] Resolve Lisa's canonical look (see her registry row).
+- [x] Resolve Lisa's and Leila's canonical looks (decision log, 2026-10-28).
+- [x] Cast lineup: Leila's card caption now reads "Junior Sales Rep".
+- [ ] Redraw to the canonical look (only the person changes; paste the
+      redrawn figure back into the original so all text stays identical):
+  - [ ] `abc-world/Scene01.png`: Lisa's card (fourth) and Leila's card
+        (sixth, green junior-rep lanyard)
+  - [ ] `payment-not-final/Scene01.png`: the small Lisa figure (reuse the
+        new lineup figure)
+  - [ ] `ic-three-transactions/Prologue.png`: Leila's hair and glasses
+        (keep the teal intern lanyard and badge)
+  - [ ] `route66-three-credits/Scene10.png`: Lisa
+  - [ ] `disputes/Scene04.png`: Lisa
+  - [ ] `commerce-mile-high/Scene01.png`: Lisa
