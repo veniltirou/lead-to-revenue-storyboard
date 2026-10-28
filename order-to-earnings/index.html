@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>I6: From Order to Earnings — One Order, Fifteen Credits, One Paycheck | Oracle CX Storyboard Series</title>
+  <meta name="description" content="A $60,000 order becomes fifteen credits worth $180,000, and $1,200 for a junior rep. Lisa puts every step of Oracle Incentive Compensation on the projector: collect, credit, roll up, classify and calculate.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Oracle CX Storyboard Series">
+  <meta property="og:title" content="From Order to Earnings — Oracle Incentive Compensation">
+  <meta property="og:description" content="A $60,000 order becomes fifteen credits worth $180,000, and $1,200 for a junior rep. Lisa puts every step of Oracle Incentive Compensation on the projector: collect, credit, roll up, classify and calculate.">
+  <meta property="og:url" content="https://veniltirou.github.io/lead-to-revenue-storyboard/order-to-earnings/">
+  <meta property="og:image" content="https://veniltirou.github.io/lead-to-revenue-storyboard/order-to-earnings/Earnings00.jpg">
+  <meta property="og:image:alt" content="Lisa at the projector in ABC Corporation's Denver conference room, the screen reading Order, Credit, Earnings, while Leila takes notes">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="From Order to Earnings — Oracle Incentive Compensation">
+  <meta name="twitter:description" content="A $60,000 order becomes fifteen credits worth $180,000, and $1,200 for a junior rep. Lisa puts every step of Oracle Incentive Compensation on the projector: collect, credit, roll up, classify and calculate.">
+  <meta name="twitter:image" content="https://veniltirou.github.io/lead-to-revenue-storyboard/order-to-earnings/Earnings00.jpg">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 280px;
+      min-width: 280px;
+      background-color: #1a1a2e;
+      color: #ccc;
+      padding: 30px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .sidebar .logo {
+      padding: 0 20px 24px 20px;
+      border-bottom: 1px solid #333;
+      margin-bottom: 20px;
+    }
+    .sidebar .logo h2 { color: #ff6b2b; font-size: 1em; line-height: 1.5; }
+    .sidebar .logo p { color: #888; font-size: 0.78em; margin-top: 6px; }
+    .sidebar ul { list-style: none; }
+    .sidebar ul .section-label {
+      color: #ff9a5c;
+      font-size: 0.72em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      padding: 18px 20px 7px 20px;
+      margin-top: 6px;
+      border-top: 1px solid rgba(255,155,92,0.22);
+    }
+    .sidebar ul .section-label:first-of-type {
+      border-top: none;
+      margin-top: 0;
+    }
+    .sidebar ul li a {
+      display: block;
+      padding: 9px 20px;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.88em;
+      border-left: 3px solid transparent;
+      transition: all 0.2s;
+    }
+    .sidebar ul li a:hover {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.active {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .main {
+      margin-left: 280px;
+      padding: 40px 50px;
+      flex: 1;
+      max-width: 900px;
+    }
+    .chapter-header { margin-bottom: 30px; }
+    .chapter-header .chapter-label {
+      font-size: 0.8em;
+      color: #ff6b2b;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .chapter-header h1 { color: #c74b00; font-size: 1.8em; margin-bottom: 10px; }
+    .chapter-header p { color: #555; line-height: 1.7; }
+    .scenario-box {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.95em;
+      line-height: 1.7;
+      color: #444;
+    }
+    .characters-box {
+      background-color: #f0f4ff;
+      border-left: 4px solid #3a5bd9;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.92em;
+      line-height: 1.8;
+      color: #444;
+    }
+    .characters-box h3 {
+      color: #3a5bd9;
+      font-size: 0.9em;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    h2 {
+      color: #333;
+      font-size: 1.15em;
+      margin: 36px 0 16px 0;
+      border-bottom: 2px solid #ff6b2b;
+      padding-bottom: 8px;
+    }
+    .storyboard {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 24px;
+      margin: 28px 0;
+    }
+    .storyboard h3 {
+      color: #c74b00;
+      font-size: 1.05em;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    .storyboard img {
+      width: 100%;
+      height: auto;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      margin: 12px 0;
+    }
+    .storyboard .tip {
+      font-style: italic;
+      color: #999;
+      font-size: 0.85em;
+      margin: 6px 0 14px 0;
+    }
+    .storyboard .what-it-shows {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      padding: 12px 16px;
+      font-size: 0.92em;
+      line-height: 1.7;
+      color: #444;
+      border-radius: 0 4px 4px 0;
+    }
+    .storyboard .what-it-shows strong { color: #c74b00; }
+    table.concepts {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 8px 0;
+      font-size: 0.9em;
+    }
+    table.concepts th, table.concepts td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+    table.concepts th {
+      background-color: #fff8f0;
+      color: #c74b00;
+      border-bottom: 2px solid #ff6b2b;
+    }
+    table.concepts td.panelref {
+      white-space: nowrap;
+      color: #999;
+    }
+
+    .chapter-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+      padding-top: 24px;
+      border-top: 2px solid #eee;
+      gap: 16px;
+    }
+    .chapter-nav a {
+      display: block;
+      padding: 16px 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #333;
+      transition: all 0.2s;
+      flex: 1;
+    }
+    .chapter-nav a:hover {
+      border-color: #ff6b2b;
+      box-shadow: 0 2px 8px rgba(199,75,0,0.15);
+    }
+    .chapter-nav .prev { text-align: left; }
+    .chapter-nav .next { text-align: right; }
+    .chapter-nav .nav-label {
+      font-size: 0.75em;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .chapter-nav .nav-title {
+      font-weight: bold;
+      color: #c74b00;
+      font-size: 0.95em;
+    }
+    .footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid #ddd;
+      font-size: 0.82em;
+      color: #999;
+    }
+    .footer a { color: #c74b00; }
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 20px; }
+    }
+  </style>
+  <!-- GoatCounter analytics -->
+  <script data-goatcounter="https://veniltirou.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="logo">
+      <h2>Oracle CX Storyboard Series</h2>
+    </div>
+    <ul>
+                  <li class="section-label">Getting Started</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">
+        📋 Table of Contents</a></li>
+      <li class="section-label">Foundation</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/abc-world/">
+        The World of ABC Corporation</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/customer-data-management/">
+        Customer Data Management</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-force-automation-one-day/">
+        A Day in Sales Force Automation</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-performance-management/">
+        Sales Performance Management: The Landscape</a></li>
+      <li class="section-label">Chapters</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/">
+        1. Lead-to-Revenue Overview</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">
+        2. Subscription Management</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/incentive-compensation/">
+        3. Incentive Compensation</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/commerce-mile-high/">
+        4. Oracle Commerce: Mile High City Bank</a></li>
+      <li class="section-label">Advanced · Subscription Management</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/usage-billing-deep-dive/">
+        S1. Usage Billing: Allowance, Rollover &amp; Overage</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/compound-amendment-deep-dive/">
+        S2. The Compound Mid-Term Amendment</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/renewal-promotion-deep-dive/">
+        S3. The Anniversary Renewal Promotion</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/quote-to-cash/">
+        S4. Quote-to-Cash Across Oracle Fusion</a></li>
+      <li class="section-label">Advanced · Incentive Compensation</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/route66-three-credits/">
+        I1. One Deal, Three Credits: The Route 66 Story</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/payment-not-final/">
+        I2. When the Payment Isn't Final</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/disputes/">
+        I3. When the Rep Says the Number Is Wrong: Disputes</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-three-transactions/">
+        I4. Three Transactions, One Paycheck</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/leila-runway/">
+        I5. Leila's Nine-Month Runway</a></li>
+      <li><a href="#" class="active">
+        I6. From Order to Earnings</a></li>
+      <li class="section-label">Integrations</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-integrations/">
+        G1. Oracle Integration Cloud</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/friday-debrief/">
+        G2. The Friday Debrief</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-under-the-hood/">
+        G3. OIC Under the Hood</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-replenishment-one-off/">
+        G4. The One-Off: Hilltop Replenishment</a></li>
+      <li class="section-label">Reference</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-reference/">
+        Incentive Compensation: Setup &amp; Data Reference</a></li>
+      <li class="section-label">Connect</li>
+      <li><a href="https://www.linkedin.com/in/veniltirou" target="_blank">
+        🔗 LinkedIn Profile</a></li>
+    </ul>
+  </nav>
+
+    <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <div class="chapter-header">
+      <div class="chapter-label">Advanced · Incentive Compensation</div>
+      <h1>From Order to Earnings — One Order, Fifteen Credits, One Paycheck</h1>
+      <p>A $60,000 order arrives, and by the end of the evening Incentive
+      Compensation has turned it into <strong>fifteen credits worth
+      $180,000</strong>, and <strong>$1,200</strong> of earnings for a junior
+      rep. This chapter puts the whole run on a projector: collect, credit, roll
+      up, classify and calculate, one step at a time, through the eyes of the
+      person it pays. It builds on
+      <a href="https://veniltirou.github.io/lead-to-revenue-storyboard/route66-three-credits/" style="color:#c74b00;">One Deal, Three Credits</a>,
+      which explains why total credit can exceed a deal, and
+      <a href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-three-transactions/" style="color:#c74b00;">Three Transactions, One Paycheck</a>,
+      which maps the objects along the way.</p>
+    </div>
+
+    <div class="scenario-box">
+      <strong>Business Scenario:</strong> <strong>Mile High City Bank</strong>,
+      one of ABC Corporation's Denver accounts, opens a new branch and orders
+      three products: a <strong>snack vending machine ($12,000)</strong>, a
+      <strong>beverage vending machine ($18,000)</strong> and a
+      <strong>micro market ($30,000)</strong>, $60,000 in all.
+      <strong>James Mitchell</strong> owns the account, and
+      <strong>Leila</strong>, now a junior sales rep, works it with him.
+      <strong>Lisa</strong>, ABC's compensation analyst, puts the order on the
+      projector and walks Leila through what happens to it.
+      <br><br>
+      The split is already set. On ABC's <strong>Denver Multi-Site</strong>
+      credit rule, James receives <strong>60%</strong> and Leila
+      <strong>40%</strong> of each line as revenue credit;
+      <strong>Jeff</strong>, the multi-site specialist, receives
+      <strong>100% overlay credit</strong>; and <strong>Sarah Johnson</strong>,
+      their sales manager, receives <strong>rollup credit</strong> from the
+      parent rule. ABC classifies <strong>after crediting and rollup</strong>,
+      just before calculation.
+    </div>
+
+    <div class="scenario-box" style="border-left-color:#3a5bd9; background-color:#f0f4ff;">
+      <strong>A note on accuracy:</strong> the processing order, the two
+      classification settings, how crediting creates one credit per receiver on
+      the winning rule, how rollup mirrors direct credits, and how a credit's
+      category must match a plan's measure all follow Oracle's documentation.
+      The company, the order, the rule names, the VENDING parent category and
+      the 5% rate are illustration, but every number reconciles.
+    </div>
+
+    <div class="characters-box">
+      <h3>👥 Characters in This Chapter</h3>
+      <strong>Lisa</strong> (ORANGE blazer) — Compensation Analyst at ABC
+      Corporation; she runs the order on the projector<br>
+      <strong>Leila</strong> (FLORAL cardigan, glasses) — junior sales rep,
+      newly promoted from intern, learning how an order becomes her earnings<br>
+      <strong>James Mitchell</strong> (GREEN shirt) — Senior Sales Rep and
+      Leila's mentor; he hands the order over in Scene 1<br>
+      <strong>Jeff</strong> — Multi-Site Specialist; overlay credit (not pictured)<br>
+      <strong>Sarah Johnson</strong> — Sales Manager; rollup credit (not pictured)
+    </div>
+
+    <p class="tip" style="font-style:italic;color:#999;font-size:0.85em;margin:6px 0 14px 0;">📱 On mobile? Pinch to zoom to read the numbers clearly.</p>
+
+    <div class="storyboard">
+      <h3>Prologue — Lisa Takes the Projector</h3>
+      <img src="Earnings00.jpg"
+           alt="Lisa at the projector in ABC's Denver conference room, the screen reading Order, Credit, Earnings, while Leila takes notes at the glass table" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> the question the rest of the chapter answers. Leila has co-sold her first big order and wants to know what it is worth to her. Rather than quote a number, Lisa puts the whole journey on the screen, <strong>order, credit, earnings</strong>, because the number only makes sense once you have seen the steps that produce it.
+      </div>
+    </div>
+    <div class="storyboard">
+      <h3>Scene 1 — Mile High Orders for Branch 15</h3>
+      <img src="Earnings01.jpg"
+           alt="James sets the signed order on the table while Lisa says James 60%, Leila 40%; the screen lists the snack machine, beverage machine and micro market totaling $60,000" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> James sets down the signed order, three lines for Mile High's newest branch, <strong>$60,000</strong> in all, and hands Leila to Lisa. Before anything runs, Lisa states the split: <strong>James 60% of every line, Leila 40%</strong>. The split is not stored on either of them. It sits on ABC's Denver Multi-Site <strong>credit rule</strong>, decided by leadership and configured by Lisa, and every order that matches that rule is split the same way.
+      </div>
+    </div>
+    <div class="storyboard">
+      <h3>Scene 2 — Seven Steps, One Order</h3>
+      <img src="Earnings02.jpg"
+           alt="Lisa points at seven process boxes on the screen with Classify highlighted, while Leila counts on her fingers and asks where classification fits" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> the whole route before any of it is magnified: <strong>import, collect, credit, roll up, classify, calculate, pay</strong>. Leila's question is the right one, because classification is the one step whose position is a choice. Oracle offers two settings for <em>When to Classify Transactions</em>: <strong>after collection and before crediting</strong>, or <strong>after crediting and rollup and before calculation</strong>. ABC uses the second. Oracle advises choosing once and leaving it, because switching means reprocessing every open period.
+      </div>
+    </div>
+    <div class="storyboard">
+      <h3>Scene 3 — Import and Collect</h3>
+      <img src="Earnings03.jpg"
+           alt="Lisa runs the process on her laptop beside Leila; the screen shows three base transactions, BT-1001 to BT-1003" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> the order is imported to staging and collected into <strong>three base transactions</strong>, BT-1001 to BT-1003, one per order line. ABC loads its lines separately so each product can be credited and classified on its own. Lisa starts everything with <strong>Run All Transaction Processes</strong> in the Credits and Earnings work area, which also deploys the latest credit and classification rules before it uses them.
+      </div>
+    </div>
+    <div class="storyboard">
+      <h3>Scene 4 — Credit</h3>
+      <img src="Earnings04.jpg"
+           alt="Leila asks if Jeff's 100% comes out of her 40%, and Lisa, pointing at Jeff's overlay row, says not a cent; the screen shows James 60% $36,000, Leila 40% $24,000, Jeff 100% overlay $60,000" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> all three lines match the Denver Multi-Site rule, so crediting creates one credit for <strong>each receiver on that rule, for each line</strong>: James 60% ($36,000), Leila 40% ($24,000) and Jeff 100% overlay ($60,000). That is <strong>nine direct credits</strong>. Jeff's count as direct because he is named on the rule itself. Leila's worry is the natural one, and the answer is the same as in the Route 66 story: Jeff's credit is marked <strong>Nonrevenue</strong> and sits on top of the reps' shares. It takes nothing from her 40%.
+      </div>
+    </div>
+    <div class="storyboard">
+      <h3>Scene 5 — Roll Up</h3>
+      <img src="Earnings05.jpg"
+           alt="Leila asks whether Sarah's credit comes out of hers and Lisa says none of it; the screen shows 3 lines, 9 direct plus 6 rollup, 15 credits, and Sarah's $60,000 rollup" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Sarah is a credit receiver on the parent rule. Rollup gives her <strong>one credit for every direct credit</strong> whose receiver has <em>Roll Up to Parents</em> set to Yes, James's three and Leila's three, each mirroring the amount it came from: <strong>six credits, $60,000</strong>. Jeff's rows are set to No, so nothing rolls up from his overlay. Three order lines have now become fifteen credits.
+      </div>
+    </div>
+    <div class="storyboard">
+      <h3>The Ledger — All Fifteen Credits, Line by Line</h3>
+      <p style="line-height:1.7; margin-bottom:6px;"><strong>Nine direct credits:</strong> three order lines × three people on the rule.</p>
+      <table class="concepts">
+        <tr><th>#</th><th>Line</th><th>Receiver</th><th>Credit</th><th style="text-align:right;">Amount</th></tr>
+        <tr><td>1</td><td>Snack</td><td>James</td><td>Revenue, 60%</td><td style="text-align:right;">$7,200</td></tr>
+        <tr><td>2</td><td>Snack</td><td>Leila</td><td>Revenue, 40%</td><td style="text-align:right;">$4,800</td></tr>
+        <tr><td>3</td><td>Snack</td><td>Jeff</td><td>Overlay, 100%</td><td style="text-align:right;">$12,000</td></tr>
+        <tr><td>4</td><td>Beverage</td><td>James</td><td>Revenue, 60%</td><td style="text-align:right;">$10,800</td></tr>
+        <tr><td>5</td><td>Beverage</td><td>Leila</td><td>Revenue, 40%</td><td style="text-align:right;">$7,200</td></tr>
+        <tr><td>6</td><td>Beverage</td><td>Jeff</td><td>Overlay, 100%</td><td style="text-align:right;">$18,000</td></tr>
+        <tr><td>7</td><td>Micro market</td><td>James</td><td>Revenue, 60%</td><td style="text-align:right;">$18,000</td></tr>
+        <tr><td>8</td><td>Micro market</td><td>Leila</td><td>Revenue, 40%</td><td style="text-align:right;">$12,000</td></tr>
+        <tr><td>9</td><td>Micro market</td><td>Jeff</td><td>Overlay, 100%</td><td style="text-align:right;">$30,000</td></tr>
+      </table>
+      <p style="line-height:1.7; margin:18px 0 6px 0;"><strong>Six rollup credits:</strong> one for each of James's and Leila's, all to Sarah.</p>
+      <table class="concepts">
+        <tr><th>#</th><th>Line</th><th>To</th><th>Mirrors</th><th style="text-align:right;">Amount</th></tr>
+        <tr><td>10</td><td>Snack</td><td>Sarah</td><td>#1 James</td><td style="text-align:right;">$7,200</td></tr>
+        <tr><td>11</td><td>Snack</td><td>Sarah</td><td>#2 Leila</td><td style="text-align:right;">$4,800</td></tr>
+        <tr><td>12</td><td>Beverage</td><td>Sarah</td><td>#4 James</td><td style="text-align:right;">$10,800</td></tr>
+        <tr><td>13</td><td>Beverage</td><td>Sarah</td><td>#5 Leila</td><td style="text-align:right;">$7,200</td></tr>
+        <tr><td>14</td><td>Micro market</td><td>Sarah</td><td>#7 James</td><td style="text-align:right;">$18,000</td></tr>
+        <tr><td>15</td><td>Micro market</td><td>Sarah</td><td>#8 Leila</td><td style="text-align:right;">$12,000</td></tr>
+      </table>
+      <div class="what-it-shows" style="margin-top:16px;">
+        <strong>What this shows:</strong> add them up and one $60,000 order has produced <strong>$180,000 of credit</strong>: $120,000 direct ($36,000 + $24,000 + $60,000) and $60,000 rollup. As in Route 66, total credit was never meant to equal the deal. Only the revenue credits split the sale; overlay and rollup recognize the same sale toward other people's goals, without taking anything from the reps.
+      </div>
+    </div>
+    <div class="storyboard">
+      <h3>Scene 6 — Classify</h3>
+      <img src="Earnings06.jpg"
+           alt="Lisa tells Leila her plan pays by category; the screen shows VENDING branching to SNACK, BEVERAGE and MICRO_MARKET, with 15 credits classified" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> with crediting and rollup done, <strong>Classify Credits</strong> runs against all fifteen credits. ABC's classification rules map each product to a <strong>credit category</strong>, SNACK, BEVERAGE or MICRO_MARKET, all children of a parent category, VENDING. Every credit on a line gets that line's category, Jeff's and Sarah's included: five per line. Classifying after crediting is the setting that would let a category differ by credit receiver if ABC ever needed that; today, it doesn't.
+      </div>
+    </div>
+    <div class="storyboard">
+      <h3>Scene 7 — Calculate</h3>
+      <img src="Earnings07.jpg"
+           alt="The screen shows $24,000 times 5% equals $1,200; Leila beams and says so that's my $1,200 while Lisa gives a thumbs-up" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> calculation only counts a credit whose category matches a <strong>performance measure</strong> on the participant's plan, or is a child of the measure's category. Leila's Vending Revenue measure uses VENDING, the parent of all three, so all three of her credits match and move from Classified to Eligible: <strong>$24,000 × 5% = $1,200</strong>. A credit that matched no measure would earn nothing until it was fixed. Then Pay runs, and Leila's payment plan turns her earnings into a paycheck.
+      </div>
+    </div>
+
+
+    <h2>Why This Chapter Matters</h2>
+    <p style="line-height:1.8; margin-bottom:14px;"><strong>The takeaway:</strong>
+    your split decides your credit, and classification connects that credit to
+    the plan that pays it. One $60,000 order became fifteen credits worth
+    $180,000 and, for Leila, $1,200 of earnings, and every one of those numbers
+    traces back to a rule someone set up before the order arrived.</p>
+    <p style="line-height:1.8; margin-bottom:14px;">Most confusion about pay
+    is a question nobody answered before payday. Why does Jeff have $60,000 of
+    credit? Why does Sarah have six credits? Why is my number $1,200? Lisa
+    answers all three with the projector on, before the statement arrives.
+    <strong>The lesson for sales ops: explain the credits before the paycheck,
+    not after.</strong></p>
+
+    <h2>Concepts Covered</h2>
+    <table class="concepts">
+      <tr><th>Concept</th><th>What it means</th><th>Scene</th></tr>
+      <tr><td>Base transaction</td><td>A collected sales line. One order of three lines becomes three base transactions.</td><td class="panelref">3</td></tr>
+      <tr><td>Credit rule and split</td><td>Splits live on credit rules, not on people. Each credit receiver row carries a split percentage, a revenue type and a Roll Up to Parents setting.</td><td class="panelref">1, 4</td></tr>
+      <tr><td>Direct credit</td><td>One credit per receiver on the winning rule, per transaction. Three lines × three receivers = nine.</td><td class="panelref">4, Ledger</td></tr>
+      <tr><td>Overlay (nonrevenue) credit</td><td>Credit for a specialist named on the same rule, marked Nonrevenue. It sits on top of the revenue split and takes nothing from it.</td><td class="panelref">4</td></tr>
+      <tr><td>Rollup credit</td><td>One credit for each direct credit whose receiver rolls up to a parent, mirroring its amount.</td><td class="panelref">5, Ledger</td></tr>
+      <tr><td>Credit category</td><td>The label classification adds to each credit so plans can find it. Categories can form a hierarchy, such as VENDING above SNACK, BEVERAGE and MICRO_MARKET.</td><td class="panelref">6</td></tr>
+      <tr><td>When to Classify Transactions</td><td>The setting that places classification either after collection and before crediting, or after crediting and rollup and before calculation. Chosen once.</td><td class="panelref">2, 6</td></tr>
+      <tr><td>Eligibility</td><td>A credit counts toward a measure only if its category matches the measure's category or one of its children.</td><td class="panelref">7</td></tr>
+      <tr><td>Run All Transaction Processes</td><td>The single task that collects, credits, rolls up, classifies and calculates, in order.</td><td class="panelref">3</td></tr>
+    </table>
+
+    <!-- PREV / NEXT NAVIGATION -->
+    <div class="chapter-nav">
+      <a class="prev"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/leila-runway/">
+        <div class="nav-label">← Previous</div>
+        <div class="nav-title">I5. Leila's Nine-Month Runway</div>
+      </a>
+      <a class="next"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-reference/">
+        <div class="nav-label">The reference maps →</div>
+        <div class="nav-title">Incentive Compensation: Setup &amp; Data Reference</div>
+      </a>
+    </div>
+
+    <div class="footer">
+      <p>Created by <a href="https://www.linkedin.com/in/veniltirou"
+         target="_blank">Venil Tirou</a> — Oracle CX Functional Consultant</p>
+      <p style="margin-top:6px;">© 2026 Venil Tirou. All rights reserved.
+      This is an independently created educational resource.
+      Not affiliated with or endorsed by Oracle Corporation.</p>
+    </div>
+
+  </main>
+</body>
+</html>

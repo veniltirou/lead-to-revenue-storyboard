@@ -53,6 +53,7 @@ below describe target state for new work, not a mandate to fix old work.
 | **Sarah** | ⚪ Free (does not appear in Friday Debrief) | *Frozen:* Incentive Compensation, OIC Integrations | No action needed now — she isn't in the chapter currently being touched. If she's written into a future new chapter, that's when she graduates to 🟡 Pending and gets a canonical pick, styled to match James's locked look. |
 | **Harrison** | ⚪ Free (one lineage, both frozen so far) | *Frozen:* OIC Integrations. *Active:* Friday Debrief | Both his appearances are within scope-frozen chapters as of this policy — Friday Debrief is being corrected for text/disclaimer issues but his design itself isn't being touched. Treat as a Rule 3 candidate the moment he's written into a chapter outside the OIC storyline. |
 | **Leila** | ⚪ Free | *Frozen:* OIC Integrations | Appeared once, in a frozen chapter. No obligation. |
+| **Lisa** | 🟡 Pending decision | *Active:* The World of ABC Corporation (cast lineup, fourth card); I5 Leila's Nine-Month Runway; I6 From Order to Earnings | Compensation Analyst. Two lineages: the cast lineup (shoulder-length light-brown hair, orange blazer, grey trousers) and I5/I6 (long wavy dark-brown hair, warm tan skin, burnt-orange blazer over a white top, dark teal trousers, navy lanyard). Pick one before her next chapter. I5/I6 references: `leila-runway/Runway02.jpg`, `order-to-earnings/Earnings00.jpg`. |
 | **Leila (intern)** | 🔒 Locked | *Active:* I4 Three Transactions, One Paycheck (Prologue); The World of ABC Corporation (cast lineup, sixth card) | Fall intern from a local Denver university, introduced October 2026 and added to the core cast: early twenties, honey-brown ponytail, dark rectangular glasses, lavender cardigan with small white flowers over a white top, dark grey trousers, dark flats, teal lanyard with a white badge. Locked because she is on the cast lineup, so every new chapter must match this design. Reference images: `abc-world/Scene01.png` (sixth card, standing) and `ic-three-transactions/Prologue.png` (seated, café). A different person from Leila at Home, Sweet Home (OIC Integrations). |
 
 ## Workflow going forward
@@ -80,3 +81,8 @@ below describe target state for new work, not a mandate to fix old work.
 - [ ] Whenever Sarah (or any other repeat character) is written into a
       new chapter for the first time under this policy, pick her
       canonical version then — don't defer it a second time.
+- [ ] Leila in I5 and I6 (round glasses, mustard trousers, green lanyard)
+      differs from her locked design (dark rectangular glasses, dark grey
+      trousers, teal lanyard). Either regenerate those chapters' art from the
+      locked reference or adopt the I5/I6 look as canonical.
+- [ ] Resolve Lisa's canonical look (see her registry row).
