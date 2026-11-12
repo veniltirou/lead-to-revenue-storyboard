@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>I9 Quick Take: Why $5,000 Pays $90 — The Interpolated Rate | Oracle CX Storyboard Series</title>
+  <meta name="description" content="A one-scene Quick Take on Oracle's interpolated rate: with tiers of $10, $40, $100 and $2,000, $5,000 of credit pays $90, because full tiers pay in full and the current tier pays its share.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Oracle CX Storyboard Series">
+  <meta property="og:title" content="Quick Take: Why $5,000 Pays $90 — Oracle Incentive Compensation">
+  <meta property="og:description" content="A one-scene Quick Take on Oracle's interpolated rate: with tiers of $10, $40, $100 and $2,000, $5,000 of credit pays $90, because full tiers pay in full and the current tier pays its share.">
+  <meta property="og:url" content="https://veniltirou.github.io/lead-to-revenue-storyboard/interpolated-rate/">
+  <meta property="og:image" content="https://veniltirou.github.io/lead-to-revenue-storyboard/interpolated-rate/Interp00.jpg">
+  <meta property="og:image:alt" content="Lisa explains to Leila how $5,000 of credit earns $90 under an interpolated rate table">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Quick Take: Why $5,000 Pays $90 — Oracle Incentive Compensation">
+  <meta name="twitter:description" content="A one-scene Quick Take on Oracle's interpolated rate: with tiers of $10, $40, $100 and $2,000, $5,000 of credit pays $90, because full tiers pay in full and the current tier pays its share.">
+  <meta name="twitter:image" content="https://veniltirou.github.io/lead-to-revenue-storyboard/interpolated-rate/Interp00.jpg">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 280px;
+      min-width: 280px;
+      background-color: #1a1a2e;
+      color: #ccc;
+      padding: 30px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .sidebar .logo {
+      padding: 0 20px 24px 20px;
+      border-bottom: 1px solid #333;
+      margin-bottom: 20px;
+    }
+    .sidebar .logo h2 { color: #ff6b2b; font-size: 1em; line-height: 1.5; }
+    .sidebar .logo p { color: #888; font-size: 0.78em; margin-top: 6px; }
+    .sidebar ul { list-style: none; }
+    .sidebar ul .section-label {
+      color: #ff9a5c;
+      font-size: 0.72em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      padding: 18px 20px 7px 20px;
+      margin-top: 6px;
+      border-top: 1px solid rgba(255,155,92,0.22);
+    }
+    .sidebar ul .section-label:first-of-type {
+      border-top: none;
+      margin-top: 0;
+    }
+    .sidebar ul li a {
+      display: block;
+      padding: 9px 20px;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.88em;
+      border-left: 3px solid transparent;
+      transition: all 0.2s;
+    }
+    .sidebar ul li a:hover {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.active {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .main {
+      margin-left: 280px;
+      padding: 40px 50px;
+      flex: 1;
+      max-width: 900px;
+    }
+    .chapter-header { margin-bottom: 30px; }
+    .chapter-header .chapter-label {
+      font-size: 0.8em;
+      color: #ff6b2b;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .chapter-header h1 { color: #c74b00; font-size: 1.8em; margin-bottom: 10px; }
+    .chapter-header p { color: #555; line-height: 1.7; }
+    .scenario-box {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.95em;
+      line-height: 1.7;
+      color: #444;
+    }
+    .characters-box {
+      background-color: #f0f4ff;
+      border-left: 4px solid #3a5bd9;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.92em;
+      line-height: 1.8;
+      color: #444;
+    }
+    .characters-box h3 {
+      color: #3a5bd9;
+      font-size: 0.9em;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    h2 {
+      color: #333;
+      font-size: 1.15em;
+      margin: 36px 0 16px 0;
+      border-bottom: 2px solid #ff6b2b;
+      padding-bottom: 8px;
+    }
+    .storyboard {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 24px;
+      margin: 28px 0;
+    }
+    .storyboard h3 {
+      color: #c74b00;
+      font-size: 1.05em;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    .storyboard img {
+      width: 100%;
+      height: auto;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      margin: 12px 0;
+    }
+    .storyboard .tip {
+      font-style: italic;
+      color: #999;
+      font-size: 0.85em;
+      margin: 6px 0 14px 0;
+    }
+    .storyboard .what-it-shows {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      padding: 12px 16px;
+      font-size: 0.92em;
+      line-height: 1.7;
+      color: #444;
+      border-radius: 0 4px 4px 0;
+    }
+    .storyboard .what-it-shows strong { color: #c74b00; }
+    table.concepts {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 8px 0;
+      font-size: 0.9em;
+    }
+    table.concepts th, table.concepts td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+    table.concepts th {
+      background-color: #fff8f0;
+      color: #c74b00;
+      border-bottom: 2px solid #ff6b2b;
+    }
+    table.concepts td.panelref {
+      white-space: nowrap;
+      color: #999;
+    }
+
+    .chapter-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+      padding-top: 24px;
+      border-top: 2px solid #eee;
+      gap: 16px;
+    }
+    .chapter-nav a {
+      display: block;
+      padding: 16px 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #333;
+      transition: all 0.2s;
+      flex: 1;
+    }
+    .chapter-nav a:hover {
+      border-color: #ff6b2b;
+      box-shadow: 0 2px 8px rgba(199,75,0,0.15);
+    }
+    .chapter-nav .prev { text-align: left; }
+    .chapter-nav .next { text-align: right; }
+    .chapter-nav .nav-label {
+      font-size: 0.75em;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .chapter-nav .nav-title {
+      font-weight: bold;
+      color: #c74b00;
+      font-size: 0.95em;
+    }
+    .footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid #ddd;
+      font-size: 0.82em;
+      color: #999;
+    }
+    .footer a { color: #c74b00; }
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 20px; min-width: 0; }
+      table.concepts { font-size: 0.82em; }
+      table.concepts th, table.concepts td { padding: 8px 6px; }
+      .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .swipe-hint { display: block !important; }
+      .table-scroll table.concepts { min-width: 560px; }
+      table.concepts td.panelref { white-space: normal; }
+    }
+      .quick-take {
+      display: inline-block;
+      background-color: #1a1a2e;
+      color: #fff;
+      font-size: 0.72em;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-radius: 4px;
+      padding: 3px 9px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    table.concepts tr.total td { font-weight: bold; background-color: #fff8f0; }
+    table.concepts td.num { text-align: right; white-space: nowrap; }
+    table.concepts th.num { text-align: right; }
+  </style>
+  <!-- GoatCounter analytics -->
+  <script data-goatcounter="https://veniltirou.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="logo">
+      <h2>Oracle CX Storyboard Series</h2>
+    </div>
+    <ul>
+                  <li class="section-label">Getting Started</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">
+        📋 Table of Contents</a></li>
+      <li class="section-label">Foundation</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/abc-world/">
+        The World of ABC Corporation</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/customer-data-management/">
+        Customer Data Management</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-force-automation-one-day/">
+        A Day in Sales Force Automation</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-performance-management/">
+        Sales Performance Management: The Landscape</a></li>
+      <li class="section-label">Chapters</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/">
+        1. Lead-to-Revenue Overview</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">
+        2. Subscription Management</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/incentive-compensation/">
+        3. Incentive Compensation</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/commerce-mile-high/">
+        4. Oracle Commerce: Mile High City Bank</a></li>
+      <li class="section-label">Advanced · Subscription Management</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/usage-billing-deep-dive/">
+        S1. Usage Billing: Allowance, Rollover &amp; Overage</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/compound-amendment-deep-dive/">
+        S2. The Compound Mid-Term Amendment</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/renewal-promotion-deep-dive/">
+        S3. The Anniversary Renewal Promotion</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/quote-to-cash/">
+        S4. Quote-to-Cash Across Oracle Fusion</a></li>
+      <li class="section-label">Advanced · Incentive Compensation</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/route66-three-credits/">
+        I1. One Deal, Three Credits: The Route 66 Story</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/payment-not-final/">
+        I2. When the Payment Isn't Final</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/disputes/">
+        I3. When the Rep Says the Number Is Wrong: Disputes</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-three-transactions/">
+        I4. Three Transactions, One Paycheck</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/leila-runway/">
+        I5. Leila's Nine-Month Runway</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/order-to-earnings/">
+        I6. From Order to Earnings</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/five-questions-before-payday/">
+        I7. Five Questions Before Payday</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/when-the-cash-arrives/">
+        I8. When the Cash Arrives</a></li>
+      <li><a href="#" class="active">
+        I9. Quick Take: Why $5,000 Pays $90</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/interpolated-rate/">
+        I9. Quick Take: Why $5,000 Pays $90</a></li>
+      <li class="section-label">Integrations</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-integrations/">
+        G1. Oracle Integration Cloud</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/friday-debrief/">
+        G2. The Friday Debrief</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-under-the-hood/">
+        G3. OIC Under the Hood</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-replenishment-one-off/">
+        G4. The One-Off: Hilltop Replenishment</a></li>
+      <li class="section-label">Reference</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-reference/">
+        Incentive Compensation: Setup &amp; Data Reference</a></li>
+      <li class="section-label">Connect</li>
+      <li><a href="https://www.linkedin.com/in/veniltirou" target="_blank">
+        🔗 LinkedIn Profile</a></li>
+    </ul>
+  </nav>
+
+    <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <div class="chapter-header">
+      <div class="chapter-label">Advanced · Incentive Compensation <span class="quick-take">Quick Take</span></div>
+      <h1>Why $5,000 Pays $90 — The Interpolated Rate</h1>
+      <p>A <strong>Quick Take</strong> is a one-scene chapter: one picture, then the
+      working. Leila's plan is about to gain a tiered component, and her $5,000 of
+      credit lands in <strong>Tier 3</strong>, the tier that pays $100. So why does
+      it pay her <strong>$90</strong>? Because with an
+      <strong>interpolated rate</strong>, the tiers below pay in full and the tier
+      you're in pays only its share. For how a flat rate pays, read
+      <a href="https://veniltirou.github.io/lead-to-revenue-storyboard/order-to-earnings/" style="color:#c74b00;">From Order to Earnings</a>.</p>
+    </div>
+
+    <div class="scenario-box">
+      <strong>Business Scenario:</strong> Next quarter, <strong>ABC
+      Corporation</strong> adds a tiered commission component to its
+      <strong>Junior Sales Rep Plan</strong>, alongside the 5% vending measure.
+      It uses an <strong>Amount</strong> rate table with four tiers:
+      <strong>$10</strong> for $0–1,000 of credit, <strong>$40</strong> for
+      $1,000–3,000, <strong>$100</strong> for $3,000–8,000 and
+      <strong>$2,000</strong> for $8,000–20,000. Credit is split across the tiers
+      <strong>proportionally</strong>. <strong>Leila</strong> wants to know what
+      <strong>$5,000</strong> of credit would earn, and <strong>Lisa</strong>,
+      ABC's compensation analyst, works it through.
+    </div>
+
+    <div class="scenario-box" style="border-left-color:#3a5bd9; background-color:#f0f4ff;">
+      <strong>A note on accuracy:</strong> the rate table, its tiers and the
+      calculation method are Oracle's own documented example,
+      <a href="https://docs.oracle.com/en/cloud/saas/incentive-compensation/facmi/examples-of-calculating-earnings-using-interpolated-rates.html" target="_blank" style="color:#3a5bd9;">Examples of Calculating Earnings Using Interpolated Rates</a>.
+      The split options are described in Oracle's words from
+      <a href="https://docs.oracle.com/en/cloud/saas/incentive-compensation/facmi/options-for-splitting-attainment-numbers-across-rate-tiers.html" target="_blank" style="color:#3a5bd9;">Options for Splitting Attainment Numbers Across Rate Tiers</a>;
+      the exact labels on screen may differ slightly by release. The company,
+      the plan and the $5,000 are illustration, and every number reconciles.
+      Figures marked as my arithmetic use Oracle's formula but don't appear in
+      Oracle's documentation.
+    </div>
+
+    <div class="characters-box">
+      <h3>👥 Characters in This Chapter</h3>
+      <strong>Lisa</strong> (ORANGE blazer) — Compensation Analyst at ABC
+      Corporation; she works through the rate table on the projector<br>
+      <strong>Leila</strong> (FLORAL cardigan, glasses) — junior sales rep asking
+      what her $5,000 of credit will earn
+    </div>
+
+    <p class="tip" style="font-style:italic;color:#999;font-size:0.85em;margin:6px 0 14px 0;">📱 On mobile? Pinch to zoom to read the numbers clearly.</p>
+
+    <div class="storyboard">
+      <h3>The Scene — $5,000 Lands in Tier 3</h3>
+      <img src="Interp00.jpg"
+           alt="On the projector: a rate table with Tier 1 $0 to $1,000 at $10, Tier 2 $1,000 to $3,000 at $40, Tier 3 $3,000 to $8,000 at $100 highlighted, and Tier 4 $8,000 to $20,000 at $2,000; a graph rising from $50 at $3,000 to $150 at $8,000 with $5,000 at $90; three steps: relative position 40%, Tier 3 share 40% of $100 is $40, earnings $10 plus $40 plus $40 is $90. Lisa says Leila's earnings climb smoothly within Tier 3; Leila says so $5,000 earns me $90" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Leila's <strong>$5,000</strong> sits
+        <strong>40% of the way</strong> through Tier 3: ($5,000 − $3,000) ÷
+        ($8,000 − $3,000). Tiers 1 and 2 are full, so they pay their whole amounts,
+        <strong>$10 + $40 = $50</strong>. Tier 3 pays 40% of its $100,
+        <strong>$40</strong>. Total: <strong>$90</strong>. The graph is the same
+        idea drawn as a line: through Tier 3, earnings climb steadily from $50 at
+        $3,000 to $150 at $8,000, and $5,000 lands at $90. Without the split,
+        reaching Tier 3 would pay its full $100 the moment credit passed $3,000.
+      </div>
+    </div>
+
+    <div class="storyboard">
+      <h3>The Working, Tier by Tier</h3>
+      <p style="line-height:1.7; margin-bottom:6px;">Oracle's formula for the
+      tier you're in: credit in the tier ÷ (the tier's upper bound − its lower
+      bound) × the tier's amount. Every full tier below adds its whole amount.</p>
+      <p class="swipe-hint" style="display:none; font-style:italic; color:#999; font-size:0.85em;">Swipe the table sideways to see every column.</p>
+      <div class="table-scroll">
+      <table class="concepts">
+        <tr><th>Tier</th><th>Range (credit)</th><th class="num">Tier pays in full</th><th class="num">Credit in this tier</th><th class="num">Share of tier</th><th class="num">Pays</th></tr>
+        <tr><td>1</td><td>$0 – $1,000</td><td class="num">$10</td><td class="num">$1,000</td><td class="num">100%</td><td class="num">$10</td></tr>
+        <tr><td>2</td><td>$1,000 – $3,000</td><td class="num">$40</td><td class="num">$2,000</td><td class="num">100%</td><td class="num">$40</td></tr>
+        <tr><td>3</td><td>$3,000 – $8,000</td><td class="num">$100</td><td class="num">$2,000</td><td class="num">40%</td><td class="num">$40</td></tr>
+        <tr><td>4</td><td>$8,000 – $20,000</td><td class="num">$2,000</td><td class="num">$0</td><td class="num">0%</td><td class="num">$0</td></tr>
+        <tr class="total"><td>Total</td><td></td><td class="num"></td><td class="num">$5,000</td><td class="num"></td><td class="num">$90</td></tr>
+      </table>
+      </div>
+    </div>
+
+    <div class="storyboard">
+      <h3>Split or Not: Same Table, Different Pay</h3>
+      <p style="line-height:1.7; margin-bottom:6px;">The split is a setting, not
+      arithmetic. Here's the same table with and without it, including two
+      amounts either side of the Tier 3 boundary (those two columns are my
+      arithmetic).</p>
+      <p class="swipe-hint" style="display:none; font-style:italic; color:#999; font-size:0.85em;">Swipe the table sideways to see every column.</p>
+      <div class="table-scroll">
+      <table class="concepts">
+        <tr><th>Split option (Oracle’s words)</th><th>What it does</th><th class="num">$2,999</th><th class="num">$3,001</th><th class="num">$5,000</th></tr>
+        <tr><td>Rate not split (flat commission)</td><td>One rate: the highest tier reached</td><td class="num">$40</td><td class="num">$100</td><td class="num">$100</td></tr>
+        <tr><td>Rate split, varied (interpolated, proportional)</td><td>Full tiers pay in full; the current tier pays its share</td><td class="num">$49.98</td><td class="num">$50.02</td><td class="num">$90</td></tr>
+      </table>
+      </div>
+      <p style="line-height:1.7; margin-top:10px;">Without the split, $2 more
+      credit at the boundary pays <strong>$60 more</strong>. With it, the line
+      has no jump. Oracle offers two more options: a <strong>step rate</strong>
+      (fixed, nonproportional), shown in Oracle's examples with a percent table,
+      and <strong>proportional with the first tier as a threshold</strong>,
+      where the first tier must be met before any rate applies.</p>
+    </div>
+
+    <div class="storyboard">
+      <h3>Where It's Set Up in OFIC</h3>
+      <p class="swipe-hint" style="display:none; font-style:italic; color:#999; font-size:0.85em;">Swipe the table sideways to see every column.</p>
+      <div class="table-scroll">
+      <table class="concepts">
+        <tr><th>#</th><th>Where</th><th>Setting</th></tr>
+        <tr><td>1</td><td>Compensation Plans work area: rate dimension</td><td>Amount tiers: 0–1,000, 1,000–3,000, 3,000–8,000, 8,000–20,000</td></tr>
+        <tr><td>2</td><td>Rate table</td><td>Type <strong>Amount</strong>, rates 10, 40, 100 and 2,000. Oracle: for the interpolated option, “typically … the rate is an amount”</td></tr>
+        <tr><td>3</td><td>Plan component: Add Rate Table step</td><td>An input expression for the rate dimension (the credit amount), then the split attainment across tiers option: <strong>rate split, varied (interpolated)</strong>. The split applies to one dimension only</td></tr>
+        <tr><td>4</td><td>Incentive formula: earnings expression</td><td>Includes <strong>Rate Table Result</strong>, so earnings come from the table</td></tr>
+        <tr><td>5</td><td>Optional: Manage Incentive Profile Values</td><td><strong>Split Rates Detail Enabled</strong> = Y stores the input and rate applied at each tier (from release 24B). It adds load to calculation, so turn it on only when needed</td></tr>
+      </table>
+      </div>
+    </div>
+
+    <div class="storyboard">
+      <h3>One More Thing — When You Calculate Changes the Total</h3>
+      <p style="line-height:1.7; margin-bottom:6px;">With a flat rate, like the
+      10% in <a href="https://veniltirou.github.io/lead-to-revenue-storyboard/when-the-cash-arrives/" style="color:#c74b00;">When the Cash Arrives</a>,
+      calculating each payment or the whole period gives the same total. With
+      tiers it doesn't, because the tier depends on how much credit is looked up
+      at once. Oracle's example runs six transactions from January to March,
+      <strong>$9,700</strong> in all, through this same table:</p>
+      <table class="concepts">
+        <tr><th>How the same quarter is calculated</th><th class="num">Earnings</th></tr>
+        <tr><td>Each transaction on its own (per event)</td><td class="num">$149</td></tr>
+        <tr><td>Grouped by month (per interval)</td><td class="num">$164</td></tr>
+        <tr><td>Grouped by quarter (my arithmetic, using Oracle’s formula)</td><td class="num">$433.33</td></tr>
+      </table>
+      <p style="line-height:1.7; margin-top:10px;">One transaction at a time,
+      most deals stay in the low tiers. Grouped by month, more credit reaches
+      Tier 2 and Tier 3. Grouped by quarter, $9,700 reaches Tier 4. A measure
+      processed one transaction at a time can also use a <strong>running
+      total</strong>, which changes the tier again; Oracle's $149 example doesn't
+      use one. Decide how the plan calculates when you build the rate table, not
+      after the first payout.</p>
+    </div>
+
+    <p style="line-height:1.7; margin:4px 0 18px 0; font-size:0.9em; color:#666;">Sources (Oracle): <a href="https://docs.oracle.com/en/cloud/saas/incentive-compensation/facmi/examples-of-calculating-earnings-using-interpolated-rates.html" target="_blank" style="color:#3a5bd9;">Examples of Calculating Earnings Using Interpolated Rates</a>, <a href="https://docs.oracle.com/en/cloud/saas/incentive-compensation/facmi/options-for-splitting-attainment-numbers-across-rate-tiers.html" target="_blank" style="color:#3a5bd9;">Options for Splitting Attainment Numbers Across Rate Tiers</a>, <a href="https://docs.oracle.com/en/cloud/saas/sales/facmi/considerations-for-adding-rate-tables-to-plan-components.html" target="_blank" style="color:#3a5bd9;">Considerations for Adding Rate Tables to Plan Components</a>, <a href="https://docs.oracle.com/en/cloud/saas/incentive-compensation/facmi/considerations-for-rate-tables.html" target="_blank" style="color:#3a5bd9;">Considerations for Rate Tables</a>, <a href="https://docs.oracle.com/en/cloud/saas/incentive-compensation/facmi/options-for-calculating-incentives.html" target="_blank" style="color:#3a5bd9;">Options for Calculating Incentives</a>, <a href="https://docs.oracle.com/en/cloud/saas/incentive-compensation/facmi/options-for-using-individual-or-grouped-transactions-in.html" target="_blank" style="color:#3a5bd9;">Options for Using Individual or Grouped Transactions in Attainment Calculations</a>, <a href="https://docs.oracle.com/en/cloud/saas/readiness/sales/24b/salm-24b/24B-spm-wn-f31649.htm" target="_blank" style="color:#3a5bd9;">Report Split Rates in Calculation (24B)</a>.</p>
+
+    <h2>Why This Chapter Matters</h2>
+    <p style="line-height:1.8; margin-bottom:14px;"><strong>The takeaway:</strong>
+    a tiered rate table answers two questions, not one: which tiers there are,
+    and how credit is split across them. With an interpolated rate, the tiers
+    below pay in full and the current tier pays its share, so $5,000 pays $90,
+    not Tier 3's $100.</p>
+    <p style="line-height:1.8; margin-bottom:14px;">The split is what makes
+    earnings climb smoothly instead of jumping at each boundary, where $2 of
+    extra credit could otherwise be worth $60. And with tiers, whether the plan
+    calculates each transaction, each month or each quarter changes the total.
+    <strong>The lesson for sales ops: choose the split option and the
+    calculation interval together, and show reps the working before the
+    quarter starts.</strong></p>
+
+    <h2>Concepts Covered</h2>
+    <table class="concepts">
+      <tr><th>Concept</th><th>What it means</th><th>Where</th></tr>
+      <tr><td>Rate table: Amount or Percent</td><td>An Amount table pays the rate as a number; a Percent table multiplies by it. Interpolation usually uses an Amount table.</td><td class="panelref">Setup</td></tr>
+      <tr><td>Rate dimension and tiers</td><td>The ranges a rate table looks up, from and to values per tier.</td><td class="panelref">Scene, Working</td></tr>
+      <tr><td>Split attainment across tiers</td><td>The plan component option that decides whether credit is split across tiers, and how.</td><td class="panelref">Options, Setup</td></tr>
+      <tr><td>Interpolated (proportional) rate</td><td>Full tiers pay in full; the tier you are in pays its share of its amount.</td><td class="panelref">Scene, Working</td></tr>
+      <tr><td>Rate not split (flat)</td><td>One rate from the highest tier reached, which creates a jump at each tier boundary.</td><td class="panelref">Options</td></tr>
+      <tr><td>Rate Table Result</td><td>The attribute the earnings expression uses to pay from the rate table.</td><td class="panelref">Setup</td></tr>
+      <tr><td>Per event or per interval</td><td>Calculating each transaction on its own, or the period’s total, changes which tiers are reached.</td><td class="panelref">One more thing</td></tr>
+      <tr><td>Split Rates Detail Enabled</td><td>A profile option that stores how much of the input fell in each tier, and the rate applied.</td><td class="panelref">Setup</td></tr>
+    </table>
+
+    <!-- PREV / NEXT NAVIGATION -->
+    <div class="chapter-nav">
+      <a class="prev"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/when-the-cash-arrives/">
+        <div class="nav-label">← Previous</div>
+        <div class="nav-title">I8. When the Cash Arrives</div>
+      </a>
+      <a class="next"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-reference/">
+        <div class="nav-label">The reference maps →</div>
+        <div class="nav-title">Incentive Compensation: Setup &amp; Data Reference</div>
+      </a>
+    </div>
+
+    <div class="footer">
+      <p>Created by <a href="https://www.linkedin.com/in/veniltirou"
+         target="_blank">Venil Tirou</a> — Oracle CX Functional Consultant</p>
+      <p style="margin-top:6px;">© 2026 Venil Tirou. All rights reserved.
+      This is an independently created educational resource.
+      Not affiliated with or endorsed by Oracle Corporation.</p>
+    </div>
+
+  </main>
+</body>
+</html>
