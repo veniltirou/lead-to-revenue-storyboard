@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>I8: When the Cash Arrives — Paid Only When the Shop Pays | Oracle CX Storyboard Series</title>
+  <meta name="description" content="Leila is about to sell Winter Warm-Up, a program that pays only when a shop's cash arrives. Lisa walks her through last winter: three shops booked $2,700, two paid $2,100, and the rep earned $210.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Oracle CX Storyboard Series">
+  <meta property="og:title" content="When the Cash Arrives — Oracle Incentive Compensation">
+  <meta property="og:description" content="Leila is about to sell Winter Warm-Up, a program that pays only when a shop's cash arrives. Lisa walks her through last winter: three shops booked $2,700, two paid $2,100, and the rep earned $210.">
+  <meta property="og:url" content="https://veniltirou.github.io/lead-to-revenue-storyboard/when-the-cash-arrives/">
+  <meta property="og:image" content="https://veniltirou.github.io/lead-to-revenue-storyboard/when-the-cash-arrives/Cash00.jpg">
+  <meta property="og:image:alt" content="Leila holds up a Winter Warm-Up flyer at Lisa's desk and asks how she'll get paid">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="When the Cash Arrives — Oracle Incentive Compensation">
+  <meta name="twitter:description" content="Leila is about to sell Winter Warm-Up, a program that pays only when a shop's cash arrives. Lisa walks her through last winter: three shops booked $2,700, two paid $2,100, and the rep earned $210.">
+  <meta name="twitter:image" content="https://veniltirou.github.io/lead-to-revenue-storyboard/when-the-cash-arrives/Cash00.jpg">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 280px;
+      min-width: 280px;
+      background-color: #1a1a2e;
+      color: #ccc;
+      padding: 30px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .sidebar .logo {
+      padding: 0 20px 24px 20px;
+      border-bottom: 1px solid #333;
+      margin-bottom: 20px;
+    }
+    .sidebar .logo h2 { color: #ff6b2b; font-size: 1em; line-height: 1.5; }
+    .sidebar .logo p { color: #888; font-size: 0.78em; margin-top: 6px; }
+    .sidebar ul { list-style: none; }
+    .sidebar ul .section-label {
+      color: #ff9a5c;
+      font-size: 0.72em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      padding: 18px 20px 7px 20px;
+      margin-top: 6px;
+      border-top: 1px solid rgba(255,155,92,0.22);
+    }
+    .sidebar ul .section-label:first-of-type {
+      border-top: none;
+      margin-top: 0;
+    }
+    .sidebar ul li a {
+      display: block;
+      padding: 9px 20px;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.88em;
+      border-left: 3px solid transparent;
+      transition: all 0.2s;
+    }
+    .sidebar ul li a:hover {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.active {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .main {
+      margin-left: 280px;
+      padding: 40px 50px;
+      flex: 1;
+      max-width: 900px;
+    }
+    .chapter-header { margin-bottom: 30px; }
+    .chapter-header .chapter-label {
+      font-size: 0.8em;
+      color: #ff6b2b;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .chapter-header h1 { color: #c74b00; font-size: 1.8em; margin-bottom: 10px; }
+    .chapter-header p { color: #555; line-height: 1.7; }
+    .scenario-box {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.95em;
+      line-height: 1.7;
+      color: #444;
+    }
+    .characters-box {
+      background-color: #f0f4ff;
+      border-left: 4px solid #3a5bd9;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.92em;
+      line-height: 1.8;
+      color: #444;
+    }
+    .characters-box h3 {
+      color: #3a5bd9;
+      font-size: 0.9em;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    h2 {
+      color: #333;
+      font-size: 1.15em;
+      margin: 36px 0 16px 0;
+      border-bottom: 2px solid #ff6b2b;
+      padding-bottom: 8px;
+    }
+    .storyboard {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 24px;
+      margin: 28px 0;
+    }
+    .storyboard h3 {
+      color: #c74b00;
+      font-size: 1.05em;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    .storyboard img {
+      width: 100%;
+      height: auto;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      margin: 12px 0;
+    }
+    .storyboard .tip {
+      font-style: italic;
+      color: #999;
+      font-size: 0.85em;
+      margin: 6px 0 14px 0;
+    }
+    .storyboard .what-it-shows {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      padding: 12px 16px;
+      font-size: 0.92em;
+      line-height: 1.7;
+      color: #444;
+      border-radius: 0 4px 4px 0;
+    }
+    .storyboard .what-it-shows strong { color: #c74b00; }
+    table.concepts {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 8px 0;
+      font-size: 0.9em;
+    }
+    table.concepts th, table.concepts td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+    table.concepts th {
+      background-color: #fff8f0;
+      color: #c74b00;
+      border-bottom: 2px solid #ff6b2b;
+    }
+    table.concepts td.panelref {
+      white-space: nowrap;
+      color: #999;
+    }
+
+    .chapter-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+      padding-top: 24px;
+      border-top: 2px solid #eee;
+      gap: 16px;
+    }
+    .chapter-nav a {
+      display: block;
+      padding: 16px 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #333;
+      transition: all 0.2s;
+      flex: 1;
+    }
+    .chapter-nav a:hover {
+      border-color: #ff6b2b;
+      box-shadow: 0 2px 8px rgba(199,75,0,0.15);
+    }
+    .chapter-nav .prev { text-align: left; }
+    .chapter-nav .next { text-align: right; }
+    .chapter-nav .nav-label {
+      font-size: 0.75em;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .chapter-nav .nav-title {
+      font-weight: bold;
+      color: #c74b00;
+      font-size: 0.95em;
+    }
+    .footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid #ddd;
+      font-size: 0.82em;
+      color: #999;
+    }
+    .footer a { color: #c74b00; }
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 20px; min-width: 0; }
+      table.concepts { font-size: 0.82em; }
+      table.concepts th, table.concepts td { padding: 8px 6px; }
+      .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .swipe-hint { display: block !important; }
+      .table-scroll table.concepts { min-width: 560px; }
+      table.concepts td.panelref { white-space: normal; }
+    }
+  </style>
+  <!-- GoatCounter analytics -->
+  <script data-goatcounter="https://veniltirou.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="logo">
+      <h2>Oracle CX Storyboard Series</h2>
+    </div>
+    <ul>
+                  <li class="section-label">Getting Started</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">
+        📋 Table of Contents</a></li>
+      <li class="section-label">Foundation</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/abc-world/">
+        The World of ABC Corporation</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/customer-data-management/">
+        Customer Data Management</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-force-automation-one-day/">
+        A Day in Sales Force Automation</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-performance-management/">
+        Sales Performance Management: The Landscape</a></li>
+      <li class="section-label">Chapters</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/">
+        1. Lead-to-Revenue Overview</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">
+        2. Subscription Management</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/incentive-compensation/">
+        3. Incentive Compensation</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/commerce-mile-high/">
+        4. Oracle Commerce: Mile High City Bank</a></li>
+      <li class="section-label">Advanced · Subscription Management</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/usage-billing-deep-dive/">
+        S1. Usage Billing: Allowance, Rollover &amp; Overage</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/compound-amendment-deep-dive/">
+        S2. The Compound Mid-Term Amendment</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/renewal-promotion-deep-dive/">
+        S3. The Anniversary Renewal Promotion</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/quote-to-cash/">
+        S4. Quote-to-Cash Across Oracle Fusion</a></li>
+      <li class="section-label">Advanced · Incentive Compensation</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/route66-three-credits/">
+        I1. One Deal, Three Credits: The Route 66 Story</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/payment-not-final/">
+        I2. When the Payment Isn't Final</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/disputes/">
+        I3. When the Rep Says the Number Is Wrong: Disputes</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-three-transactions/">
+        I4. Three Transactions, One Paycheck</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/leila-runway/">
+        I5. Leila's Nine-Month Runway</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/order-to-earnings/">
+        I6. From Order to Earnings</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/five-questions-before-payday/">
+        I7. Five Questions Before Payday</a></li>
+      <li><a href="#" class="active">
+        I8. When the Cash Arrives</a></li>
+      <li class="section-label">Integrations</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-integrations/">
+        G1. Oracle Integration Cloud</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/friday-debrief/">
+        G2. The Friday Debrief</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-under-the-hood/">
+        G3. OIC Under the Hood</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-replenishment-one-off/">
+        G4. The One-Off: Hilltop Replenishment</a></li>
+      <li class="section-label">Reference</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-reference/">
+        Incentive Compensation: Setup &amp; Data Reference</a></li>
+      <li class="section-label">Connect</li>
+      <li><a href="https://www.linkedin.com/in/veniltirou" target="_blank">
+        🔗 LinkedIn Profile</a></li>
+    </ul>
+  </nav>
+
+    <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <div class="chapter-header">
+      <div class="chapter-label">Advanced · Incentive Compensation</div>
+      <h1>When the Cash Arrives — Paid Only When the Shop Pays</h1>
+      <p>Leila is about to start selling <strong>Winter Warm-Up</strong>, ABC's
+      seasonal hot-drinks program for small shops. Her usual deals pay when the
+      order is booked. This one pays <strong>only when the shop's cash
+      arrives</strong>, and nobody can say when that will be. Before she signs
+      anyone, Lisa shows her what that means, using last winter's results for a
+      rep who was new at the time: three shops booked, two paid, one never did.
+      For the booking path, read
+      <a href="https://veniltirou.github.io/lead-to-revenue-storyboard/order-to-earnings/" style="color:#c74b00;">From Order to Earnings</a>; for paying
+      first and taking back later, read
+      <a href="https://veniltirou.github.io/lead-to-revenue-storyboard/payment-not-final/" style="color:#c74b00;">When the Payment Isn't Final</a>.</p>
+    </div>
+
+    <div class="scenario-box">
+      <strong>Business Scenario:</strong> <strong>ABC Corporation</strong>, a
+      Denver vending solutions provider, runs <strong>Winter Warm-Up</strong>
+      every winter. It rents a hot-drinks machine (hot chocolate and spiced apple
+      cider) to small local shops for the season; the shop pays a
+      <strong>season fee</strong> and gives the drinks free to waiting customers.
+      ABC owns the machine, so a shop that stops paying loses it, and ABC loses
+      little.
+      <br><br>
+      Because these are small, new customers, ABC pays this program on cash. The
+      <strong>Winter Warm-Up Plan</strong> pays <strong>10% of every
+      payment</strong>, calculated payment by payment, and its dates run from
+      November to the end of April so late cash still counts.
+      <strong>Leila</strong>'s usual <strong>Junior Sales Rep Plan</strong> still
+      pays 5% on VENDING when an order is booked. Each month ABC's finance team
+      sends <strong>Lisa</strong>, the compensation analyst, a report of the
+      payments applied to invoices, and she loads the program shops' payments
+      into Oracle Fusion Incentive Compensation as <strong>PAYMENT</strong>
+      transactions.
+    </div>
+
+    <div class="scenario-box" style="border-left-color:#3a5bd9; background-color:#f0f4ff;">
+      <strong>A note on accuracy:</strong> Oracle's standard ERP import brings in
+      orders and invoices, not payments, so this chapter loads payments the way
+      Oracle documents for any other source: the Incentive Compensation
+      transaction import, run by the compensation team, with no change to
+      Receivables. The PAYMENT transaction type, classification by transaction
+      type, Per Event calculation and plan dates follow Oracle's documentation
+      (sources under the setup table). The shops, amounts, 10% rate and the
+      category and plan names are illustration, and every number reconciles. To
+      keep the story simple, each shop has one invoice paid by one payment, the
+      amounts are the season fee with no tax, and partial payments, bounced
+      checks and reps leaving are left out.
+    </div>
+
+    <div class="characters-box">
+      <h3>👥 Characters in This Chapter</h3>
+      <strong>Lisa</strong> (ORANGE blazer) — Compensation Analyst at ABC
+      Corporation; she walks Leila through last winter's results<br>
+      <strong>Leila</strong> (FLORAL cardigan, glasses) — junior sales rep about
+      to start on Winter Warm-Up
+    </div>
+
+    <p class="tip" style="font-style:italic;color:#999;font-size:0.85em;margin:6px 0 14px 0;">📱 On mobile? Pinch to zoom to read the numbers clearly.</p>
+
+    <div class="storyboard">
+      <h3>Prologue — How Will Winter Pay Me?</h3>
+      <img src="Cash00.jpg"
+           alt="At Lisa's desk, Leila holds up a Winter Warm-Up flyer showing a hot-drinks machine, hot chocolate and spiced apple cider, and asks how she'll get paid; Lisa answers not like your usual deals, and offers to show her last winter" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Leila asks the right question before her first deal, not after her first paycheck. Winter Warm-Up runs on a different plan from her usual deals, and the difference isn't the rate. It's <strong>the event that pays</strong>: on this program, signing a shop pays nothing by itself. Lisa uses last winter's results because a finished season shows every outcome at once: a shop that paid on time, one that paid late and one that never paid.
+      </div>
+    </div>
+    <div class="storyboard">
+      <h3>Scene 1 — Booked or Paid</h3>
+      <img src="Cash01.jpg"
+           alt="The projector compares two flows. Your usual deals: order booked, VENDING, 5% earned. Winter Warm-Up: order booked, WINTER_BOOKED, $0; payment received, WINTER_PAID, 10% earned. Leila asks so signing a shop pays nothing? Lisa answers on winter deals, their payment pays you" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Both plans start from a signed deal; what differs is which transaction each plan counts. Leila's Junior Sales Rep Plan counts <strong>VENDING</strong>, so an order pays her in the month it's booked. The Winter Warm-Up Plan's only measure counts <strong>WINTER_PAID</strong>. A winter order still reaches OFIC through ABC's normal order import and is still credited to the rep, but classification puts it in <strong>WINTER_BOOKED</strong>, which no plan counts. A category earns nothing on its own; a plan's measure decides. Both winter categories sit outside VENDING, so the vending measure never counts them either.
+      </div>
+    </div>
+    <div class="storyboard">
+      <h3>Scene 2 — From Finance to OFIC</h3>
+      <img src="Cash02.jpg"
+           alt="The projector shows three boxes: Finance payments report, a form marked Type: PAYMENT and Product: Winter Warm-Up, and OFIC Transaction Import. Lisa says each month she loads the shops' payments into OFIC; Leila says so no payment means no transaction" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> OFIC can't see a payment on its own. Oracle's standard ERP import brings in orders and invoices only, and an invoice isn't updated once it's imported, so OFIC never learns that a bill was paid. Each month ABC's finance team sends Lisa a report of the payments applied to invoices. She keeps the program shops' rows and fills in Oracle's transaction import template: Transaction Type <strong>PAYMENT</strong>, Product <strong>Winter Warm-Up</strong>, the receipt number as the transaction number, the date the cash was applied as the event date, and the amount applied. Then she runs <strong>Run All Transaction Processes</strong>. A payment doesn't carry a salesperson or a product, which is why Lisa adds the product and a credit rule on the customer decides who gets the credit. Leila gets the point at once: <strong>no payment, no transaction</strong>.
+      </div>
+    </div>
+    <div class="storyboard">
+      <h3>Scene 3 — Last Winter's New Rep</h3>
+      <img src="Cash03.jpg"
+           alt="The projector lists Rep A (name hidden) orders: Alpine Tire Shop $1,200, Bluebird Hair Studio $900 and Corner Wash Laundromat $600, each WINTER_BOOKED and $0.00; booked $2,700, earned $0.00. Lisa says no earnings, on purpose; Leila says unlike my coffee deal, nothing broke" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Lisa hides the rep's name, because pay is confidential; in OFIC, reps see only their own earnings. Last winter this rep, new at the time, signed three shops in November for <strong>$2,700</strong>. All three orders were credited and classified WINTER_BOOKED, and all three show $0.00. Leila recognizes the symptom from her coffee deal in <a href="https://veniltirou.github.io/lead-to-revenue-storyboard/five-questions-before-payday/" style="color:#c74b00;">Five Questions Before Payday</a>: credit, but no earnings. The difference is intent. There, a category sat outside her plan by mistake; here, no plan counts WINTER_BOOKED because ABC chose to pay on cash.
+      </div>
+    </div>
+    <div class="storyboard">
+      <h3>Scene 4 — Alpine Tire Pays on Time</h3>
+      <img src="Cash04.jpg"
+           alt="Three cards: Payment R-1041, Alpine Tire Shop, Dec 20, $1,200; Credit: Rep A 100%, WINTER_PAID; Earned $120.00. Lisa says 10% of the payment, in the month it arrived; Leila says the cash arrived, so the commission did too" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Alpine Tire paid its $1,200 on December 20, and the payment came in on December's upload as one PAYMENT transaction. The customer credit rule gave Rep A 100%, classification put it in WINTER_PAID, and the plan paid <strong>$1,200 × 10% = $120</strong> in December. The event date, the day the cash was applied, decides which month pays. Because the plan calculates <strong>per event</strong>, each payment shows as its own line of earnings, so a rep can see which shop's payment paid her.
+      </div>
+    </div>
+    <div class="storyboard">
+      <h3>Scene 5 — Bluebird Pays Late</h3>
+      <img src="Cash05.jpg"
+           alt="A timeline from November to April shows the winter season from December to February and the plan dates from November to April; a marker on March reads Bluebird Hair Studio paid $900, earned $90. Lisa says Bluebird paid after winter, and it still counted; Leila says because the plan runs to April" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Bluebird's bill was due in January, but its $900 arrived on March 10, after the season. Rep A earned nothing from it in December, January or February, and <strong>$90</strong> in March. It still counted because the plan's dates run to the end of April, and OFIC pays a credit only if a plan is assigned on its event date. Had the plan ended with the season, this payment would have arrived with no plan to pay it. Late cash means late commission, not lost commission, as long as the plan's dates allow for it.
+      </div>
+    </div>
+    <div class="storyboard">
+      <h3>Scene 6 — Corner Wash Never Pays</h3>
+      <img src="Cash06.jpg"
+           alt="The projector shows invoice INV-5014, Corner Wash Laundromat, $600, stamped UNPAID, and an ABC van collecting the machine, with Earned $0.00 beneath. Lisa says nothing paid early, nothing to take back; Leila says and ABC got its machine back" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Corner Wash never paid its $600. No payment means no row in Finance's report, so no transaction, no credit and <strong>$0</strong> for the rep. Nothing was paid early, so nothing has to be taken back. Compare <a href="https://veniltirou.github.io/lead-to-revenue-storyboard/payment-not-final/" style="color:#c74b00;">When the Payment Isn't Final</a>, where commission is paid on the invoice and recovered when the money doesn't come. ABC collected its machine at the end of January, which is what makes Winter Warm-Up a low-risk program to sell to small, new businesses.
+      </div>
+    </div>
+    <div class="storyboard">
+      <h3>Scene 7 — Booked $2,700, Earned $210</h3>
+      <img src="Cash07.jpg"
+           alt="Three tiles read Booked $2,700, Paid $2,100 and Earned $210, with 10% of every payment beneath. Lisa says pick shops that will pay, and follow up until they do; Leila says so my job isn't done when they sign" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Last winter in three numbers: <strong>$2,700 booked, $2,100 paid, $210 earned</strong> ($120 + $90). On this plan the rep's pay follows the customer's cash, so the rep has a reason to care whether the customer pays. That is why companies pay on cash. For Leila, the job now runs past the signature: choose shops that will pay, and follow up until they do.
+      </div>
+    </div>
+
+    <div class="storyboard">
+      <h3>The Setup Behind It — All in OFIC</h3>
+      <p style="line-height:1.7; margin-bottom:6px;">There is no "pay on cash"
+      switch. The plan pays on cash because payments are what feed its only
+      category.</p>
+      <p class="swipe-hint" style="display:none; font-style:italic; color:#999; font-size:0.85em;">Swipe the table sideways to see every column.</p>
+      <div class="table-scroll">
+      <table class="concepts">
+        <tr><th>#</th><th>Where</th><th>Setting</th></tr>
+        <tr><td>1</td><td>Configure Tables and Columns</td><td>Enable <strong>Transaction Type</strong> for classification rules</td></tr>
+        <tr><td>2</td><td>Manage Credit Categories</td><td><strong>WINTER_BOOKED</strong> and <strong>WINTER_PAID</strong>, both top-level, outside VENDING</td></tr>
+        <tr><td>3</td><td>Classification rules, then Deploy Classification Rules</td><td>Winter Warm-Up + PAYMENT → WINTER_PAID; Winter Warm-Up + ORDER → WINTER_BOOKED</td></tr>
+        <tr><td>4</td><td>Manage Direct Credit Rules, then Deploy Credit Rules</td><td>Customer = each shop → the rep, 100%</td></tr>
+        <tr><td>5</td><td>Compensation Plans work area</td><td>Winter Warm-Up Plan: one plan component calculated Per Event; one measure counting WINTER_PAID; a one-tier rate table at 10%; dates Nov 1 to Apr 30; assigned to the rep; then Deploy Compensation Plans</td></tr>
+        <tr><td>6</td><td>Credits and Earnings: Incentive Compensation Transaction Import, every month</td><td>One row per payment: PAYMENT, Winter Warm-Up, receipt number, date applied, amount applied. Then Run All Transaction Processes and Calculate Incentive Earnings</td></tr>
+      </table>
+      </div>
+      <p style="line-height:1.7; margin-top:10px; font-size:0.9em; color:#666;">Sources (Oracle): <a href="https://docs.oracle.com/en/cloud/saas/incentive-compensation/facmi/import-erp-transactions.html" target="_blank" style="color:#3a5bd9;">Import ERP Transactions</a>, <a href="https://docs.oracle.com/en/cloud/saas/incentive-compensation/facmi/import-transactions-for-incentive-compensation.html" target="_blank" style="color:#3a5bd9;">Import Transactions for Incentive Compensation</a>, <a href="https://docs.oracle.com/en/cloud/saas/sales/faiem/import-your-incentive-transaction-data.html" target="_blank" style="color:#3a5bd9;">How do I import incentive transaction data?</a>, <a href="https://docs.oracle.com/en/cloud/saas/incentive-compensation/facmi/how-qualifying-criteria-work-with-a-rule-hierarchy.html" target="_blank" style="color:#3a5bd9;">How Qualifying Criteria Work With a Rule Hierarchy</a>, <a href="https://docs.oracle.com/en/cloud/saas/incentive-compensation/facmi/best-practices-for-configuring-compensation-plans.html" target="_blank" style="color:#3a5bd9;">Best Practices for Configuring Compensation Plans</a>.</p>
+    </div>
+
+
+    <h2>Why This Chapter Matters</h2>
+    <p style="line-height:1.8; margin-bottom:14px;"><strong>The takeaway:</strong>
+    in OFIC, when a rep is paid depends on which transactions feed the plan.
+    Feed it payments, give them their own category, and let only that category
+    earn. The order still arrives, credited and visible, and earns nothing by
+    design.</p>
+    <p style="line-height:1.8; margin-bottom:14px;">Paying on cash suits a
+    program like Winter Warm-Up: small, new customers, a short season and a
+    machine ABC can take back. It costs the rep time, because commission waits
+    for the customer, and it costs the compensation team a monthly upload until
+    the feed is automated. <strong>The lesson for sales ops: decide which event
+    pays before the program launches, and make sure only that event's category
+    earns.</strong></p>
+
+    <h2>Concepts Covered</h2>
+    <table class="concepts">
+      <tr><th>Concept</th><th>What it means</th><th>Scene</th></tr>
+      <tr><td>Booked or paid</td><td>A plan can pay when the order is booked or when the customer's cash arrives. The difference is which transactions its measure counts.</td><td class="panelref">1</td></tr>
+      <tr><td>A category earns only through a measure</td><td>WINTER_BOOKED credits are real and classified, but no plan's measure counts them, so they earn nothing.</td><td class="panelref">1, 3</td></tr>
+      <tr><td>PAYMENT transactions</td><td>Oracle's predefined transaction type for payments. They come in through the transaction import, because the ERP import brings only orders and invoices.</td><td class="panelref">2</td></tr>
+      <tr><td>Incentive Compensation Transaction Import</td><td>The compensation team's own import: one row per payment, followed by Run All Transaction Processes.</td><td class="panelref">2</td></tr>
+      <tr><td>Classification by transaction type</td><td>With Transaction Type enabled as a rule attribute, the same product lands in WINTER_BOOKED as an order and WINTER_PAID as a payment.</td><td class="panelref">1, 2</td></tr>
+      <tr><td>Confidential earnings</td><td>Reps see only their own earnings, so Lisa hides the example rep's name.</td><td class="panelref">3</td></tr>
+      <tr><td>Event date</td><td>For a payment, the date the cash was applied. It decides which month pays.</td><td class="panelref">4, 5</td></tr>
+      <tr><td>Per Event calculation</td><td>Each payment is calculated on its own, so the rep can see which shop's payment paid her.</td><td class="panelref">4</td></tr>
+      <tr><td>Plan dates</td><td>A credit pays only if a plan is assigned on its event date. Winter Warm-Up's dates run past the season to catch late cash.</td><td class="panelref">5</td></tr>
+      <tr><td>No payment, nothing to take back</td><td>Paying on cash means nothing is paid early, so nothing has to be recovered.</td><td class="panelref">6</td></tr>
+    </table>
+
+    <!-- PREV / NEXT NAVIGATION -->
+    <div class="chapter-nav">
+      <a class="prev"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/five-questions-before-payday/">
+        <div class="nav-label">← Previous</div>
+        <div class="nav-title">I7. Five Questions Before Payday</div>
+      </a>
+      <a class="next"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-reference/">
+        <div class="nav-label">The reference maps →</div>
+        <div class="nav-title">Incentive Compensation: Setup &amp; Data Reference</div>
+      </a>
+    </div>
+
+    <div class="footer">
+      <p>Created by <a href="https://www.linkedin.com/in/veniltirou"
+         target="_blank">Venil Tirou</a> — Oracle CX Functional Consultant</p>
+      <p style="margin-top:6px;">© 2026 Venil Tirou. All rights reserved.
+      This is an independently created educational resource.
+      Not affiliated with or endorsed by Oracle Corporation.</p>
+    </div>
+
+  </main>
+</body>
+</html>
