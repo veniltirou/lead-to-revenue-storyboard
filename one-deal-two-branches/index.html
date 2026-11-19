@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>I10: One Deal, Two Branches — Credit When Another Site Ships It | Oracle CX Storyboard Series</title>
+  <meta name="description" content="Leila sells a $60,000 contract in Denver that ships from Cheyenne, then Gunnison, then Colorado Springs. Lisa shows how the source system's 70/30 split and the rollup hierarchy credit every rep and their own manager, with no change in Incentive Compensation.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Oracle CX Storyboard Series">
+  <meta property="og:title" content="One Deal, Two Branches — Oracle Incentive Compensation">
+  <meta property="og:description" content="Leila sells a $60,000 contract in Denver that ships from Cheyenne, then Gunnison, then Colorado Springs. Lisa shows how the source system's 70/30 split and the rollup hierarchy credit every rep and their own manager, with no change in Incentive Compensation.">
+  <meta property="og:url" content="https://veniltirou.github.io/lead-to-revenue-storyboard/one-deal-two-branches/">
+  <meta property="og:image" content="https://veniltirou.github.io/lead-to-revenue-storyboard/one-deal-two-branches/Split00.jpg">
+  <meta property="og:image:alt" content="Leila on the phone at her desk tells Disha she'll check with Lisa, the compensation analyst">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="One Deal, Two Branches — Oracle Incentive Compensation">
+  <meta name="twitter:description" content="Leila sells a $60,000 contract in Denver that ships from Cheyenne, then Gunnison, then Colorado Springs. Lisa shows how the source system's 70/30 split and the rollup hierarchy credit every rep and their own manager, with no change in Incentive Compensation.">
+  <meta name="twitter:image" content="https://veniltirou.github.io/lead-to-revenue-storyboard/one-deal-two-branches/Split00.jpg">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 280px;
+      min-width: 280px;
+      background-color: #1a1a2e;
+      color: #ccc;
+      padding: 30px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .sidebar .logo {
+      padding: 0 20px 24px 20px;
+      border-bottom: 1px solid #333;
+      margin-bottom: 20px;
+    }
+    .sidebar .logo h2 { color: #ff6b2b; font-size: 1em; line-height: 1.5; }
+    .sidebar .logo p { color: #888; font-size: 0.78em; margin-top: 6px; }
+    .sidebar ul { list-style: none; }
+    .sidebar ul .section-label {
+      color: #ff9a5c;
+      font-size: 0.72em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      padding: 18px 20px 7px 20px;
+      margin-top: 6px;
+      border-top: 1px solid rgba(255,155,92,0.22);
+    }
+    .sidebar ul .section-label:first-of-type {
+      border-top: none;
+      margin-top: 0;
+    }
+    .sidebar ul li a {
+      display: block;
+      padding: 9px 20px;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.88em;
+      border-left: 3px solid transparent;
+      transition: all 0.2s;
+    }
+    .sidebar ul li a:hover {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.active {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .main {
+      margin-left: 280px;
+      padding: 40px 50px;
+      flex: 1;
+      max-width: 900px;
+    }
+    .chapter-header { margin-bottom: 30px; }
+    .chapter-header .chapter-label {
+      font-size: 0.8em;
+      color: #ff6b2b;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .chapter-header h1 { color: #c74b00; font-size: 1.8em; margin-bottom: 10px; }
+    .chapter-header p { color: #555; line-height: 1.7; }
+    .scenario-box {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.95em;
+      line-height: 1.7;
+      color: #444;
+    }
+    .characters-box {
+      background-color: #f0f4ff;
+      border-left: 4px solid #3a5bd9;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.92em;
+      line-height: 1.8;
+      color: #444;
+    }
+    .characters-box h3 {
+      color: #3a5bd9;
+      font-size: 0.9em;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    h2 {
+      color: #333;
+      font-size: 1.15em;
+      margin: 36px 0 16px 0;
+      border-bottom: 2px solid #ff6b2b;
+      padding-bottom: 8px;
+    }
+    .storyboard {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 24px;
+      margin: 28px 0;
+    }
+    .storyboard h3 {
+      color: #c74b00;
+      font-size: 1.05em;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    .storyboard img {
+      width: 100%;
+      height: auto;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      margin: 12px 0;
+    }
+    .storyboard .tip {
+      font-style: italic;
+      color: #999;
+      font-size: 0.85em;
+      margin: 6px 0 14px 0;
+    }
+    .storyboard .what-it-shows {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      padding: 12px 16px;
+      font-size: 0.92em;
+      line-height: 1.7;
+      color: #444;
+      border-radius: 0 4px 4px 0;
+    }
+    .storyboard .what-it-shows strong { color: #c74b00; }
+    table.concepts {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 8px 0;
+      font-size: 0.9em;
+    }
+    table.concepts th, table.concepts td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+    table.concepts th {
+      background-color: #fff8f0;
+      color: #c74b00;
+      border-bottom: 2px solid #ff6b2b;
+    }
+    table.concepts td.panelref {
+      white-space: nowrap;
+      color: #999;
+    }
+
+    .chapter-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+      padding-top: 24px;
+      border-top: 2px solid #eee;
+      gap: 16px;
+    }
+    .chapter-nav a {
+      display: block;
+      padding: 16px 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #333;
+      transition: all 0.2s;
+      flex: 1;
+    }
+    .chapter-nav a:hover {
+      border-color: #ff6b2b;
+      box-shadow: 0 2px 8px rgba(199,75,0,0.15);
+    }
+    .chapter-nav .prev { text-align: left; }
+    .chapter-nav .next { text-align: right; }
+    .chapter-nav .nav-label {
+      font-size: 0.75em;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .chapter-nav .nav-title {
+      font-weight: bold;
+      color: #c74b00;
+      font-size: 0.95em;
+    }
+    .footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid #ddd;
+      font-size: 0.82em;
+      color: #999;
+    }
+    .footer a { color: #c74b00; }
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 20px; min-width: 0; }
+      table.concepts { font-size: 0.82em; }
+      table.concepts th, table.concepts td { padding: 8px 6px; }
+      .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .swipe-hint { display: block !important; }
+      .table-scroll table.concepts { min-width: 560px; }
+      table.concepts td.panelref { white-space: normal; }
+    }
+    table.concepts td.num { text-align: right; white-space: nowrap; }
+    table.concepts th.num { text-align: right; white-space: nowrap; }
+  </style>
+  <!-- GoatCounter analytics -->
+  <script data-goatcounter="https://veniltirou.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="logo">
+      <h2>Oracle CX Storyboard Series</h2>
+    </div>
+    <ul>
+                  <li class="section-label">Getting Started</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">
+        📋 Table of Contents</a></li>
+      <li class="section-label">Foundation</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/abc-world/">
+        The World of ABC Corporation</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/customer-data-management/">
+        Customer Data Management</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-force-automation-one-day/">
+        A Day in Sales Force Automation</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-performance-management/">
+        Sales Performance Management: The Landscape</a></li>
+      <li class="section-label">Chapters</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/">
+        1. Lead-to-Revenue Overview</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">
+        2. Subscription Management</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/incentive-compensation/">
+        3. Incentive Compensation</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/commerce-mile-high/">
+        4. Oracle Commerce: Mile High City Bank</a></li>
+      <li class="section-label">Advanced · Subscription Management</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/usage-billing-deep-dive/">
+        S1. Usage Billing: Allowance, Rollover &amp; Overage</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/compound-amendment-deep-dive/">
+        S2. The Compound Mid-Term Amendment</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/renewal-promotion-deep-dive/">
+        S3. The Anniversary Renewal Promotion</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/quote-to-cash/">
+        S4. Quote-to-Cash Across Oracle Fusion</a></li>
+      <li class="section-label">Advanced · Incentive Compensation</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/route66-three-credits/">
+        I1. One Deal, Three Credits: The Route 66 Story</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/payment-not-final/">
+        I2. When the Payment Isn't Final</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/disputes/">
+        I3. When the Rep Says the Number Is Wrong: Disputes</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-three-transactions/">
+        I4. Three Transactions, One Paycheck</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/leila-runway/">
+        I5. Leila's Nine-Month Runway</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/order-to-earnings/">
+        I6. From Order to Earnings</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/five-questions-before-payday/">
+        I7. Five Questions Before Payday</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/when-the-cash-arrives/">
+        I8. When the Cash Arrives</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/interpolated-rate/">
+        I9. Quick Take: Why $5,000 Pays $90</a></li>
+      <li><a href="#" class="active">
+        I10. One Deal, Two Branches</a></li>
+      <li class="section-label">Integrations</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-integrations/">
+        G1. Oracle Integration Cloud</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/friday-debrief/">
+        G2. The Friday Debrief</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-under-the-hood/">
+        G3. OIC Under the Hood</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-replenishment-one-off/">
+        G4. The One-Off: Hilltop Replenishment</a></li>
+      <li class="section-label">Reference</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-reference/">
+        Incentive Compensation: Setup &amp; Data Reference</a></li>
+      <li class="section-label">Connect</li>
+      <li><a href="https://www.linkedin.com/in/veniltirou" target="_blank">
+        🔗 LinkedIn Profile</a></li>
+    </ul>
+  </nav>
+
+    <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <div class="chapter-header">
+      <div class="chapter-label">Advanced · Incentive Compensation</div>
+      <h1>One Deal, Two Branches — Credit When Another Site Ships It</h1>
+      <p>Leila sells a six-month contract in Denver, but the unit ships from
+      Cheyenne, and later from Gunnison and Colorado Springs. The Cheyenne rep
+      wants to know whether she and her manager will see any credit. Lisa shows
+      Leila why they will, every month, without one change in Incentive
+      Compensation. For direct, rollup and overlay credit on a single rep's deal,
+      read <a href="https://veniltirou.github.io/lead-to-revenue-storyboard/route66-three-credits/" style="color:#c74b00;">One Deal, Three Credits</a>;
+      this chapter adds a second branch and a second rep who changes.</p>
+    </div>
+
+    <div class="scenario-box">
+      <strong>Business Scenario:</strong> <strong>ABC Corporation</strong>, a
+      Denver vending solutions provider, sells from one branch and often ships
+      and services from another. <strong>Leila</strong>, a junior rep in Denver,
+      sells <strong>Front Range Hospital</strong> a refrigerated micro market for
+      its staff lounge: <strong>six months at $10,000 a month</strong>, $60,000
+      in all. The unit ships from <strong>Cheyenne, Wyoming</strong> for months
+      1 to 3, from <strong>Gunnison</strong> for month 4 and from
+      <strong>Colorado Springs</strong> for months 5 and 6.
+      <br><br>
+      ABC's billing system knows who sold each contract and which branch ships
+      it, so every monthly invoice reaches Oracle Fusion Incentive Compensation
+      with its credits already on it: <strong>70%</strong> to the rep who sold it
+      and <strong>30%</strong> to the rep at the shipping branch. Leila reports to
+      <strong>Sarah</strong>; each branch rep reports to their own branch
+      manager. <strong>Lisa</strong>, the compensation analyst, configured how
+      those credits roll up.
+    </div>
+
+    <div class="scenario-box" style="border-left-color:#3a5bd9; background-color:#f0f4ff;">
+      <strong>A note on accuracy:</strong> Collecting credits from another
+      source, the rollup hierarchy, and rollup credits shown as nonrevenue follow
+      Oracle's documentation (sources under the setup table). The company,
+      customer, branches, people, the 70/30 split and the amounts are
+      illustration, and every number reconciles. To keep the story simple there
+      is no overlay, no tax, and each manager reports to no one above them in
+      this example; in practice rollup continues up the hierarchy.
+    </div>
+
+    <div class="characters-box">
+      <h3>👥 Characters in This Chapter</h3>
+      <strong>Lisa</strong> (ORANGE blazer) — Compensation Analyst at ABC
+      Corporation; she answers the cross-branch question<br>
+      <strong>Leila</strong> (FLORAL cardigan, glasses) — junior sales rep in
+      Denver who sold the deal<br>
+      <span style="color:#666;">Mentioned, not shown: <strong>Disha</strong>,
+      the Cheyenne rep; <strong>Sarah</strong>, Leila's manager; and the branch
+      managers and reps in Cheyenne, Gunnison and Colorado Springs.</span>
+    </div>
+
+    <p class="tip" style="font-style:italic;color:#999;font-size:0.85em;margin:6px 0 14px 0;">📱 On mobile? Pinch to zoom to read the numbers clearly.</p>
+
+    <div class="storyboard">
+      <h3>Prologue — The Call</h3>
+      <img src="Split00.jpg"
+           alt="Leila at her desk on the Denver sales floor, holding a desk phone; her monitor reads Front Range Hospital – Micro Market, Sold: Denver, Ships: Cheyenne. Her speech bubble says Okay Disha, I'll check with our compensation analyst Lisa and get back to you" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Leila has just closed her biggest deal yet: a six-month micro market for <strong>Front Range Hospital</strong> at <strong>$10,000 a month</strong>. The unit ships from ABC's Cheyenne, Wyoming branch, and Disha, the Cheyenne rep who sets it up and services it, has called with a fair question. It's Leila's deal; will Cheyenne see any of it? Leila doesn't guess. She takes the question to Lisa.
+      </div>
+    </div>
+    <div class="storyboard">
+      <h3>Scene 1 — Disha's Worry</h3>
+      <img src="Split01.jpg"
+           alt="Leila at the conference table asks It's my deal, but Disha ships it. Will she and her manager get any credit? The screen shows Front Range Hospital, 6 months × $10,000, Sold by Leila – Denver, Shipped by Disha – Cheyenne; Lisa stands beside the screen" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Two branches touch this deal every month: Denver sold it, Cheyenne ships it. Disha's worry is really two questions. Does she get credit for her part? And does her manager, who is paid on the Cheyenne team's results, see it too? Most crediting stories follow one rep up one management line; this one has <strong>two reps on one invoice</strong>, each with their own manager.
+      </div>
+    </div>
+    <div class="storyboard">
+      <h3>Scene 2 — The Split Comes With the Invoice</h3>
+      <img src="Split02.jpg"
+           alt="The screen shows Invoice – Month 1 – $10,000, with Leila – 70% – $7,000 and Disha – 30% – $3,000. Lisa says The source knows who sold and who shipped. It sends the split. We just keep it" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Lisa's first point: <strong>OFIC doesn't decide who worked on the deal</strong>. ABC's billing system already knows who sold it and which branch ships it each month, so every monthly invoice arrives in OFIC with its credits on it: Leila 70%, $7,000; Disha 30%, $3,000. Oracle supports this directly: with direct crediting turned off and rollup crediting on, collected transactions must include the credit receiver, credit amount and split, and OFIC loads them as credit transactions. One transaction carries both credit lines, and the two add up to the invoice. No credit rule in OFIC has to know about Cheyenne.
+      </div>
+    </div>
+    <div class="storyboard">
+      <h3>Scene 3 — Rollup Follows People</h3>
+      <img src="Split03.jpg"
+           alt="The screen shows two columns: Leila – $7,000 with an arrow up to Sarah – $7,000, and Disha – $3,000 with an arrow up to Disha's Manager – $3,000. Lisa says Each manager gets 100% of their own rep's share, not of the whole deal" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Lisa's second point: rollup follows the person, not the deal. With the <strong>rollup hierarchy</strong>, Oracle gives each manager all of the credit of the participants who report to them. Leila reports to <strong>Sarah</strong>, so Sarah gets $7,000; Disha reports to her Cheyenne manager, who gets $3,000. The "100%" is <strong>100% of their own rep's share</strong>, not of the $10,000. Rollup credits are <strong>nonrevenue</strong>, as in Oracle's own credits-and-rollups example, so revenue still adds up to the invoice.
+      </div>
+    </div>
+    <div class="storyboard">
+      <h3>Scene 4 — Everyone Must Be a Participant</h3>
+      <img src="Split04.jpg"
+           alt="The screen shows a Participants checklist with green checks for Leila, Sarah, Disha and Disha's Manager. Lisa says Most of our commission reps and managers are already set up. They're paid on their own deals too" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Credit can only land on a <strong>participant</strong>: a person set up in OFIC with a compensation plan and a place in the rollup hierarchy. That sounds like a project, but it rarely is. Disha and her manager are paid on their own Cheyenne deals, so they're already participants, already in the hierarchy. The cross-branch deal needs no new setup for them; it just adds two more credit lines.
+      </div>
+    </div>
+    <div class="storyboard">
+      <h3>Scene 5 — What If the Site Changes?</h3>
+      <img src="Split05.jpg"
+           alt="The screen shows six month boxes with Leila – 70% above all six; Cheyenne under months 1 to 3, Gunnison under month 4, Colorado Springs under months 5 and 6. Leila asks What if it ships from Gunnison, then Colorado Springs? Lisa answers Same thing. The source sends that month's rep, and we roll up to their manager" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Leila tests it with a harder case. In month 4 the unit is served from <strong>Gunnison</strong>, and from month 5 from <strong>Colorado Springs</strong>. Leila stays at 70% throughout; the 30% moves to whoever ships that month. Nothing changes in OFIC. Each month's invoice names that month's second rep, and the rollup hierarchy already knows each rep's manager. There are no credit rules to add, and no dates to end.
+      </div>
+    </div>
+    <div class="storyboard">
+      <h3>Scene 6 — Six Months, Every Rep Covered</h3>
+      <img src="Split06.jpg"
+           alt="The screen shows a Rep and Manager table: Leila $42,000 and Sarah $42,000; Disha $9,000 and Cheyenne Mgr $9,000; Gunnison Rep $3,000 and Gunnison Mgr $3,000; Springs Rep $6,000 and Springs Mgr $6,000. Lisa says One thing to watch: a rep who isn't on commission has nothing to credit" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Six months in one table. The reps' revenue credits add up to <strong>$60,000</strong>, the contract value: Leila $42,000 (70% of six invoices), Disha $9,000, the Gunnison rep $3,000 and the Colorado Springs rep $6,000. Each manager mirrors their own rep, for another $60,000 of nonrevenue rollup credit, so <strong>$120,000 of credit</strong> in all. Lisa's caveat matters: if the source names a second rep who isn't on commission, there's <strong>no participant to credit</strong>, and the 30% has nowhere to go. That's a conversation with the source system's team before go-live, not a fix in OFIC.
+      </div>
+    </div>
+    <div class="storyboard">
+      <h3>Scene 7 — You're Both Covered</h3>
+      <img src="Split07.jpg"
+           alt="Leila at her desk on the phone, smiling with a thumbs-up, says Disha, you and your manager are covered for every month you ship" />
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> Leila calls Disha back with an answer she can explain: the billing system sends the split, OFIC keeps it, and each share rolls up to that rep's own manager. Disha is covered for months 1 to 3, and the same goes for whichever branch ships next.
+      </div>
+    </div>
+
+    <div class="storyboard">
+      <h3>Month by Month — Who Gets What</h3>
+      <p style="line-height:1.7; margin-bottom:6px;">Rows marked Source arrive on
+      the invoice. Rows marked OFIC rollup are created by Run Crediting and
+      Rollup. Amounts in dollars of credit.</p>
+      <p class="swipe-hint" style="display:none; font-style:italic; color:#999; font-size:0.85em;">Swipe the table sideways to see every column.</p>
+      <div class="table-scroll">
+      <table class="concepts">
+        <tr><th>Who</th><th>Origin</th><th class="num">Months 1–3</th><th class="num">Month 4</th><th class="num">Months 5–6</th><th class="num">Total</th><th>Credit</th></tr>
+        <tr><td>Leila (Denver)</td><td>Source</td><td class="num">21,000</td><td class="num">7,000</td><td class="num">14,000</td><td class="num">42,000</td><td>Direct, revenue, 70%</td></tr>
+        <tr><td>Disha (Cheyenne)</td><td>Source</td><td class="num">9,000</td><td class="num">—</td><td class="num">—</td><td class="num">9,000</td><td>Direct, revenue, 30%</td></tr>
+        <tr><td>Gunnison rep</td><td>Source</td><td class="num">—</td><td class="num">3,000</td><td class="num">—</td><td class="num">3,000</td><td>Direct, revenue, 30%</td></tr>
+        <tr><td>Colorado Springs rep</td><td>Source</td><td class="num">—</td><td class="num">—</td><td class="num">6,000</td><td class="num">6,000</td><td>Direct, revenue, 30%</td></tr>
+        <tr><td>Sarah (Leila's manager)</td><td>OFIC rollup</td><td class="num">21,000</td><td class="num">7,000</td><td class="num">14,000</td><td class="num">42,000</td><td>Rollup, nonrevenue</td></tr>
+        <tr><td>Cheyenne manager</td><td>OFIC rollup</td><td class="num">9,000</td><td class="num">—</td><td class="num">—</td><td class="num">9,000</td><td>Rollup, nonrevenue</td></tr>
+        <tr><td>Gunnison manager</td><td>OFIC rollup</td><td class="num">—</td><td class="num">3,000</td><td class="num">—</td><td class="num">3,000</td><td>Rollup, nonrevenue</td></tr>
+        <tr><td>Colorado Springs manager</td><td>OFIC rollup</td><td class="num">—</td><td class="num">—</td><td class="num">6,000</td><td class="num">6,000</td><td>Rollup, nonrevenue</td></tr>
+      </table>
+      </div>
+      <p style="line-height:1.7; margin-top:10px;">Revenue credits total
+      <strong>$60,000</strong>, the contract value. With the managers' rollup,
+      total credit is <strong>$120,000</strong>.</p>
+    </div>
+
+    <div class="storyboard">
+      <h3>The Setup Behind It — All in OFIC</h3>
+      <p style="line-height:1.7; margin-bottom:6px;">Nothing here is specific
+      to Front Range Hospital or to Cheyenne. Set it once, and every cross-branch
+      deal follows.</p>
+      <p class="swipe-hint" style="display:none; font-style:italic; color:#999; font-size:0.85em;">Swipe the table sideways to see every column.</p>
+      <div class="table-scroll">
+      <table class="concepts">
+        <tr><th>#</th><th>Where</th><th>Setting</th></tr>
+        <tr><td>1</td><td>Setup and Maintenance: Manage Parameters</td><td>Direct crediting off; rollup crediting on; rollup hierarchy to use: <strong>Rollup hierarchy</strong>. This is Oracle's setting for credit transactions collected from another source.</td></tr>
+        <tr><td>2</td><td>Participant Assignments work area</td><td>Every rep and manager is a participant with a compensation plan. Most commission-eligible people already are.</td></tr>
+        <tr><td>3</td><td>Participant Assignments: rollup hierarchy</td><td>Each rep sits under their own manager: Leila under Sarah, Disha under the Cheyenne manager, and the Gunnison and Colorado Springs reps under theirs.</td></tr>
+        <tr><td>4</td><td>The source system's monthly feed</td><td>Each invoice carries its credits: the credit receiver, credit amount, split percentage and revenue type, 70% to Leila and 30% to that month's shipping rep.</td></tr>
+        <tr><td>5</td><td>Credits and Earnings</td><td>Collect the transactions, then Run Crediting and Rollup. The collected credits are loaded as they are; rollup adds one nonrevenue credit for each rep's manager.</td></tr>
+      </table>
+      </div>
+      <p style="line-height:1.7; margin-top:10px; font-size:0.9em; color:#666;">Sources (Oracle): <a href="https://docs.oracle.com/en/cloud/saas/incentive-compensation/oawic/crediting-and-rollup-parameters.html" target="_blank" style="color:#3a5bd9;">Crediting and Rollup Parameters</a>, <a href="https://docs.oracle.com/en/cloud/saas/incentive-compensation/facmi/examples-of-credits-and-rollups.html" target="_blank" style="color:#3a5bd9;">Examples of Credits and Rollups</a>, <a href="https://docs.oracle.com/en/cloud/saas/sales/facmi/overview-of-credit-rollup-and-classification.html" target="_blank" style="color:#3a5bd9;">Overview of Credit, Rollup, and Classification</a>.</p>
+    </div>
+
+
+    <h2>Why This Chapter Matters</h2>
+    <p style="line-height:1.8; margin-bottom:14px;"><strong>The takeaway:</strong>
+    when the source system already knows who sold and who shipped, let it send
+    the split, and let OFIC do what it does best: keep the credits and roll each
+    one up to the right manager. Credit rules that try to work out the shipping
+    branch inside OFIC duplicate what the source already knows, and break the
+    first time the branch changes mid-contract.</p>
+    <p style="line-height:1.8; margin-bottom:14px;">The work moves to two
+    agreements before go-live: the source system's team owns who gets the 70%
+    and the 30%, and the compensation team makes sure everyone it can name is a
+    participant with a manager above them. <strong>The lesson for sales ops:
+    decide which system owns the split, and check that every rep it can name is
+    on a plan.</strong></p>
+
+    <h2>Concepts Covered</h2>
+    <table class="concepts">
+      <tr><th>Concept</th><th>What it means</th><th>Scene</th></tr>
+      <tr><td>Credits from the source</td><td>The source system sends the credit receiver, amount and split on each transaction, and OFIC keeps them instead of running direct credit rules.</td><td class="panelref">2</td></tr>
+      <tr><td>Split credit</td><td>One transaction carries two credit lines, 70% and 30%, that add up to the invoice.</td><td class="panelref">2</td></tr>
+      <tr><td>Rollup hierarchy</td><td>Managers automatically receive all the credit of the participants who report to them.</td><td class="panelref">3, 5</td></tr>
+      <tr><td>100% of the rep's share</td><td>A manager's rollup credit is 100% of their own rep's credit, not of the whole deal.</td><td class="panelref">3, 6</td></tr>
+      <tr><td>Nonrevenue rollup credit</td><td>Rollup credits are nonrevenue, so revenue still totals the contract value.</td><td class="panelref">3, 6</td></tr>
+      <tr><td>Participants</td><td>Credit can only land on a participant with a plan and a place in the hierarchy.</td><td class="panelref">4, 6</td></tr>
+      <tr><td>A changing second rep</td><td>Each month's invoice names that month's rep, so a site change needs no change in OFIC.</td><td class="panelref">5</td></tr>
+      <tr><td>No participant, no credit</td><td>A second rep who isn't on commission has nothing to credit; settle it with the source team.</td><td class="panelref">6</td></tr>
+    </table>
+
+    <!-- PREV / NEXT NAVIGATION -->
+    <div class="chapter-nav">
+      <a class="prev"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/interpolated-rate/">
+        <div class="nav-label">← Previous</div>
+        <div class="nav-title">I9. Quick Take: Why $5,000 Pays $90</div>
+      </a>
+      <a class="next"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-reference/">
+        <div class="nav-label">The reference maps →</div>
+        <div class="nav-title">Incentive Compensation: Setup &amp; Data Reference</div>
+      </a>
+    </div>
+
+    <div class="footer">
+      <p>Created by <a href="https://www.linkedin.com/in/veniltirou"
+         target="_blank">Venil Tirou</a> — Oracle CX Functional Consultant</p>
+      <p style="margin-top:6px;">© 2026 Venil Tirou. All rights reserved.
+      This is an independently created educational resource.
+      Not affiliated with or endorsed by Oracle Corporation.</p>
+    </div>
+
+  </main>
+</body>
+</html>
