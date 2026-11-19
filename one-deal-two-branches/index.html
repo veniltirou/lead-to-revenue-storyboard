@@ -351,9 +351,10 @@
       <strong>Colorado Springs</strong> for months 5 and 6.
       <br><br>
       ABC's billing system knows who sold each contract and which branch ships
-      it, so every monthly invoice reaches Oracle Fusion Incentive Compensation
-      with its credits already on it: <strong>70%</strong> to the rep who sold it
-      and <strong>30%</strong> to the rep at the shipping branch. Leila reports to
+      it. ABC's integration sends each monthly invoice to Oracle Fusion Incentive
+      Compensation through Oracle's transaction import, with its credits already
+      on it: <strong>70%</strong> to the rep who sold it and <strong>30%</strong>
+      to the rep at the shipping branch. Leila reports to
       <strong>Sarah</strong>; each branch rep reports to their own branch
       manager. <strong>Lisa</strong>, the compensation analyst, configured how
       those credits roll up.
@@ -403,7 +404,7 @@
       <img src="Split02.jpg"
            alt="The screen shows Invoice – Month 1 – $10,000, with Leila – 70% – $7,000 and Disha – 30% – $3,000. Lisa says The source knows who sold and who shipped. It sends the split. We just keep it" />
       <div class="what-it-shows">
-        <strong>What this shows:</strong> Lisa's first point: <strong>OFIC doesn't decide who worked on the deal</strong>. ABC's billing system already knows who sold it and which branch ships it each month, so every monthly invoice arrives in OFIC with its credits on it: Leila 70%, $7,000; Disha 30%, $3,000. Oracle supports this directly: with direct crediting turned off and rollup crediting on, collected transactions must include the credit receiver, credit amount and split, and OFIC loads them as credit transactions. One transaction carries both credit lines, and the two add up to the invoice. No credit rule in OFIC has to know about Cheyenne.
+        <strong>What this shows:</strong> Lisa's first point: <strong>OFIC doesn't decide who worked on the deal</strong>. ABC's billing system already knows who sold it and which branch ships it each month, so the invoice arrives in OFIC with two credit lines: Leila 70%, $7,000; Disha 30%, $3,000. Oracle supports this directly: with direct crediting turned off and rollup crediting on, collected transactions must include the credit receiver, credit amount and split, and OFIC loads them as credit transactions. The two credit lines add up to the invoice. No credit rule in OFIC has to know about Cheyenne.
       </div>
     </div>
     <div class="storyboard">
@@ -472,7 +473,35 @@
     </div>
 
     <div class="storyboard">
-      <h3>The Setup Behind It — All in OFIC</h3>
+      <h3>Where the Split Comes From</h3>
+      <p style="line-height:1.7; margin-bottom:6px;">The 70/30 isn't written
+      into OFIC, and no rep's name is either. ABC's integration reads the rep IDs
+      on each invoice and looks up the percentages in one small table, keyed by
+      role, that the sales operations team owns:</p>
+      <div class="table-scroll">
+      <table class="concepts">
+        <tr><th>Reps on the invoice</th><th class="num">Primary rep</th><th class="num">Secondary rep</th></tr>
+        <tr><td>Primary only</td><td class="num">100%</td><td class="num">—</td></tr>
+        <tr><td>Primary and secondary</td><td class="num">70%</td><td class="num">30%</td></tr>
+      </table>
+      </div>
+      <p style="line-height:1.7; margin-top:10px;">The integration then sends
+      <strong>one transaction for the invoice, with one credit line per rep</strong>,
+      rather than splitting the invoice into two transactions, so every credit
+      still traces back to the real $10,000 invoice. Change the split, and only
+      that table changes.</p>
+      <p style="line-height:1.7; margin-top:10px;">Why not a credit rule in OFIC?
+      In Oracle Fusion, a direct credit rule matches qualifying criteria and pays
+      <strong>named participants</strong> at the split set on the rule. Doing this
+      split in OFIC would take three rules for every rep: sole, primary in a split,
+      and secondary in a split. Every hire and transfer would mean another rule
+      change. Role-based allocation tables belonged to E-Business Suite's Sales
+      Credit Allocation; Fusion has no equivalent module.</p>
+      <p style="line-height:1.7; margin-top:10px; font-size:0.9em; color:#666;">Sources (Oracle): <a href="https://docs.oracle.com/en/cloud/saas/incentive-compensation/facmi/how-you-create-direct-and-rollup-credit-transactions.html" target="_blank" style="color:#3a5bd9;">How You Create Direct and Rollup Credit Transactions</a>, <a href="https://docs.oracle.com/en/cloud/saas/sales/faaps/op-incentivecompensationtransactions-transactionid-child-credits-post.html" target="_blank" style="color:#3a5bd9;">REST: Create a credit</a>, <a href="https://docs.oracle.com/en/cloud/saas/sales/oawic/order-import-mappings.html" target="_blank" style="color:#3a5bd9;">Order Import Mappings</a>.</p>
+    </div>
+
+    <div class="storyboard">
+      <h3>The Setup Behind It</h3>
       <p style="line-height:1.7; margin-bottom:6px;">Nothing here is specific
       to Front Range Hospital or to Cheyenne. Set it once, and every cross-branch
       deal follows.</p>
@@ -483,11 +512,11 @@
         <tr><td>1</td><td>Setup and Maintenance: Manage Parameters</td><td>Direct crediting off; rollup crediting on; rollup hierarchy to use: <strong>Rollup hierarchy</strong>. This is Oracle's setting for credit transactions collected from another source.</td></tr>
         <tr><td>2</td><td>Participant Assignments work area</td><td>Every rep and manager is a participant with a compensation plan. Most commission-eligible people already are.</td></tr>
         <tr><td>3</td><td>Participant Assignments: rollup hierarchy</td><td>Each rep sits under their own manager: Leila under Sarah, Disha under the Cheyenne manager, and the Gunnison and Colorado Springs reps under theirs.</td></tr>
-        <tr><td>4</td><td>The source system's monthly feed</td><td>Each invoice carries its credits: the credit receiver, credit amount, split percentage and revenue type, 70% to Leila and 30% to that month's shipping rep.</td></tr>
+        <tr><td>4</td><td>The integration's monthly feed (file import, REST or Oracle Integration Cloud)</td><td>Each invoice carries its credits: the credit receiver, credit amount, split percentage and revenue type, 70% to Leila and 30% to that month's shipping rep.</td></tr>
         <tr><td>5</td><td>Credits and Earnings</td><td>Collect the transactions, then Run Crediting and Rollup. The collected credits are loaded as they are; rollup adds one nonrevenue credit for each rep's manager.</td></tr>
       </table>
       </div>
-      <p style="line-height:1.7; margin-top:10px; font-size:0.9em; color:#666;">Sources (Oracle): <a href="https://docs.oracle.com/en/cloud/saas/incentive-compensation/oawic/crediting-and-rollup-parameters.html" target="_blank" style="color:#3a5bd9;">Crediting and Rollup Parameters</a>, <a href="https://docs.oracle.com/en/cloud/saas/incentive-compensation/facmi/examples-of-credits-and-rollups.html" target="_blank" style="color:#3a5bd9;">Examples of Credits and Rollups</a>, <a href="https://docs.oracle.com/en/cloud/saas/sales/facmi/overview-of-credit-rollup-and-classification.html" target="_blank" style="color:#3a5bd9;">Overview of Credit, Rollup, and Classification</a>.</p>
+      <p style="line-height:1.7; margin-top:10px; font-size:0.9em; color:#666;">Sources (Oracle): <a href="https://docs.oracle.com/en/cloud/saas/incentive-compensation/oawic/crediting-and-rollup-parameters.html" target="_blank" style="color:#3a5bd9;">Crediting and Rollup Parameters</a>, <a href="https://docs.oracle.com/en/cloud/saas/incentive-compensation/facmi/examples-of-credits-and-rollups.html" target="_blank" style="color:#3a5bd9;">Examples of Credits and Rollups</a>, <a href="https://docs.oracle.com/en/cloud/saas/sales/facmi/overview-of-credit-rollup-and-classification.html" target="_blank" style="color:#3a5bd9;">Overview of Credit, Rollup, and Classification</a>, <a href="https://docs.oracle.com/en/cloud/saas/incentive-compensation/facmi/import-transactions-for-incentive-compensation.html" target="_blank" style="color:#3a5bd9;">Import Transactions for Incentive Compensation</a>, <a href="https://docs.oracle.com/en/cloud/saas/incentive-compensation/facmi/transaction-and-credit-collection-process.html" target="_blank" style="color:#3a5bd9;">Transaction and Credit Collection Process</a>.</p>
     </div>
 
 
@@ -509,6 +538,7 @@
     <table class="concepts">
       <tr><th>Concept</th><th>What it means</th><th>Scene</th></tr>
       <tr><td>Credits from the source</td><td>The source system sends the credit receiver, amount and split on each transaction, and OFIC keeps them instead of running direct credit rules.</td><td class="panelref">2</td></tr>
+      <tr><td>Role-based split table</td><td>The integration, not OFIC, holds the 100% or 70/30 by role, so no rep names or percentages are written into credit rules.</td><td class="panelref">2</td></tr>
       <tr><td>Split credit</td><td>One transaction carries two credit lines, 70% and 30%, that add up to the invoice.</td><td class="panelref">2</td></tr>
       <tr><td>Rollup hierarchy</td><td>Managers automatically receive all the credit of the participants who report to them.</td><td class="panelref">3, 5</td></tr>
       <tr><td>100% of the rep's share</td><td>A manager's rollup credit is 100% of their own rep's credit, not of the whole deal.</td><td class="panelref">3, 6</td></tr>
