@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Foundation: Incentive Compensation — The Big Picture | Oracle CX Storyboard Series</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 280px;
+      min-width: 280px;
+      background-color: #1a1a2e;
+      color: #ccc;
+      padding: 30px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .sidebar .logo {
+      padding: 0 20px 24px 20px;
+      border-bottom: 1px solid #333;
+      margin-bottom: 20px;
+    }
+    .sidebar .logo h2 { color: #ff6b2b; font-size: 1em; line-height: 1.5; }
+    .sidebar .logo p { color: #888; font-size: 0.78em; margin-top: 6px; }
+    .sidebar ul { list-style: none; }
+    .sidebar ul .section-label {
+      color: #ff9a5c;
+      font-size: 0.72em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      padding: 18px 20px 7px 20px;
+      margin-top: 6px;
+      border-top: 1px solid rgba(255,155,92,0.22);
+    }
+    .sidebar ul .section-label:first-of-type {
+      border-top: none;
+      margin-top: 0;
+    }
+    .sidebar ul li a {
+      display: block;
+      padding: 9px 20px;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.88em;
+      border-left: 3px solid transparent;
+      transition: all 0.2s;
+    }
+    .sidebar ul li a:hover {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.active {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .main {
+      margin-left: 280px;
+      padding: 40px 50px;
+      flex: 1;
+      max-width: 900px;
+    }
+    .chapter-header { margin-bottom: 30px; }
+    .chapter-header .chapter-label {
+      font-size: 0.8em;
+      color: #ff6b2b;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .chapter-header h1 { color: #c74b00; font-size: 1.8em; margin-bottom: 10px; }
+    .chapter-header p { color: #555; line-height: 1.7; }
+    .scenario-box {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.95em;
+      line-height: 1.7;
+      color: #444;
+    }
+    .characters-box {
+      background-color: #f0f4ff;
+      border-left: 4px solid #3a5bd9;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.92em;
+      line-height: 1.8;
+      color: #444;
+    }
+    .characters-box h3 {
+      color: #3a5bd9;
+      font-size: 0.9em;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    h2 {
+      color: #333;
+      font-size: 1.15em;
+      margin: 36px 0 16px 0;
+      border-bottom: 2px solid #ff6b2b;
+      padding-bottom: 8px;
+    }
+    .storyboard {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 24px;
+      margin: 28px 0;
+    }
+    .storyboard h3 {
+      color: #c74b00;
+      font-size: 1.05em;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    .storyboard img {
+      width: 100%;
+      height: auto;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      margin: 12px 0;
+    }
+    .storyboard .tip {
+      font-style: italic;
+      color: #999;
+      font-size: 0.85em;
+      margin: 6px 0 14px 0;
+    }
+    .storyboard .what-it-shows {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      padding: 12px 16px;
+      font-size: 0.92em;
+      line-height: 1.7;
+      color: #444;
+      border-radius: 0 4px 4px 0;
+    }
+    .storyboard .what-it-shows strong { color: #c74b00; }
+    table.concepts {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 8px 0;
+      font-size: 0.9em;
+    }
+    table.concepts th, table.concepts td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+    table.concepts th {
+      background-color: #fff8f0;
+      color: #c74b00;
+      border-bottom: 2px solid #ff6b2b;
+    }
+    table.concepts td.panelref {
+      white-space: nowrap;
+      color: #999;
+    }
+
+    .chapter-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+      padding-top: 24px;
+      border-top: 2px solid #eee;
+      gap: 16px;
+    }
+    .chapter-nav a {
+      display: block;
+      padding: 16px 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #333;
+      transition: all 0.2s;
+      flex: 1;
+    }
+    .chapter-nav a:hover {
+      border-color: #ff6b2b;
+      box-shadow: 0 2px 8px rgba(199,75,0,0.15);
+    }
+    .chapter-nav .prev { text-align: left; }
+    .chapter-nav .next { text-align: right; }
+    .chapter-nav .nav-label {
+      font-size: 0.75em;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .chapter-nav .nav-title {
+      font-weight: bold;
+      color: #c74b00;
+      font-size: 0.95em;
+    }
+    .footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid #ddd;
+      font-size: 0.82em;
+      color: #999;
+    }
+    .footer a { color: #c74b00; }
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 20px; }
+    }
+  </style>
+  <!-- GoatCounter analytics -->
+  <script data-goatcounter="https://veniltirou.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="logo">
+      <h2>Oracle CX Storyboard Series</h2>
+    </div>
+    <ul>
+                  <li class="section-label">Getting Started</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">
+        📋 Table of Contents</a></li>
+      <li class="section-label">Foundation</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/abc-world/">
+        The World of ABC Corporation</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/customer-data-management/">
+        Customer Data Management</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-force-automation-one-day/">
+        A Day in Sales Force Automation</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-performance-management/">
+        Sales Performance Management: The Landscape</a></li>
+      <li><a href="#" class="active">
+        Incentive Compensation: The Big Picture</a></li>
+      <li class="section-label">Chapters</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/">
+        1. Lead-to-Revenue Overview</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">
+        2. Subscription Management</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/incentive-compensation/">
+        3. Incentive Compensation</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/commerce-mile-high/">
+        4. Oracle Commerce: Mile High City Bank</a></li>
+      <li class="section-label">Advanced · Subscription Management</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/usage-billing-deep-dive/">
+        S1. Usage Billing: Allowance, Rollover &amp; Overage</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/compound-amendment-deep-dive/">
+        S2. The Compound Mid-Term Amendment</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/renewal-promotion-deep-dive/">
+        S3. The Anniversary Renewal Promotion</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/quote-to-cash/">
+        S4. Quote-to-Cash Across Oracle Fusion</a></li>
+      <li class="section-label">Advanced · Incentive Compensation</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/route66-three-credits/">
+        I1. One Deal, Three Credits: The Route 66 Story</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/payment-not-final/">
+        I2. When the Payment Isn't Final</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/disputes/">
+        I3. When the Rep Says the Number Is Wrong: Disputes</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-three-transactions/">
+        I4. Three Transactions, One Paycheck</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/leila-runway/">
+        I5. Leila's Nine-Month Runway</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/order-to-earnings/">
+        I6. From Order to Earnings</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/five-questions-before-payday/">
+        I7. Five Questions Before Payday</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/when-the-cash-arrives/">
+        I8. When the Cash Arrives</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/interpolated-rate/">
+        I9. Quick Take: Why $5,000 Pays $90</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/one-deal-two-branches/">
+        I10. One Deal, Two Branches</a></li>
+      <li class="section-label">Integrations</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-integrations/">
+        G1. Oracle Integration Cloud</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/friday-debrief/">
+        G2. The Friday Debrief</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-under-the-hood/">
+        G3. OIC Under the Hood</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-replenishment-one-off/">
+        G4. The One-Off: Hilltop Replenishment</a></li>
+      <li class="section-label">Reference</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-reference/">
+        Incentive Compensation: Setup &amp; Data Reference</a></li>
+      <li class="section-label">Connect</li>
+      <li><a href="https://www.linkedin.com/in/veniltirou" target="_blank">
+        🔗 LinkedIn Profile</a></li>
+    </ul>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <div class="chapter-header">
+      <div class="chapter-label">Foundation</div>
+      <h1>Incentive Compensation — The Big Picture</h1>
+      <p>Before following one deal through the commission engine in Chapter 3,
+      it helps to see the whole factory at once: what goes in, the steps it
+      passes through, and where the money comes out. This page is that view —
+      one picture, the vocabulary that goes with it, and three misconceptions
+      worth clearing up early.</p>
+    </div>
+
+    <div class="scenario-box">
+      <strong>Why this page exists:</strong> At ABC Corporation, when James
+      closes a deal, a commission eventually shows up in his paycheck. Between
+      those two moments sits Oracle Fusion Incentive Compensation (OFIC). It
+      doesn't create the deal, the people or the quota, and it doesn't pay
+      anyone directly. It takes inputs from other applications, works out who
+      earned what, and hands the result to the systems that actually pay. Think
+      of it as a factory with loading docks on both sides.
+    </div>
+
+    <h2>The Factory</h2>
+    <div class="storyboard">
+      <h3>Upstream In, Earnings Out</h3>
+      <img src="IC_Overview_Factory.png"
+           alt="Oracle Fusion Incentive Compensation drawn as a factory: upstream applications (HCM, Sales, Order Management, Receivables, Finance, Sales Planning and other sources) feed the participant, collect, credit, rollup, classify, calculate and pay steps; downstream applications (Oracle Payroll, Payables, third-party payroll or AP, and General Ledger indirectly) receive the results" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows">
+        <strong>What this shows:</strong> On the left, the
+        <strong>upstream</strong> applications that supply OFIC: the people
+        (HCM and Sales resources), the business transactions (orders,
+        invoices, or files from any other system), the currencies and
+        conversion rates from shared Finance setup, and the quota targets from
+        Sales Planning. In the middle, the factory floor: each transaction is
+        <strong>collected</strong>, <strong>credited</strong> to the right
+        people, <strong>rolled up</strong> to their managers,
+        <strong>classified</strong> into the right bucket,
+        <strong>calculated</strong> into an earning, and finally
+        <strong>paid</strong>. On the right, the <strong>downstream</strong>
+        systems that move the money: Oracle Payroll for employees, Payables or
+        a third-party system for everyone else. General Ledger sits at the end
+        of the line, but it is reached <em>indirectly</em> — through the
+        payroll or payables accounting — not by a direct feed from OFIC.
+      </div>
+    </div>
+
+    <h2>The Steps, in Plain Words</h2>
+    <table class="concepts">
+      <tr><th>Step</th><th>What happens</th><th class="panelref">James's example</th></tr>
+      <tr><td>Participants</td><td>Setup, not processing. A person must exist as a <em>participant</em>, with a role, a compensation plan and a pay group, before anything can be credited to them. Participants are imported from HCM or Sales resources, not created from scratch.</td><td class="panelref">James is set up as a Senior Sales Rep</td></tr>
+      <tr><td>Collect</td><td>Transactions are imported into a staging area, then collected into OFIC. This is where an order or invoice from another system becomes something the engine can work on.</td><td class="panelref">The $78,500 XYZ deal arrives</td></tr>
+      <tr><td>Credit</td><td>Crediting rules decide who gets credit for the transaction, and how much: the closing rep, overlay specialists, or a split between co-sellers.</td><td class="panelref">James 100%, Sarah overlay</td></tr>
+      <tr><td>Rollup</td><td>Direct credit is copied up the management hierarchy, so a manager is credited for their team's sales without taking anything away from the rep.</td><td class="panelref">James's manager is credited too</td></tr>
+      <tr><td>Classify</td><td>Classification rules read the transaction's attributes and put it in a <em>credit category</em>, so it counts toward the right performance measure.</td><td class="panelref">Counts as "Revenue Booked — Vending"</td></tr>
+      <tr><td>Calculate</td><td>The incentive formula and rate table turn credited, classified amounts into earnings, using attainment against quota to pick the rate.</td><td class="panelref">$4,495 commission</td></tr>
+      <tr><td>Pay</td><td>Earnings are gathered into a payment batch, with holds, draws and recoveries applied, and sent to the system that pays.</td><td class="panelref">Sent to Payroll</td></tr>
+    </table>
+
+    <h2>The Loading Docks</h2>
+    <table class="concepts">
+      <tr><th>Application</th><th>Direction</th><th>What crosses the dock</th></tr>
+      <tr><td>HCM / Sales resources</td><td>In</td><td>The people who earn, and their managers (needed for rollup).</td></tr>
+      <tr><td>Order Management, Receivables, other sources</td><td>In</td><td>Business transactions: booked orders, invoices, receipts, or anything else the plan pays on. Typical sources, brought in through import rather than an automatic feed.</td></tr>
+      <tr><td>Finance &amp; shared setup</td><td>In</td><td>Currencies and conversion rates, so a deal in one currency can pay a rep in another.</td></tr>
+      <tr><td>Sales Planning (EPM)</td><td>Both ways</td><td>Quota targets come in as participant goals; performance measures and participants go out, so planners can compare quota with attainment. File-based, with separate security in each application.</td></tr>
+      <tr><td>Oracle Payroll</td><td>Out</td><td>Paid payment batches for employees, sent with the <em>Send Payment to Payroll</em> process.</td></tr>
+      <tr><td>Payables or third-party payroll</td><td>Out</td><td>Payments for non-employees (partners, external channel reps), or payment files for a payroll system outside Oracle.</td></tr>
+      <tr><td>General Ledger</td><td>Out, indirectly</td><td>Commission expense reaches the ledger through the payroll or payables accounting. How accruals are booked before payment is an implementation design decision.</td></tr>
+    </table>
+
+    <h2>Three Things Beginners Get Wrong</h2>
+    <div class="what-it-shows">
+      <strong>1. The steps are not a rigid assembly line.</strong> Oracle
+      lists the processes as import, collect, credit, rollup, classify,
+      calculate and pay, but any process you don't need can be skipped, and
+      classification can run before or after crediting. The order in the
+      picture is the common one, not the only one.<br /><br />
+      <strong>2. "Upstream" doesn't mean "automatically connected."</strong>
+      In Fusion, transactions are imported into a staging table and then
+      collected. Order Management and Receivables are the usual sources, but
+      getting their data in is an integration someone designs and runs.<br /><br />
+      <strong>3. An earning is not a payment.</strong> Calculation produces an
+      earning the moment it runs; the payment step decides what actually
+      leaves the building, and when. Holds, draws and clawbacks all live in
+      that gap — which is why Chapter 3 and the advanced chapters spend so much
+      time on it.
+    </div>
+
+    <h2>Where to Go Next</h2>
+    <div class="what-it-shows">
+      <strong>The takeaway:</strong> OFIC is the middle of a chain, not a
+      standalone island. With the factory in mind, <strong>Chapter 3:
+      Incentive Compensation</strong> walks one deal — James's $78,500 XYZ
+      Corporation order — through every step on this page, with the actual
+      plans, rate tables and numbers. The advanced chapters (I1–I10) then take
+      each step apart in turn.
+    </div>
+
+    <p class="tip" style="margin-top:20px;">Sources: Oracle documentation —
+      <a href="https://docs.oracle.com/en/cloud/saas/sales/facmi/overview-of-incentive-compensation-transaction-processing.html" target="_blank">Overview of Incentive Compensation Transaction Processing</a>,
+      <a href="https://docs.oracle.com/en/cloud/saas/sales/facmi/overview-of-importing-and-collecting-source-transactions.html" target="_blank">Importing and Collecting Source Transactions</a>,
+      <a href="https://docs.oracle.com/en/cloud/saas/sales/facmi/participant-goals-and-oracle-sales-planning-cloud.html" target="_blank">Participant Goals and Oracle Sales Planning Cloud</a>,
+      <a href="https://docs.oracle.com/en/cloud/saas/readiness/sales/24a/salm-24a/24A-spm-wn-f29748.htm" target="_blank">Configurable Payment Extract for Payroll Integration</a>.
+      Illustrative representation — not an actual product screenshot.</p>
+
+    <!-- PREV / NEXT NAVIGATION -->
+    <div class="chapter-nav">
+      <a class="prev"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-performance-management/">
+        <div class="nav-label">← Previous</div>
+        <div class="nav-title">Sales Performance Management: The Landscape</div>
+      </a>
+      <a class="next"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/incentive-compensation/">
+        <div class="nav-label">Follow one deal through it →</div>
+        <div class="nav-title">Chapter 3: Incentive Compensation</div>
+      </a>
+    </div>
+
+    <div class="footer">
+      <p>Created by <a href="https://www.linkedin.com/in/veniltirou"
+         target="_blank">Venil Tirou</a> — Oracle CX Functional Consultant</p>
+      <p style="margin-top:6px;">© 2026 Venil Tirou. All rights reserved.
+      This is an independently created educational resource.
+      Not affiliated with or endorsed by Oracle Corporation.</p>
+    </div>
+
+  </main>
+</body>
+</html>

@@ -248,6 +248,8 @@
         A Day in Sales Force Automation</a></li>
       <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-performance-management/">
         Sales Performance Management: The Landscape</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-overview/">
+        Incentive Compensation: The Big Picture</a></li>
       <li class="section-label">Chapters</li>
       <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/">
         1. Lead-to-Revenue Overview</a></li>
@@ -629,9 +631,11 @@
       <div class="what-it-shows">
         <strong>What this shows:</strong> Incentive Compensation doesn't work in
         isolation — it sits in the middle of a chain. Its transactions arrive
-        from <strong>Order Management</strong> (booked orders and adjustments)
-        and <strong>Receivables</strong> (invoices); these are the two seeded
-        transaction sources Oracle delivers out of the box. Its people aren't
+        typically from <strong>Order Management</strong> (booked orders and
+        adjustments) and <strong>Receivables</strong> (invoices). In Fusion,
+        they are imported into a staging table and then collected, so these are
+        common sources rather than automatic feeds (in the older E-Business
+        Suite version they were the two seeded sources). Its people aren't
         created inside it either — participants are imported from
         <strong>Resource Manager, HCM, or Trading Community</strong>, which is
         why someone must already exist there before they can earn. Territory
@@ -641,7 +645,9 @@
         <strong>Payroll</strong>, through the normal payroll cycle with tax
         withholding, while <strong>Payables</strong> handles commission for
         non-employees such as partners, vendors and external channel reps.
-        General Ledger receives the accounting entries throughout. Understanding
+        The image shows General Ledger next to the engine, but in Fusion the
+        commission expense reaches the ledger indirectly, through the payroll
+        or payables accounting, rather than through a direct feed. Understanding
         these boundaries matters as much as understanding the engine itself —
         most real implementation problems live at the seams between modules, not
         inside any one of them.
@@ -666,7 +672,7 @@
       <tr><td>Objectives-Based Incentive</td><td>A second plan that pays on goal attainment rather than per transaction — revenue targets, new customers, pipeline coverage. It runs on a parallel plan alongside transaction commission and merges only at the payment step.</td><td class="panelref">11</td></tr>
       <tr><td>Payment Plan &amp; Processing</td><td>Governs how calculated earnings become actual money: frequency, hold percentage, draws and recovery, caps, and clawback windows. An earning is not a payment — a rep earns the moment calculation runs, but what leaves the building is decided here.</td><td class="panelref">12</td></tr>
       <tr><td>Reports and Analytics</td><td>Visibility for each audience: reps see estimated earnings and attainment, managers see team performance, and compensation administrators see plan cost and exceptions.</td><td class="panelref">13</td></tr>
-      <tr><td>Module boundaries</td><td>Incentive Compensation sits in a chain. Order Management and Receivables are the two seeded transaction sources; participants come from Resource Manager, HCM or Trading Community; and payment routes to Payroll for employees or Payables for non-employees, with General Ledger receiving the accounting entries.</td><td class="panelref">Modules</td></tr>
+      <tr><td>Module boundaries</td><td>Incentive Compensation sits in a chain. Order Management and Receivables are the usual transaction sources, imported and then collected; participants come from Resource Manager, HCM or Trading Community; and payment routes to Payroll for employees or Payables for non-employees, with the accounting reaching General Ledger through those systems.</td><td class="panelref">Modules</td></tr>
     </table>
 
     <!-- PREV / NEXT NAVIGATION -->
