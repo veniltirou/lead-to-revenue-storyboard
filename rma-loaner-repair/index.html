@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chapter 5: The Vending Machine That Called for Help — RMA, Loaner and Depot Repair | Oracle CX Storyboard Series</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 280px;
+      min-width: 280px;
+      background-color: #1a1a2e;
+      color: #ccc;
+      padding: 30px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .sidebar .logo {
+      padding: 0 20px 24px 20px;
+      border-bottom: 1px solid #333;
+      margin-bottom: 20px;
+    }
+    .sidebar .logo h2 { color: #ff6b2b; font-size: 1em; line-height: 1.5; }
+    .sidebar .logo p { color: #888; font-size: 0.78em; margin-top: 6px; }
+    .sidebar ul { list-style: none; }
+    .sidebar ul .section-label {
+      color: #ff9a5c;
+      font-size: 0.72em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      padding: 18px 20px 7px 20px;
+      margin-top: 6px;
+      border-top: 1px solid rgba(255,155,92,0.22);
+    }
+    .sidebar ul .section-label:first-of-type {
+      border-top: none;
+      margin-top: 0;
+    }
+    .sidebar ul li a {
+      display: block;
+      padding: 9px 20px;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.88em;
+      border-left: 3px solid transparent;
+      transition: all 0.2s;
+    }
+    .sidebar ul li a:hover {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .sidebar ul li a.active {
+      background-color: #2a2a4a;
+      color: #ff6b2b;
+      border-left: 3px solid #ff6b2b;
+    }
+    .main {
+      margin-left: 280px;
+      padding: 40px 50px;
+      flex: 1;
+      max-width: 900px;
+    }
+    .chapter-header { margin-bottom: 30px; }
+    .chapter-header .chapter-label {
+      font-size: 0.8em;
+      color: #ff6b2b;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .chapter-header h1 { color: #c74b00; font-size: 1.8em; margin-bottom: 10px; }
+    .chapter-header p { color: #555; line-height: 1.7; }
+    .scenario-box {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.95em;
+      line-height: 1.7;
+      color: #444;
+    }
+    .characters-box {
+      background-color: #f0f4ff;
+      border-left: 4px solid #3a5bd9;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.92em;
+      line-height: 1.8;
+      color: #444;
+    }
+    .characters-box h3 {
+      color: #3a5bd9;
+      font-size: 0.9em;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    h2 {
+      color: #333;
+      font-size: 1.15em;
+      margin: 36px 0 16px 0;
+      border-bottom: 2px solid #ff6b2b;
+      padding-bottom: 8px;
+    }
+    .storyboard {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 24px;
+      margin: 28px 0;
+    }
+    .storyboard h3 {
+      color: #c74b00;
+      font-size: 1.05em;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    .storyboard img {
+      width: 100%;
+      height: auto;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      margin: 12px 0;
+    }
+    .storyboard .tip {
+      font-style: italic;
+      color: #999;
+      font-size: 0.85em;
+      margin: 6px 0 14px 0;
+    }
+    .storyboard .what-it-shows {
+      background-color: #fff8f0;
+      border-left: 4px solid #c74b00;
+      padding: 12px 16px;
+      font-size: 0.92em;
+      line-height: 1.7;
+      color: #444;
+      border-radius: 0 4px 4px 0;
+    }
+    .storyboard .what-it-shows strong { color: #c74b00; }
+    table.concepts {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 8px 0;
+      font-size: 0.9em;
+    }
+    table.concepts th, table.concepts td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+    table.concepts th {
+      background-color: #fff8f0;
+      color: #c74b00;
+      border-bottom: 2px solid #ff6b2b;
+    }
+    table.concepts td.panelref {
+      white-space: nowrap;
+      color: #999;
+    }
+
+    .chapter-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+      padding-top: 24px;
+      border-top: 2px solid #eee;
+      gap: 16px;
+    }
+    .chapter-nav a {
+      display: block;
+      padding: 16px 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #333;
+      transition: all 0.2s;
+      flex: 1;
+    }
+    .chapter-nav a:hover {
+      border-color: #ff6b2b;
+      box-shadow: 0 2px 8px rgba(199,75,0,0.15);
+    }
+    .chapter-nav .prev { text-align: left; }
+    .chapter-nav .next { text-align: right; }
+    .chapter-nav .nav-label {
+      font-size: 0.75em;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .chapter-nav .nav-title {
+      font-weight: bold;
+      color: #c74b00;
+      font-size: 0.95em;
+    }
+    .footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid #ddd;
+      font-size: 0.82em;
+      color: #999;
+    }
+    .footer a { color: #c74b00; }
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 20px; }
+    }
+  </style>
+  <!-- GoatCounter analytics -->
+  <script data-goatcounter="https://veniltirou.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="logo">
+      <h2>Oracle CX Storyboard Series</h2>
+    </div>
+    <ul>
+                  <li class="section-label">Getting Started</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/docs/">
+        📋 Table of Contents</a></li>
+      <li class="section-label">Foundation</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/abc-world/">
+        The World of ABC Corporation</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/customer-data-management/">
+        Customer Data Management</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-force-automation-one-day/">
+        A Day in Sales Force Automation</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-performance-management/">
+        Sales Performance Management: The Landscape</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-overview/">
+        Incentive Compensation: The Big Picture</a></li>
+      <li class="section-label">Chapters</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/">
+        1. Lead-to-Revenue Overview</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">
+        2. Subscription Management</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/incentive-compensation/">
+        3. Incentive Compensation</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/commerce-mile-high/">
+        4. Oracle Commerce: Mile High City Bank</a></li>
+      <li><a href="#" class="active">
+        5. Fusion Service: RMA, Loaner &amp; Depot Repair</a></li>
+      <li class="section-label">Advanced · Subscription Management</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/usage-billing-deep-dive/">
+        S1. Usage Billing: Allowance, Rollover &amp; Overage</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/compound-amendment-deep-dive/">
+        S2. The Compound Mid-Term Amendment</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/renewal-promotion-deep-dive/">
+        S3. The Anniversary Renewal Promotion</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/quote-to-cash/">
+        S4. Quote-to-Cash Across Oracle Fusion</a></li>
+      <li class="section-label">Advanced · Incentive Compensation</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/route66-three-credits/">
+        I1. One Deal, Three Credits: The Route 66 Story</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/payment-not-final/">
+        I2. When the Payment Isn't Final</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/disputes/">
+        I3. When the Rep Says the Number Is Wrong: Disputes</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-three-transactions/">
+        I4. Three Transactions, One Paycheck</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/leila-runway/">
+        I5. Leila's Nine-Month Runway</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/order-to-earnings/">
+        I6. From Order to Earnings</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/five-questions-before-payday/">
+        I7. Five Questions Before Payday</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/when-the-cash-arrives/">
+        I8. When the Cash Arrives</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/interpolated-rate/">
+        I9. Quick Take: Why $5,000 Pays $90</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/one-deal-two-branches/">
+        I10. One Deal, Two Branches</a></li>
+      <li class="section-label">Integrations</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-integrations/">
+        G1. Oracle Integration Cloud</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/friday-debrief/">
+        G2. The Friday Debrief</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-under-the-hood/">
+        G3. OIC Under the Hood</a></li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-replenishment-one-off/">
+        G4. The One-Off: Hilltop Replenishment</a></li>
+      <li class="section-label">Reference</li>
+      <li><a href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-reference/">
+        Incentive Compensation: Setup &amp; Data Reference</a></li>
+      <li class="section-label">Connect</li>
+      <li><a href="https://www.linkedin.com/in/veniltirou" target="_blank">
+        🔗 LinkedIn Profile</a></li>
+    </ul>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <div class="chapter-header">
+      <div class="chapter-label">Chapter 5</div>
+      <div style="display:flex; align-items:flex-start; gap:20px;">
+        <img src="../commerce-mile-high/mhcb_logo.png" alt="Mile High City Bank emblem"
+             style="width:78px; height:auto; flex:0 0 auto; margin-top:4px;" />
+        <h1 style="margin:0;">The Vending Machine That Called for Help — RMA, Loaner and Depot Repair</h1>
+      </div>
+      <p>Nobody at Mile High City Bank noticed anything was wrong. The drinks
+      were cold, the machine took cards, and the staff lounge was as busy as
+      ever. The vending machine noticed first. This chapter follows one
+      service request from the moment a machine reports its own trouble to the
+      moment the repaired machine is back in its corner, and shows the four
+      order lines it takes to get there.</p>
+    </div>
+
+    <div class="scenario-box">
+      <strong>Business Scenario:</strong> The staff lounge of Mile High City
+      Bank's <strong>Denver branch</strong> has an ABC beverage vending
+      machine, serial number <strong>BV-48213</strong>, on its own subscription
+      with <strong>Gold service coverage</strong>. ABC monitors it remotely.
+      When its telemetry predicts a failure, a service request opens without
+      anyone picking up the phone. <strong>Alex</strong>, an ABC service agent,
+      takes the case. The coverage includes a <strong>loaner unit</strong>
+      while the bank's own machine goes to ABC's repair center, is fixed, and
+      comes home. <strong>Cynthia Michael</strong> from the bank's facilities
+      team (Chapter 4) is Alex's contact.
+    </div>
+
+    <div class="scenario-box" style="border-left-color:#3a5bd9; background-color:#f0f4ff;">
+      <strong>A note on accuracy:</strong> These pieces follow Oracle's
+      documentation: an IoT incident rule creating the service request in B2B
+      Service, the SR's Connected Asset tab, closing the IoT incident when the
+      SR is resolved, creating return (RMA) and shipment lines from the SR,
+      service activity codes deciding the order line types, sales and return
+      order approval rules, depot repair estimates, and shipping the repaired
+      unit from the repair center's own dock. Fusion has no single seeded
+      "loaner" button: the loaner flow here is assembled from return and
+      shipment lines, using service activity codes ABC has configured. The
+      machine, the coverage, the fault and the figures are illustration.
+    </div>
+
+    <div class="characters-box">
+      <h3>👥 Characters in This Chapter</h3>
+      <p><strong>Alex</strong> — Service Agent, ABC Corporation (new in this chapter)<br>
+      <strong>Cynthia Michael</strong> — Facilities, Mile High City Bank (from Chapter 4)<br>
+      The depot repair manager and repair technician at ABC's Denver Repair Center (not named)</p>
+    </div>
+
+    <h2>Scene 1 — The Machine Notices First <span style="font-weight:400;font-size:0.78em;color:#123a5c;">(Mile High City Bank)</span></h2>
+    <div class="storyboard">
+      <img src="Scene01.png" alt="The beverage vending machine in the Denver branch staff lounge, with a telemetry overlay showing cabinet temperature creeping up and the compressor running almost constantly" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> the machine
+      is still working, and that is the point. Its sensors stream readings to
+      ABC's IoT monitoring service: the cabinet temperature has crept up
+      3°F over five days, and the compressor is running 92% of the time to
+      hold it. A rule in the monitoring service reads that pattern as a
+      failing cooling system, roughly ten days out.
+      <br><br>
+      The machine is not anonymous to ABC. In <strong>Installed Base</strong>
+      it is an asset with a serial number (BV-48213), a model (BV-500), a
+      location (Denver branch, staff lounge), an owner (Mile High City Bank) and
+      a configuration (firmware 4.2, card reader, eight spiral rows). That
+      asset record is what every later step hangs on.</div>
+    </div>
+
+    <h2>Scene 2 — The Service Request Writes Itself <span style="font-weight:400;font-size:0.78em;color:#6B5B95;">(ABC Corporation)</span></h2>
+    <div class="storyboard">
+      <img src="Scene02.png" alt="ABC's remote monitoring room, where an analyst watches an IoT incident for asset BV-48213 become service request SR-30417 in Oracle Fusion B2B Service" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> the rule
+      raises an <strong>incident</strong> in the IoT service, and an incident
+      rule turns it straight into a <strong>service request</strong> in Fusion
+      B2B Service: <strong>SR-30417</strong>, "Cooling performance degrading,
+      predicted failure in 10 days", already linked to the asset BV-48213 and
+      to Mile High City Bank. Nobody typed it in.
+      <br><br>
+      This works because both systems agree on what the asset is. ABC uses
+      <strong>Installed Base assets</strong> on its service requests, the same
+      asset model its supply chain and service logistics use, so the asset the
+      sensor reports on is the same asset the SR, the repair and the shipments
+      will refer to.</div>
+    </div>
+
+    <h2>Scene 3 — Alex Takes the Case <span style="font-weight:400;font-size:0.78em;color:#6B5B95;">(ABC Corporation)</span></h2>
+    <div class="storyboard">
+      <img src="Scene03.png" alt="Alex at his desk in the ABC service center, opening SR-30417 and looking at the Connected Asset tab with live readings from the machine" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> assignment
+      rules route SR-30417 to the <strong>Beverage Equipment queue</strong>,
+      and from there to <strong>Alex</strong>, a service agent with the right
+      skills and free capacity. Alex has never seen this machine, but the SR
+      has: the <strong>Connected Asset</strong> tab shows its live readings,
+      the incident history, and the asset details, all without leaving the
+      service request.
+      <br><br>
+      Alex's first question is not "what's wrong?" (the telemetry has a good
+      guess) but "what is Mile High entitled to?"</div>
+    </div>
+
+    <h2>Scene 4 — What Mile High Is Entitled To <span style="font-weight:400;font-size:0.78em;color:#6B5B95;">(ABC Corporation)</span></h2>
+    <div class="storyboard">
+      <img src="Scene04.png" alt="Alex reviewing the Denver machine's subscription and its Gold coverage: covered depot repair, loaner unit, four-hour response" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> as Chapter 4
+      explained, each of Mile High's machines sits on its own
+      <strong>subscription</strong>. This one carries <strong>Gold
+      coverage</strong>: a four-hour response, depot repair with parts and labor
+      covered, and a <strong>loaner unit</strong> while the bank's own machine
+      is away. The coverage on the subscription is the entitlement. It decides
+      what Alex may offer and what Mile High will be charged for it, which here
+      is nothing.
+      <br><br>
+      Gold coverage also changes the clock. The four-hour response is a
+      milestone on the SR, so Alex's next step is a call.</div>
+    </div>
+
+    <h2>Scene 5 — Alex Calls Cynthia <span style="font-weight:400;font-size:0.78em;color:#123a5c;">(Mile High City Bank)</span></h2>
+    <div class="storyboard">
+      <img src="Scene05.png" alt="Split scene: Alex on a headset at ABC, Cynthia at her desk at Mile High City Bank, agreeing a date to swap in a loaner machine" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> Cynthia
+      learns about the problem before her staff do. Alex explains the plan:
+      a loaner machine arrives Thursday, the same crew takes the bank's machine
+      to ABC's Denver Repair Center, and the repaired machine comes back
+      when it's ready. The lounge is never without cold drinks.
+      <br><br>
+      The call is logged on SR-30417 as an interaction, and the first-response
+      milestone is met. From here on, every movement of either machine will be
+      visible from the same SR.</div>
+    </div>
+
+    <h2>Scene 6 — Three Lines from One SR <span style="font-weight:400;font-size:0.78em;color:#6B5B95;">(ABC Corporation)</span></h2>
+    <div class="storyboard">
+      <img src="Scene06.png" alt="Alex adding logistics lines on the SR's parts tab: a shipment line for the loaner, a return line (RMA) for the faulty machine, and a linked shipment line for its return home" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> Alex
+      creates the logistics on the SR itself, not in a separate system. Each
+      line starts from a <strong>service activity code</strong>, and the code
+      decides what kind of order line Order Management receives:
+      <br><br>
+      <strong>Line 1 — Ship the loaner.</strong> A shipment line for loaner
+      unit LN-2207, sourced from ABC's Denver warehouse.<br>
+      <strong>Line 2 — Return the faulty machine.</strong> A return line:
+      the <strong>RMA</strong>, RMA-58841, for BV-48213, with ABC's Denver
+      Repair Center as its destination. The RMA number goes to Cynthia.<br>
+      <strong>Line 3 — Send it home again.</strong> Because the RMA uses a
+      depot repair activity, its matching shipment line is created at the same
+      time, for the same item, to ship the repaired machine back.
+      <br><br>
+      Note what is missing: nothing yet brings the loaner back. That fourth
+      line comes later, when there is something to swap it for.</div>
+    </div>
+
+    <h2>Scene 7 — Approved and Orchestrated <span style="font-weight:400;font-size:0.78em;color:#6B5B95;">(ABC Corporation)</span></h2>
+    <div class="storyboard">
+      <img src="Scene07.png" alt="The return order and the loaner shipment arriving in Order Management, pausing at Approval Pending, then moving into fulfillment" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> the lines
+      arrive in <strong>Order Management</strong> as a return order and a sales
+      order. ABC has an approval rule: any order that sends out a loaner unit
+      needs a service manager's approval, because a loaner is ABC's own
+      equipment leaving the building at no charge. Order Management sets the
+      order to <strong>Approval Pending</strong>, locks it, and notifies the
+      approver. Once approved, <strong>fulfillment orchestration</strong> takes
+      over: pick, pack and ship the loaner, and expect a receipt against the
+      RMA.
+      <br><br>
+      The approval is not a feature of RMAs or loaners. It is an Order
+      Management rule that ABC chose to set up, and it could just as easily be
+      based on order value or customer.</div>
+    </div>
+
+    <h2>Scene 8 — Swap Day in Denver <span style="font-weight:400;font-size:0.78em;color:#123a5c;">(Mile High City Bank)</span></h2>
+    <div class="storyboard">
+      <img src="Scene08.png" alt="In the Denver branch staff lounge, ABC's crew wheels in loaner LN-2207 and loads machine BV-48213 onto the truck while Cynthia watches" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> two
+      machines, two directions, two different kinds of order line. The loaner
+      arrives on a <strong>shipment</strong> (Line 1). The bank's machine
+      leaves on a <strong>return</strong> (Line 2): it is not shipped by Order
+      Management as an outbound order, it is expected back and received
+      against RMA-58841.
+      <br><br>
+      Installed Base keeps the two straight. BV-48213 is still
+      <em>Mile High's</em> asset, now away for repair. LN-2207 is
+      <em>ABC's</em> asset, temporarily at the bank's site. And because new
+      Installed Base assets can sync to the IoT service, the loaner is
+      monitored from the moment it is plugged in.</div>
+    </div>
+
+    <h2>Scene 9 — At the Repair Center <span style="font-weight:400;font-size:0.78em;color:#6B5B95;">(ABC Corporation)</span></h2>
+    <div class="storyboard">
+      <img src="Scene09.png" alt="At ABC's Denver Repair Center, BV-48213 is received against RMA-58841 and the depot repair manager opens it on the Depot Repair page and creates a repair work order" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> BV-48213 is
+      received at the repair center against RMA-58841. The <strong>depot
+      repair manager</strong> opens it on the <strong>Depot Repair</strong>
+      page, which gathers everything about this one returned unit in one
+      place: the SR, the asset and its service history, the logistics lines,
+      and the repair order.
+      <br><br>
+      From there the manager creates a <strong>repair work order</strong>,
+      based on a standard work definition for the BV-500's cooling system.
+      The technician's diagnosis confirms what the telemetry suggested:
+      the <strong>condenser fan motor</strong> is failing, so the compressor
+      has been running hot to compensate.</div>
+    </div>
+
+    <h2>Scene 10 — The Estimate Cynthia Doesn't Pay <span style="font-weight:400;font-size:0.78em;color:#123a5c;">(Mile High City Bank)</span></h2>
+    <div class="storyboard">
+      <img src="Scene10.png" alt="Cynthia reviewing a repair estimate: condenser fan motor $185, labor 1.5 hours $180, total $365, covered by Gold coverage, customer pays $0" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> the depot
+      repair manager builds an <strong>estimate</strong> on the work order:
+      a condenser fan motor at $185 and 1.5 hours of labor at $120 an hour,
+      $365 in all. Before it goes to the customer, the coverage is applied:
+      Gold covers parts and labor, so Mile High's share is
+      <strong>$0</strong>.
+      <br><br>
+      Cynthia approves it anyway. With nothing to pay, the approval is a
+      courtesy, not a gate. It would matter if the fault were outside the
+      coverage, for example damage, and then the estimate is exactly where that
+      conversation would happen.</div>
+    </div>
+
+    <h2>Scene 11 — Repaired, Tested, and Home <span style="font-weight:400;font-size:0.78em;color:#6B5B95;">(ABC Corporation)</span></h2>
+    <div class="storyboard">
+      <img src="Scene11.png" alt="The technician replaces the condenser fan motor and runs a cooling test; the repaired machine ships home from the repair center dock while the loaner is collected on a second RMA" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> the repair
+      work order is carried out in <strong>Maintenance</strong>. The technician
+      replaces the condenser fan motor, updates the firmware to 4.3, runs a
+      24-hour cooling test, and debriefs the parts and labor. Those become the
+      repair's <strong>charges</strong>, covered as estimated.
+      <br><br>
+      Then the swap runs in reverse. BV-48213 ships home on <strong>Line
+      3</strong>, the shipment line created back in Scene 6, sourced from the
+      repair center's own shipping dock rather than the parts warehouse. Alex
+      adds <strong>Line 4</strong>, a second RMA (RMA-58842), so the loaner is
+      received back into ABC's Denver warehouse. Installed Base records BV-48213
+      at the Denver branch again, with its new configuration.</div>
+    </div>
+
+    <h2>Scene 12 — Closing the Loop <span style="font-weight:400;font-size:0.78em;color:#6B5B95;">(ABC Corporation)</span></h2>
+    <div class="storyboard">
+      <img src="Scene12.png" alt="Alex resolving SR-30417 with a summary of every step, linking a new knowledge article on condenser fan motor failure, while the IoT incident closes automatically" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <div class="what-it-shows"><strong>What this shows:</strong> the
+      telemetry from BV-48213 is back to normal, and Cynthia confirms the
+      lounge machine is running. Alex resolves SR-30417 with a summary of
+      every step: detection, coverage, the four lines, the repair and its $0
+      charge.
+      <br><br>
+      Then he writes what the next agent will need: a <strong>knowledge
+      article</strong>, "BV-500: rising cabinet temperature with high compressor
+      duty cycle — check the condenser fan motor", with the root cause and the
+      fix. Resolving the SR also closes the <strong>IoT incident</strong> that
+      started it. The loop that a sensor opened is closed by the same SR.</div>
+    </div>
+
+    <h2>The Ledger — Four Lines, Two Machines</h2>
+    <div class="storyboard">
+      <img src="Scene13.png" alt="Diagram of the four logistics lines: Line 1 ships loaner LN-2207 to Denver, Line 2 returns BV-48213 to the repair center on RMA-58841, Line 3 ships the repaired BV-48213 home, Line 4 returns the loaner on RMA-58842" />
+      <p class="tip">📱 On mobile? Pinch to zoom to read the details clearly.</p>
+      <table class="concepts">
+        <tr><th>#</th><th>Line type</th><th>Machine</th><th>From → To</th><th>Created</th></tr>
+        <tr><td>1</td><td>Shipment (sales order)</td><td>Loaner LN-2207</td><td>ABC Denver warehouse → Denver branch</td><td>Scene 6</td></tr>
+        <tr><td>2</td><td>Return (RMA-58841)</td><td>BV-48213, faulty</td><td>Denver branch → ABC Denver Repair Center</td><td>Scene 6</td></tr>
+        <tr><td>3</td><td>Shipment, linked to the RMA</td><td>BV-48213, repaired</td><td>Repair center dock → Denver branch</td><td>Scene 6, shipped in Scene 11</td></tr>
+        <tr><td>4</td><td>Return (RMA-58842)</td><td>Loaner LN-2207</td><td>Denver branch → ABC Denver warehouse</td><td>Scene 11</td></tr>
+      </table>
+      <div class="what-it-shows" style="margin-top:14px;"><strong>What this shows:</strong>
+      a loaner repair is two round trips, so it takes two shipments and two
+      returns. Only shipments are shipped by Order Management; returns are
+      received. Compare an <strong>advance exchange</strong>, which needs only
+      Lines 1 and 2: the replacement stays with the customer for good, and the
+      repaired machine goes into ABC's spare stock instead of coming home.</div>
+    </div>
+
+    <h2>Why This Chapter Matters</h2>
+    <div class="what-it-shows">
+      <strong>The takeaway:</strong> a returned product is not one
+      transaction. It is a service request, an entitlement, an asset record,
+      several order lines, a receipt, a repair, and a resolution, and Oracle
+      keeps them connected because they all point back to the same SR and the
+      same asset. Lose either link, and nobody can answer the customer's only
+      question: <em>where is my machine?</em>
+      <br><br>
+      The service request is the spine. Alex never leaves it: the coverage,
+      the RMA, the shipments, the repair status, the estimate and the
+      knowledge article all hang from SR-30417. That is what lets one agent
+      own a case that crosses Service, Order Management, Inventory, the repair
+      center and Maintenance.
+      <br><br>
+      And note where it started. Because the asset was connected, the repair
+      began before the machine failed. Predictive service is not a different
+      process; it is the same process, started earlier.
+    </div>
+
+    <h2>Concepts Covered</h2>
+    <table class="concepts">
+      <tr><th>Concept</th><th>What it means</th><th class="panelref">Scene</th></tr>
+      <tr><td>Connected asset</td><td>An asset whose telemetry is monitored by Oracle's IoT service. An incident rule can create the service request in B2B Service automatically, and the SR's Connected Asset tab shows the readings.</td><td class="panelref">1, 2, 3</td></tr>
+      <tr><td>Installed Base asset</td><td>The record of a specific unit at a customer: serial number, model, owner, location and configuration. Using Installed Base assets on SRs lets service, logistics and IoT share one asset model.</td><td class="panelref">1, 2, 8, 11</td></tr>
+      <tr><td>Assignment</td><td>Rules place the SR in a queue; routing hands it to an available agent with the right skills.</td><td class="panelref">3</td></tr>
+      <tr><td>Entitlement and coverage</td><td>The coverage on the customer's subscription decides what the agent can offer (here, a loaner and depot repair) and what the customer pays.</td><td class="panelref">4, 10</td></tr>
+      <tr><td>Return Material Authorization (RMA)</td><td>A return order line that authorizes the customer to send a unit back and tells the receiving location to expect it. Its number is shared with the customer.</td><td class="panelref">6, 8, 11</td></tr>
+      <tr><td>Service activity code</td><td>The code an agent picks when adding a logistics line to the SR. It decides whether the line is a shipment or a return, and which order line type Order Management uses.</td><td class="panelref">6</td></tr>
+      <tr><td>Loaner, repair and return</td><td>The customer gets a loaner unit while their own unit is repaired and returned: four lines, two shipments and two returns. Not the same as an advance exchange, where the swap is permanent.</td><td class="panelref">6, 8, 11, Ledger</td></tr>
+      <tr><td>Order approval</td><td>An optional Order Management rule that holds an order at Approval Pending until an approver accepts it.</td><td class="panelref">7</td></tr>
+      <tr><td>Fulfillment orchestration</td><td>Order Management's process for each order line: shipments are picked, packed and shipped; returns are expected and received.</td><td class="panelref">7, 8</td></tr>
+      <tr><td>Depot repair</td><td>Repair at a central repair center, managed from the Depot Repair page: the returned unit, its repair work order, estimate, technician debrief and charges, all in one place.</td><td class="panelref">9, 10, 11</td></tr>
+      <tr><td>Repair estimate</td><td>Estimated material, labor and other charges on the repair work order, adjusted for coverage before it goes to the customer.</td><td class="panelref">10</td></tr>
+      <tr><td>Knowledge article</td><td>The root cause and fix, written so the next agent who sees the same symptoms can resolve it faster.</td><td class="panelref">12</td></tr>
+    </table>
+
+    <p class="tip" style="margin-top:20px;">Sources: Oracle documentation —
+      <a href="https://docs.oracle.com/en/cloud/saas/iot-asset-cloud/iotaa/integrate-oracle-b2b-service-oracle-service-monitoring-connected-assets.html" target="_blank">Integrate Oracle B2B Service with Oracle Service Monitoring for Connected Assets</a>,
+      <a href="https://docs.oracle.com/en/cloud/saas/fusion-service/fairs/overview-of-oracle-internet-of-things-service-monitoring-for.html" target="_blank">IoT Service Monitoring for Connected Assets</a>,
+      <a href="https://docs.oracle.com/en/cloud/saas/fusion-service/faefs/enable-installed-base-assets-for-service-requests-and-work.html" target="_blank">Installed Base Assets for service requests</a>,
+      <a href="https://docs.oracle.com/en/cloud/saas/service-logistics/25a/fasul/order-parts-for-sale-return-and-exchange.html" target="_blank">Order Parts for Sale, Return, and Exchange</a>,
+      <a href="https://docs.oracle.com/en/cloud/saas/service-logistics/25d/fasul/overview-of-depot-repair.html" target="_blank">Overview of Depot Repair</a>,
+      <a href="https://docs.oracle.com/en/cloud/saas/service-logistics/24c/fasul/create-depot-repair-estimates.html" target="_blank">Create Depot Repair Estimates</a>,
+      <a href="https://docs.oracle.com/en/cloud/saas/supply-chain-and-manufacturing/24d/fauom/get-approvals-for-sales-orders.html" target="_blank">Get Approvals for Sales Orders</a>.
+      Illustrative representation — not an actual product screenshot.</p>
+
+    <!-- PREV / NEXT NAVIGATION -->
+    <div class="chapter-nav">
+      <a class="prev"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/commerce-mile-high/">
+        <div class="nav-label">← Previous chapter</div>
+        <div class="nav-title">Chapter 4: Oracle Commerce: Mile High City Bank</div>
+      </a>
+      <a class="next"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">
+        <div class="nav-label">Where the coverage comes from →</div>
+        <div class="nav-title">Chapter 2: Subscription Management</div>
+      </a>
+    </div>
+
+    <div class="footer">
+      <p>Created by <a href="https://www.linkedin.com/in/veniltirou"
+         target="_blank">Venil Tirou</a> — Oracle CX Functional Consultant</p>
+      <p style="margin-top:6px;">© 2026 Venil Tirou. All rights reserved.
+      This is an independently created educational resource.
+      Not affiliated with or endorsed by Oracle Corporation.</p>
+    </div>
+
+  </main>
+</body>
+</html>
