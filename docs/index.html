@@ -244,6 +244,17 @@
       .main { margin-left: 0; padding: 20px; }
       .chapter-grid { grid-template-columns: 1fr; }
     }
+
+    .track-intro { color: #555; font-size: 0.92em; line-height: 1.6; margin: -6px 0 12px 0; }
+    .track-intro a { color: #c74b00; }
+    .track-nav { display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+      margin: 28px 0 8px 0; padding: 14px 16px; background: #fff8f0;
+      border: 1px solid #ffccaa; border-radius: 8px; }
+    .track-nav-label { font-weight: bold; color: #c74b00; margin-right: 6px; font-size: 0.9em; }
+    .track-nav a { background: #fff; color: #c74b00; border: 1px solid #ff6b2b;
+      border-radius: 20px; padding: 5px 14px; font-size: 0.85em; text-decoration: none; font-weight: bold; }
+    .track-nav a:hover { background: #ff6b2b; color: #fff; }
+    h2[id] { scroll-margin-top: 16px; }
   </style>
   <!-- GoatCounter analytics -->
   <script data-goatcounter="https://veniltirou.goatcounter.com/count"
@@ -368,11 +379,14 @@
       <span class="product-badge">Renewal Management</span>
     </div>
 
-    <h2>Chapters</h2>
+    <h2 id="start">🧭 Start Here</h2>
+    <p class="track-intro">New to the series? Read these three in order. They
+    introduce the company, the whole lead-to-revenue journey, and the customer
+    record every other chapter depends on.</p>
     <div class="chapter-grid">
       <a class="chapter-card"
          href="https://veniltirou.github.io/lead-to-revenue-storyboard/abc-world/">
-        <div class="chapter-num">Foundation</div>
+        <div class="chapter-num">Start here · 1 · Foundation</div>
         <h3>The World of ABC Corporation</h3>
         <p>Who the company is, who works there, who it sells to, and what it runs
         on Oracle Fusion. The context every other chapter assumes — read it
@@ -380,8 +394,17 @@
         <span class="tag">✅ Available</span>
       </a>
       <a class="chapter-card"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/">
+        <div class="chapter-num">Start here · 2 · Chapter 1</div>
+        <h3>Lead-to-Revenue Overview</h3>
+        <p>The complete 15-scene end-to-end storyboard — from marketing campaign
+        through to subscription renewal — showing how all Oracle CX products
+        connect across a single B2B deal.</p>
+        <span class="tag">✅ Available</span>
+      </a>
+      <a class="chapter-card"
          href="https://veniltirou.github.io/lead-to-revenue-storyboard/customer-data-management/">
-        <div class="chapter-num">Foundation</div>
+        <div class="chapter-num">Start here · 3 · Foundation</div>
         <h3>Customer Data Management</h3>
         <p>Before any deal can be sold, the customer data underneath it must be trusted.
         A 15-panel storyboard that resolves three duplicate records into one golden record —
@@ -389,25 +412,25 @@
         and ongoing stewardship.</p>
         <span class="tag">✅ Available</span>
       </a>
-      <a class="chapter-card"
-         href="https://veniltirou.github.io/lead-to-revenue-storyboard/commerce-mile-high/">
-        <div class="chapter-num">Chapter 4</div>
-        <h3>Oracle Commerce — Mile High City Bank Orders Online</h3>
-        <p>A bank opens a new branch and orders vending online — no quote, no
-        sales rep. How the B2B account model, sub-account inheritance and the
-        contract decide everything the buyer sees before she even logs in.</p>
-        <span class="tag">✅ Available</span>
-      </a>
-      <a class="chapter-card"
-         href="https://veniltirou.github.io/lead-to-revenue-storyboard/rma-loaner-repair/">
-        <div class="chapter-num">Chapter 5</div>
-        <h3>The Vending Machine That Called for Help — RMA, Loaner and Depot Repair</h3>
-        <p>A connected vending machine at Mile High City Bank predicts its own
-        failure and opens a service request. Alex takes the case: coverage, a
-        loaner, an RMA to the repair center, the repair, and the four order
-        lines that bring both machines home.</p>
-        <span class="tag">✅ Available</span>
-      </a>
+    </div>
+
+    <div class="track-nav">
+      <span class="track-nav-label">Then pick the application you care about:</span>
+      <a href="#sales">Sales</a>
+      <a href="#ic">Incentive Compensation</a>
+      <a href="#subscription">Subscription Management</a>
+      <a href="#commerce">Commerce</a>
+      <a href="#service">Service</a>
+      <a href="#integrations">Integrations</a>
+      <a href="#reference">Reference</a>
+    </div>
+    <p class="track-intro">Each track runs from the basics to the deep dives.
+    Read it top to bottom: Foundation pages first, then the chapter, then the
+    advanced chapters in order.</p>
+
+    <h2 id="sales">Sales (CX Sales)</h2>
+    <p class="track-intro">How a rep works the pipeline, and how sales performance is organised across territories, quotas and compensation.</p>
+    <div class="chapter-grid">
       <a class="chapter-card"
          href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-force-automation-one-day/">
         <div class="chapter-num">Foundation</div>
@@ -417,7 +440,7 @@
         quota, forecasting and AI-assisted tools — including his first touch
         on the XYZ Corporation opportunity that Chapter 1 picks up.</p>
         <span class="tag">✅ Available</span>
-      </a>      
+      </a>
       <a class="chapter-card"
          href="https://veniltirou.github.io/lead-to-revenue-storyboard/sales-performance-management/">
         <div class="chapter-num">Foundation</div>
@@ -428,6 +451,10 @@
         actually enabled as functional areas under the Sales offering.</p>
         <span class="tag">✅ Available</span>
       </a>
+    </div>
+    <h2 id="ic">Incentive Compensation</h2>
+    <p class="track-intro">The longest track. Start with the big picture, follow one deal in Chapter 3, then take each mechanism apart in I1 to I10. Keep the <a href="#reference">Setup &amp; Data Reference</a> open while you read.</p>
+    <div class="chapter-grid">
       <a class="chapter-card"
          href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-overview/">
         <div class="chapter-num">Foundation</div>
@@ -439,26 +466,6 @@
         <span class="tag">✅ Available</span>
       </a>
       <a class="chapter-card"
-         href="https://veniltirou.github.io/lead-to-revenue-storyboard/">
-        <div class="chapter-num">Chapter 1</div>
-        <h3>Lead-to-Revenue Overview</h3>
-        <p>The complete 15-scene end-to-end storyboard — from marketing campaign
-        through to subscription renewal — showing how all Oracle CX products
-        connect across a single B2B deal.</p>
-        <span class="tag">✅ Available</span>
-      </a>
-
-      <a class="chapter-card"
-         href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">
-        <div class="chapter-num">Chapter 2</div>
-        <h3>Oracle Subscription Management</h3>
-        <p>A 7-storyboard deep dive covering the full subscription lifecycle,
-        integration architecture, health metrics, quote-to-cash flow, upsell
-        and cross-sell scenarios.</p>
-        <span class="tag">✅ Available</span>
-      </a>
-
-      <a class="chapter-card"
          href="https://veniltirou.github.io/lead-to-revenue-storyboard/incentive-compensation/">
         <div class="chapter-num">Chapter 3</div>
         <h3>Oracle Incentive Compensation</h3>
@@ -466,65 +473,9 @@
         plans, rate tables, calculation engine, payment processing and analytics.</p>
         <span class="tag">✅ Available</span>
       </a>
-
-    </div>
-
-    <h2>Advanced Deep Dives</h2>
-    <div class="chapter-grid">
-      <a class="chapter-card"
-         href="https://veniltirou.github.io/lead-to-revenue-storyboard/usage-billing-deep-dive/">
-        <div class="chapter-num">Advanced</div>
-        <h3>Usage Billing: Allowance, Rollover &amp; Overage</h3>
-        <p>How usage-based charges really settle — allowances, rollover of unused
-        units, overage rates and the minimum-commit true-up at period close.</p>
-        <span class="tag">✅ Available</span>
-      </a>
-
-      <a class="chapter-card"
-         href="https://veniltirou.github.io/lead-to-revenue-storyboard/compound-amendment-deep-dive/">
-        <div class="chapter-num">Advanced</div>
-        <h3>The Compound Mid-Term Amendment</h3>
-        <p>An upgrade, a cross-sell and a price change landing mid-period on an
-        already-billed term — proration, an ASC 606 modification, a usage true-up,
-        co-terming and supersede-style versioning.</p>
-        <span class="tag">✅ Available</span>
-      </a>
-
-      <a class="chapter-card"
-         href="https://veniltirou.github.io/lead-to-revenue-storyboard/renewal-promotion-deep-dive/">
-        <div class="chapter-num">Advanced</div>
-        <h3>The Anniversary Renewal Promotion</h3>
-        <p>A governed, time-boxed $250 renewal credit marking the US 250th — the
-        discount rule, the renewal term, and how billing and revenue treat the
-        credit differently.</p>
-        <span class="tag">✅ Available</span>
-      </a>
-
-      <a class="chapter-card"
-         href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-under-the-hood/">
-        <div class="chapter-num">Integrations</div>
-        <h3>OIC Under the Hood: What Home, Sweet Home Never Sees</h3>
-        <p>A 7-scene, phase-by-phase walkthrough of the same OIC build from
-        "Oracle Integration Cloud" and "The Friday Debrief" — OAuth, the real
-        Oracle field names and REST resource, and the fault path, narrated
-        left to right from Harrison to James.</p>
-        <span class="tag">✅ Available</span>
-      </a>
-
-      <a class="chapter-card"
-         href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-replenishment-one-off/">
-        <div class="chapter-num">Integrations</div>
-        <h3>The One-Off: OIC Replenishment for a Single Hilltop Site</h3>
-        <p>A one-off replenishment integration — a remote HSH hilltop site whose
-        route driver logs low-stock items from a non-Oracle mobile app, creating
-        a purchase requisition in Oracle Procurement via the externally-managed
-        pattern, with a full scope fault handler, ATP error logging, URGENT
-        alert, and rethrow.</p>
-        <span class="tag">✅ Available</span>
-      </a>
       <a class="chapter-card"
          href="https://veniltirou.github.io/lead-to-revenue-storyboard/route66-three-credits/">
-        <div class="chapter-num">Advanced</div>
+        <div class="chapter-num">Advanced · I1</div>
         <h3>One Deal, Three Credits: The Route 66 Story</h3>
         <p>James closes a $150,000 deal with Route 66 Automobiles — but Sarah
         manages him and Jeff co-sold it. Three people, three credit types, three
@@ -534,7 +485,7 @@
       </a>
       <a class="chapter-card"
          href="https://veniltirou.github.io/lead-to-revenue-storyboard/payment-not-final/">
-        <div class="chapter-num">Advanced</div>
+        <div class="chapter-num">Advanced · I2</div>
         <h3>When the Payment Isn't Final: Draws, Recovery, Takeback &amp; Giveback</h3>
         <p>Money paid before it was earned, and money reclaimed after it was
         paid. How a draw guarantees a rep's floor while quietly running a tab,
@@ -544,7 +495,7 @@
       </a>
       <a class="chapter-card"
          href="https://veniltirou.github.io/lead-to-revenue-storyboard/disputes/">
-        <div class="chapter-num">Advanced</div>
+        <div class="chapter-num">Advanced · I3</div>
         <h3>When the Rep Says the Number Is Wrong: Disputes</h3>
         <p>James can't find credit for a deal he closed. What turns that from a
         lost email into a tracked record with an owner, a status and a decision
@@ -553,7 +504,7 @@
       </a>
       <a class="chapter-card"
          href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-three-transactions/">
-        <div class="chapter-num">Advanced</div>
+        <div class="chapter-num">Advanced · I4</div>
         <h3>Three Transactions, One Paycheck</h3>
         <p>Three sales, one rep, one October. One becomes a commission, one a
         bonus, and one produces nothing at all. Follows all three through every
@@ -562,7 +513,7 @@
       </a>
       <a class="chapter-card"
          href="https://veniltirou.github.io/lead-to-revenue-storyboard/leila-runway/">
-        <div class="chapter-num">Advanced</div>
+        <div class="chapter-num">Advanced · I5</div>
         <h3>Leila's Nine-Month Runway</h3>
         <p>A new rep, an empty pipeline and a guaranteed $5,000 a month. Follows
         a recoverable draw month by month: the top-ups, the peak balance, and why
@@ -571,7 +522,7 @@
       </a>
       <a class="chapter-card"
          href="https://veniltirou.github.io/lead-to-revenue-storyboard/order-to-earnings/">
-        <div class="chapter-num">Advanced</div>
+        <div class="chapter-num">Advanced · I6</div>
         <h3>From Order to Earnings</h3>
         <p>One $60,000 order becomes fifteen credits worth $180,000, and $1,200
         for a junior rep. Lisa puts every step on the projector: collect, credit,
@@ -580,7 +531,7 @@
       </a>
       <a class="chapter-card"
          href="https://veniltirou.github.io/lead-to-revenue-storyboard/five-questions-before-payday/">
-        <div class="chapter-num">Advanced</div>
+        <div class="chapter-num">Advanced · I7</div>
         <h3>Five Questions Before Payday</h3>
         <p>Leila's first solo deal shows credit but $0 earned. Lisa asks five
         questions in order, and the fifth finds a new product's credit category
@@ -589,7 +540,7 @@
       </a>
       <a class="chapter-card"
          href="https://veniltirou.github.io/lead-to-revenue-storyboard/when-the-cash-arrives/">
-        <div class="chapter-num">Advanced</div>
+        <div class="chapter-num">Advanced · I8</div>
         <h3>When the Cash Arrives</h3>
         <p>Winter Warm-Up pays only when a shop's cash arrives. Lisa walks Leila
         through last winter: $2,700 booked, $2,100 paid, $210 earned.</p>
@@ -597,7 +548,7 @@
       </a>
       <a class="chapter-card"
          href="https://veniltirou.github.io/lead-to-revenue-storyboard/interpolated-rate/">
-        <div class="chapter-num">Quick Take</div>
+        <div class="chapter-num">Quick Take · I9</div>
         <h3>Why $5,000 Pays $90</h3>
         <p>A one-scene explainer of the interpolated rate: full tiers pay in
         full, and the tier you're in pays its share. Built on Oracle's own
@@ -606,17 +557,145 @@
       </a>
       <a class="chapter-card"
          href="https://veniltirou.github.io/lead-to-revenue-storyboard/one-deal-two-branches/">
-        <div class="chapter-num">Advanced</div>
+        <div class="chapter-num">Advanced · I10</div>
         <h3>One Deal, Two Branches</h3>
         <p>Sold in Denver, shipped from Cheyenne, then Gunnison and Colorado
         Springs. The source sends the 70/30 split, and rollup credits each
         rep's own manager: $60,000 of revenue, $120,000 of credit.</p>
         <span class="tag">✅ Available</span>
       </a>
-
     </div>
-
-    <h2>Reference</h2>
+    <h2 id="subscription">Subscription Management</h2>
+    <p class="track-intro">From the subscription itself to usage billing, mid-term changes, renewals, and how it connects to the rest of Fusion.</p>
+    <div class="chapter-grid">
+      <a class="chapter-card"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/subscription-management/">
+        <div class="chapter-num">Chapter 2</div>
+        <h3>Oracle Subscription Management</h3>
+        <p>A 7-storyboard deep dive covering the full subscription lifecycle,
+        integration architecture, health metrics, quote-to-cash flow, upsell
+        and cross-sell scenarios.</p>
+        <span class="tag">✅ Available</span>
+      </a>
+      <a class="chapter-card"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/usage-billing-deep-dive/">
+        <div class="chapter-num">Advanced · S1</div>
+        <h3>Usage Billing: Allowance, Rollover &amp; Overage</h3>
+        <p>How usage-based charges really settle — allowances, rollover of unused
+        units, overage rates and the minimum-commit true-up at period close.</p>
+        <span class="tag">✅ Available</span>
+      </a>
+      <a class="chapter-card"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/compound-amendment-deep-dive/">
+        <div class="chapter-num">Advanced · S2</div>
+        <h3>The Compound Mid-Term Amendment</h3>
+        <p>An upgrade, a cross-sell and a price change landing mid-period on an
+        already-billed term — proration, an ASC 606 modification, a usage true-up,
+        co-terming and supersede-style versioning.</p>
+        <span class="tag">✅ Available</span>
+      </a>
+      <a class="chapter-card"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/renewal-promotion-deep-dive/">
+        <div class="chapter-num">Advanced · S3</div>
+        <h3>The Anniversary Renewal Promotion</h3>
+        <p>A governed, time-boxed $250 renewal credit marking the US 250th — the
+        discount rule, the renewal term, and how billing and revenue treat the
+        credit differently.</p>
+        <span class="tag">✅ Available</span>
+      </a>
+      <a class="chapter-card"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/quote-to-cash/">
+        <div class="chapter-num">Advanced · S4</div>
+        <h3>Quote-to-Cash Across Oracle Fusion</h3>
+        <p>One XYZ Corporation deal, 10 beverage units on a 36-month
+        subscription, followed through eight connected Fusion applications:
+        from the signed quote to recognized revenue and a closed service
+        ticket, with every hand-off between applications spelled out.</p>
+        <span class="tag">✅ Available</span>
+      </a>
+    </div>
+    <h2 id="commerce">Commerce</h2>
+    <p class="track-intro">B2B self-service buying, where the account model and contract decide what the customer sees.</p>
+    <div class="chapter-grid">
+      <a class="chapter-card"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/commerce-mile-high/">
+        <div class="chapter-num">Chapter 4</div>
+        <h3>Oracle Commerce — Mile High City Bank Orders Online</h3>
+        <p>A bank opens a new branch and orders vending online — no quote, no
+        sales rep. How the B2B account model, sub-account inheritance and the
+        contract decide everything the buyer sees before she even logs in.</p>
+        <span class="tag">✅ Available</span>
+      </a>
+    </div>
+    <h2 id="service">Service (Fusion B2B Service)</h2>
+    <p class="track-intro">After the sale: service requests, entitlements, returns and repair.</p>
+    <div class="chapter-grid">
+      <a class="chapter-card"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/rma-loaner-repair/">
+        <div class="chapter-num">Chapter 5</div>
+        <h3>The Vending Machine That Called for Help — RMA, Loaner and Depot Repair</h3>
+        <p>A connected vending machine at Mile High City Bank predicts its own
+        failure and opens a service request. Alex takes the case: coverage, a
+        loaner, an RMA to the repair center, the repair, and the four order
+        lines that bring both machines home.</p>
+        <span class="tag">✅ Available</span>
+      </a>
+      <div class="chapter-card disabled">
+        <div class="chapter-num">Coming next</div>
+        <h3>Fusion B2B Service Essentials</h3>
+        <p>The everyday service request: channels, queues, entitlements, knowledge
+        and the agent workspace. When it arrives, the RMA chapter becomes this
+        track's first deep dive.</p>
+        <span class="tag soon">🔜 Planned</span>
+      </div>
+    </div>
+    <h2 id="integrations">Integrations (Oracle Integration Cloud)</h2>
+    <p class="track-intro">How OIC connects systems that hold the data. G1 and G2 are the main pair; G3 and G4 go further.</p>
+    <div class="chapter-grid">
+      <a class="chapter-card"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-integrations/">
+        <div class="chapter-num">Integrations · G1</div>
+        <h3>Oracle Integration Cloud</h3>
+        <p>A 12-scene storyboard showing how Oracle Integration Cloud (OIC)
+        connects a non-Oracle, third-party SaaS order system to ABC
+        Corporation's Oracle environment — built by a summer intern, with
+        the real technical details behind every step.</p>
+        <span class="tag">✅ Available</span>
+      </a>
+      <a class="chapter-card"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/friday-debrief/">
+        <div class="chapter-num">Integrations · G2</div>
+        <h3>The Friday Debrief (OIC)</h3>
+        <p>A 10-scene follow-up to "Oracle Integration Cloud" — Harrison
+        walks James through the same build again, this time entirely in
+        plain language, using the real payloads only as visual backup so
+        James can repeat the story to his own stakeholders.</p>
+        <span class="tag">✅ Available</span>
+      </a>
+      <a class="chapter-card"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-under-the-hood/">
+        <div class="chapter-num">Integrations · G3</div>
+        <h3>OIC Under the Hood: What Home, Sweet Home Never Sees</h3>
+        <p>A 7-scene, phase-by-phase walkthrough of the same OIC build from
+        "Oracle Integration Cloud" and "The Friday Debrief" — OAuth, the real
+        Oracle field names and REST resource, and the fault path, narrated
+        left to right from Harrison to James.</p>
+        <span class="tag">✅ Available</span>
+      </a>
+      <a class="chapter-card"
+         href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-replenishment-one-off/">
+        <div class="chapter-num">Integrations · G4</div>
+        <h3>The One-Off: OIC Replenishment for a Single Hilltop Site</h3>
+        <p>A one-off replenishment integration — a remote HSH hilltop site whose
+        route driver logs low-stock items from a non-Oracle mobile app, creating
+        a purchase requisition in Oracle Procurement via the externally-managed
+        pattern, with a full scope fault handler, ATP error logging, URGENT
+        alert, and rethrow.</p>
+        <span class="tag">✅ Available</span>
+      </a>
+    </div>
+    <h2 id="reference">Reference</h2>
+    <p class="track-intro">Not a story: setup screens, scheduled processes and data loads, meant to be consulted while you work.</p>
     <div class="chapter-grid">
       <a class="chapter-card"
          href="https://veniltirou.github.io/lead-to-revenue-storyboard/ic-reference/">
@@ -626,31 +705,6 @@
         screen and scheduled process in dependency order, and which of that data
         can be bulk loaded through Import Management. Meant to be consulted
         while working, not read start to finish.</p>
-        <span class="tag">✅ Available</span>
-      </a>
-    </div>
-
-    <h2>Integrations</h2>
-    <div class="chapter-grid">
-      <a class="chapter-card"
-         href="https://veniltirou.github.io/lead-to-revenue-storyboard/oic-integrations/">
-        <div class="chapter-num">Integrations</div>
-        <h3>Oracle Integration Cloud</h3>
-        <p>A 12-scene storyboard showing how Oracle Integration Cloud (OIC)
-        connects a non-Oracle, third-party SaaS order system to ABC
-        Corporation's Oracle environment — built by a summer intern, with
-        the real technical details behind every step.</p>
-        <span class="tag">✅ Available</span>
-      </a>
-
-      <a class="chapter-card"
-         href="https://veniltirou.github.io/lead-to-revenue-storyboard/friday-debrief/">
-        <div class="chapter-num">Integrations</div>
-        <h3>The Friday Debrief (OIC)</h3>
-        <p>A 10-scene follow-up to "Oracle Integration Cloud" — Harrison
-        walks James through the same build again, this time entirely in
-        plain language, using the real payloads only as visual backup so
-        James can repeat the story to his own stakeholders.</p>
         <span class="tag">✅ Available</span>
       </a>
     </div>
