@@ -1,15 +1,15 @@
-/* Collapsible sidebar sections for the Oracle CX Storyboard Series.
- * Every section starts collapsed except the one holding the current page,
- * plus "Getting Started" (the site map link) and "Connect".
- * Click or press Enter/Space on a section label to open or close it.
+/* Sidebar preview for the Oracle CX Storyboard Series.
+ * Each section shows its first three pages, followed by a "Show N more"
+ * link that reveals the rest (and "Show less" to fold them again).
+ * The section holding the current page is shown in full, and a section
+ * only folds when at least two titles would be hidden.
  * Without JavaScript the sidebar simply stays fully expanded. */
 (function () {
+  var PREVIEW = 3;
   var css =
-    '.sidebar li.section-label{cursor:pointer;user-select:none}' +
-    '.sidebar li.section-label::after{content:" \\25B8";opacity:.7}' +
-    '.sidebar li.section-label.open::after{content:" \\25BE"}' +
-    '.sidebar li.section-label:hover,.sidebar li.section-label:focus{color:#fff;outline:none}' +
-    '.sidebar li.sb-hidden{display:none}';
+    '.sidebar li.sb-hidden{display:none}' +
+    '.sidebar li.sb-more a{font-size:.82em;color:#ff8c4b;padding-top:2px;padding-bottom:6px;cursor:pointer}' +
+    '.sidebar li.sb-more a:hover,.sidebar li.sb-more a:focus{color:#fff;outline:none}';
   var style = document.createElement('style');
   style.textContent = css;
   document.head.appendChild(style);
@@ -27,24 +27,30 @@
     }
   });
 
-  var alwaysOpen = ['Getting Started', 'Connect'];
-
-  function setOpen(group, open) {
-    group.label.classList.toggle('open', open);
-    group.label.setAttribute('aria-expanded', open ? 'true' : 'false');
-    group.items.forEach(function (li) { li.classList.toggle('sb-hidden', !open); });
-  }
-
   groups.forEach(function (group) {
-    var name = group.label.textContent.trim();
+    var extra = group.items.slice(PREVIEW);
+    if (extra.length < 2) return;  // never hide a single title behind a link
     var hasActive = group.items.some(function (li) { return li.querySelector('a.active'); });
-    group.label.setAttribute('role', 'button');
-    group.label.setAttribute('tabindex', '0');
-    setOpen(group, hasActive || alwaysOpen.indexOf(name) !== -1);
-    function toggle() { setOpen(group, !group.label.classList.contains('open')); }
-    group.label.addEventListener('click', toggle);
-    group.label.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+
+    var moreLi = document.createElement('li');
+    moreLi.className = 'sb-more';
+    var link = document.createElement('a');
+    link.setAttribute('role', 'button');
+    link.setAttribute('tabindex', '0');
+    moreLi.appendChild(link);
+    group.items[group.items.length - 1].insertAdjacentElement('afterend', moreLi);
+
+    function setOpen(open) {
+      extra.forEach(function (li) { li.classList.toggle('sb-hidden', !open); });
+      link.textContent = open ? '▴ Show less' : '▸ Show ' + extra.length + ' more';
+      link.setAttribute('aria-expanded', open ? 'true' : 'false');
+      moreLi.dataset.open = open ? '1' : '';
+    }
+    function toggle(e) { e.preventDefault(); setOpen(!moreLi.dataset.open); }
+    link.addEventListener('click', toggle);
+    link.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') toggle(e);
     });
+    setOpen(hasActive);
   });
 })();
