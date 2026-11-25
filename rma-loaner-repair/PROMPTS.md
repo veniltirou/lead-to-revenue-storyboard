@@ -32,6 +32,19 @@ Save each result over the placeholder with the same file name
 > small dark rounded badge at the bottom right: "© Venil Tirou ·
 > veniltirou.github.io". No other logos or watermarks.
 
+## Backdrop people (add to every scene except Scene 13)
+
+> Include two to four unnamed background people going about their own
+> work, smaller and slightly softer in focus than the main characters, so
+> the place feels lived in. They never look at the camera, never hold
+> readable text, and wear no name badges with names. Do not make any of
+> them resemble James, Lisa, Leila, Sarah, Alex or Cynthia. Vary age,
+> ethnicity and build.
+
+Why the rules: unnamed people stay outside the character registry, and
+keeping them soft and text-free means they add atmosphere without
+competing with the story or adding text that could come out misspelled.
+
 ## Characters
 
 **Alex (new, ABC Corporation service agent).** Man in his early thirties,
@@ -66,17 +79,21 @@ wordmark (attach `commerce-mile-high/mhcb_logo.png`).
 ### Scene01.png — The Machine Notices First
 > A bright staff lounge at Mile High City Bank's Denver branch, wooden
 > walls, plants, the bank emblem on the wall. The white beverage vending
-> machine BV-48213 stands in the corner, working normally, a bank employee
-> in the background pouring coffee, unaware. Floating beside the machine, a
+> machine BV-48213 stands in the corner, working normally. Backdrop: two bank
+> employees chatting at a table with mugs, one more pouring coffee, all
+> unaware anything is wrong. Floating beside the machine, a
 > translucent telemetry overlay card with a small line chart rising gently.
 
 Exact text (overlay card): "BV-48213 · Telemetry" · "Cabinet temp +3°F in 5 days" · "Compressor duty 92%" · "Predicted failure: ~10 days"
 
 ### Scene02.png — The Service Request Writes Itself
-> A clean conceptual scene: on the left, a small IoT cloud icon with an
-> alert card; a glowing arrow flows right into a large white UI card
-> representing a new service request in Oracle Fusion B2B Service. A tiny
-> icon of the vending machine links to the SR card. No people.
+> ABC Corporation's remote monitoring room, early morning: a wall of
+> screens, coffee cups, soft blue light. An unnamed monitoring analyst
+> (headset around the neck, navy ABC polo) turns toward the big wall screen
+> as an alert card appears on it. On the wall screen, left to right: a
+> small IoT alert card, a glowing arrow, and a large white card for the new
+> service request, with a tiny vending-machine icon linking them. Backdrop:
+> one colleague at another console, one walking past with a laptop.
 
 Exact text: left card "IoT incident" · "Asset BV-48213"; right card "SR-30417" · "Cooling performance degrading" · "Customer: Mile High City Bank" · "Created by: IoT rule"
 
@@ -85,14 +102,16 @@ Exact text: left card "IoT incident" · "Asset BV-48213"; right card "SR-30417" 
 > (design above) at his desk with two monitors, leaning in with interest.
 > The main monitor shows the SR with a tab labelled "Connected Asset"
 > displaying a temperature gauge and a small chart. A sticky note on the
-> monitor frame.
+> monitor frame. Backdrop: colleagues at nearby desks on headsets, one
+> walking by with a coffee.
 
 Exact text: monitor "SR-30417" · tab "Connected Asset" · "Queue: Beverage Equipment"; sticky note "Check coverage"
 
 ### Scene04.png — What Mile High Is Entitled To
 > Close-up over Alex's shoulder at his monitor, which shows a clean
 > subscription coverage card with a small gold badge. Alex points at the
-> card, nodding.
+> card, nodding. Backdrop, softly blurred beyond the monitor: an open office
+> with a colleague on a call and another at a whiteboard.
 
 Exact text (card): "Subscription · Denver Branch · BV-48213" · "Gold coverage" · "✓ 4-hour response" · "✓ Depot repair: parts + labor" · "✓ Loaner unit"
 
@@ -101,13 +120,16 @@ Exact text (card): "Subscription · Denver Branch · BV-48213" · "Gold coverage
 > wearing his headset, smiling, explaining. Right: Cynthia (match the
 > reference exactly) at her desk at Mile High City Bank, phone to her ear,
 > relieved and surprised. Small speech-bubble icons only, no long text.
+> Backdrop: on Alex's side, a colleague on a headset two desks away; on
+> Cynthia's side, a bank colleague passing her open office door.
 
 Exact text: a small calendar card on Cynthia's desk: "Thursday · Loaner swap"
 
 ### Scene06.png — Three Lines from One SR
 > Alex at his desk, monitor showing the SR's parts tab as a simple table
 > with three rows, each row with a small icon (truck outbound for shipments,
-> curved return arrow for the return). Alex is clicking "Add".
+> curved return arrow for the return). Alex is clicking "Add". Backdrop: two
+> colleagues at neighbouring desks, one leaning over to help the other.
 
 Exact text (table rows):
 "Line 1 · Shipment · Loaner LN-2207" ·
@@ -118,7 +140,9 @@ Exact text (table rows):
 > An Order Management operations desk at ABC. A service manager (navy
 > blazer, unnamed) at a laptop clicks an "Approve" button on a card showing
 > an order locked with a small padlock. Behind, a simple flow of icons:
-> approval stamp → warehouse → truck.
+> approval stamp → warehouse → truck. Backdrop: an order
+> administrator at a second desk on the phone, and through a glass wall a
+> warehouse worker driving a pallet jack.
 
 Exact text: card "Order with loaner" · "Approval Pending" · button "Approve"
 
@@ -127,7 +151,8 @@ Exact text: card "Order with loaner" · "Approval Pending" · button "Approve"
 > the grey loaner machine (yellow "LOANER" tag) in on a dolly, while the
 > white machine BV-48213 is strapped to a second dolly heading out the door
 > toward a delivery van. Cynthia (match reference) stands to the side with a
-> clipboard, smiling.
+> clipboard, smiling. Backdrop: two bank employees watching from a table,
+> one already buying a drink from the loaner.
 
 Exact text: tag on loaner "LOANER" · serial plates "LN-2207" and "BV-48213" · label on the outgoing dolly "RMA-58841"
 
@@ -135,14 +160,17 @@ Exact text: tag on loaner "LOANER" · serial plates "LN-2207" and "BV-48213" · 
 > ABC Denver Repair Center: a clean workshop with workbenches and tool
 > walls. BV-48213 stands open, its back panel removed. The depot repair
 > manager (navy polo, tablet) shows a repair work order on the tablet while
-> the technician (navy overalls) shines a flashlight on the condenser fan.
+> the technician (navy overalls) shines a flashlight on the condenser fan. Backdrop: other technicians
+> at their own benches, one with another machine half-disassembled, one
+> pushing a parts cart.
 
 Exact text: tablet "Depot Repair · RMA-58841" · "Repair work order" · "Diagnosis: condenser fan motor"
 
 ### Scene10.png — The Estimate Cynthia Doesn't Pay
 > Cynthia (match reference) at her desk at Mile High City Bank, reading a
 > clean estimate on her laptop, eyebrows raised in a pleased way, about to
-> click "Approve".
+> click "Approve". Backdrop: the bank's open office behind her glass wall,
+> a few colleagues at their desks, one carrying files past.
 
 Exact text (estimate card): "Repair estimate · BV-48213" · "Condenser fan motor $185" · "Labor 1.5 h $180" · "Total $365" · "Gold coverage −$365" · "You pay $0" · button "Approve"
 
@@ -150,13 +178,17 @@ Exact text (estimate card): "Repair estimate · BV-48213" · "Condenser fan moto
 > Two-panel composition. Left: at the repair center, the technician closes
 > the back panel of BV-48213 next to a small green "Cooling test passed"
 > indicator. Right: the white machine being wheeled back into the Mile High
-> staff lounge while the grey loaner goes out on a dolly toward the van.
+> staff lounge while the grey loaner goes out on a dolly toward the van. Backdrop: on
+> the left, another technician testing a different machine; on the right,
+> the van driver holding the door and a bank employee holding a door open.
 
 Exact text: left indicator "Cooling test passed · 24 h"; right labels "BV-48213 · home" and "LN-2207 · RMA-58842"
 
 ### Scene12.png — Closing the Loop
 > Alex at his desk, satisfied, clicking "Resolve" on the SR. A second
 > monitor shows a new knowledge article card. In the corner of the scene, a
-> small IoT cloud icon with a green check.
+> small IoT cloud icon with a green check. Backdrop: late-afternoon light,
+> colleagues packing up or finishing calls, one giving Alex a passing
+> thumbs-up from behind (face not shown).
 
 Exact text: SR card "SR-30417 · Resolved"; knowledge card "Knowledge article" · "BV-500: high temp + high compressor duty → check condenser fan motor"; IoT icon "Incident closed"
